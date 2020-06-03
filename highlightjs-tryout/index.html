@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.0/styles/monokai.min.css"
+    integrity="sha256-/d3ZZC6Gr1V8JDi9Os6A2CjemarhIv16pw1Q6snL+lM=" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.0/highlight.min.js"
+    integrity="sha256-UK7vdLQX+IwEtFsq+nSgchTK1GFnpynspvhNUbqiRvY=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <pre >
+    <code class="language-bash" id="pretest">
+    MkCd () {
+      mkdir -p $1
+      cd $1
+    }
+    </code>
+  </pre>
+  <pre >
+    <code class="language-bash" id="pretest">
+    MkCd () {
+      mkdir -p $1
+      cd $1
+    }
+    </code>
+  </pre>  <pre >
+    <code class="language-bash" id="pretest">
+    MkCd () {
+      mkdir -p $1
+      cd $1
+    }
+    </code>
+  </pre>  <pre >
+    <code class="language-bash" id="pretest">
+    MkCd () {
+      mkdir -p $1
+      cd $1
+    }
+    </code>
+  </pre>
+
+  <script>
+    document.querySelectorAll('code').forEach(ele => {
+      hljs.highlightBlock(ele);
+    })
+    console.log("first start")
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('code').forEach(ele => {
+      hljs.highlightBlock(ele);
+    })
+      console.log("content loaded")
+    })
+  </script>
+</body>
+
+</html>
