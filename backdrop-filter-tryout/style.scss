@@ -1,0 +1,17 @@
+.background {
+  filter: blur(10px);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14179/0236.jpg');
+}
+
+.foreground {
+  backdrop-filter: blur(25px) brightness(80%);
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
