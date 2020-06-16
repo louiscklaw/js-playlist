@@ -7,11 +7,69 @@
   <title>Document</title>
 
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .clip-poly {
+      background-color:goldenrod;
+      /* clip-path: polygon(50% 0%, 0% 100%, 100% 100%); */
+      clip-path: polygon(98% 0, 91% 94%, 28% 100%, 0% 50%);
+      height: 100%;
+      width: 100%;
+    }
+
+    .clippath-container{
+      width: 50vw;
+      height: 100vh;
+      overflow:hidden;
+    }
+
+    .main-canvas {
+      display: flex;
+      flex-direction: row, nowrap;
+      justify-content:flex-end;
+    }
+
+    .desc {
+      color: red;
+      position: relative;
+      top: -58%;
+      left: 23%;
+      width: 65%;
+    }
+
+    h2 {
+      color: blue;
+    }
+
+    body {
+      background-color: rgb(42,42,42);
+    }
+
+    * {
+      padding: 0px;
+      margin: 0px;
+      box-sizing: border-box;
+    }
+
+  </style>
+
 </head>
 
 <body>
-  helloworld
+  <div class="main-canvas">
+    <div class="clippath-container">
+      <div class="clip-poly"></div>
 
+      <div class="desc">
+        <h1 class="caption">
+          # Usage, Common examples 📗🔵👌👱
+        </h1>
+        <h2>
+          向2捜せぽけリ覧郷ユヤワサ準助7子群メソマ直林無ノヱク総九るね法右み料生レソヱ犯2属スタリチ海新志合のみル。落国がどゅト備初ワ成東真友ルノ多府イとレせ정책의 수립에 관하여 대통령의 자문에 응하기 위하여 국민경제자문회의를 둘 수 있다, 누구든지 법률에 의하지 아니하고는 체포·구속·압수·수색 또는 심문을 받지 아니하며づけン経誓メノヨス人回ぞぜど司介トの通長めドラ供警の深能か鈴拠るより関達ツテ年撃とえふ桑夕阜じはさ。
+        </h2>
+      </div>
+    </div>
+  </div>
   <script src="js/app.js"></script>
 </body>
 
