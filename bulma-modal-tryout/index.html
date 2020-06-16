@@ -6,12 +6,261 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
-  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
 </head>
 
 <body>
-  helloworld
 
+  <form onSubmit="handleOnSubmit()">
+    <section class="section">
+      <div class="container">
+        <form>
+
+
+          <div class="field is-horizontal">
+            <div class="field-label is-small">
+              <label class="label">username</label>
+            </div>
+            <div class="field-body is-small">
+              <p class="control">
+                <input class="input is-static is-small" type="email" value="me@example.com" readonly>
+              </p>
+            </div>
+          </div>
+
+
+          <div class="field is-horizontal">
+            <div class="field-label is-small">
+              <label class="label">channels</label>
+            </div>
+            <div class="field-body is-small">
+
+              <table class="table is-full-width">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>type</th>
+                    <th>id</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="control">
+                        <div>Main</div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="control has-icons-left">
+                        <span class="select is-small">
+                          <select>
+                            <option selected>Country</option>
+                            <option>Select dropdown</option>
+                            <option>With options</option>
+                          </select>
+                        </span>
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-globe"></i>
+                        </span>
+                      </p>
+                    </td>
+                    <td>
+                      <div class="control is-loading">
+                        <input class="input is-small" type="text" placeholder="Loading input" />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="control">
+                        <div>1</div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="control has-icons-left">
+                        <span class="select is-small">
+                          <select>
+                            <option selected>Country</option>
+                            <option>Select dropdown</option>
+                            <option>With options</option>
+                          </select>
+                        </span>
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-globe"></i>
+                        </span>
+                      </p>
+                    </td>
+                    <td>
+                      <div class="control is-loading">
+                        <input class="input is-small" type="text" placeholder="Loading input" />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="control">
+                        <div>2</div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="control has-icons-left">
+                        <span class="select is-small">
+                          <select>
+                            <option selected>Country</option>
+                            <option>Select dropdown</option>
+                            <option>With options</option>
+                          </select>
+                        </span>
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-globe"></i>
+                        </span>
+                      </p>
+                    </td>
+                    <td>
+                      <div class="control is-loading">
+                        <input class="input is-small" type="text" placeholder="Loading input" />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="control">
+                        <div>3</div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="control has-icons-left">
+                        <span class="select is-small">
+                          <select>
+                            <option selected>Country</option>
+                            <option>Select dropdown</option>
+                            <option>With options</option>
+                          </select>
+                        </span>
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-globe"></i>
+                        </span>
+                      </p>
+                    </td>
+                    <td>
+                      <div class="control is-loading">
+                        <input class="input is-small" type="text" placeholder="Loading input" />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="control">
+                        <div>4</div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="control has-icons-left">
+                        <span class="select is-small">
+                          <select>
+                            <option selected>Country</option>
+                            <option>Select dropdown</option>
+                            <option>With options</option>
+                          </select>
+                        </span>
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-globe"></i>
+                        </span>
+                      </p>
+                    </td>
+                    <td>
+                      <div class="control is-loading">
+                        <input class="input is-small" type="text" placeholder="Loading input" />
+                      </div>
+                    </td>
+                  </tr>
+
+
+
+                  <tr>
+                    <td>
+                      <div class="control">
+                        <div>5</div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="control has-icons-left">
+                        <span class="select is-small">
+                          <select>
+                            <option selected>Country</option>
+                            <option>Select dropdown</option>
+                            <option>With options</option>
+                          </select>
+                        </span>
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-globe"></i>
+                        </span>
+                      </p>
+                    </td>
+                    <td>
+                      <div class="control is-loading">
+                        <input class="input is-small" type="text" placeholder="Loading input" />
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="control">
+                        <div>6</div>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="control has-icons-left">
+                        <span class="select is-small">
+                          <select>
+                            <option selected>Country</option>
+                            <option>Select dropdown</option>
+                            <option>With options</option>
+                          </select>
+                        </span>
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-globe"></i>
+                        </span>
+                      </p>
+                    </td>
+                    <td>
+                      <div class="control is-loading">
+                        <input class="input is-small" type="text" placeholder="Loading input" />
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+
+
+
+          <div class="field">
+            <i class="fas fa-wrench"></i>
+            <i class="fas fa-sign-in-alt"></i>
+            <i class="fas fa-bullhorn"></i>
+            <i class="fas fa-paragraph"></i>
+          </div>
+
+        </form>
+      </div>
+    </section>
+  </form>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+    integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
   <script src="js/app.js"></script>
 </body>
 
