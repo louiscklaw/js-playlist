@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
-  <link rel="stylesheet" href="css/style.css">
-</head>
 
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+
+
+</head>
 <body>
   helloworld
+  <div id='map' style='width: 1200px; height: 600px;'></div>
 
-  <script src="js/app.js"></script>
+
+
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibG91aXNja2xhdyIsImEiOiJjazFjZGMybDUwMGN5M2xwYmw4YWYyYnI0In0.juYmhMwl4QwIhxDUgkvC1w';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+      center: [-74.5, 40], // starting position [lng, lat]
+      zoom: 9 // starting zoom
+    });
+  </script>
+
 </body>
-
 </html>
