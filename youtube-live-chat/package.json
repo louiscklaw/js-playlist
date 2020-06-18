@@ -1,0 +1,9 @@
+{
+  "name": "youtube-live-chat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "youtube-live-chat": "^1.0.3"
+  }
+}
