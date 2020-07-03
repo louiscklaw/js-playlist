@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "bulma": "^0.9.0",
+    "bulma-modal-fx": "^1.1.1"
+  }
+}

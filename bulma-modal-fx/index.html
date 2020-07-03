@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Hello World
+      </h1>
+      <p class="subtitle">
+
+      </p>
+    </div>
+  </section>
+
+  <span class="button modal-button" data-target="modal-fadeInScale-fs">Open modal</span>
+
+  <div id="modal-fadeInScale-fs" class="modal modal-full-screen modal-fx-fadeInScale">
+    <div class="modal-content modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Modal title</p>
+        <button class="modal-button-close delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+      <!-- Modal card body -->
+      </section>
+      <footer class="modal-card-foot">
+        <button class="modal-button-close button is-success">Save changes</button>
+        <button class="modal-button-close button">Cancel</button>
+      </footer>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
+
+
+  </body>
+</html>
