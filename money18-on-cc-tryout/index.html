@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+  <div>
+    <h3 class="title is-6">
+      test: http://realtime-money18-cdn.on.cc/securityQuote/genStockDetailHKJSON.php?stockcode=09988
+    </h3>
+    <pre>
+      <div class="hello_genStockDetailHKJSON"></div>
+    </pre>
+  </div>
+
+  <div>
+    <h3 class="title is-6">
+      test: http://money18.on.cc/securityQuote/genStockJSONHKWithDelay.php?stockcode=9988&t=20201007172351
+    </h3>
+    <div class="hello_genStockJSONHKWithDelay"></div>
+  </div>
+
+  <div>
+    <h3 class="title is-6">
+      test: http://money18.on.cc/chartdata/m3/price/09988_price_m3.txt
+    </h3>
+    <div class="hello_09988_price_m3"></div>
+  </div>
+
+  <div>
+    <h3 class="title is-6">
+      test: http://money18.on.cc/chartdata/d1/price/09988_price_d1.txt
+    </h3>
+    <div class="hello_09988_price_d1"></div>
+  </div>
+
+  <div>
+    <h3 class="title is-6">
+      test: http://money18.on.cc/js/daily/technicalAnalysis/updown/09988_p.js
+    </h3>
+    <div class="hello_09988_p"></div>
+  </div>
+
+  <div>
+    <h3 class="title is-6">
+      test: http://money18.on.cc/UTF8/sectors/stocks/09988_sector.js?t=20201007172351&t=20201007172351
+    </h3>
+    <div class="hello_09988_sector"></div>
+  </div>
+
+  <div>
+    <h3 class="title is-6">
+      test: http://money18.on.cc/cnt/utf8/stockList/HK/09988/09988_all.js?t=20201007172351
+    </h3>
+    <div class="hello_09988_all"></div>
+  </div>
+
+  <div>
+    <h3 class="title is-6">
+      test: https://s.update.rubiconproject.com/2/4.72.1/873648/aYlQmr7y1ANT04Lm/postback?pi=727474&dt=8736481428691810142000&ci=873648&si=153160&di=money18.on.cc&ti=4738e89b-d133-441b-be82-5e6ec8c9833f&r5=Mozilla%2F5.0%20(X11%3B%20Linux%20x86_64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Ubuntu%20Chromium%2F83.0.4103.61%20Chrome%2F83.0.4103.61%20Safari%2F537.36&ap=&dm=15&oz_tc=aYlQmr7y1ANT04Lm&oz_sc=1185fe6e256e1356c933677c&oz_st=1594373030599&oz_v=4.72.1&dp=money18.on.cc&oz_df=15547&oz_l=92&cv=3
+    </h3>
+    <div class="hello_postback"></div>
+  </div>
+
+  <a href="http://realtime-money18-cdn.on.cc/securityQuote/genStockDetailHKJSON.php?stockcode=09988">test json</a>
+
+  <script>
+    fetch( 'https://realtime-money18-cdn.on.cc/securityQuote/genStockDetailHKJSON.php?stockcode=09988' )
+      .then( result => result.json() )
+      .then( json => {
+        document.querySelector( '.hello_genStockDetailHKJSON' )
+          .innerHTML = JSON.stringify( json, null, 2 )
+      } )
+      .catch( err => {
+        document.querySelector( '.hello_genStockDetailHKJSON' )
+          .innerHTML = err.message
+      } )
+
+    fetch( 'https://money18.on.cc/securityQuote/genStockJSONHKWithDelay.php?stockcode=9988&t=20201007172351' )
+      .then( result => result.json() )
+      .then( json => {
+        document.querySelector( '.hello_genStockJSONHKWithDelay' )
+          .innerHTML = JSON.stringify( json )
+      } )
+      .catch( err => {
+        document.querySelector( '.hello_genStockJSONHKWithDelay' )
+          .innerHTML = err.message
+      } )
+
+    fetch( 'http://money18.on.cc/chartdata/m3/price/09988_price_m3.txt', { credentials: 'include'})
+      .then( result => result.text() )
+      .then( text => {
+        document.querySelector( '.hello_09988_price_m3' )
+          .innerHTML = text
+      } )
+      .catch( err => {
+        document.querySelector( '.hello_09988_price_m3' )
+          .innerHTML = err.message
+      } )
+
+    fetch( 'http://money18.on.cc/chartdata/d1/price/09988_price_d1.txt' )
+      .then( result => result.text() )
+      .then( text => {
+        document.querySelector( '.hello_09988_price_d1' )
+          .innerHTML = JSON.stringify( json )
+      } )
+      .catch( err => {
+        document.querySelector( '.hello_09988_price_d1' )
+          .innerHTML = err.message
+      } )
+
+    fetch( 'http://money18.on.cc/js/daily/technicalAnalysis/updown/09988_p.js' )
+      .then( result => result.text() )
+      .then( text => {
+        document.querySelector( '.hello_09988_p' )
+          .innerHTML = JSON.stringify( json )
+      } )
+      .catch( err => {
+        document.querySelector( '.hello_09988_p' )
+          .innerHTML = err.message
+      } )
+
+    fetch( 'http://money18.on.cc/UTF8/sectors/stocks/09988_sector.js?t=20201007172351&t=20201007172351' )
+      .then( result => result.text() )
+      .then( text => {
+        document.querySelector( '.hello_09988_sector' )
+          .innerHTML = JSON.stringify( json )
+      } )
+      .catch( err => {
+        document.querySelector( '.hello_09988_sector' )
+          .innerHTML = err.message
+      } )
+
+    fetch( 'http://money18.on.cc/cnt/utf8/stockList/HK/09988/09988_all.js?t=20201007172351' )
+      .then( result => result.text() )
+      .then( text => {
+        document.querySelector( '.hello_09988_all' )
+          .innerHTML = JSON.stringify( json )
+      } )
+      .catch( err => {
+        document.querySelector( '.hello_09988_all' )
+          .innerHTML = err.message
+      } )
+
+      fetch( 'https://s.update.rubiconproject.com/2/4.72.1/873648/aYlQmr7y1ANT04Lm/postback?pi=727474&dt=8736481428691810142000&ci=873648&si=153160&di=money18.on.cc&ti=4738e89b-d133-441b-be82-5e6ec8c9833f&r5=Mozilla%2F5.0%20(X11%3B%20Linux%20x86_64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Ubuntu%20Chromium%2F83.0.4103.61%20Chrome%2F83.0.4103.61%20Safari%2F537.36&ap=&dm=15&oz_tc=aYlQmr7y1ANT04Lm&oz_sc=1185fe6e256e1356c933677c&oz_st=1594373030599&oz_v=4.72.1&dp=money18.on.cc&oz_df=15547&oz_l=92&cv=3' )
+      .then( result => result.text() )
+      .then( text => {
+        document.querySelector( '.hello_postback' )
+          .innerHTML = JSON.stringify( json )
+      } )
+      .catch( err => {
+        document.querySelector( '.hello_postback' )
+          .innerHTML = err.message
+      } )
+
+  </script>
+
+</body>
+
+</html>

@@ -10,8 +10,8 @@
   <style>
     .card-grid {
       background-color: green;
-      width: 350px;
-      height: 250px;
+      width: 540px;
+      height: 540px;
 
       display: flex;
       flex-flow: row wrap;
@@ -21,19 +21,19 @@
     }
 
 
-    .card-grid::after {
-      content: "";
+    .card-after {
       flex: 1 1 100%;
-      max-width: 32%;
+      max-width: calc(99% * 2 / 4);
+      background-color: red;
     }
 
 
     .card {
       flex: 1 1 100%;
-      max-width:32%;
 
-      width: 100px;
+      max-width: calc(99% / 4);
       height: 100px;
+
       background-color: orange;
     }
 
@@ -48,6 +48,12 @@
     <div class="card">3</div>
     <div class="card">4</div>
     <div class="card">5</div>
+    <div class="card">5</div>
+    <div class="card">5</div>
+    <div class="card">5</div>
+    <div class="card">5</div>
+    <div class="card">5</div>
+    <div class="card-after">6</div>
   </div>
 
 

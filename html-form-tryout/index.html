@@ -7,12 +7,14 @@
   <title>Document</title>
 
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+
 </head>
 
 <body>
   <form>
     <div name="channels">
-      <select name='channel_type'>
+      <select name='channel_type[]'>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -21,7 +23,7 @@
       </select>
     </div>
     <div name="channels">
-      <select name='channel_type'>
+      <select name='channel_type[]'>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -32,14 +34,42 @@
     <button>test</button>
   </form>
 
+  <form id="testform_2">
+    <input type="text" name="channel_type[]" value="channel_type_a" />
+    <input type="text" name="channel_vid[]" value="channel_vid_a" />
+    <input type="text" name="channel_title[]" value="channel_title_a" />
+
+    <input type="text" name="channel_type[]" value="channel_type_b" />
+    <input type="text" name="channel_vid[]" value="channel_vid_b" />
+    <input type="text" name="channel_title[]" value="channel_title_b" />
+
+    <input type="text" name="channel_type[]" value="channel_type_c" />
+    <input type="text" name="channel_vid[]" value="channel_vid_c" />
+    <input type="text" name="channel_title[]" value="channel_title_c" />
+
+    <button type="submit">submit</button>
+  </form>
+
   <script>
-    let form = document.querySelector('form')
-    form.addEventListener('submit', (e)=>{
+    let form = document.querySelector( 'form' )
+    form.addEventListener( 'submit', ( e ) => {
       e.preventDefault();
-      console.log(form.channel_type[0].value)
+      console.log( form.channel_type )
+    } )
+
+    let channel_type_array = document.querySelectorAll("input[name='channel_type[]']")
+    let channel_type_d_array = {...channel_type_array}
+    console.log(_.mapValues(channel_type_d_array, function(o){return o.value}))
+
+    let channel_vid_array = document.querySelectorAll("input[name='channel_vid[]']")
+    let channel_vid_d_array = {...channel_vid_array}
+    console.log(_.mapValues(channel_vid_d_array, function(o){return o.value}))
+
+    let channel_title_array = document.querySelectorAll("input[name='channel_title[]']")
+    let channel_title_d_array = {...channel_title_array}
+    console.log(_.mapValues(channel_title_d_array, function(o){return o.value}))
 
 
-    })
 
   </script>
 
