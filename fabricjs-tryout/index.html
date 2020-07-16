@@ -6,10 +6,31 @@
   <title>Document</title>
 
   <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
+
 </head>
 <body>
   helloworld
 
-  <script src="js/app.js"></script>
+  <canvas id="c"></canvas>
+
+  <script>
+    // create a wrapper around native canvas element (with id="c")
+    var canvas = new fabric.Canvas('c');
+
+    // create a rectangle object
+    var rect = new fabric.Rect({
+      left: 100,
+      top: 100,
+      fill: 'red',
+      width: 20,
+      height: 20
+    });
+
+    // "add" rectangle onto canvas
+    canvas.add(rect);
+  </script>
+
 </body>
 </html>
