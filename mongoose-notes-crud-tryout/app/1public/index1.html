@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>list</h1>
+    <a href="http://localhost:3001/notes">list all notes</a>
+    <br>
+    <br>
+    <br>
+    C
+    <form id="create_noteId">
+        title
+        <input type="text" name="title_to_create" id="title_to_create" value="t5">
+
+        content
+        <input type="text" name="content_to_create" id="content_to_create" value="c5">
+
+    </form>
+    <button type="create" onclick="create_noteId();">create</button>
+    <br>
+    <br>
+    <br>
+
+    R
+    <input type="text" name="noteId_to_read" id="noteId_to_read">
+    <button onclick="read_single_noteId();">read</button>
+    <br>
+    <br>
+
+    <br>U
+    <form id="updateForm">
+        <input type="text" name="noteId_to_update" id="noteId_to_update" value="5d8dc30e9aaa022f9762d4a9">
+        title
+        <input type="text" name="update_title" id="update_title" value="t4">
+        content
+        <input type="text" name="update_content" id="update_content" value="c4">
+    </form>
+
+    <button onclick="update_single_noteId();">update</button>
+
+    <br>
+    <br>
+    <br>D
+    <input type="text" name="noteId_to_delete" id="noteId_to_delete">
+    <button onclick="delete_noteid();">!! DELETE</button>
+
+    <br>
+    <br>
+    <br>F
+    title <input type="text" name="title_to_find" id="title_to_find">
+    content <input type="text" name="content_to_find" id="content_to_find">
+
+    <button onclick="find_note();">find</button>
+
+    <script>
+
+    </script>
+
+</body>
+
+</html>

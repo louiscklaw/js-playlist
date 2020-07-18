@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My first Bulma website</title>
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.0.0/animate.min.css">
+
+  <script src="node_modules/bulma-toast/dist/bulma-toast.min.js"></script>
+</head>
+
+<body>
+  helloworld
+  <script type="text/javascript" src="lib/main.js"></script>
+  <script>
+    bulmaToast.toast( {
+      message: "1 one 💞🔤📗🔵👌 👱🌲🔯",
+      duration: 10000,
+      type: "is-success",
+      dismissible: true,
+      animate: { in: "fadeIn", out: "fadeOut" },
+      opacity: 0.8,
+      pauseOnHover: true,
+      closeOnClick: true
+    } );
+
+    const elm = document.createElement("a");
+    elm.text = "Visit my website!";
+    elm.href = "https://rfoel.com";
+
+    bulmaToast.toast( {
+      message: elm,
+      duration: 10000,
+      type: "is-success",
+      dismissible: true,
+      animate: { in: "fadeIn", out: "fadeOut" },
+      opacity: 0.8,
+      pauseOnHover: true,
+      closeOnClick: true,
+      position: "center"
+    } );
+    setTimeout(() => {
+      document.querySelector('body').setAttribute('style','background-color:red')
+    }, 2000);
+  </script>
+</body>
+
+</html>

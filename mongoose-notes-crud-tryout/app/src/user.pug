@@ -1,0 +1,105 @@
+.section
+    .container
+        .columns
+            .column(class='is-full')
+                .box
+                    span user
+                    .field
+                        label.label(for="list_user") list_user
+                        .control
+                            button.button.is-primary(onclick="click_list_users();") list
+                    .list_user_result(style="width: 100%;")
+
+.section
+    .container
+        .columns
+            .column
+                .box
+                    span login
+                    .field
+                        label.label(for="username") username
+                        .control
+                            input.input(type="text" name="username" id="username")
+                    .field
+                        label.label(for="password") password
+                        .control
+                            input.input(type="text" name="password" id="password")
+                    .field
+                        label.label(for="remember me")
+                        input(type="checkbox", name="remember_me")
+                        span Remember me
+                    .field
+                        button.button.is-link(onclick="try_login();") login
+                    .field
+                        label.label(for="login_result") login_result
+                        .login_result
+
+            .column
+                .box
+                    span logout
+                    .field
+                        label.label(for="logout") logout
+                        .control
+                            button.button.is-link(onclick="logout_user();") logout
+                    .field
+                        label.label(for="logout_result") logout_result
+                        .logout_result
+
+            .column
+                .box
+                    span create user
+                    .field
+                        label.label(for="create_user") create user
+                    .field
+                        label.label(for="username") username
+                        input.input(type="text" name="username" id="create_username")
+
+                    .field
+                        label.label(for="password") password
+                        input.input(type="text" name="password" id="create_password")
+
+                    .field
+                        label.label(for="enabled") enabled
+                        select#create_user_enabled.select(name="create_user_enabled")
+                            option(value="disabled") disabled
+                            option(value="enabled") enabled
+
+
+                    .field
+                        button.button.is-primary.is-rounded(onclick="click_create_user();") create user
+            .column
+                .box
+                    span update user
+                    .field
+                        label.label(for="update_user") update user
+                    .field
+                        label.label(for="user_id") user list
+                        .control
+                            .select.is-rounded
+                                select#user_id_list_update
+                    .field
+                        label.label(for="username") username
+                        input.input(type="text" name="username" id="update_username")
+                    .field
+                        label.label(for="password") password
+                        input.input(type="text" name="password" id="update_password")
+                    .field
+                        label.label(for="enabled") enabled
+                        select#create_user_enabled.select(name="create_user_enabled")
+                            option(value="disabled") disabled
+                            option(value="enabled") enabled
+                    .field
+                        button.button.is-primary.is-rounded(onclick="click_update_user();") update user
+
+            .column
+                .box
+                    span delete user
+                    .field
+                        label.label(for="delete_user") delete user
+                    .field
+                        label.label(for="user_id")
+                        .control
+                            .select.is-rounded
+                                select#user_id_list_delete
+                    .field
+                        button.button.is-primary.is-rounded(onclick="click_delete_user();") delete user

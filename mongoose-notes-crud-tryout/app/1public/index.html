@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello CRUD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">CRUD tester</h1>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-full">
+                    <div class="box">
+                        <button onclick="list_records();">list records</button>
+
+                        <div class="result" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <div class="container">
+                        <div class="box">
+                            <span>Create</span>
+                            <div class="field">
+                                <label class="label">title</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Text input" name="title_to_create"
+                                        id="title_to_create">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">content</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Text input" name="content_to_create"
+                                        id="content_to_create">
+                                </div>
+                            </div>
+                            <button type="create" onclick="create_noteId();">create</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="container">
+                        <div class="box">
+                            <span>Read</span>
+                            <div class="field">
+                                <label class="label">nodeId</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Text input" name="noteId_to_read"
+                                        id="noteId_to_read">
+                                </div>
+                            </div>
+                            <button onclick="read_single_noteId();">read</button>
+                            <div class="field">
+                                <label class="label">result</label>
+                                <div class="control">
+                                    <div class="read_result"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="container">
+                        <div class="box">
+                            <span>Update</span>
+                            <div class="field">
+                                <label class="label">nodeId</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Text input" name="noteId_to_read"
+                                        id="noteId_to_update">
+                                </div>
+                                <div class="field">
+                                    <label class="label">title</label>
+                                    <input class="input" type="text" placeholder="Text input" name="update_title"
+                                        id="update_title">
+                                </div>
+                                <div class="field">
+                                    <label class="label">content</label>
+                                    <input class="input" type="text" placeholder="Text input" name="update_content"
+                                        id="update_content">
+                                </div>
+                            </div>
+                            <button onclick="update_single_noteId();">update</button>
+                            <div class="field">
+                                <label class="label">result</label>
+                                <div class="control">
+                                    <div class="read_result"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="container">
+                        <div class="box">
+                            <span>Delete</span>
+                            <div class="field">
+                                <label class="label">nodeId</label>
+                                <div class="control">
+                                    <!-- <input class="input" type="text" name="noteId_to_delete" id="noteId_to_delete"> -->
+                                    <div class="select is-rounded">
+                                        <select id="delete_noteid_list">
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button onclick="delete_noteid();">!! DELETE</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="conteiner">
+                        <div class="box">
+                            <span>Search</span>
+                            <div class="field">
+                                <label class="label">nodeId</label>
+                                <div class="control">
+                                    <input class="input" type="text" name="noteId_to_delete" id="noteId_to_delete">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">title</label>
+                                <div class="control">
+                                    <input class="input" type="text" name="title_to_search" id="title_to_search">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">content</label>
+                                <div class="control">
+                                    <input class="input" type="text" name="content_to_search" id="content_to_search">
+                                </div>
+                            </div>
+                            <button onclick="search_noteid();">search</button>
+                            <div class="search_result"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <div class="box">
+                        <span>login</span>
+                        <div class="field">
+                            <label for="username" class="label">username</label>
+                            <div class="control"><input class="input" type="text" name="username" id="username"></div>
+                        </div>
+                        <div class="field">
+                            <label for="password" class="label">password</label>
+                            <div class="control"><input type="text" name="password" id="password" class="input"></div>
+                        </div>
+                        <div class="field">
+                            <button onclick="try_login();">login</button>
+                        </div>
+                        <div class="field">
+                            <label for="login_result">login_result</label>
+                            <div class="login_result"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="box">
+                        <span>logout</span>
+                        <div class="field">
+                            <label for="logout" class="label">logout</label>
+                            <div class="control">
+                                <button onclick="logout_user();">logout</button>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="logout_result">logout_result</label>
+                            <div class="logout_result"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function create_noteId() {
+            console.log( 'create_noteId' );
+
+            fetch( 'http://localhost:3001/notes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify( {
+                        title_to_create: get_ele( '#title_to_create' ).value,
+                        content_to_create: get_ele( '#content_to_create' ).value
+                    } ),
+                } )
+                .then( ( res ) => {
+                    console.log( res );
+                } )
+        }
+
+        function update_single_noteId() {
+            console.log( 'update_single_noteId' );
+            fetch( 'http://localhost:3001/notes/' + get_ele( '#noteId_to_update' ).value, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify( {
+                        title_to_update: get_value( '#update_title' ),
+                        content_to_update: get_value( '#update_content' )
+                    } )
+                } )
+                .then( res => {
+                    console.log( res );
+                } )
+        }
+
+        function read_single_noteId() {
+            var response = fetch( 'http://localhost:3001/notes/' + get_ele( '#noteId_to_read' ).value )
+                .then( res => res.json() )
+                .then( json => get_ele( '.read_result' ).innerHTML = JSON.stringify( json ) );
+        }
+
+        function delete_noteid() {
+
+            const response = fetch( 'http://localhost:3001/notes/' + get_ele( '#noteId_to_delete' ).value, {
+                method: 'DELETE'
+            } );
+
+        }
+
+        function find_note() {
+            fetch( 'http://localhost:3001/find_note', {
+                method: 'POST',
+                headers: JSON_HEADER,
+                body: JSON.stringify( {
+                    title: get_value( '#title_to_find' ),
+                    content: get_value( '#content_to_find' )
+                } )
+            } )
+        }
+
+        function list_records() {
+            console.log( 'list_records' );
+            fetch( 'http://localhost:3001/notes' )
+                .then( ( res, rej ) => {
+                    return res.json();
+                } )
+                .then( jsons => {
+                    get_ele( '.result' ).innerHTML = JSON.stringify( jsons )
+                } );
+
+        }
+
+
+        function fetch_helloworld() {
+            console.log( 'fetching' );
+            fetch( '/helloworld' )
+                .then( res => console.log( res.text() ) );
+        }
+
+        function search_noteid() {
+            console.log( 'search note id' );
+            fetch( "/find_note", {
+                    method: "POST",
+                    headers: JSON_HEADER,
+                    body: JSON.stringify( {
+                        title: get_value( '#title_to_search' ),
+                        content: get_value( '#content_to_search' )
+                    } )
+                } )
+                .then( res => res.json() )
+                .then( jsons => get_ele( '.search_result' ).innerHTML = JSON.stringify( jsons ) );
+        }
+
+        function fetch_get_text( uri ) {
+            fetch( uri, {
+                    method: "GET"
+                } )
+                .then( res => res.text() )
+                .then( text => console.log( text ) );
+
+        }
+
+        function fetch_get_json( uri ) {
+            return fetch( uri, {
+                    method: "GET"
+                } )
+                .then( res => res.json() );
+
+        }
+
+
+        var JSON_HEADER = {
+            'Content-Type': 'application/json'
+        };
+
+        function get_value( selector_in ) {
+            return get_ele( selector_in ).value;
+        }
+
+        function get_ele( selector ) {
+            return document.querySelector( selector );
+        }
+
+        function helloworld() {
+            console.log( "helloworld" );
+        }
+
+        function get_noteId_list() {
+            return fetch_get_json( '/all_noteid' );
+        }
+
+        function assemble_list( json_noteId ) {
+            json_noteId.forEach( ( j ) => {
+                var sel = get_ele( '#delete_noteid_list' );
+                var opt1 = document.createElement( "option" );
+
+                opt1.value = j._id;
+                opt1.text = j._id;
+
+                sel.add( opt1, null );
+
+            } )
+        }
+
+        function update_delete_list() {
+            get_noteId_list()
+                .then( json => {
+                    assemble_list( json );
+                } );
+        }
+
+        function try_login(){
+            console.log("try login");
+            fetch('/try_login', {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: get_value('#username'),
+                    password: get_value('#password')
+                }),
+                headers: JSON_HEADER
+            })
+
+        }
+
+        document.addEventListener( 'DOMContentLoaded', () => {
+            helloworld();
+            update_delete_list();
+        } );
+    </script>
+
+</body>
+
+</html>

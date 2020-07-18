@@ -1,0 +1,39 @@
+# Note: It requires docker-compose 1.6.0+
+#
+# Usage: docker-compose up -d
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+
+    # TODO: resume me
+    # restart: always
+    # environment:
+      # MONGO_INITDB_ROOT_USERNAME: root
+      # MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+
+    # TODO: resume me
+    # restart: always
+    # environment:
+      # ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      # ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
+  node:
+    image: "node:8"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ../:/home/node/app
+    ports:
+      - 3000:3001
+    command: "npm start"

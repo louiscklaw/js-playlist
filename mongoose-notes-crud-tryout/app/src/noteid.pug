@@ -1,0 +1,95 @@
+.section
+    .container
+        .columns
+            .column(class='is-full')
+                .box
+                    label.label(for="noteid") list note
+                    button(onclick="click_list_notes();") list
+                    .list_note_result(style="width: 100%;")
+.section
+    .container
+        .columns
+            .column
+                .container
+                    .box
+                        span Create
+                        .field
+                            label.label(for="title") title
+                            .control
+                                input.input(type="text" placeholder="Text input" name="title_to_create" id="title_to_create")
+                        .field
+                            label.label(for="content") content
+                            .control
+                                input.input(type="text" placeholder="Text input" name="content_to_create" id="content_to_create")
+                        button(onclick="create_noteId();") create
+            .column
+                .container
+                    .box
+                        span Read
+                        .field
+                            label.label(for="nodeId") nodeId
+                            .control
+                                input.input(type="text" placeholder="Text input" name="noteId_to_read" id="noteId_to_read")
+                        button(onclick="read_single_noteId();") read
+                        .field
+                            label.label(for="result") result
+                            .control
+                                .read_result
+.section
+    .container
+        .columns
+            .column
+                .container
+                    .box
+                        span Update
+                        .field
+                            label.label(for="noteId") noteId
+                            .control
+                                .select.is-rouunded
+                                    select#update_noteid_list(name="update_noteid_list" onchange="update_noteid_change(this);")
+
+                        .field
+                            label.label(for="title") title
+                            .control
+                                input.input(type="text" placeholder="text input" name="update_title" id="update_title" onchange="hello_change();")
+                        .field
+                            label.label(for="content") content
+                            .control
+                                input.input(type="text" placeholder="text input" name="update_content" id="update_content")
+                        button(onclick="click_update();") update
+                        .field
+                            label.label(for="result") result
+                            .control
+                                .read_result
+            .column
+                .container
+                    .box
+                        span Delete
+                        .field
+                            label.label(for="noteId") noteId
+                            .control
+                                .select.is-rounded
+                                    select#delete_noteid_list
+                        button(onclick="delete_noteid()") !!delete
+.section
+    .container
+        .columns
+            .column
+                .container
+                    .box
+                        span Search
+                        .field
+                            label.label(for="noteId") noteId
+                            .control
+                                input.input(type="text" name="noteId_to_search" id="noteId_to_search")
+                        .field
+                            label.label(for="title") title
+                            .control
+                                input.input(type="text" name="title_to_search" id="title_to_search")
+                        .field
+                            label.label(for="content") content
+                            .control
+                                input.input(type="text" name="content_to_search" id="content_to_search")
+                        button(onclick="search_noteid();") search
+                        button(onclick="clear_search_box();") clear
+                        .search_result
