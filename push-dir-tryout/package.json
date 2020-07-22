@@ -66,7 +66,7 @@
     "js-build": "babel _javascript --out-dir lib",
     "js-watch": "npm run js-build -- --watch",
     "start": "npm-run-all --parallel css-watch js-watch",
-    "test-push":"push-dir --dir=build --branch=gh-pages"
+    "push-gh-pages":"push-dir --dir=build --branch=gh-pages"
   },
   "version": "0.0.4",
   "dependencies": {
