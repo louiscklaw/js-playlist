@@ -1,0 +1,87 @@
+{
+  "reports": {
+    "testsuite": [ {
+      "@errors": "0",
+      "@failures": "0",
+      "@name": "unit_suite1.Test_unit_suite1-20200804212913",
+      "@tests": "2",
+      "@time": "0.000",
+      "testcase": [ {
+        "@classname": "unit_suite1.Test_unit_suite1",
+        "@name": "test_helloworld",
+        "@time": "0.000"
+      }, {
+        "@classname": "unit_suite1.Test_unit_suite1",
+        "@name": "test_no_doc_string",
+        "@time": "0.000"
+      } ],
+      "system-out": "hellworld\nno_doc_string",
+      "system-err": null
+    }, {
+      "@errors": "1",
+      "@failures": "0",
+      "@name": "unit_suite3.Test_unit_suite3-20200804212913",
+      "@tests": "2",
+      "@time": "0.000",
+      "testcase": [ {
+        "@classname": "unit_suite3.Test_unit_suite3",
+        "@name": "test_sample_1",
+        "@time": "0.000"
+      }, {
+        "@classname": "unit_suite3.Test_unit_suite3",
+        "@name": "test_sample_0",
+        "@time": "0.000",
+        "error": {
+          "@message": "shouldn't happen",
+          "@type": "AssertionError",
+          "#text": "Traceback (most recent call last):\n  File \"/home/logic/_workspace/python-playlist/unittest-json-reporting-tryout/src/test/unit/unit_suite3.py\", line 13, in test_sample_0\n    self.fail(\"shouldn't happen\")\nAssertionError: shouldn't happen"
+        }
+      } ],
+      "system-out": "hellworld\nno_doc_string",
+      "system-err": null
+    }, {
+      "@errors": "1",
+      "@failures": "0",
+      "@name": "unit_suite4.Test_unit_suite4-20200804212913",
+      "@tests": "2",
+      "@time": "0.000",
+      "testcase": [ {
+        "@classname": "unit_suite4.Test_unit_suite4",
+        "@name": "test_sample_1",
+        "@time": "0.000"
+      }, {
+        "@classname": "unit_suite4.Test_unit_suite4",
+        "@name": "test_sample_0",
+        "@time": "0.000",
+        "error": {
+          "@message": "shouldn't happen",
+          "@type": "AssertionError",
+          "#text": "Traceback (most recent call last):\n  File \"/home/logic/_workspace/python-playlist/unittest-json-reporting-tryout/src/test/unit/unit_suite4.py\", line 13, in test_sample_0\n    self.fail(\"shouldn't happen\")\nAssertionError: shouldn't happen"
+        }
+      } ],
+      "system-out": "hellworld\nno_doc_string",
+      "system-err": null
+    }, {
+      "@errors": "1",
+      "@failures": "0",
+      "@name": "unit_suite2.Test_unit_suite2-20200804212913",
+      "@tests": "1",
+      "@time": "0.000",
+      "testcase": {
+        "@classname": "unit_suite2.Test_unit_suite2",
+        "@name": "test_sample_0",
+        "@time": "0.000",
+        "error": {
+          "@message": "shouldn't happen",
+          "@type": "AssertionError",
+          "#text": "Traceback (most recent call last):\n  File \"/home/logic/_workspace/python-playlist/unittest-json-reporting-tryout/src/test/unit/unit_suite2.py\", line 13, in test_sample_0\n    self.fail(\"shouldn't happen\")\nAssertionError: shouldn't happen"
+        }
+      },
+      "system-out": "hellworld\nno_doc_string",
+      "system-err": null
+    } ],
+    "meta": {
+      "desc": "---\nTitle: Unit Testing\nExplain: update from meta directory\n---\n\nUNIT TESTING is a level of software testing where individual units/ components of a software are tested. The purpose is to validate that each unit of the software performs as designed. A unit is the smallest testable part of any software. It usually has one or a few inputs and usually a single output.\n"
+    }
+  }
+}
