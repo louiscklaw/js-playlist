@@ -17,6 +17,24 @@
   </div>
 
   <script>
+    function getJson() {
+      var resultElement = document.getElementById( 'getResult1' );
+      resultElement.innerHTML = '';
+
+      axios.get( 'http://money18.on.cc/chartdata/m3/price/09988_price_m3.txt' )
+        .then( function ( response ) {
+          // resultElement.innerHTML = generateSuccessHTMLOutput( response );
+          alert('helloworld')
+          console.log( 'response',response )
+        } )
+        .catch( function ( error ) {
+          // resultElement.innerHTML = generateErrorHTMLOutput( error );
+          alert('error')
+          console.log('error')
+        } );
+    }
+
+
     function performGetRequest1() {
       var resultElement = document.getElementById( 'getResult1' );
       resultElement.innerHTML = '';
