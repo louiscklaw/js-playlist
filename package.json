@@ -1,0 +1,15 @@
+{
+  "name": "js-playlist",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:louiscklaw/js-playlist.git",
+  "author": "louiscklaw <louiscklaw@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "npm run gh-pages",
+    "gh-pages": "gh-pages -d axios-tryout -b gh-pages"
+  },
+  "dependencies": {
+    "gh-pages": "^3.1.0"
+  }
+}
