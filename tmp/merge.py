@@ -59,8 +59,11 @@ class dummy_run_result():
   def __init__(self):
     self.failed = ERR_DRY_RUN_EXPLAIN
 
-  pass
+def print_error(error_text):
+  print(chalk.red(error_text))
 
+def print_message(msg_text):
+  print(chalk.red(error_text))
 
 def create_temp_dir():
   TEMP_DIR = local('mktemp -d', capture=True)
@@ -107,8 +110,8 @@ def push_commit(uri_to_push, merge_to, cwd, ignore_error=True):
       run_command(command_to_run , cwd, ignore_error)
 
     except Exception as e:
-      print('push_commit: cwd: {}'.format(cwd))
-      print('push_commit: error during running command {}'.format(command_to_run))
+      print_error('push_commit: cwd: {}'.format(cwd))
+      print_error('push_commit: error during running command {}'.format(command_to_run))
 
       raise e
 
