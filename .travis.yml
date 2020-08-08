@@ -35,8 +35,8 @@ jobs:
         -   wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/_util/Pipfile.lock .
         -   chmod +x merge.py
 
-        -  pipenv sync
-        -  pipenv run python3 ./merge.py
+        -   pipenv sync
+        -   pipenv run python3 ./merge.py
         - cd -
 
 
