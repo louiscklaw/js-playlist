@@ -95,7 +95,13 @@ def run_command(command_body, cwd=pwd, ignore_error=True, except_in=MyException.
         if ignore_error:
           print(chalk.red('command: {}'.format(command_to_run)))
           print(chalk.red('error found during running command, ignore flag active'))
+          print_message(command_result.stderr)
         else:
+          print_error('error during running command "{}"'.format(command_to_run))
+
+          print_error('error message')
+          print_error(command_result.stderr)
+
           raise except_in
 
       return command_result
