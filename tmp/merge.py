@@ -110,8 +110,8 @@ def push_commit(uri_to_push, merge_to, cwd, ignore_error=True):
       run_command(command_to_run , cwd, ignore_error)
 
     except Exception as e:
-      print_error('push_commit: cwd: {}'.format(cwd))
-      print_error('push_commit: error during running command {}'.format(command_to_run))
+      print_error('push_commit: cwd: "{}"'.format(cwd))
+      print_error('push_commit: error during running command "{}"'.format(command_to_run))
 
       raise e
 
