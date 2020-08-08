@@ -19,6 +19,7 @@ script:
 jobs:
   include:
     - stage: Merge
+      name: merge (travis-build-merger)
       script:
         - wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/merge_if_success.sh
         - bash merge_if_success.sh
