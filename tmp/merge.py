@@ -60,7 +60,13 @@ class dummy_run_result():
     self.failed = ERR_DRY_RUN_EXPLAIN
 
 def print_error(error_text):
+  print(chalk.red('V'* 80 + " error dump " + 'V'*80))
+  print('')
   print(chalk.red(error_text))
+  print('')
+  print(chalk.red('^'* 80 + " error dump " + '^'*48))
+
+
 
 def print_message(msg_text):
   print(chalk.red(error_text))
