@@ -30,9 +30,9 @@ jobs:
       script:
         - mkdir -p tmp
         - cd tmp
-        -   wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/_util/merge.py .
-        -   wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/_util/Pipfile .
-        -   wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/_util/Pipfile.lock .
+        -   wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/_util/merge.py
+        -   wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/_util/Pipfile
+        -   wget https://raw.githubusercontent.com/louiscklaw/travis-playlist/master/travis-build-merger/_util/Pipfile.lock
         -   chmod +x merge.py
 
         -   pipenv sync
