@@ -33,4 +33,4 @@ stages:
 
 import:
   - credentials.yml
-  - concurrently-tryout/.travis.yml
+  # - concurrently-tryout/.travis.yml
