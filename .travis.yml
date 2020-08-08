@@ -14,12 +14,12 @@ cache:
   - pip
 
 
-jobs:
-  include:
-    - stage: Unit_test
-    - name: helloworld test (root .travis.yml)
-      script:
-        - echo "helloworld"
+# jobs:
+#   include:
+#     - stage: Unit_test
+#     - name: helloworld test (root .travis.yml)
+#       script:
+#         - echo "helloworld"
 
 
 stages:
