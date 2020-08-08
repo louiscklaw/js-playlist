@@ -352,6 +352,9 @@ def process_pre_merge_master_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_
   else:
     push_commit(PUSH_URI, 'master', cwd)
 
+def process_dependabot_PR():
+  print('hello process dependabot PR')
+
 
 def main(PUSH_URI, TEMP_DIR):
   print('starting merger')
@@ -388,8 +391,8 @@ def main(PUSH_URI, TEMP_DIR):
     process_pre_merge_master_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
 
   elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_DEPENDABOT:
-    print("this is dependabot branch, will merge to test branch")
-    process_feature_branch(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
+    print("this is dependabot branch, will go to merge PR if pass")
+    process_dependabot_PR()
 
   else:
     print('no merge direction for this branch')
