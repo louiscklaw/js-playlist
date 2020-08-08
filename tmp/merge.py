@@ -378,7 +378,7 @@ def process_dependabot_PR(PUSH_URI, feature_branch_in, cwd, no_push_uri = False)
   print('Step 1: From your project repository, bring in the changes and test.')
   run_command('git fetch origin',cwd)
   run_command('git checkout -b "dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19" "origin/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19"', cwd)
-  run_command('git merge "master"')
+  run_command('git merge "master"', cwd)
 
   print('Step 2: Merge the changes and update on GitHub.')
   run_command('git checkout "master"', cwd)
