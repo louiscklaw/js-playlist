@@ -2,6 +2,7 @@
 jobs:
   include:
     - stage: Unit_test
+      name: test (concurrently-tryout)
       before_script:
         - yarn
       script:
