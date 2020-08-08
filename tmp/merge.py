@@ -369,8 +369,8 @@ def process_dependabot_PR(PUSH_URI, pr_branch, cwd, no_push_uri = False):
   '''
 
   branch_name = get_branch_name(pr_branch)
-  test_pr_branch = 'test/'+branch_name
-  origin_pr_branch = 'origin/'+branch_name
+  test_pr_branch = 'test/'+pr_branch
+  origin_pr_branch = 'origin/'+pr_branch
 
   print('PUSH_URI',PUSH_URI)
   print('pr_branch',pr_branch)
