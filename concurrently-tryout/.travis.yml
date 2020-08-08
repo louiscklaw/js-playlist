@@ -1,0 +1,13 @@
+
+jobs:
+  include:
+    - stage: Unit_test
+      name: test (concurrently-tryout)
+      before_script:
+        - cd concurrently-tryout
+        -   yarn
+        - cd -
+      script:
+        - cd concurrently-tryout
+        -   yarn start
+        - cd -
