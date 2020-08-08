@@ -16,8 +16,8 @@ cache:
 
 jobs:
   include:
-    - stage: Merge
-    - name: helloworld test
+    - stage: Unit_test
+    - name: helloworld test (root .travis.yml)
       script:
         - echo "helloworld"
 
