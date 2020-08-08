@@ -99,8 +99,18 @@ def run_command(command_body, cwd=pwd, ignore_error=True, except_in=MyException.
 
 
 def push_commit(uri_to_push, merge_to, cwd, ignore_error=True):
-    print('push commit')
-    run_command("git push {} {}".format(uri_to_push, merge_to), cwd, ignore_error)
+    print('push_commit')
+
+    command_to_run= "git push {} {}".format(uri_to_push, merge_to)
+
+    try:
+      run_command(command_to_run , cwd, ignore_error)
+
+    except Exception as e:
+      print('push_commit: cwd: {}'.format(cwd))
+      print('push_commit: error during running command {}'.format(command_to_run))
+
+      raise e
 
 def merge_to_branch(commit_id, merge_to):
   try:
