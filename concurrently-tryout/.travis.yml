@@ -1,0 +1,8 @@
+
+jobs:
+  include:
+    - stage: Unit_test
+      before_script:
+        - yarn
+      script:
+        - yarn start
