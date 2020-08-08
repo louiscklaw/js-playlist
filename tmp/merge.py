@@ -368,7 +368,6 @@ def process_dependabot_PR(PUSH_URI, pr_branch, cwd, no_push_uri = False):
   git push origin "master"
   '''
 
-  branch_name = get_branch_name(pr_branch)
   test_pr_branch = 'test/'+pr_branch
   origin_pr_branch = 'origin/'+pr_branch
 

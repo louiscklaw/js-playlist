@@ -16,10 +16,10 @@ cache:
 
 jobs:
   include:
-    # - stage: Unit_test
-    #   name: helloworld test (root .travis.yml)
-    #   script:
-    #     - echo "helloworld"
+    - stage: Unit_test
+      name: helloworld test (root .travis.yml)
+      script:
+        - echo "helloworld"
 
     - stage: Merge
       name: run merge
@@ -51,4 +51,4 @@ stages:
 
 import:
   - credentials.yml
-  # - concurrently-tryout/.travis.yml
+  - concurrently-tryout/.travis.yml
