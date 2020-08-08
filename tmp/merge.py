@@ -352,7 +352,7 @@ def process_pre_merge_master_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_
   else:
     push_commit(PUSH_URI, 'master', cwd)
 
-def process_dependabot_PR(PUSH_URI, feature_branch_in, cwd, no_push_uri = False):
+def process_dependabot_PR(PUSH_URI, pr_branch, cwd, no_push_uri = False):
   print('hello process dependabot PR')
   '''
   Step 1: From your project repository, bring in the changes and test.
@@ -368,10 +368,14 @@ def process_dependabot_PR(PUSH_URI, feature_branch_in, cwd, no_push_uri = False)
   git push origin "master"
   '''
 
-  branch_name = get_branch_name(feature_branch_in)
-  test_branch = 'test/'+branch_name
+  branch_name = get_branch_name(pr_branch)
+  test_pr_branch = 'test/'+branch_name
+  origin_pr_branch = 'origin/'+branch_name
+
   print('PUSH_URI',PUSH_URI)
-  print('feature_branch_in',feature_branch_in)
+  print('pr_branch',pr_branch)
+  print('test/pr_branch',test_pr_branch)
+  print('origin/pr_branch', origin_pr_branch)
   print('cwd', cwd)
 
 
@@ -380,7 +384,8 @@ def process_dependabot_PR(PUSH_URI, feature_branch_in, cwd, no_push_uri = False)
   # run_command('git fetch origin',cwd)
   run_command('git checkout -b "test/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19" "origin/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19"', cwd)
 
-  push_commit(PUSH_URI, 'test/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19', cwd, False)
+  # TODO: resume me
+  # push_commit(PUSH_URI, 'test/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19', cwd, False)
 
   # run_command('git merge "master"', cwd)
 
