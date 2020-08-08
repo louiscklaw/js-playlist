@@ -352,8 +352,35 @@ def process_pre_merge_master_branch(PUSH_URI, pre_merge_branch_in, cwd, no_push_
   else:
     push_commit(PUSH_URI, 'master', cwd)
 
-def process_dependabot_PR():
+def process_dependabot_PR(PUSH_URI, feature_branch_in, cwd, no_push_uri = False):
   print('hello process dependabot PR')
+  '''
+  Step 1: From your project repository, bring in the changes and test.
+
+  git fetch origin
+  git checkout -b "dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19" "origin/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19"
+  git merge "master"
+
+  Step 2: Merge the changes and update on GitHub.
+
+  git checkout "master"
+  git merge --no-ff "dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19"
+  git push origin "master"
+  '''
+
+  branch_name = get_branch_name(feature_branch_in)
+  test_branch = 'test/'+branch_name
+  print('PUSH_URI',PUSH_URI)
+  print('feature_branch_in',feature_branch_in)
+  print('cwd', cwd)
+
+
+  print('Step 1: From your project repository, bring in the changes and test.')
+  # run_command('git clone  -b {} {} .'.format(feature_branch_in, PUSH_URI), cwd)
+
+  print('Step 2: Merge the changes and update on GitHub.')
+
+
 
 
 def main(PUSH_URI, TEMP_DIR):
@@ -392,7 +419,7 @@ def main(PUSH_URI, TEMP_DIR):
 
   elif categorize_branch(TRAVIS_BRANCH) == CONST_BRANCH_DEPENDABOT:
     print("this is dependabot branch, will go to merge PR if pass")
-    process_dependabot_PR()
+    process_dependabot_PR(PUSH_URI, TRAVIS_BRANCH, TEMP_DIR)
 
   else:
     print('no merge direction for this branch')
