@@ -382,12 +382,9 @@ def process_dependabot_PR(PUSH_URI, pr_branch, cwd, no_push_uri = False):
   print('Step 1: From your project repository, bring in the changes and test.')
   git_clone_source(PUSH_URI, cwd)
   # run_command('git fetch origin',cwd)
-  run_command('git checkout -b "test/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19" "origin/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19"', cwd)
+  run_command('git checkout -b "{}" "{}"'.format(test_pr_branch, origin_pr_branch), cwd)
 
-  # TODO: resume me
-  # push_commit(PUSH_URI, 'test/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19', cwd, False)
-
-  # run_command('git merge "master"', cwd)
+  push_commit(PUSH_URI, test_pr_branch, cwd, False)
 
   # print('Step 2: Merge the changes and update on GitHub.')
   # run_command('git checkout -b "test/dependabot/npm_and_yarn/bulma-toast-tryout/lodash-4.17.19"', cwd)
