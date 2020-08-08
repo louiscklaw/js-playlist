@@ -1,0 +1,16 @@
+{
+  "name": "concurrently-tryout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"echo  helloworld1\" \"echo  helloworld2\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" \"echo  helloworld3\" "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.3.0"
+  }
+}
