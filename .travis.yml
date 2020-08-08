@@ -9,17 +9,16 @@ language: node_js
 
 node_js:
   - 10
+
 cache:
   - npm
-  - pip
 
-
-# jobs:
-#   include:
-#     - stage: Unit_test
-#     - name: helloworld test (root .travis.yml)
-#       script:
-#         - echo "helloworld"
+jobs:
+  include:
+    - stage: Unit_test
+    - name: helloworld test (root .travis.yml)
+      script:
+        - echo "helloworld"
 
 
 stages:
