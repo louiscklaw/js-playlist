@@ -1,26 +1,6 @@
-# https://docs.travis-ci.com/user/docker/
-# https://docs.travis-ci.com/user/environment-variables/
-# https://docs.travis-ci.com/user/job-lifecycle/
-# https://docs.travis-ci.com/user/deployment/custom/
-
-# You can import up to 25 other configs in total.
-os: linux
-
-language: node_js
-
-node_js:
-  - 10
-
-cache:
-  - npm
 
 jobs:
   include:
-    - stage: Unit_test
-      name: helloworld test (root .travis.yml)
-      script:
-        - echo "helloworld"
-
     - stage: Merge
       name: run merge
       if: branch != master
@@ -39,9 +19,3 @@ jobs:
         -   pipenv sync
         -   pipenv run python3 ./merge.py
         - cd -
-
-import:
-  - credentials.yml
-  - .travis-merger.yml
-  - .travis-stages.yml
-  - concurrently-tryout/.travis.yml
