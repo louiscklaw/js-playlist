@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+html
+  header
+    p #{name}'s hello header
+
+  body
+    mixin pet(name)
+      li.pet= name
+    ul
+      +pet('cat')
+      +pet('dog')
+      +pet('pig')
+
+    p #{name}'s Pug source code!
+
+    input(
+      type='checkbox'
+      name='agreement'
+      checked
+    )
+
+  ul
+    li Item A
+    li Item B
+    li Item C
+
+  footer
+    p #{name}'s hello footer
