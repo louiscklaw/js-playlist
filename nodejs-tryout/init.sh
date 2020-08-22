@@ -2,4 +2,6 @@
 
 set -ex
 
+yarn
+
 yarn add htmltidy
