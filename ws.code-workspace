@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../travis-playlist"
+		},
+		{
+			"path": "../my-github-endpoint-playlist"
 		}
 	],
 	"settings": {
