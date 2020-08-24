@@ -1,90 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
 <body>
-  axios helloworld
-
-  test with
-  <pre>
-    yarn monAndPublish
-  </pre>
-
-  <div>
-    <div id="getResult1"></div>
-  </div>
-
-  <script>
-    function getJson() {
-      var resultElement = document.getElementById( 'getResult1' );
-      resultElement.innerHTML = '';
-
-      axios.get( 'https://raw.githubusercontent.com/louiscklaw/js-playlist/gh-pages/json/test.json' )
-        .then( function ( response ) {
-          // resultElement.innerHTML = generateSuccessHTMLOutput( response );
-          // alert('helloworld')
-          console.log( 'response',response )
-        } )
-        .catch( function ( error ) {
-          // resultElement.innerHTML = generateErrorHTMLOutput( error );
-          alert('error')
-          console.log('error')
-        } );
-    }
-
-
-    function performGetRequest1() {
-      var resultElement = document.getElementById( 'getResult1' );
-      resultElement.innerHTML = '';
-
-      axios.get( 'http://money18.on.cc/chartdata/m3/price/09988_price_m3.txt' )
-        .then( function ( response ) {
-          // resultElement.innerHTML = generateSuccessHTMLOutput( response );
-          // alert('helloworld')
-          console.log( 'response',response )
-        } )
-        .catch( function ( error ) {
-          // resultElement.innerHTML = generateErrorHTMLOutput( error );
-          alert('error')
-          console.log('error')
-        } );
-    }
-
-    function test1() {
-      fetch( 'https://test.cors.workers.dev/?https://httpbin.org/post', {
-        method: 'post',
-        headers: {
-          'x-foo': 'bar',
-          'x-bar': 'foo',
-          'x-cors-headers': JSON.stringify( {
-            // allows to send forbidden headers
-            // https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name
-            'cookies': 'x=123'
-          } )
-        }
-      } ).then( res => {
-        // allows to read all headers (even forbidden headers like set-cookies)
-        const headers = JSON.parse( res.headers.get( 'cors-received-headers' ) )
-        console.log( headers )
-        return res.json()
-      } ).then( console.log )
-    }
-
-
-    document.addEventListener( "DOMContentLoaded", function () {
-      // performGetRequest1()
-      // test1()
-      getJson()
-    } );
-  </script>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">
+                Hello World
+            </h1>
+            <p class="subtitle">
+                My first website with <strong>Bulma</strong>!
+            </p>
+        </div>
+    </section>
 </body>
 
 </html>
