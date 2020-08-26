@@ -11,6 +11,13 @@
   "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
     "husky": "^4.2.5"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "npx commitlint -e $GIT_PARAMS",
+      "pre-commit": "npx commitlint -e $GIT_PARAMS && ./scripts/pre-commit.sh"
+    }
   }
 }
