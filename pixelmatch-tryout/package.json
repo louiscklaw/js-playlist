@@ -1,0 +1,16 @@
+{
+  "name": "pixelmatch-tryout",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "pixelmatch": "^5.2.1",
+    "pngjs": "^5.0.0"
+  }
+}
