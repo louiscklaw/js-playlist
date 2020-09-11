@@ -39,6 +39,6 @@ jobs:
             node ./index.js
           cd ..
 
-    - uses: actions/upload-artifact@master
-      with:
-        path: pixelmatch-tryout/*.png
+      - uses: actions/upload-artifact@master
+        with:
+          path: pixelmatch-tryout/*.png
