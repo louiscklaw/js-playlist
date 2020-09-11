@@ -16,3 +16,14 @@ jobs:
 
         run: |
           echo 'helloworld'
+
+  pngjs-tryout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: |
+          cd pngjs-tryout
+            yarn
+            node ./index.js
+          cd ..
