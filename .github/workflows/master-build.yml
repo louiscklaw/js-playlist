@@ -27,3 +27,14 @@ jobs:
             yarn
             node ./index.js
           cd ..
+
+  pixelmatch-tryout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: |
+          cd pixelmatch-tryout
+            yarn
+            node ./index.js
+          cd ..
