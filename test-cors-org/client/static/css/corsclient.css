@@ -1,0 +1,44 @@
+th {
+  background-color: #A3E0FF;
+}
+
+td {
+  vertical-align: top;
+}
+
+.tblPage {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.tblInner {
+  width: 100%;
+}
+
+.form_label {
+  text-align: right;
+}
+
+#help-menu {
+  position: absolute;
+  width: 190px;
+  visibility: hidden;
+}
+
+.log-red {
+  color: #B40404;
+}
+
+.log-yellow {
+  color: #AEB404;
+}
+
+.log-green {
+  color: #088A08;
+}
+
+.headers {
+  margin: 0 0 0 0;
+}
