@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
   <style>
     body,
@@ -17,13 +19,10 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
 
-
       grid-column-gap: 1px;
       grid-row-gap: 1px;
 
-      background-color: black;
-
-
+      background-color: gold;
 
     }
 
@@ -59,18 +58,29 @@
     @media screen and (min-width: 800px) {
       .wrapper {
         grid-template-columns:
-        1fr 1fr 1fr 1fr
-        1fr 1fr 1fr 1fr
-        1fr 1fr 1fr 1fr
-        1fr 1fr 1fr 1fr
-        1fr 1fr 1fr 1fr
+          1fr 1fr 1fr 1fr
+          1fr 1fr 1fr 1fr
+          1fr 1fr 1fr 1fr
+          1fr 1fr 1fr 1fr
+          1fr 1fr 1fr 1fr
         ;
       }
     }
   </style>
+
 </head>
 
 <body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Hello World
+      </h1>
+      <p class="subtitle">
+        My first website with <strong>Bulma</strong>!
+      </p>
+    </div>
+  </section>
   <div class='wrapper'>
     <div class='letter'>
       1
@@ -1632,9 +1642,11 @@
     <div class='letter'>
       520
     </div>
+    <div class='letter'>
+      521
+    </div>
 
   </div>
-
 
 </body>
 
