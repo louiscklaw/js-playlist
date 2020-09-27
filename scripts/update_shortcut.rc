@@ -6,7 +6,7 @@ helloearth(){
 
 update_shortcut(){
   OWD=$PWD
-  cd /home/logic/_workspace/kicad_workspace/kicad-playlist
+  cd /home/logic/_workspace/js-playlist
   TMP_DIR=$(mktemp -d)
   cp ./.env $TMP_DIR/.env
 
@@ -62,13 +62,15 @@ new_commands_string='\n'.join(
 
 
 temp = ''
-with open('/tmp/.env','r') as fi:
+dot_env_on_tmp='$TMP_DIR/.env'
+
+with open(dot_env_on_tmp,'r') as fi:
   temp = ''.join(fi.readlines())
   temp = re.sub(r'# update_by_dir_start.+?# update_by_dir_end',
     new_commands_string,
     temp, count=1,flags=re.MULTILINE|re.DOTALL)
 
-with open('/tmp/.env','w') as fo:
+with open(dot_env_on_tmp,'w') as fo:
   fo.writelines(temp)
 
 END
