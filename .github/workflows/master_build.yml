@@ -44,6 +44,7 @@ jobs:
           cd nodejs-pngjs-helloworld-tryout
             yarn
             node index.js
+            node pngjs-sync.js
           cd ..
   
   
