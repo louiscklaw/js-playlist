@@ -4,6 +4,48 @@ on:
 
 jobs:
 
+  # 
+  # /home/logic/_workspace/js-playlist/nodejs-helloworld-tryout/build.yml
+  # 
+  nodejs-helloworld-tryout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+  
+      - name: run test
+        env: # Or as an environment variable
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+  
+        run: |
+          cd nodejs-helloworld-tryout
+            yarn
+            node index.js
+          cd ..
+  
+  # 
+  # /home/logic/_workspace/js-playlist/nodejs-pngjs-helloworld-tryout/build.yml
+  # 
+  nodejs-pngjs-helloworld-tryout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+  
+      - name: run test
+        env: # Or as an environment variable
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+  
+        run: |
+          cd nodejs-pngjs-helloworld-tryout
+            yarn
+            node index.js
+          cd ..
+  
   
 
   # 
@@ -37,7 +79,7 @@ jobs:
           github-build-merger/test.sh
   
   merge:
-    needs: [test_merger]
+    needs: [nodejs-helloworld-tryout, nodejs-pngjs-helloworld-tryout, test_merger]
     runs-on: ubuntu-latest
     steps:
       - name: checkout
