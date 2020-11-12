@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/locales/zh_TW/faker.zh_TW.min.js" integrity="sha512-9dFLjV6yYHMwfr4lORL3vbOL4bdDNASsIpF5IVWjDMU5k+8bsCA+oF6QvS1ZyJA2Dg3D+CeNHSCCqqCZpdtalQ==" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <div>
+    <div id="findname"></div>
+    <div id="email"></div>
+    <div id="createcard"></div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      var randomName = faker.name.findName(); // Caitlyn Kerluke
+      var randomEmail = faker.internet.email(); // Rusty@arne.info
+      var randomCard = faker.helpers.createCard(); // random contact card containing many properties
+
+      document.querySelector('#findname').innerHTML=randomName
+      document.querySelector('#email').innerHTML = randomEmail
+      document.querySelector('#createcard').innerHTML=JSON.stringify(randomCard)
+
+      })
+  </script>
+</body>
+</html>
