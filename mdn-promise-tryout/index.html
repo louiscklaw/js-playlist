@@ -15,7 +15,8 @@
         // the function is executed automatically when the promise is constructed
 
         // after 1 second signal that the job is done with the result "done"
-        setTimeout(() => resolve("done"), 3000);
+        setTimeout(() => reject("reject"), 3000);
+        setTimeout(() => resolve("resolve"), 1000);
       });
       return promise
     }
@@ -23,9 +24,12 @@
     window.addEventListener("DOMContentLoaded", () => {
       console.log('promise start')
       helloPromise()
-        .then((output) => {
-          console.log('promise done', output)
-        })
+        .then((output) => { console.log('promise done', output)}, (rej_out) =>{console.log('promise reject',rej_out)})
+
+      helloPromise()
+        .then((output) => {console.log('promise done',output)})
+        .catch((rej_out)=>{ console.log('promise reject', rej_out)})
+
     })
 
   </script>

@@ -1,22 +1,17 @@
 {
-  "name": "nodejs-tryout",
+  "name": "ts-tryout",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d lib"
+    "build": "tsc --outDir dist helloworld1.ts",
+    "tsc_test":"tsc --help"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "htmltidy": "^0.0.6",
-    "wd": "^1.13.0"
-  },
   "devDependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1"
+    "typescript": "^4.0.5"
   }
 }
