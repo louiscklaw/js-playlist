@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-slack-api-tryout",
+  "name": "nodejs-slack-bolt-tryout",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,8 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@slack/client": "^5.0.2",
-    "@slack/events-api": "^2.3.4",
-    "@slack/web-api": "^5.11.0"
+    "@slack/bolt": "^2.4.1"
   }
 }

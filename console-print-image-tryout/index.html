@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #test {
+      border-radius: 50%;
+      width: 115px;
+      height: 115px;
+      background:url(https://avatars2.githubusercontent.com/u/1376093?v=4);
+      background-size: contain;
+    }
+  </style>
+</head>
+<body>
+  123312111
+  <div id="test">
+
+  </div>
+
+  <script>
+    console.image = function(url, size = 100) {
+      var image = new Image();
+      image.onload = function() {
+        var style = [
+          'font-size: 1px;',
+          'padding: ' + this.height/1000*size + 'px ' + this.width/1000*size + 'px;',
+          'background: url('+ url +') no-repeat;',
+          'background-size: contain;',
+          'border-radius: 50%;',
+          'width: 115px;',
+          'height: 115px;'
+        ].join(' ');
+        console.log('%c ', style);
+      };
+      image.src = url;
+    };
+    console.image(`https://avatars2.githubusercontent.com/u/1376093?v=4`)
+  </script>
+</body>
+</html>
