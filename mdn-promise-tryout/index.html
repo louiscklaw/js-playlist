@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  helloworld promise
+
+  <script>
+    function helloPromise(){
+
+      let promise = new Promise(function(resolve, reject) {
+        // the function is executed automatically when the promise is constructed
+
+        // after 1 second signal that the job is done with the result "done"
+        setTimeout(() => reject("reject"), 3000);
+        setTimeout(() => resolve("resolve"), 1000);
+      });
+      return promise
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      console.log('promise start')
+      helloPromise()
+        .then((output) => { console.log('promise done', output)}, (rej_out) =>{console.log('promise reject',rej_out)})
+
+      helloPromise()
+        .then((output) => {console.log('promise done',output)})
+        .catch((rej_out)=>{ console.log('promise reject', rej_out)})
+
+    })
+
+  </script>
+</body>
+</html>
