@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#myDIV {
+  height: 250px;
+  width: 250px;
+  overflow: auto;
+}
+
+#content {
+  height: 800px;
+  width: 2000px;
+  background-color: coral;
+}
+</style>
+</head>
+<body style="padding: 0px; margin: 0px; box-sizing: border-box;">
+
+<div id="myDIV" onscroll="myFunction()">
+  <div id="content">Scroll inside me!</div>
+  <div id="content-2" style="background-color: cyan; height: 300px; width: 100px;">Scroll inside me!</div>
+  <div id="content-3" style="background-color: gold; height: 300px; width: 100px;">Scroll inside me!</div>
+</div>
+
+<button onclick="scrollCyan()">scrollCyan</button>
+<button onclick="scrollTomato()">scrollTomato</button>
+<button onclick="scrollGold()">scrollGold</button>
+<p id="demo"></p>
+
+<script>
+  var cyan_pos_in_list = 0;
+  var tomato_pos_in_list = 0;
+  var gold_pos_in_list = 0;
+
+function myFunction() {
+  var elmnt = document.getElementById("myDIV");
+  var x = elmnt.scrollLeft;
+  var y = elmnt.scrollTop;
+  document.getElementById ("demo").innerHTML = "Horizontally: " + x + "px<br>Vertically: " + y + "px";
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  console.log('cyan pos',document.querySelector('#content-2').getClientRects()[0].y)
+  cyan_pos_in_list=document.querySelector('#content-2').getClientRects()[0].y
+  tomato_pos_in_list=document.querySelector('#content').getClientRects()[0].y
+  gold_pos_in_list=document.querySelector('#content-3').getClientRects()[0].y
+})
+
+function scrollTomato(){
+  var ele_pin_pos = 0
+  var ele_tomato_pos = document.querySelector('#content').getClientRects()[0].y
+  if (ele_pin_pos != ele_tomato_pos){
+    var elmnt = document.getElementById("myDIV");
+    console.log('ele_tomato_pos',ele_tomato_pos)
+    console.log('ele_pin_pos',ele_pin_pos)
+    console.log('ele_tomato_pos-ele_pin_pos',ele_tomato_pos-ele_pin_pos)
+    elmnt.scrollTop=tomato_pos_in_list;
+  }
+}
+
+function scrollCyan(){
+  var ele_pin_pos = 0
+  var ele_cyan_pos = document.querySelector('#content-2').getClientRects()[0].y
+  if (ele_pin_pos != ele_cyan_pos){
+    var elmnt = document.getElementById("myDIV");
+    console.log('ele_cyan_pos',ele_cyan_pos)
+    console.log('ele_pin_pos',ele_pin_pos)
+    console.log('ele_cyan_pos-ele_pin_pos',ele_cyan_pos-ele_pin_pos)
+    elmnt.scrollTop=cyan_pos_in_list;
+  }
+}
+
+function scrollGold(){
+  var ele_pin_pos = 0
+  var ele_gold_pos = document.querySelector('#content-3').getClientRects()[0].y
+  if (ele_pin_pos != ele_gold_pos){
+    var elmnt = document.getElementById("myDIV");
+    console.log('ele_gold_pos',ele_gold_pos)
+    console.log('ele_pin_pos',ele_pin_pos)
+    console.log('ele_gold_pos-ele_pin_pos',ele_gold_pos-ele_pin_pos)
+    elmnt.scrollTop=1100;
+  }
+}
+
+</script>
+
+</body>
+</html>
