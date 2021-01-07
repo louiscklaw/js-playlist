@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-set -x
+
 
 helloearth(){
   echo /home/logic/_workspace/preactjs-playlist/scripts/update_shortcut.rc
 }
 
+<<<<<<< HEAD
 update_shortcut(){
   OWD=$PWD
   cd /home/logic/_workspace/js-playlist
@@ -40,43 +41,35 @@ tryout_dirs = list(filter(lambda x: x.find('-tryout') > 0, dirs))
 
 print('tryout_dirs found:')
 pprint(tryout_dirs)
+=======
+update_tryout_shortcut(){
+  TMP_DIR=$(mktemp -d)
+  PY_CONTENT=$(cat scripts/update_shortcut.py)
+>>>>>>> origin/develop
 
-new_commands_content = map( lambda x: simple_replace(x), tryout_dirs)
+  rsync -avzh ./.env $TMP_DIR/.env
 
-start_string = '''
-# update_by_dir_start
-#/home/logic/_workspace/preactjs-playlist/scripts/update_shortcut.rc
-'''
+  python3 scripts/update_shortcut.py $TMP_DIR/.env
 
-end_string = '# update_by_dir_end'
+  rsync -avzh $TMP_DIR/.env ./.env
 
-new_commands_content=list(new_commands_content)+[
-  '''testing_shortcut(){
-  echo testing_shortcut
 }
-'''
-]
 
-new_commands_string='\n'.join(
-  [start_string]+list(new_commands_content)+[end_string]
-  )
+update_scripts(){
+  SCRIPT_FILE=$(realpath $0)
+  PROJ_HOME=$(dirname $SCRIPT_FILE)
+  MASTER_GITHUB_PROJ_HOME='/home/logic/_workspace/github-playlist'
 
+  rsync -avzh $MASTER_GITHUB_PROJ_HOME/scripts/update_shortcut.py $PROJ_HOME/scripts
 
-temp = ''
-with open('/tmp/.env','r') as fi:
-  temp = ''.join(fi.readlines())
-  temp = re.sub(r'# update_by_dir_start.+?# update_by_dir_end',
-    new_commands_string,
-    temp, count=1,flags=re.MULTILINE|re.DOTALL)
+  rsync -avzh $MASTER_GITHUB_PROJ_HOME/scripts/update_shortcut.rc $PROJ_HOME/scripts
 
-with open('/tmp/.env','w') as fo:
-  fo.writelines(temp)
+  rsync -avzh $PROJ_HOME/scripts/update_shortcut.py $MASTER_GITHUB_PROJ_HOME/scripts
 
-END
+  rsync -avzh $PROJ_HOME/scripts/update_shortcut.py $MASTER_GITHUB_PROJ_HOME/scripts
 
-  cp /tmp/.env ./.env
+  cd && cd -
 
-  cd $OWD
 }
 
 new_from(){

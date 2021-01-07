@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-slack-api-tryout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/client": "^5.0.2",
+    "@slack/events-api": "^2.3.4",
+    "@slack/web-api": "^5.11.0"
+  }
+}
