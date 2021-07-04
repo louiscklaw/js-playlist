@@ -1,0 +1,15 @@
+{
+  "name": "express-backup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "birds.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

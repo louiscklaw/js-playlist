@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .icon::before {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-decoration: line-through;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .login::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        content: "\f007";
+      }
+
+      .tps::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 400;
+        content: "\f14a";
+      }
+
+      .twitter::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 100;
+        color: #800000;
+        content: "\f14a";
+      }
+    </style>
+  </head>
+  <body>
+    <ul style="margin: 0">
+      <li>
+        <div style="text-decoration: line-through; color: #800000">
+          <span class="icon login"></span> Login
+        </div>
+      </li>
+      <li>
+        <div style="text-decoration: line-through; color: #800000">
+          <span class="icon tps"></span>
+          TPS Reports
+        </div>
+      </li>
+
+      <li>
+        <div style="text-decoration: line-through; color: #000000">
+          <span class="icon twitter"></span
+          ><span style="color: #000000"> Twitter</span>
+        </div>
+      </li>
+    </ul>
+  </body>
+</html>
