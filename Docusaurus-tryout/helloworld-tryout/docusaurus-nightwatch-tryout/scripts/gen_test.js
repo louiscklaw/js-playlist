@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const {
-  DeviceByName,
-} = require('/home/logic/_workspace/js-playlist/Docusaurus-tryout/helloworld-tryout/docusaurus-nightwatch-tryout/tests/utils/DeviceDescriptors.js');
+const {DeviceByName} = require('./DeviceDescriptors.js');
 
 const test_template = `
 module.exports = {
@@ -35,7 +33,7 @@ module.exports = {
 `;
 
 const getDeviceByName = (device_name) =>
-  `/home/logic/_workspace/js-playlist/Docusaurus-tryout/helloworld-tryout/docusaurus-nightwatch-tryout/tests/device_snapshot/${device_name
+  `../tests/device_snapshot/${device_name
     .replace(/ /g, '_')
     .replace(/\//g, '_')
     .replace(/__/g, '_')}.js`;
