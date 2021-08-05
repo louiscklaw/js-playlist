@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="2">
+
+  <testsuite name="device_snapshot.BlackBerry_Z30_landscape"
+    errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
+    tests="2" time="1.719" timestamp="">
+  
+    <testcase name="Demo test BlackBerry Z30 landscape, 640, 360" classname="device_snapshot.BlackBerry_Z30_landscape" time="1.262" assertions="4">
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Finished" classname="device_snapshot.BlackBerry_Z30_landscape" time="0.4570" assertions="0">
+    </testcase>
+  
+
+  
+    <system-err>
+        Error: Cannot find module &#39;/home/logic/_workspace/js-playlist/Docusaurus-tryout/helloworld-tryout/docusaurus-nightwatch-tryout/tests/device_snapshot/Blackberry_PlayBook.js&#39;
+  Require stack:
+  - /home/logic/_workspace/js-playlist/Docusaurus-tryout/helloworld-tryout/docusaurus-nightwatch-tryout/node_modules/nightwatch/lib/utils/index.js
+  - /home/logic/_workspace/js-playlist/Docusaurus-tryout/helloworld-tryout/docusaurus-nightwatch-tryout/node_modules/nightwatch/bin/nightwatch
+   Require stack:
+       at Function.Module._resolveFilename (internal/modules/cjs/loader.js:815:15)
+       at Function.Module._load (internal/modules/cjs/loader.js:667:27)
+       at Module.require (internal/modules/cjs/loader.js:887:19)
+       at require (internal/modules/cjs/helpers.js:74:18)
+    </system-err>
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>
