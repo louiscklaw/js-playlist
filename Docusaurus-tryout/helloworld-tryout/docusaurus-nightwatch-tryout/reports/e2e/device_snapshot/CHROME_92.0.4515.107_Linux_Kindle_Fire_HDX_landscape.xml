@@ -5,11 +5,9 @@
 
   <testsuite name="device_snapshot.Kindle_Fire_HDX_landscape"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="2.168" timestamp="">
+    tests="2" time="2.131" timestamp="">
   
-    <testcase name="Demo test Kindle Fire HDX landscape, 1280, 800" classname="device_snapshot.Kindle_Fire_HDX_landscape" time="1.736" assertions="5">
-
-    
+    <testcase name="Demo test Kindle Fire HDX landscape, 1280, 800" classname="device_snapshot.Kindle_Fire_HDX_landscape" time="1.696" assertions="4">
 
     
 
@@ -20,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.Kindle_Fire_HDX_landscape" time="0.4320" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.Kindle_Fire_HDX_landscape" time="0.4350" assertions="0">
     </testcase>
   
 

@@ -5,11 +5,9 @@
 
   <testsuite name="device_snapshot.iPad_Pro"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="2.232" timestamp="">
+    tests="2" time="3.187" timestamp="">
   
-    <testcase name="Demo test iPad Pro, 1024, 1366" classname="device_snapshot.iPad_Pro" time="1.793" assertions="5">
-
-    
+    <testcase name="Demo test iPad Pro, 1024, 1366" classname="device_snapshot.iPad_Pro" time="2.629" assertions="4">
 
     
 
@@ -20,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.iPad_Pro" time="0.4390" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.iPad_Pro" time="0.5580" assertions="0">
     </testcase>
   
 

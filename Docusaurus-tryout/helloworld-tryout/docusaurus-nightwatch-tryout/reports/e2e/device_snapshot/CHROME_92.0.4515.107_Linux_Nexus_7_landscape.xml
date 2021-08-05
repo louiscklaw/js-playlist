@@ -5,11 +5,9 @@
 
   <testsuite name="device_snapshot.Nexus_7_landscape"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="1.978" timestamp="">
+    tests="2" time="1.836" timestamp="">
   
-    <testcase name="Demo test Nexus 7 landscape, 960, 600" classname="device_snapshot.Nexus_7_landscape" time="1.509" assertions="5">
-
-    
+    <testcase name="Demo test Nexus 7 landscape, 960, 600" classname="device_snapshot.Nexus_7_landscape" time="1.405" assertions="4">
 
     
 
@@ -20,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.Nexus_7_landscape" time="0.4690" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.Nexus_7_landscape" time="0.4310" assertions="0">
     </testcase>
   
 

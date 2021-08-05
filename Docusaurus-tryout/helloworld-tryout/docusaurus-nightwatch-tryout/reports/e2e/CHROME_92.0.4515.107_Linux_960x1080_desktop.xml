@@ -5,11 +5,9 @@
 
   <testsuite name="960x1080_desktop"
     errors="0" failures="0" hostname="" id="" package="960x1080_desktop" skipped="0"
-    tests="2" time="2.104" timestamp="">
+    tests="2" time="2.311" timestamp="">
   
-    <testcase name="Demo test Docusaurus, 960, 1080" classname="960x1080_desktop" time="1.667" assertions="5">
-
-    
+    <testcase name="Demo test Docusaurus, 960, 1080" classname="960x1080_desktop" time="1.702" assertions="4">
 
     
 
@@ -20,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="960x1080_desktop" time="0.4370" assertions="0">
+    <testcase name="Finished" classname="960x1080_desktop" time="0.6090" assertions="0">
     </testcase>
   
 

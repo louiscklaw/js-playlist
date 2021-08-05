@@ -5,11 +5,9 @@
 
   <testsuite name="device_snapshot.BlackBerry_Z30_landscape"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="1.709" timestamp="">
+    tests="2" time="1.682" timestamp="">
   
-    <testcase name="Demo test BlackBerry Z30 landscape, 640, 360" classname="device_snapshot.BlackBerry_Z30_landscape" time="1.269" assertions="5">
-
-    
+    <testcase name="Demo test BlackBerry Z30 landscape, 640, 360" classname="device_snapshot.BlackBerry_Z30_landscape" time="1.260" assertions="4">
 
     
 
@@ -20,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.BlackBerry_Z30_landscape" time="0.4400" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.BlackBerry_Z30_landscape" time="0.4220" assertions="0">
     </testcase>
   
 

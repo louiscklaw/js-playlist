@@ -5,11 +5,9 @@
 
   <testsuite name="device_snapshot.LG_Optimus_L70_landscape"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="2.010" timestamp="">
+    tests="2" time="1.713" timestamp="">
   
-    <testcase name="Demo test LG Optimus L70 landscape, 640, 384" classname="device_snapshot.LG_Optimus_L70_landscape" time="1.445" assertions="5">
-
-    
+    <testcase name="Demo test LG Optimus L70 landscape, 640, 384" classname="device_snapshot.LG_Optimus_L70_landscape" time="1.291" assertions="4">
 
     
 
@@ -20,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.LG_Optimus_L70_landscape" time="0.5650" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.LG_Optimus_L70_landscape" time="0.4220" assertions="0">
     </testcase>
   
 

@@ -5,11 +5,9 @@
 
   <testsuite name="device_snapshot.desktop_1920_1080"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="2.912" timestamp="">
+    tests="2" time="2.460" timestamp="">
   
-    <testcase name="Demo test desktop_1920_1080, 1920, 1080" classname="device_snapshot.desktop_1920_1080" time="2.429" assertions="5">
-
-    
+    <testcase name="Demo test desktop_1920_1080, 1920, 1080" classname="device_snapshot.desktop_1920_1080" time="1.973" assertions="4">
 
     
 
@@ -20,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.desktop_1920_1080" time="0.4830" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.desktop_1920_1080" time="0.4870" assertions="0">
     </testcase>
   
 

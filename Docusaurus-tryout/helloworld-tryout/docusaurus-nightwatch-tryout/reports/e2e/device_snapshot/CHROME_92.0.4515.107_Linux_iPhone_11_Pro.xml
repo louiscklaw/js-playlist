@@ -5,11 +5,9 @@
 
   <testsuite name="device_snapshot.iPhone_11_Pro"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="1.953" timestamp="">
+    tests="2" time="2.341" timestamp="">
   
-    <testcase name="Demo test iPhone 11 Pro, 375, 812" classname="device_snapshot.iPhone_11_Pro" time="1.511" assertions="5">
-
-    
+    <testcase name="Demo test iPhone 11 Pro, 375, 812" classname="device_snapshot.iPhone_11_Pro" time="1.911" assertions="4">
 
     
 
@@ -20,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.iPhone_11_Pro" time="0.4420" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.iPhone_11_Pro" time="0.4300" assertions="0">
     </testcase>
   
 

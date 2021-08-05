@@ -46,8 +46,6 @@ Object.keys(DeviceByName).forEach((device_name) => {
       .replace(/~DEVICE_NAME~/g, device_info.name)
       .replace(/~DEVICE_WIDTH~/g, device_info.viewport.width)
       .replace(/~DEVICE_HEIGHT~/g, device_info.viewport.height),
-    {
-      encoding: 'utf-8',
-    },
+    {encoding: 'utf-8'},
   );
 });
