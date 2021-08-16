@@ -1,0 +1,18 @@
+{
+  "name": "helloworld-tryout",
+  "version": "1.0.0",
+  "main": "helloworld.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.0.3",
+    "nightmare": "^3.0.2"
+  },
+  "devDependencies": {},
+  "description": ""
+}
