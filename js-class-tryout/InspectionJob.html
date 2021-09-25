@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      class Equipment {
+        constructor(name) {
+          this.Report = Report;
+          this.Status = Status;
+          this.Client_Name = Client_Name;
+          this.Quote_No = Quote_No;
+          this.Project_Name = Project_Name;
+          this.Type = Type;
+          this.Test_Date = Test_Date;
+          this.Test_Time = Test_Time;
+          this.Site_Engineer = Site_Engineer;
+          this.Remarks = Remarks;
+        }
+
+        get saluation() {
+          return `hello Mr. ${this.name}`;
+        }
+
+        DoHi() {
+          console.log(this.saluation);
+        }
+      }
+
+      const mr_law = new User("Law");
+      mr_law.DoHi();
+    </script>
+  </head>
+  <body></body>
+</html>

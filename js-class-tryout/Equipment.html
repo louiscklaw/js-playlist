@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      class Equipment {
+        constructor(name) {
+          this.Equipment_No = Equipment_No;
+          this.Serial_No = Serial_No;
+          this.Description = Description;
+          this.Used_For = Used_For;
+          this.Daily_Check = Daily_Check;
+          this.Calibrated_By = Calibrated_By;
+          this.Calibration_Date = Calibration_Date;
+          this.Life_Time = Life_Time;
+          this.Expiry_Date = Expiry_Date;
+          this.Warning_Date = Warning_Date;
+          this.Enginner_Name = Enginner_Name;
+        }
+
+        get saluation() {
+          return `hello Mr. ${this.name}`;
+        }
+
+        DoHi() {
+          console.log(this.saluation);
+        }
+      }
+
+      const mr_law = new User("Law");
+      mr_law.DoHi();
+    </script>
+  </head>
+  <body></body>
+</html>
