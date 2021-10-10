@@ -5,9 +5,9 @@
 
   <testsuite name="device_snapshot.iPhone_X_landscape"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="1.720" timestamp="">
+    tests="2" time="1.653" timestamp="">
   
-    <testcase name="Demo test iPhone X landscape, 812, 375" classname="device_snapshot.iPhone_X_landscape" time="1.254" assertions="4">
+    <testcase name="Demo test iPhone X landscape, 812, 375" classname="device_snapshot.iPhone_X_landscape" time="1.225" assertions="4">
 
     
 
@@ -18,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.iPhone_X_landscape" time="0.4660" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.iPhone_X_landscape" time="0.4280" assertions="0">
     </testcase>
   
 

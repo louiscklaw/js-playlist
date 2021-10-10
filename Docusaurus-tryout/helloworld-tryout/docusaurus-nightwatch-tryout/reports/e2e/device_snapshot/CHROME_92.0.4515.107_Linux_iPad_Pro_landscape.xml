@@ -5,9 +5,9 @@
 
   <testsuite name="device_snapshot.iPad_Pro_landscape"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="5.414" timestamp="">
+    tests="2" time="2.228" timestamp="">
   
-    <testcase name="Demo test iPad Pro landscape, 1366, 1024" classname="device_snapshot.iPad_Pro_landscape" time="4.953" assertions="4">
+    <testcase name="Demo test iPad Pro landscape, 1366, 1024" classname="device_snapshot.iPad_Pro_landscape" time="1.771" assertions="4">
 
     
 
@@ -18,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.iPad_Pro_landscape" time="0.4610" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.iPad_Pro_landscape" time="0.4570" assertions="0">
     </testcase>
   
 

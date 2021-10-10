@@ -5,9 +5,9 @@
 
   <testsuite name="device_snapshot.iPhone_XR"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="1.699" timestamp="">
+    tests="2" time="1.711" timestamp="">
   
-    <testcase name="Demo test iPhone XR, 414, 896" classname="device_snapshot.iPhone_XR" time="1.265" assertions="4">
+    <testcase name="Demo test iPhone XR, 414, 896" classname="device_snapshot.iPhone_XR" time="1.299" assertions="4">
 
     
 
@@ -18,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.iPhone_XR" time="0.4340" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.iPhone_XR" time="0.4120" assertions="0">
     </testcase>
   
 

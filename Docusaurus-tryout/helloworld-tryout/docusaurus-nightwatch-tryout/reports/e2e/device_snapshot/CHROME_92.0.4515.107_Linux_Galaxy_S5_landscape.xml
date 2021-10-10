@@ -5,9 +5,9 @@
 
   <testsuite name="device_snapshot.Galaxy_S5_landscape"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="1.732" timestamp="">
+    tests="2" time="1.774" timestamp="">
   
-    <testcase name="Demo test Galaxy S5 landscape, 640, 360" classname="device_snapshot.Galaxy_S5_landscape" time="1.304" assertions="4">
+    <testcase name="Demo test Galaxy S5 landscape, 640, 360" classname="device_snapshot.Galaxy_S5_landscape" time="1.293" assertions="4">
 
     
 
@@ -18,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.Galaxy_S5_landscape" time="0.4280" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.Galaxy_S5_landscape" time="0.4810" assertions="0">
     </testcase>
   
 

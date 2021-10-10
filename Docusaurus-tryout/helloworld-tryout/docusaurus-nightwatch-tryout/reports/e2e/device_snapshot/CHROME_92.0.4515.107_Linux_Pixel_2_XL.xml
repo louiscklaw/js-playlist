@@ -5,9 +5,9 @@
 
   <testsuite name="device_snapshot.Pixel_2_XL"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="1.745" timestamp="">
+    tests="2" time="1.673" timestamp="">
   
-    <testcase name="Demo test Pixel 2 XL, 411, 823" classname="device_snapshot.Pixel_2_XL" time="1.318" assertions="4">
+    <testcase name="Demo test Pixel 2 XL, 411, 823" classname="device_snapshot.Pixel_2_XL" time="1.257" assertions="4">
 
     
 
@@ -18,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.Pixel_2_XL" time="0.4270" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.Pixel_2_XL" time="0.4160" assertions="0">
     </testcase>
   
 

@@ -5,9 +5,9 @@
 
   <testsuite name="device_snapshot.LG_Optimus_L70"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="1.694" timestamp="">
+    tests="2" time="1.628" timestamp="">
   
-    <testcase name="Demo test LG Optimus L70, 384, 640" classname="device_snapshot.LG_Optimus_L70" time="1.249" assertions="4">
+    <testcase name="Demo test LG Optimus L70, 384, 640" classname="device_snapshot.LG_Optimus_L70" time="1.223" assertions="4">
 
     
 
@@ -18,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.LG_Optimus_L70" time="0.4450" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.LG_Optimus_L70" time="0.4050" assertions="0">
     </testcase>
   
 

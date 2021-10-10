@@ -5,9 +5,9 @@
 
   <testsuite name="device_snapshot.Galaxy_Note_II"
     errors="0" failures="0" hostname="" id="" package="device_snapshot" skipped="0"
-    tests="2" time="1.677" timestamp="">
+    tests="2" time="1.803" timestamp="">
   
-    <testcase name="Demo test Galaxy Note II, 360, 640" classname="device_snapshot.Galaxy_Note_II" time="1.239" assertions="4">
+    <testcase name="Demo test Galaxy Note II, 360, 640" classname="device_snapshot.Galaxy_Note_II" time="1.349" assertions="4">
 
     
 
@@ -18,7 +18,7 @@
     
     </testcase>
   
-    <testcase name="Finished" classname="device_snapshot.Galaxy_Note_II" time="0.4380" assertions="0">
+    <testcase name="Finished" classname="device_snapshot.Galaxy_Note_II" time="0.4540" assertions="0">
     </testcase>
   
 
