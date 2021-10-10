@@ -6,19 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script>
-      class Quote {
+      class RestaurantConfig {
         constructor(name) {
           this.name = name;
-          this.Customer_Name = Customer_Name;
-          this.Country = Country;
-          this.Location = Location;
-          this.Map = Map;
-          this.URL = URL;
-          this.Notes = Notes;
-          this.Office_Fax_No = Office_Fax_No;
-          this.Office_Phone_No = Office_Phone_No;
-          this.State = State;
-          this.Town = Town;
+          this.service_category = service_category;
+          this.operator = [];
+          this.advertisement_enabled = advertisement_enabled;
+          this.active = active;
+          this.restaurant_open = restaurant_open;
         }
 
         get saluation() {

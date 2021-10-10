@@ -6,19 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script>
-      class Quote {
+      class FoodCategory {
         constructor(name) {
           this.name = name;
-          this.Customer_Name = Customer_Name;
-          this.Country = Country;
-          this.Location = Location;
-          this.Map = Map;
-          this.URL = URL;
-          this.Notes = Notes;
-          this.Office_Fax_No = Office_Fax_No;
-          this.Office_Phone_No = Office_Phone_No;
-          this.State = State;
-          this.Town = Town;
+          this.long_name = long_name;
+
+          this.food_items = food_items;
+          this.description = description;
+
+          this.status = status; // sold_out, in_stock
+
+          this.image_urls = [];
         }
 
         get saluation() {

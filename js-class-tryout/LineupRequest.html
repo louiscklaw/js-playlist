@@ -6,19 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script>
-      class Quote {
+      class LineupRequest {
         constructor(name) {
-          this.name = name;
-          this.Customer_Name = Customer_Name;
-          this.Country = Country;
-          this.Location = Location;
-          this.Map = Map;
-          this.URL = URL;
-          this.Notes = Notes;
-          this.Office_Fax_No = Office_Fax_No;
-          this.Office_Phone_No = Office_Phone_No;
-          this.State = State;
-          this.Town = Town;
+          this.lineup_customer_name = lineup_customer_name;
+          this.lineup_remarks = lineup_remarks;
+          this.lineup_ticket_number = lineup_ticket_number;
+
+          this.number_of_adult = number_of_adult;
+          this.number_of_children = number_of_children;
+
+          this.request_time_utc = request_time_utc;
+          this.status = status;
         }
 
         get saluation() {
