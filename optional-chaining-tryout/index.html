@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const t_o = {
+        a: { b: { c: "helloworld", e: null, f: undefined, g: "test" } },
+      };
+
+      console.log("t_o?.a", t_o?.a);
+      console.log("t_o?.a?.b", t_o?.a?.b);
+      console.log("t_o?.a?.b?.c", t_o?.a?.b?.c);
+      console.log("t_o?.a?.b?.d", t_o?.a?.b?.d);
+
+      console.log("t_o?.a?.b?.d", t_o?.a?.b?.d == true);
+      t_o?.a?.b?.c ? console.log("c exist") : console.log("c not exist");
+      t_o?.a?.b?.d
+        ? console.log("d exist")
+        : console.log("d not exist", t_o?.a?.b?.d);
+      t_o?.a?.b?.e
+        ? console.log("e exist")
+        : console.log("e not exist", t_o?.a?.b?.e);
+      t_o?.a?.b?.f
+        ? console.log("f exist")
+        : console.log("f not exist", t_o?.a?.b?.f);
+      t_o?.a?.b?.g
+        ? console.log("g exist", t_o?.a?.b?.g)
+        : console.log("g not exist", t_o?.a?.b?.g);
+
+      console.log("helloworld");
+      const route = { params: "world" };
+
+      console.log("route?.params", route?.params);
+      console.log("route.hello", route.hello);
+      console.log("route.params", route.params);
+      console.log(route);
+    </script>
+  </body>
+</html>
