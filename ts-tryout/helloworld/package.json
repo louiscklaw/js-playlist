@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --outDir dist helloworld1.ts",
-    "tsc_test":"tsc --help"
+    "tsc_test": "tsc --help"
   },
   "keywords": [],
   "author": "",
