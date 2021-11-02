@@ -1,0 +1,1 @@
+lighthouse https://louiscklaw.github.io --output json --output-path louiscklaw.github.io.test.json
