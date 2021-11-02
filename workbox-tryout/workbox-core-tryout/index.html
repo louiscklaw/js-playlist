@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    hello service-worker.js
+
+    <img
+      style="width: 100px; height: 100px"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/HelloWorld.svg/2560px-HelloWorld.svg.png"
+    />
+
+    <ol>
+      <li>Open DevTools</li>
+      <li>Go to the Console</li>
+      <li>
+        Click any of the buttons below and view the logs:
+        <ul>
+          <li>
+            <p>
+              <button class="trigger-broadcast">Trigger a Broadcast</button>
+            </p>
+          </li>
+        </ul>
+      </li>
+    </ol>
+
+    <script>
+      const triggerBroadcast = document.querySelector(".trigger-broadcast");
+
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").then((reg) => {
+          triggerBroadcast.addEventListener("click", () => {
+            const message = { command: "printLogs" };
+            reg.active.postMessage(message);
+          });
+
+          navigator.serviceWorker.addEventListener("message", (event) => {
+            console.log(`Received a message from workbox-broadcast-update.`);
+            console.log(event.data);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
