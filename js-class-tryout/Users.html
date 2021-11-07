@@ -7,8 +7,9 @@
     <title>Document</title>
     <script>
       class User {
-        constructor(name) {
+        constructor({ name, user_disabled }) {
           this.name = name;
+          this.user_disabled = user_disabled || false;
         }
 
         get saluation() {
@@ -21,7 +22,13 @@
       }
 
       const mr_law = new User("Law");
+      const user_disabled_test = new User({
+        name: "user_disabled",
+        user_disabled: true,
+      });
       mr_law.DoHi();
+      console.log("mr_law", mr_law);
+      console.log("user_disabled_test", user_disabled_test);
     </script>
   </head>
   <body></body>
