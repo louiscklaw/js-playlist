@@ -1,6 +1,8 @@
 .env
 *.tmp
 
+.vscode
+
 **/node_modules
 **/build
 
