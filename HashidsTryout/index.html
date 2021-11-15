@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/hashids@2.2.9/dist/hashids.js"
+      integrity="sha256-bilT0kB9gNhgWd/E0GJemVBFUyvSDpIeFzZZJyjM1QU="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <script type="text/javascript" src="hashids.min.js"></script>
+    <script type="text/javascript">
+      var hashids = new Hashids();
+      console.log(hashids.encode(1, 2, 3)); // o2fXhV
+      console.log("encode -> decode", hashids.decode(hashids.encode(1, 2, 3)));
+      console.log("encode -> decode", hashids.decode(hashids.encode(123)));
+      console.log(hashids.encode([1, 2, 3])); // o2fXhV
+      // strings containing integers are coerced to numbers:
+      console.log(hashids.encode("1", "2", "3")); // o2fXhV
+      console.log(hashids.encode(["1", "2", "3"])); // o2fXhV
+      // BigInt support:
+      console.log(hashids.encode([1n, 2n, 3n])); // o2fXhV
+      // Hex notation BigInt:
+      console.log(hashids.encode([0x1n, 0x2n, 0x3n])); // o2fXhV
+
+      hashids = new Hashids("My Project");
+      console.log("salted", hashids.encode(1, 2, 3)); // Z4UrtW
+
+      hashids = new Hashids("My Project", 10);
+      console.log("salted + padded", hashids.encode(1, 2, 3)); // Z4UrtW
+    </script>
+  </body>
+</html>
