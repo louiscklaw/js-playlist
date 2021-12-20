@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial;
+        font-size: 17px;
+        background-color: black;
+      }
+
+      #myVideo {
+        right: 0;
+        bottom: 0;
+      }
+
+      .content {
+        position: fixed;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        color: #f1f1f1;
+        width: 100%;
+        padding: 20px;
+      }
+
+      #myBtn {
+        width: 200px;
+        font-size: 18px;
+        padding: 10px;
+        border: none;
+        background: #000;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      #myBtn:hover {
+        background: #ddd;
+        color: black;
+      }
+
+      #video-bg {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="video-bg">
+      <video autoplay muted loop id="myVideo">
+        <source src="https://xlmkkckmmymutztjkupi.supabase.in/storage/v1/object/sign/helloworld/CM/cm1.mp4?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJoZWxsb3dvcmxkL0NNL2NtMS5tcDQiLCJpYXQiOjE2NDAwMjMzMzMsImV4cCI6MTk1NTM4MzMzM30.45DzEbxOIbXb6EVTi2Q60n8Fi5ffkbHeGmkXo17n2aQ" type="video/mp4" />
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+
+    <div class="content">
+      <h1>阪ハウワ応92勤常勉旋72依過らつ🎵📧🌃🎃🔲🕃 📒。</h1>
+      <h3>門むば隊就メツヘ突長山テ🎵📧🌃🎃🔲🕃 📒碁人ゆッ</h3>
+      <p>歳両ら止都トカハキ締素ぎぜつ索能経初臣こ党求ぼ担効カタハネ文会ヲツレ端🎵📧🌃🎃🔲🕃 📒作67神フ測相りち挑坂ぶ。 応ハシカ向2捜せぽけリ覧郷ユヤワサ準助7子群メソマ直林無ノヱク総九るね法 右み料生レソヱ犯2属スタリチ海新志合のみル。落国がどゅト備初</p>
+    </div>
+
+    <script>
+      var video = document.getElementById('myVideo');
+      var btn = document.getElementById('myBtn');
+
+      function myFunction() {
+        if (video.paused) {
+          video.play();
+          btn.innerHTML = 'Pause';
+        } else {
+          video.pause();
+          btn.innerHTML = 'Play';
+        }
+      }
+    </script>
+  </body>
+</html>
