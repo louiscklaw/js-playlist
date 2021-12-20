@@ -122,3 +122,8 @@ dist
 .yarn/unplugged
 .yarn/build-state.yml
 .pnp.*
+
+# Supabase
+**/supabase/.temp
+**/supabase/.env
+**/supabase/.globals.sql
