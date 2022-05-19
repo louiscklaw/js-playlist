@@ -1,0 +1,45 @@
+{
+  "name": "article-node.js-rest-api-doc",
+  "version": "1.0.0",
+  "description": "documenting a rest api using swagger",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.js",
+    "start": "node ./src/index.js",
+    "clear": "rm -rf ./node_modules",
+    "init_dev": "yarn clear && yarn --dev && yarn dev",
+    "gitUpdate": "git add . && git commit -m\"update swagger-tryout,\" && git pull && git push",
+    "gitSync": "git fetch --all && git pull ",
+    "docker_network_prune": "docker network prune",
+    "docker_compose_pull": "docker-compose pull",
+    "docker_compose_build": "docker-compose build",
+    "docker_compose_kill": "docker-compose kill",
+    "docker_compose_down": "docker-compose down --remove-orphans && npm run docker_network_prune",
+    "docker_compose_up": "docker network create traefik-proxy-network || true && docker-compose up ",
+    "docker_rebuild": "npm run docker_compose_pull && npm run docker_compose_build && npm run docker_compose_kill && npm run docker_compose_down && npm run docker_compose_up",
+    "docker_clear_volume": "sudo rm -rf ./volumes/strapi && mkdir -p ./volumes/strapi && touch ./volumes/strapi/.gitkeep"
+  },
+  "repository": {
+    "type": "git",
+    "url": "swagger-node.js-rest-api-doc"
+  },
+  "author": "mwangikibui",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lowdb": "^1.0.0",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.1.22",
+    "nodemon": "^2.0.7",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "nodemonConfig": {
+    "ext": "js",
+    "ignore": [
+      "*.test.ts",
+      "db/*"
+    ],
+    "delay": 2
+  }
+}
