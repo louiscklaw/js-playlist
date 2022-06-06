@@ -42,10 +42,6 @@ console.log('endpoint running at http://127.0.0.1:3001/test-post');
 console.log('endpoint running at http://127.0.0.1:3001/redirect');
 app.listen(3001);
 
-//
-
-//
-
 var http = require('http');
 
 http
