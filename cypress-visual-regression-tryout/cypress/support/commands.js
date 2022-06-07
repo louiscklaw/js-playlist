@@ -24,8 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-const compareSnapshotCommand = require("cypress-visual-regression/dist/command");
+const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
 compareSnapshotCommand({
-  capture: "fullPage",
+  capture: 'fullPage',
   failSilently: false,
 });

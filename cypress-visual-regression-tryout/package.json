@@ -1,18 +1,19 @@
 {
-  "name": "cypress-helloworld-tryout",
+  "name": "cypress-visual-regression-tryout",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "init_dev": "yarn --dev",
+    "dev": "cypress open",
+    "gitUpdate": "git add . && git commit -m\"update cypress-visual-regression-tryout,\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "cypress": "^8.5.0"
-  },
   "dependencies": {
+    "cypress": "^8.5.0",
     "cypress-visual-regression": "^1.6.1"
   }
 }
