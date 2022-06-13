@@ -1,68 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <link  rel="stylesheet"  href="/style.css" />
+  </head>
 
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.6.4/dist/mermaid.min.js"></script>
 
-</head>
+    Here is one mermaid diagram:
+    <div class="mermaid">
+      graph TD
+        A[Client] --> B[Load Balancer]
+        B --> C[Server1]
+        B --> D[Server2]
+    </div>
 
-<body>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@8.6.4/dist/mermaid.min.js"></script>
+    And here is another:
+    <div class="mermaid">
+      graph TD
+        A[Client] -->|tcp_123123321| B(Load Balancer<br /><br /><br />helloworld<ul>  <li>helloworld</li></ul>)
+        B -->|tcp_456| C[Server1]
+        B -->|tcp_456| D(Server2)
+    </div>
 
+    <div class="mermaid">
+      graph TD
+        A("<img src="https://iconscout.com/ms-icon-310x310.png" width="30" />")
+              B("<img src="https://iconscout.com/ms-icon-310x310.png" width="30" />")
+        A --> B
+    </div>
 
-  Here is one mermaid diagram:
-  <div class="mermaid">
-    graph TD
-    A[Client] --> B[Load Balancer]
-    B --> C[Server1]
-    B --> D[Server2]
-  </div>
+    <div class="mermaid">
+      erDiagram CUSTOMER }|..|{ DELIVERY-ADDRESS : has CUSTOMER ||--o{ ORDER : places CUSTOMER ||--o{ INVOICE : "liable for" DELIVERY-ADDRESS ||--o{ ORDER : receives INVOICE ||--|{ ORDER : covers ORDER ||--|{ ORDER-ITEM : includes PRODUCT-CATEGORY ||--|{ PRODUCT : contains PRODUCT ||--o{ ORDER-ITEM : "ordered in"
+    </div>
 
-  And here is another:
-  <div class="mermaid">
-    graph TD
-    A[Client] -->|tcp_123123321| B(Load Balancer)
-    B -->|tcp_456| C[Server1]
-    B -->|tcp_456| D[Server2]
-  </div>
-
-  <div class="mermaid">
-    graph TD
-      A("<img src='https://iconscout.com/ms-icon-310x310.png' width='30' />")
-      B("<img src='https://iconscout.com/ms-icon-310x310.png' width='30' />")
-
-      A --> B
-  </div>
-
-  <div class="mermaid">
-    erDiagram
-        CUSTOMER }|..|{ DELIVERY-ADDRESS : has
-        CUSTOMER ||--o{ ORDER : places
-        CUSTOMER ||--o{ INVOICE : "liable for"
-        DELIVERY-ADDRESS ||--o{ ORDER : receives
-        INVOICE ||--|{ ORDER : covers
-        ORDER ||--|{ ORDER-ITEM : includes
-        PRODUCT-CATEGORY ||--|{ PRODUCT : contains
-        PRODUCT ||--o{ ORDER-ITEM : "ordered in"
-
-  </div>
-
-  <script>
-    // https://mermaid-js.github.io/mermaid/#/Setup
-    var config = {
-      securityLevel:"loose",
-      flowchart: {
-        htmllabels: true,
-        curve: "basis"
-      }
-    };
-    mermaid.initialize( config );
-  </script>
-
-</body>
-
-
+    <script>
+      // https://mermaid-js.github.io/mermaid/#/Setup
+      var config = {
+        securityLevel: 'loose',
+        flowchart: {
+          htmllabels: true,
+          curve: 'basis',
+        },
+      };
+      mermaid.initialize(config);
+    </script>
+  </body>
 </html>

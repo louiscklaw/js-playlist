@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+body {
+  background-color: #fafafa;
+}
+
+.node rect {
+  fill: #2f3542 !important;
+  stroke: #2f3542 !important;
+}
+
+.node .label {
+  color: #ffffff !important;
+}
+
+.node .label div{
+  font-size: 0.8rem;
+  font-family: 'Noto Sans TC', sans-serif;
+}
