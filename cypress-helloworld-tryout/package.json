@@ -7,7 +7,8 @@
     "test": "cypress run",
     "dev": "cypress open",
     "init_dev": "yarn --dev && yarn dev",
-    "gitUpdate": "git add . && git commit -m\"update cypress-helloworld-tryout,\" && git pull && git push"
+    "gitUpdate": "git add . && git commit -m\"update cypress-helloworld-tryout,\" && git pull && git push",
+    "trim": "rm -rf node_modules"
   },
   "keywords": [],
   "author": "",
