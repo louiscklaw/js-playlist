@@ -1,4 +1,5 @@
-cypress/screenshots
+cypress/screenshots/*
+cypress/videos/*
 
 **/.env
 main.py
