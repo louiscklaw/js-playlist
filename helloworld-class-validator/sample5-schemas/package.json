@@ -1,0 +1,18 @@
+{
+  "name": "sample1-simple-validation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "helloworld": "ts-node app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "class-validator": "^0.13.2",
+    "ts-node": "^10.9.1",
+    "tsc": "^2.0.4"
+  }
+}
