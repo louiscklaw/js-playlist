@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter mochawesome",
-    "merge_report": "npx mochawesome-merge ./mochawesome-report/*.json -o output.json"
+    "merge_result": "mochawesome-merge ./mochawesome-report/*.json -o output.json"
   },
   "author": "",
   "license": "ISC",
