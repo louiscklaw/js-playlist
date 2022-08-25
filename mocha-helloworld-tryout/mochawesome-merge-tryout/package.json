@@ -1,0 +1,17 @@
+{
+  "name": "mocha-hello-world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter mochawesome",
+    "merge_report": "npx mochawesome-merge ./mochawesome-report/*.json -o output.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "latest",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.2.1"
+  }
+}
