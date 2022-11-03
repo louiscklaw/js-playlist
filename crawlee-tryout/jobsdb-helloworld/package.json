@@ -1,5 +1,5 @@
 {
-  "name": "my-crawler",
+  "name": "jobsdb-crawler",
   "version": "0.0.1",
   "type": "module",
   "description": "This is an example of a Crawlee project.",
@@ -9,12 +9,14 @@
   },
   "scripts": {
     "start": "node src/main.js",
-    "gitUpdate": "git add . && git commit -m\"update swagger-tryout,\" && git pull && git push",
+    "gitUpdate": "git add . && git commit -m\"update jobsdb-crawler,\" && git pull && git push",
     "gitSync": "git fetch --all && git pull ",
-    "test": "echo \"Error: oops, the actor has no tests yet, sad!\" && exit 1",
     "docker_rebuild": "docker compose up -d",
     "into_docker": "docker compose exec -it test_host bash"
   },
   "author": "It's not you it's me",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
 }

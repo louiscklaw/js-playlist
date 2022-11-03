@@ -1,9 +1,8 @@
-# Getting started with Crawlee
+# Crawlee + PlaywrightCrawler + JavaScript project
 
-This example uses `PlaywrightCrawler` to recursively crawl https://crawlee.dev using the browser automation library [Playwright](https://playwright.dev).
+This template is a production ready boilerplate for developing with `PlaywrightCrawler`. Use this to bootstrap your projects using the most up-to-date code.
 
-You can find more examples and documentation at the following links:
+If you're looking for examples or want to learn more visit:
 
-- [Step-by-step tutorial](https://crawlee.dev/docs/introduction) for Crawlee
-- `PlaywrightCrawler` [API documentation](https://crawlee.dev/api/playwright-crawler/class/PlaywrightCrawler)
-- Other [examples](https://crawlee.dev/docs/examples/playwright-crawler)
+- [Documentation](https://crawlee.dev/api/playwright-crawler/class/PlaywrightCrawler)
+- [Examples](https://crawlee.dev/docs/examples/playwright-crawler)
