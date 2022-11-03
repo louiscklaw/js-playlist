@@ -22,8 +22,8 @@ RUN npm --quiet set progress=false \
 # Next, copy the remaining files and directories with the source code.
 # Since we do this after NPM install, quick build will be really fast
 # for most source file changes.
-COPY --chown=myuser . ./
-
+COPY --chown=myuser . ./app
+RUN mkdir ./app/node_modules
 
 # Run the image.
 CMD npm start --silent
