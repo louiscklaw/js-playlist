@@ -3,9 +3,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    # volumes:
-      # - '.:/home/myuser/app'
-      # - node_modules:/home/myuser/app/node_modules
+
+    user: '1000:1000'
+
+    volumes:
+      - '.:/home/myuser'
+      - 'node_modules:/home/myuser/node_modules'
 
     # working_dir: ./app
     command: sleep infinity
@@ -20,5 +23,5 @@ services:
     # depends_on:
     #   - react_host_client
 
-# volumes:
-  # node_modules:
+volumes:
+  node_modules:
