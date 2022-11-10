@@ -1,0 +1,68 @@
+services:
+  debug_entry:
+    container_name: debug_entry
+    image: ubuntu:latest
+    command: sleep infinity
+
+  test_host:
+    container_name: test_host
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    user: '1000:1000'
+
+    volumes:
+      - '.:/home/myuser'
+      - 'node_modules:/home/myuser/node_modules'
+
+    # working_dir: ./app
+    command: sleep infinity
+
+    #   - './tests_host/screenshots:/screenshots'
+    # # command: "wait-for-it.sh react_host_client:3000 && \
+    # #   -- mocha --recursive /integration-tests"
+    # command: >
+    #   bash -c "wait-for-it.sh react_host_client:3000 &&
+    #   wait-for-it.sh react_host_cms:3000 &&
+    #   wait-for-it.sh react_host_admin:3000 -- mocha --recursive /integration-tests"
+    # depends_on:
+    #   - react_host_client
+
+  test_web:
+    container_name: test_web
+    build:
+      context: test_web
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./test_web/public:/usr/share/nginx/html
+    ports:
+      - 8080:80
+
+  mongo:
+    image: mongo
+    restart: always
+    command: mongod --auth
+    environment:
+      MONGO_INITDB_DATABASE: test
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./.docker/init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+
+volumes:
+  node_modules:
+
+networks:
+  default:
