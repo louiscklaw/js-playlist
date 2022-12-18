@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node src/main.js",
-    "gitUpdate": "git add . && git commit -m\"update swagger-tryout,\" && git pull && git push",
+    "gitUpdate": "git add . && git commit -m\"update crawlee-tryout,\" && git pull && git push",
     "gitSync": "git fetch --all && git pull ",
     "test": "echo \"Error: oops, the actor has no tests yet, sad!\" && exit 1",
     "docker_rebuild": "docker compose up -d",
