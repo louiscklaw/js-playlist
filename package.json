@@ -3,7 +3,7 @@
   "description": "",
   "version": "1.0.0",
   "scripts": {
-    "gitUpdate": "git add . && git commit -m'update js-playlist,' && git push"
+    "gitUpdate": "git add . && git commit -m'update js-playlist,' && git pull && git push"
   },
   "dependencies": {
     "prettier": "^2.8.0"
