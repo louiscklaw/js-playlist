@@ -1,0 +1,11 @@
+{
+  "name": "js-playlist",
+  "description": "",
+  "version": "1.0.0",
+  "scripts": {
+    "gitUpdate": "git add . && git commit -m'update js-playlist,' && git push"
+  },
+  "dependencies": {
+    "prettier": "^2.8.0"
+  }
+}
