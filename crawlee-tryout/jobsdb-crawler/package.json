@@ -4,7 +4,9 @@
   "type": "module",
   "description": "This is an example of a Crawlee project.",
   "dependencies": {
+    "checksum": "^1.0.0",
     "crawlee": "^3.0.0",
+    "mongoose": "^6.7.1",
     "playwright": "*"
   },
   "scripts": {

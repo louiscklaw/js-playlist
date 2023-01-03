@@ -1,5 +1,6 @@
 {
   "name": "js-playlist",
+<<<<<<< HEAD
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,5 +20,14 @@
   "homepage": "https://github.com/louiscklaw/js-playlist#readme",
   "dependencies": {
     "prettier": "^2.8.1"
+=======
+  "description": "",
+  "version": "1.0.0",
+  "scripts": {
+    "gitUpdate": "git add . && git commit -m'update js-playlist,' && git pull && git push"
+  },
+  "dependencies": {
+    "prettier": "^2.8.0"
+>>>>>>> 36898f6ac49a71aa49979401e9705c58a8c6543e
   }
 }
