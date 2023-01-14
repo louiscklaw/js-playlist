@@ -2,4 +2,7 @@
 # Dockerfile
 FROM node:18-buster
 
-RUN chmod 777 -R /root
+RUN mkdir -p /app/node_modules
+RUN chown node:node -R /app
+
+WORKDIR /app

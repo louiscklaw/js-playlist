@@ -5,6 +5,7 @@ services:
     ports:
       - 3000:3000
       - 5555:5555
+    user: 1000:1000
     working_dir: /app
     volumes:
       - $PWD:/app

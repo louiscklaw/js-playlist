@@ -3,10 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "prisma": {
+    "seed": "ts-node ./prisma/seed.ts"
+  },
   "scripts": {
+    "id": "id",
+    "into_backend": "docker compose exec -it backend bash",
+    "touch": "touch /app/node_modules/helloworld.txt",
     "test": "npx ts-node create.ts",
-    "migrate_reset":"npx prisma migrate reset",
-    "migrate_dev":"npx prisma migrate dev",
+    "migrate_reset": "npx prisma migrate reset",
+    "migrate_dev": "npx prisma migrate dev",
+    "db_seed": "prisma db seed",
     "format": "npx prettier --loglevel warn --write \"**/*.{js,css,html,jsx,tsx,ts,json}\"",
     "gitSync": "git fetch --all && git pull --all ",
     "gitUpdate": "git add . && git commit -m \"update prisma-tryout,\" && yarn gitSync && git push"
