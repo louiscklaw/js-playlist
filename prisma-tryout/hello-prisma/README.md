@@ -1,0 +1,1 @@
+https://www.prisma.io/docs/concepts/components/prisma-client/crud#create-multiple-records
