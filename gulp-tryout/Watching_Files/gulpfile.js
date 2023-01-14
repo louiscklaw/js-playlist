@@ -1,23 +1,23 @@
-const { watch, series } = require("gulp");
+const { watch, series } = require('gulp')
 
 function clean(cb) {
   // body omitted
-  cb();
+  cb()
 }
 
 function javascript(cb) {
   // body omitted
-  cb();
+  cb()
 }
 
 function css(cb) {
   // body omitted
-  cb();
+  cb()
 }
 
 exports.default = function () {
   // You can use a single task
-  watch("src/*.css", { delay: 500 }, css);
+  watch('src/*.css', { delay: 500 }, css)
   // Or a composed task
-  watch("src/*.js", { delay: 500 }, series(clean, javascript));
-};
+  watch('src/*.js', { delay: 500 }, series(clean, javascript))
+}

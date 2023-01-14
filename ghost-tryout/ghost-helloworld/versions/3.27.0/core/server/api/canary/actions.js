@@ -1,19 +1,13 @@
-const models = require('../../models');
+const models = require('../../models')
 
 module.exports = {
-    docName: 'actions',
+  docName: 'actions',
 
-    browse: {
-        options: [
-            'page',
-            'limit',
-            'fields',
-            'include',
-            'filter'
-        ],
-        permissions: true,
-        query(frame) {
-            return models.Action.findPage(frame.options);
-        }
-    }
-};
+  browse: {
+    options: ['page', 'limit', 'fields', 'include', 'filter'],
+    permissions: true,
+    query(frame) {
+      return models.Action.findPage(frame.options)
+    },
+  },
+}

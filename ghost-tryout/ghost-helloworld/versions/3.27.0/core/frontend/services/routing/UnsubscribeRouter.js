@@ -1,5 +1,5 @@
-const ParentRouter = require('./ParentRouter');
-const controllers = require('./controllers');
+const ParentRouter = require('./ParentRouter')
+const controllers = require('./controllers')
 
 /**
  * @description Unsubscribe Router.
@@ -7,21 +7,21 @@ const controllers = require('./controllers');
  * "/unsubscribe/" -> Unsubscribe Router
  */
 class UnsubscribeRouter extends ParentRouter {
-    constructor() {
-        super('UnsubscribeRouter');
+  constructor() {
+    super('UnsubscribeRouter')
 
-        // @NOTE: hardcoded, not configurable
-        this.route = {value: '/unsubscribe/'};
-        this._registerRoutes();
-    }
+    // @NOTE: hardcoded, not configurable
+    this.route = { value: '/unsubscribe/' }
+    this._registerRoutes()
+  }
 
-    /**
-     * @description Register all routes of this router.
-     * @private
-     */
-    _registerRoutes() {
-        this.mountRoute(this.route.value, controllers.unsubscribe);
-    }
+  /**
+   * @description Register all routes of this router.
+   * @private
+   */
+  _registerRoutes() {
+    this.mountRoute(this.route.value, controllers.unsubscribe)
+  }
 }
 
-module.exports = UnsubscribeRouter;
+module.exports = UnsubscribeRouter

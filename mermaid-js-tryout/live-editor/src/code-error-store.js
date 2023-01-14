@@ -1,3 +1,3 @@
-import { writable } from 'svelte/store';
+import { writable } from 'svelte/store'
 
-export const codeErrorStore = writable(undefined);
+export const codeErrorStore = writable(undefined)

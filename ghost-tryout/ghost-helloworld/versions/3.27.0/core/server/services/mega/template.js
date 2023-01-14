@@ -1,7 +1,7 @@
 /* eslint indent: warn, no-irregular-whitespace: warn */
-module.exports = ({post, site}) => {
-    const date = new Date();
-    return `<!doctype html>
+module.exports = ({ post, site }) => {
+  const date = new Date()
+  return `<!doctype html>
 <html>
 
 <head>
@@ -821,7 +821,7 @@ figure blockquote p {
 </head>
 
 <body class="">
-    <span class="preheader">${ post.excerpt ? post.excerpt : `${post.title} – ` }</span>
+    <span class="preheader">${post.excerpt ? post.excerpt : `${post.title} – `}</span>
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body" width="100%">
 
         <!-- Outlook doesn't respect max-width so we need an extra centered table -->
@@ -847,11 +847,15 @@ figure blockquote p {
                                     <tr>
                                         <td class="site-info" width="100%" align="center">
                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                                                ${ site.iconUrl ? `
+                                                ${
+                                                  site.iconUrl
+                                                    ? `
                                                 <tr>
                                                     <td class="site-icon"><a href="${site.url}"><img src="${site.iconUrl}" border="0"></a></td>
                                                 </tr>
-                                                ` : ``}
+                                                `
+                                                    : ``
+                                                }
                                                 <tr>
                                                     <td class="site-url"><div style="width: 100% !important;"><a href="${site.url}">${site.title}</a></div></td>
                                                 </tr>
@@ -874,11 +878,15 @@ figure blockquote p {
                                             </table>
                                         </td>
                                     </tr>
-                                    ${post.feature_image ? `
+                                    ${
+                                      post.feature_image
+                                        ? `
                                     <tr>
                                         <td class="feature-image"><img src="${post.feature_image}"></td>
                                     </tr>
-                                    ` : ``}
+                                    `
+                                        : ``
+                                    }
                                     <tr>
                                         <td class="post-content">
                                             <!-- POST CONTENT START -->
@@ -897,7 +905,9 @@ figure blockquote p {
                             <td class="wrapper" align="center">
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
-                                        <td class="footer">${site.title} &copy; ${date.getFullYear()} – <a href="%recipient.unsubscribe_url%">Unsubscribe</a></td>
+                                        <td class="footer">${
+                                          site.title
+                                        } &copy; ${date.getFullYear()} – <a href="%recipient.unsubscribe_url%">Unsubscribe</a></td>
                                     </tr>
                                 </table>
                             </td>
@@ -920,5 +930,5 @@ figure blockquote p {
     </table>
 </body>
 
-</html>`;
-};
+</html>`
+}

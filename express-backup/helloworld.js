@@ -1,5 +1,5 @@
 // main.mjs
 
-const testModule = require('./hellofunc');
+const testModule = require('./hellofunc')
 
-console.log(testModule.sayHello());
+console.log(testModule.sayHello())

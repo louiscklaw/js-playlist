@@ -18,7 +18,5 @@
     "inputFiles": ["./src"],
     "out": "./dist/docs/typedoc"
   },
-  "include": [
-    "./src/**/*.js"
-  ]
+  "include": ["./src/**/*.js"]
 }

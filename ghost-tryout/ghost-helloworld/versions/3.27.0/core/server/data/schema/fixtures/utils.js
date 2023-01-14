@@ -1,29 +1,29 @@
 // # Fixture Utils
 // Standalone file which can be required to help with advanced operations on the fixtures.json file
-const _ = require('lodash');
+const _ = require('lodash')
 
-const Promise = require('bluebird');
-const logging = require('../../../../shared/logging');
-const models = require('../../../models');
-const baseUtils = require('../../../models/base/utils');
-const sequence = require('../../../lib/promise/sequence');
-const moment = require('moment');
-const fixtures = require('./fixtures');
+const Promise = require('bluebird')
+const logging = require('../../../../shared/logging')
+const models = require('../../../models')
+const baseUtils = require('../../../models/base/utils')
+const sequence = require('../../../lib/promise/sequence')
+const moment = require('moment')
+const fixtures = require('./fixtures')
 
 // Private
-let matchFunc;
+let matchFunc
 
-let matchObj;
-let fetchRelationData;
-let findRelationFixture;
-let findModelFixture;
-let addFixturesForModel;
-let addFixturesForRelation;
-let removeFixturesForModel;
-let removeFixturesForRelation;
-let findModelFixtureEntry;
-let findModelFixtures;
-let findPermissionRelationsForObject;
+let matchObj
+let fetchRelationData
+let findRelationFixture
+let findModelFixture
+let addFixturesForModel
+let addFixturesForRelation
+let removeFixturesForModel
+let removeFixturesForRelation
+let findModelFixtureEntry
+let findModelFixtures
+let findPermissionRelationsForObject
 
 /**
  * ### Match Func
@@ -38,39 +38,39 @@ let findPermissionRelationsForObject;
  * @returns {Function} matching function
  */
 matchFunc = function matchFunc(match, key, value) {
-    if (_.isArray(match)) {
-        return function (item) {
-            let valueTest = true;
-
-            if (_.isArray(value)) {
-                valueTest = value.indexOf(item.get(match[1])) > -1;
-            } else if (value !== 'all') {
-                valueTest = item.get(match[1]) === value;
-            }
-
-            return item.get(match[0]) === key && valueTest;
-        };
-    }
-
+  if (_.isArray(match)) {
     return function (item) {
-        key = key === 0 && value ? value : key;
-        return item.get(match) === key;
-    };
-};
+      let valueTest = true
+
+      if (_.isArray(value)) {
+        valueTest = value.indexOf(item.get(match[1])) > -1
+      } else if (value !== 'all') {
+        valueTest = item.get(match[1]) === value
+      }
+
+      return item.get(match[0]) === key && valueTest
+    }
+  }
+
+  return function (item) {
+    key = key === 0 && value ? value : key
+    return item.get(match) === key
+  }
+}
 
 matchObj = function matchObj(match, item) {
-    const matchObj = {};
+  const matchObj = {}
 
-    if (_.isArray(match)) {
-        _.each(match, function (matchProp) {
-            matchObj[matchProp] = item.get(matchProp);
-        });
-    } else {
-        matchObj[match] = item.get(match);
-    }
+  if (_.isArray(match)) {
+    _.each(match, function (matchProp) {
+      matchObj[matchProp] = item.get(matchProp)
+    })
+  } else {
+    matchObj[match] = item.get(match)
+  }
 
-    return matchObj;
-};
+  return matchObj
+}
 
 /**
  * ### Fetch Relation Data
@@ -81,15 +81,15 @@ matchObj = function matchObj(match, item) {
  * @returns {Promise<*>}
  */
 fetchRelationData = function fetchRelationData(relation, options) {
-    const fromOptions = _.extend({}, options, {withRelated: [relation.from.relation]});
+  const fromOptions = _.extend({}, options, { withRelated: [relation.from.relation] })
 
-    const props = {
-        from: models[relation.from.model].findAll(fromOptions),
-        to: models[relation.to.model].findAll(options)
-    };
+  const props = {
+    from: models[relation.from.model].findAll(fromOptions),
+    to: models[relation.to.model].findAll(options),
+  }
 
-    return Promise.props(props);
-};
+  return Promise.props(props)
+}
 
 /**
  * ### Add Fixtures for Model
@@ -100,46 +100,46 @@ fetchRelationData = function fetchRelationData(relation, options) {
  * @returns {Promise.<*>}
  */
 addFixturesForModel = function addFixturesForModel(modelFixture, options = {}) {
-    // Clone the fixtures as they get changed in this function.
-    // The initial blog posts will be added a `published_at` property, which
-    // would change the fixturesHash.
-    modelFixture = _.cloneDeep(modelFixture);
-    // The Post model fixtures need a `published_at` date, where at least the seconds
-    // are different, otherwise `prev_post` and `next_post` helpers won't workd with
-    // them.
-    if (modelFixture.name === 'Post') {
-        _.forEach(modelFixture.entries, function (post, index) {
-            if (!post.published_at) {
-                post.published_at = moment().add(index, 'seconds');
-            }
-        });
+  // Clone the fixtures as they get changed in this function.
+  // The initial blog posts will be added a `published_at` property, which
+  // would change the fixturesHash.
+  modelFixture = _.cloneDeep(modelFixture)
+  // The Post model fixtures need a `published_at` date, where at least the seconds
+  // are different, otherwise `prev_post` and `next_post` helpers won't workd with
+  // them.
+  if (modelFixture.name === 'Post') {
+    _.forEach(modelFixture.entries, function (post, index) {
+      if (!post.published_at) {
+        post.published_at = moment().add(index, 'seconds')
+      }
+    })
+  }
+
+  return Promise.mapSeries(modelFixture.entries, function (entry) {
+    let data = {}
+
+    // CASE: if id is specified, only query by id
+    if (entry.id) {
+      data.id = entry.id
+    } else if (entry.slug) {
+      data.slug = entry.slug
+    } else {
+      data = _.cloneDeep(entry)
     }
 
-    return Promise.mapSeries(modelFixture.entries, function (entry) {
-        let data = {};
+    if (modelFixture.name === 'Post') {
+      data.status = 'all'
+    }
 
-        // CASE: if id is specified, only query by id
-        if (entry.id) {
-            data.id = entry.id;
-        } else if (entry.slug) {
-            data.slug = entry.slug;
-        } else {
-            data = _.cloneDeep(entry);
-        }
-
-        if (modelFixture.name === 'Post') {
-            data.status = 'all';
-        }
-
-        return models[modelFixture.name].findOne(data, options).then(function (found) {
-            if (!found) {
-                return models[modelFixture.name].add(entry, options);
-            }
-        });
-    }).then(function (results) {
-        return {expected: modelFixture.entries.length, done: _.compact(results).length};
-    });
-};
+    return models[modelFixture.name].findOne(data, options).then(function (found) {
+      if (!found) {
+        return models[modelFixture.name].add(entry, options)
+      }
+    })
+  }).then(function (results) {
+    return { expected: modelFixture.entries.length, done: _.compact(results).length }
+  })
+}
 
 /**
  * ## Add Fixtures for Relation
@@ -150,51 +150,51 @@ addFixturesForModel = function addFixturesForModel(modelFixture, options = {}) {
  * @returns {Promise.<*>}
  */
 addFixturesForRelation = function addFixturesForRelation(relationFixture, options) {
-    const ops = [];
-    let max = 0;
+  const ops = []
+  let max = 0
 
-    return fetchRelationData(relationFixture, options).then(function getRelationOps(data) {
-        _.each(relationFixture.entries, function processEntries(entry, key) {
-            const fromItem = data.from.find(matchFunc(relationFixture.from.match, key));
+  return fetchRelationData(relationFixture, options)
+    .then(function getRelationOps(data) {
+      _.each(relationFixture.entries, function processEntries(entry, key) {
+        const fromItem = data.from.find(matchFunc(relationFixture.from.match, key))
 
-            // CASE: You add new fixtures e.g. a new role in a new release.
-            // As soon as an **older** migration script wants to add permissions for any resource, it iterates over the
-            // permissions for each role. But if the role does not exist yet, it won't find the matching db entry and breaks.
-            if (!fromItem) {
-                logging.warn('Skip: Target database entry not found for key: ' + key);
-                return Promise.resolve();
-            }
+        // CASE: You add new fixtures e.g. a new role in a new release.
+        // As soon as an **older** migration script wants to add permissions for any resource, it iterates over the
+        // permissions for each role. But if the role does not exist yet, it won't find the matching db entry and breaks.
+        if (!fromItem) {
+          logging.warn('Skip: Target database entry not found for key: ' + key)
+          return Promise.resolve()
+        }
 
-            _.each(entry, function processEntryValues(value, key) {
-                let toItems = data.to.filter(matchFunc(relationFixture.to.match, key, value));
-                max += toItems.length;
+        _.each(entry, function processEntryValues(value, key) {
+          let toItems = data.to.filter(matchFunc(relationFixture.to.match, key, value))
+          max += toItems.length
 
-                // Remove any duplicates that already exist in the collection
-                toItems = _.reject(toItems, function (item) {
-                    return fromItem
-                        .related(relationFixture.from.relation)
-                        .findWhere(matchObj(relationFixture.to.match, item));
-                });
+          // Remove any duplicates that already exist in the collection
+          toItems = _.reject(toItems, function (item) {
+            return fromItem.related(relationFixture.from.relation).findWhere(matchObj(relationFixture.to.match, item))
+          })
 
-                if (toItems && toItems.length > 0) {
-                    ops.push(function addRelationItems() {
-                        return baseUtils.attach(
-                            models[relationFixture.from.Model || relationFixture.from.model],
-                            fromItem.id,
-                            relationFixture.from.relation,
-                            toItems,
-                            options
-                        );
-                    });
-                }
-            });
-        });
+          if (toItems && toItems.length > 0) {
+            ops.push(function addRelationItems() {
+              return baseUtils.attach(
+                models[relationFixture.from.Model || relationFixture.from.model],
+                fromItem.id,
+                relationFixture.from.relation,
+                toItems,
+                options,
+              )
+            })
+          }
+        })
+      })
 
-        return sequence(ops);
-    }).then(function (result) {
-        return {expected: max, done: _(result).map('length').sum()};
-    });
-};
+      return sequence(ops)
+    })
+    .then(function (result) {
+      return { expected: max, done: _(result).map('length').sum() }
+    })
+}
 
 /**
  * ### Find Model Fixture
@@ -204,10 +204,10 @@ addFixturesForRelation = function addFixturesForRelation(relationFixture, option
  * @returns {Object} model fixture
  */
 findModelFixture = function findModelFixture(modelName) {
-    return _.find(fixtures.models, function (modelFixture) {
-        return modelFixture.name === modelName;
-    });
-};
+  return _.find(fixtures.models, function (modelFixture) {
+    return modelFixture.name === modelName
+  })
+}
 
 /**
  * ### Find Model Fixture Entry
@@ -217,8 +217,8 @@ findModelFixture = function findModelFixture(modelName) {
  * @returns {Object} model fixture entry
  */
 findModelFixtureEntry = function findModelFixtureEntry(modelName, matchExpr) {
-    return _.find(findModelFixture(modelName).entries, matchExpr);
-};
+  return _.find(findModelFixture(modelName).entries, matchExpr)
+}
 
 /**
  * ### Find Model Fixtures
@@ -228,10 +228,10 @@ findModelFixtureEntry = function findModelFixtureEntry(modelName, matchExpr) {
  * @returns {Object} model fixture
  */
 findModelFixtures = function findModelFixtures(modelName, matchExpr) {
-    const foundModel = _.cloneDeep(findModelFixture(modelName));
-    foundModel.entries = _.filter(foundModel.entries, matchExpr);
-    return foundModel;
-};
+  const foundModel = _.cloneDeep(findModelFixture(modelName))
+  foundModel.entries = _.filter(foundModel.entries, matchExpr)
+  return foundModel
+}
 
 /**
  * ### Find Relation Fixture
@@ -242,10 +242,10 @@ findModelFixtures = function findModelFixtures(modelName, matchExpr) {
  * @returns {Object} relation fixture
  */
 findRelationFixture = function findRelationFixture(from, to) {
-    return _.find(fixtures.relations, function (relation) {
-        return relation.from.model === from && relation.to.model === to;
-    });
-};
+  return _.find(fixtures.relations, function (relation) {
+    return relation.from.model === from && relation.to.model === to
+  })
+}
 
 /**
  * ### Find Permission Relations For Object
@@ -254,71 +254,71 @@ findRelationFixture = function findRelationFixture(from, to) {
  * @returns {Object} fixture relation
  */
 findPermissionRelationsForObject = function findPermissionRelationsForObject(objName, role) {
-    // Make a copy and delete any entries we don't want
-    const foundRelation = _.cloneDeep(findRelationFixture('Role', 'Permission'));
+  // Make a copy and delete any entries we don't want
+  const foundRelation = _.cloneDeep(findRelationFixture('Role', 'Permission'))
 
-    _.each(foundRelation.entries, function (entry, key) {
-        _.each(entry, function (perm, obj) {
-            if (obj !== objName) {
-                delete entry[obj];
-            }
-        });
+  _.each(foundRelation.entries, function (entry, key) {
+    _.each(entry, function (perm, obj) {
+      if (obj !== objName) {
+        delete entry[obj]
+      }
+    })
 
-        if (_.isEmpty(entry) || (role && role !== key)) {
-            delete foundRelation.entries[key];
-        }
-    });
+    if (_.isEmpty(entry) || (role && role !== key)) {
+      delete foundRelation.entries[key]
+    }
+  })
 
-    return foundRelation;
-};
+  return foundRelation
+}
 
 removeFixturesForModel = function removeFixturesForModel(modelFixture, options) {
-    return Promise.mapSeries(modelFixture.entries, function (entry) {
-        return models[modelFixture.name].findOne(entry.id ? {id: entry.id} : entry, options).then(function (found) {
-            if (found) {
-                return models[modelFixture.name].destroy(_.extend(options, {id: found.id}));
-            }
-        });
-    }).then(function (results) {
-        return {expected: modelFixture.entries.length, done: results.length};
-    });
-};
+  return Promise.mapSeries(modelFixture.entries, function (entry) {
+    return models[modelFixture.name].findOne(entry.id ? { id: entry.id } : entry, options).then(function (found) {
+      if (found) {
+        return models[modelFixture.name].destroy(_.extend(options, { id: found.id }))
+      }
+    })
+  }).then(function (results) {
+    return { expected: modelFixture.entries.length, done: results.length }
+  })
+}
 
 removeFixturesForRelation = function removeFixturesForRelation(relationFixture, options) {
-    return fetchRelationData(relationFixture, options).then(function getRelationOps(data) {
-        const ops = [];
+  return fetchRelationData(relationFixture, options).then(function getRelationOps(data) {
+    const ops = []
 
-        _.each(relationFixture.entries, function processEntries(entry, key) {
-            const fromItem = data.from.find(matchFunc(relationFixture.from.match, key));
+    _.each(relationFixture.entries, function processEntries(entry, key) {
+      const fromItem = data.from.find(matchFunc(relationFixture.from.match, key))
 
-            _.each(entry, function processEntryValues(value, key) {
-                const toItems = data.to.filter(matchFunc(relationFixture.to.match, key, value));
+      _.each(entry, function processEntryValues(value, key) {
+        const toItems = data.to.filter(matchFunc(relationFixture.to.match, key, value))
 
-                if (toItems && toItems.length > 0) {
-                    ops.push(function detachRelation() {
-                        return baseUtils.detach(
-                            models[relationFixture.from.Model || relationFixture.from.model],
-                            fromItem.id,
-                            relationFixture.from.relation,
-                            toItems,
-                            options
-                        );
-                    });
-                }
-            });
-        });
+        if (toItems && toItems.length > 0) {
+          ops.push(function detachRelation() {
+            return baseUtils.detach(
+              models[relationFixture.from.Model || relationFixture.from.model],
+              fromItem.id,
+              relationFixture.from.relation,
+              toItems,
+              options,
+            )
+          })
+        }
+      })
+    })
 
-        return sequence(ops);
-    });
-};
+    return sequence(ops)
+  })
+}
 
 module.exports = {
-    addFixturesForModel: addFixturesForModel,
-    addFixturesForRelation: addFixturesForRelation,
-    findModelFixtureEntry: findModelFixtureEntry,
-    findModelFixtures: findModelFixtures,
-    findRelationFixture: findRelationFixture,
-    findPermissionRelationsForObject: findPermissionRelationsForObject,
-    removeFixturesForModel: removeFixturesForModel,
-    removeFixturesForRelation: removeFixturesForRelation
-};
+  addFixturesForModel: addFixturesForModel,
+  addFixturesForRelation: addFixturesForRelation,
+  findModelFixtureEntry: findModelFixtureEntry,
+  findModelFixtures: findModelFixtures,
+  findRelationFixture: findRelationFixture,
+  findPermissionRelationsForObject: findPermissionRelationsForObject,
+  removeFixturesForModel: removeFixturesForModel,
+  removeFixturesForRelation: removeFixturesForRelation,
+}

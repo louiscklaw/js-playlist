@@ -1,4 +1,4 @@
-module.exports = ({email, url}) => `
+module.exports = ({ email, url }) => `
 <!doctype html>
 <html>
   <head>
@@ -163,4 +163,4 @@ module.exports = ({email, url}) => `
     </table>
   </body>
 </html>
-`;
+`

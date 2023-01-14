@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "trim": "rm -rf node_modules ",
-    "gitUpdate":"git add . && git commit -m\"update express-helloworld-tryout,\"",
+    "gitUpdate": "git add . && git commit -m\"update express-helloworld-tryout,\"",
     "dev": "nodemon ./index.js"
   },
   "keywords": [],

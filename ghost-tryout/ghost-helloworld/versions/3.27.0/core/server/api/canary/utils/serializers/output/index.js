@@ -1,125 +1,125 @@
 module.exports = {
-    get all() {
-        return require('./all');
-    },
+  get all() {
+    return require('./all')
+  },
 
-    get authentication() {
-        return require('./authentication');
-    },
+  get authentication() {
+    return require('./authentication')
+  },
 
-    get db() {
-        return require('./db');
-    },
+  get db() {
+    return require('./db')
+  },
 
-    get integrations() {
-        return require('./integrations');
-    },
+  get integrations() {
+    return require('./integrations')
+  },
 
-    get pages() {
-        return require('./pages');
-    },
+  get pages() {
+    return require('./pages')
+  },
 
-    get redirects() {
-        return require('./redirects');
-    },
+  get redirects() {
+    return require('./redirects')
+  },
 
-    get roles() {
-        return require('./roles');
-    },
+  get roles() {
+    return require('./roles')
+  },
 
-    get slugs() {
-        return require('./slugs');
-    },
+  get slugs() {
+    return require('./slugs')
+  },
 
-    get schedules() {
-        return require('./schedules');
-    },
+  get schedules() {
+    return require('./schedules')
+  },
 
-    get webhooks() {
-        return require('./webhooks');
-    },
+  get webhooks() {
+    return require('./webhooks')
+  },
 
-    get posts() {
-        return require('./posts');
-    },
+  get posts() {
+    return require('./posts')
+  },
 
-    get invites() {
-        return require('./invites');
-    },
+  get invites() {
+    return require('./invites')
+  },
 
-    get settings() {
-        return require('./settings');
-    },
+  get settings() {
+    return require('./settings')
+  },
 
-    get notifications() {
-        return require('./notifications');
-    },
+  get notifications() {
+    return require('./notifications')
+  },
 
-    get mail() {
-        return require('./mail');
-    },
+  get mail() {
+    return require('./mail')
+  },
 
-    get members() {
-        return require('./members');
-    },
+  get members() {
+    return require('./members')
+  },
 
-    get member_signin_urls() {
-        return require('./member-signin_urls');
-    },
+  get member_signin_urls() {
+    return require('./member-signin_urls')
+  },
 
-    get identities() {
-        return require('./identities');
-    },
+  get identities() {
+    return require('./identities')
+  },
 
-    get images() {
-        return require('./images');
-    },
+  get images() {
+    return require('./images')
+  },
 
-    get tags() {
-        return require('./tags');
-    },
+  get tags() {
+    return require('./tags')
+  },
 
-    get users() {
-        return require('./users');
-    },
+  get users() {
+    return require('./users')
+  },
 
-    get preview() {
-        return require('./preview');
-    },
+  get preview() {
+    return require('./preview')
+  },
 
-    get oembed() {
-        return require('./oembed');
-    },
+  get oembed() {
+    return require('./oembed')
+  },
 
-    get authors() {
-        return require('./authors');
-    },
+  get authors() {
+    return require('./authors')
+  },
 
-    get config() {
-        return require('./config');
-    },
+  get config() {
+    return require('./config')
+  },
 
-    get themes() {
-        return require('./themes');
-    },
+  get themes() {
+    return require('./themes')
+  },
 
-    get actions() {
-        return require('./actions');
-    },
+  get actions() {
+    return require('./actions')
+  },
 
-    get site() {
-        return require('./site');
-    },
+  get site() {
+    return require('./site')
+  },
 
-    get email_preview() {
-        return require('./email-preview');
-    },
+  get email_preview() {
+    return require('./email-preview')
+  },
 
-    get emails() {
-        return require('./emails');
-    },
+  get emails() {
+    return require('./emails')
+  },
 
-    get labels() {
-        return require('./labels');
-    }
-};
+  get labels() {
+    return require('./labels')
+  },
+}

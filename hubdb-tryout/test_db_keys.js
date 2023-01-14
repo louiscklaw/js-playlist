@@ -1,9 +1,8 @@
+const { translateToKeys, translateToNames } = require('./db_keys')
 
-const {translateToKeys, translateToNames} = require('./db_keys')
+var obj_test = { hello: 'travis3' }
 
-var obj_test = {hello: 'travis3'}
-
-var test_array = [{apple:'123'},{hello:'456'},{h:'456'}]
+var test_array = [{ apple: '123' }, { hello: '456' }, { h: '456' }]
 
 var updated_content = translateToKeys(test_array)
 

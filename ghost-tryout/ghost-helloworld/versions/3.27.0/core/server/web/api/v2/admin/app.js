@@ -1,42 +1,42 @@
-const debug = require('ghost-ignition').debug('web:v2:admin:app');
-const boolParser = require('express-query-boolean');
-const express = require('../../../../../shared/express');
-const bodyParser = require('body-parser');
-const shared = require('../../../shared');
-const apiMw = require('../../middleware');
-const routes = require('./routes');
+const debug = require('ghost-ignition').debug('web:v2:admin:app')
+const boolParser = require('express-query-boolean')
+const express = require('../../../../../shared/express')
+const bodyParser = require('body-parser')
+const shared = require('../../../shared')
+const apiMw = require('../../middleware')
+const routes = require('./routes')
 
 module.exports = function setupApiApp() {
-    debug('Admin API v2 setup start');
-    const apiApp = express('v2 admin');
+  debug('Admin API v2 setup start')
+  const apiApp = express('v2 admin')
 
-    // API middleware
+  // API middleware
 
-    // Body parsing
-    apiApp.use(bodyParser.json({limit: '1mb'}));
-    apiApp.use(bodyParser.urlencoded({extended: true, limit: '1mb'}));
+  // Body parsing
+  apiApp.use(bodyParser.json({ limit: '1mb' }))
+  apiApp.use(bodyParser.urlencoded({ extended: true, limit: '1mb' }))
 
-    // Query parsing
-    apiApp.use(boolParser());
+  // Query parsing
+  apiApp.use(boolParser())
 
-    // send 503 json response in case of maintenance
-    apiApp.use(shared.middlewares.maintenance);
+  // send 503 json response in case of maintenance
+  apiApp.use(shared.middlewares.maintenance)
 
-    // Check version matches for API requests, depends on res.locals.safeVersion being set
-    // Therefore must come after themeHandler.ghostLocals, for now
-    apiApp.use(apiMw.versionMatch);
+  // Check version matches for API requests, depends on res.locals.safeVersion being set
+  // Therefore must come after themeHandler.ghostLocals, for now
+  apiApp.use(apiMw.versionMatch)
 
-    // Admin API shouldn't be cached
-    apiApp.use(shared.middlewares.cacheControl('private'));
+  // Admin API shouldn't be cached
+  apiApp.use(shared.middlewares.cacheControl('private'))
 
-    // Routing
-    apiApp.use(routes());
+  // Routing
+  apiApp.use(routes())
 
-    // API error handling
-    apiApp.use(shared.middlewares.errorHandler.resourceNotFound);
-    apiApp.use(shared.middlewares.errorHandler.handleJSONResponseV2);
+  // API error handling
+  apiApp.use(shared.middlewares.errorHandler.resourceNotFound)
+  apiApp.use(shared.middlewares.errorHandler.handleJSONResponseV2)
 
-    debug('Admin API v2 setup end');
+  debug('Admin API v2 setup end')
 
-    return apiApp;
-};
+  return apiApp
+}

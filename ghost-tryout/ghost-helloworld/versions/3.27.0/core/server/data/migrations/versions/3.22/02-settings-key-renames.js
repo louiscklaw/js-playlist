@@ -1,88 +1,80 @@
-const logging = require('../../../../../shared/logging');
+const logging = require('../../../../../shared/logging')
 
-const renameMappings = [{
+const renameMappings = [
+  {
     from: 'default_locale',
-    to: 'lang'
-}, {
+    to: 'lang',
+  },
+  {
     from: 'active_timezone',
-    to: 'timezone'
-}, {
+    to: 'timezone',
+  },
+  {
     from: 'ghost_head',
-    to: 'codeinjection_head'
-}, {
+    to: 'codeinjection_head',
+  },
+  {
     from: 'ghost_foot',
-    to: 'codeinjection_foot'
-}, {
+    to: 'codeinjection_foot',
+  },
+  {
     from: 'brand',
     to: 'accent_color',
-    getToValue: (fromValue) => {
-        try {
-            return JSON.parse(fromValue).primaryColor || '';
-        } catch (err) {
-            return '';
-        }
+    getToValue: fromValue => {
+      try {
+        return JSON.parse(fromValue).primaryColor || ''
+      } catch (err) {
+        return ''
+      }
     },
-    getFromValue: (toValue) => {
-        return JSON.stringify({
-            primaryColor: toValue || ''
-        });
-    }
-}];
+    getFromValue: toValue => {
+      return JSON.stringify({
+        primaryColor: toValue || '',
+      })
+    },
+  },
+]
 
 module.exports = {
-    config: {
-        transaction: true
-    },
+  config: {
+    transaction: true,
+  },
 
-    async up(options) {
-        for (const renameMapping of renameMappings) {
-            const oldSetting = await options.transacting('settings')
-                .where('key', renameMapping.from)
-                .select('value')
-                .first();
+  async up(options) {
+    for (const renameMapping of renameMappings) {
+      const oldSetting = await options.transacting('settings').where('key', renameMapping.from).select('value').first()
 
-            if (!oldSetting) {
-                logging.warn(`Could not find setting ${renameMapping.from}, not updating ${renameMapping.to} value`);
-                continue;
-            }
+      if (!oldSetting) {
+        logging.warn(`Could not find setting ${renameMapping.from}, not updating ${renameMapping.to} value`)
+        continue
+      }
 
-            const updatedValue = renameMapping.getToValue ? renameMapping.getToValue(oldSetting.value) : oldSetting.value;
+      const updatedValue = renameMapping.getToValue ? renameMapping.getToValue(oldSetting.value) : oldSetting.value
 
-            logging.info(`Updating ${renameMapping.to} with value from ${renameMapping.from}`);
-            await options.transacting('settings')
-                .where('key', renameMapping.to)
-                .update('value', updatedValue);
+      logging.info(`Updating ${renameMapping.to} with value from ${renameMapping.from}`)
+      await options.transacting('settings').where('key', renameMapping.to).update('value', updatedValue)
 
-            logging.info(`Deleting ${renameMapping.from}`);
-            await options.transacting('settings')
-                .where('key', renameMapping.from)
-                .del();
-        }
-    },
-
-    async down(options) {
-        for (const renameMapping of renameMappings) {
-            const newSetting = await options.transacting('settings')
-                .where('key', renameMapping.to)
-                .select('value')
-                .first();
-
-            if (!newSetting) {
-                logging.warn(`Could not find setting ${renameMapping.to}, not updating ${renameMapping.from} value`);
-                continue;
-            }
-
-            const updatedValue = renameMapping.getFromValue ? renameMapping.getFromValue(newSetting.value) : newSetting.value;
-
-            logging.info(`Updating ${renameMapping.from} with value from ${renameMapping.to}`);
-            await options.transacting('settings')
-                .where('key', renameMapping.from)
-                .update('value', updatedValue);
-
-            logging.info(`Deleting ${renameMapping.from}`);
-            await options.transacting('settings')
-                .where('key', renameMapping.from)
-                .del();
-        }
+      logging.info(`Deleting ${renameMapping.from}`)
+      await options.transacting('settings').where('key', renameMapping.from).del()
     }
-};
+  },
+
+  async down(options) {
+    for (const renameMapping of renameMappings) {
+      const newSetting = await options.transacting('settings').where('key', renameMapping.to).select('value').first()
+
+      if (!newSetting) {
+        logging.warn(`Could not find setting ${renameMapping.to}, not updating ${renameMapping.from} value`)
+        continue
+      }
+
+      const updatedValue = renameMapping.getFromValue ? renameMapping.getFromValue(newSetting.value) : newSetting.value
+
+      logging.info(`Updating ${renameMapping.from} with value from ${renameMapping.to}`)
+      await options.transacting('settings').where('key', renameMapping.from).update('value', updatedValue)
+
+      logging.info(`Deleting ${renameMapping.from}`)
+      await options.transacting('settings').where('key', renameMapping.from).del()
+    }
+  },
+}

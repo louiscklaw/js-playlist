@@ -1,48 +1,48 @@
 /**
  * An empty function that can be used, for example, for optional callback.
  */
-export function noop(): void;
+export function noop(): void
 
 /**
  * Returns a unique id, sequentially generated from a global variable.
  * @returns {number}
  * @function
  */
-export function uid(): number;
+export function uid(): number
 /**
  * Returns true if `value` is neither null nor undefined, else returns false.
  * @param {*} value - The value to test.
  * @returns {boolean}
  * @since 2.7.0
  */
-export function isNullOrUndef(value: any): value is null | undefined;
+export function isNullOrUndef(value: any): value is null | undefined
 /**
  * Returns true if `value` is an array (including typed arrays), else returns false.
  * @param {*} value - The value to test.
  * @returns {boolean}
  * @function
  */
-export function isArray<T = any>(value: any): value is ArrayLike<T>;
+export function isArray<T = any>(value: any): value is ArrayLike<T>
 /**
  * Returns true if `value` is an object (excluding null), else returns false.
  * @param {*} value - The value to test.
  * @returns {boolean}
  * @since 2.7.0
  */
-export function isObject(value: any): value is object;
+export function isObject(value: any): value is object
 /**
  * Returns true if `value` is a finite number, else returns false
  * @param {*} value  - The value to test.
  * @returns {boolean}
  */
-export function isFinite(value: any): value is number;
+export function isFinite(value: any): value is number
 /**
  * Returns `value` if defined, else returns `defaultValue`.
  * @param {*} value - The value to return if defined.
  * @param {*} defaultValue - The value to return if `value` is undefined.
  * @returns {*}
  */
-export function valueOrDefault<T>(value: T | undefined, defaultValue: T): T;
+export function valueOrDefault<T>(value: T | undefined, defaultValue: T): T
 /**
  * Calls `fn` with the given `args` in the scope defined by `thisArg` and returns the
  * value returned by `fn`. If `fn` is not a function, this method returns undefined.
@@ -51,11 +51,7 @@ export function valueOrDefault<T>(value: T | undefined, defaultValue: T): T;
  * @param [thisArg] - The value of `this` provided for the call to `fn`.
  * @returns {*}
  */
-export function callback<T extends (this: TA, ...args: any[]) => R, TA, R>(
-  fn: T | undefined,
-  args: any[],
-  thisArg?: TA
-): R | undefined;
+export function callback<T extends (this: TA, ...args: any[]) => R, TA, R>(fn: T | undefined, args: any[], thisArg?: TA): R | undefined
 
 /**
  * Note(SB) for performance sake, this method should only be used when loopable type
@@ -66,12 +62,7 @@ export function callback<T extends (this: TA, ...args: any[]) => R, TA, R>(
  * @param [thisArg] - The value of `this` provided for the call to `fn`.
  * @param [reverse] - If true, iterates backward on the loopable.
  */
-export function each<T, TA>(
-  loopable: T[],
-  fn: (this: TA, v: T, i: number) => void,
-  thisArg?: TA,
-  reverse?: boolean
-): void;
+export function each<T, TA>(loopable: T[], fn: (this: TA, v: T, i: number) => void, thisArg?: TA, reverse?: boolean): void
 /**
  * Note(SB) for performance sake, this method should only be used when loopable type
  * is unknown or in none intensive code (not called often and small loopable). Else
@@ -81,21 +72,16 @@ export function each<T, TA>(
  * @param [thisArg] - The value of `this` provided for the call to `fn`.
  * @param [reverse] - If true, iterates backward on the loopable.
  */
-export function each<T, TA>(
-  loopable: { [key: string]: T },
-  fn: (this: TA, v: T, k: string) => void,
-  thisArg?: TA,
-  reverse?: boolean
-): void;
+export function each<T, TA>(loopable: { [key: string]: T }, fn: (this: TA, v: T, k: string) => void, thisArg?: TA, reverse?: boolean): void
 
 /**
  * Returns a deep copy of `source` without keeping references on objects and arrays.
  * @param source - The value to clone.
  */
-export function clone<T>(source: T): T;
+export function clone<T>(source: T): T
 
 export interface IMergeOptions {
-  merger?: (key: string, target: any, source: any, options: any) => any;
+  merger?: (key: string, target: any, source: any, options: any) => any
 }
 /**
  * Recursively deep copies `source` properties into `target` with the given `options`.
@@ -106,17 +92,13 @@ export interface IMergeOptions {
  * @param {function} [options.merger] - The merge method (key, target, source, options)
  * @returns {object} The `target` object.
  */
-export function merge<T>(target: T, source: [], options?: IMergeOptions): T;
-export function merge<T, S1>(target: T, source: S1, options?: IMergeOptions): T & S1;
-export function merge<T, S1>(target: T, source: [S1], options?: IMergeOptions): T & S1;
-export function merge<T, S1, S2>(target: T, source: [S1, S2], options?: IMergeOptions): T & S1 & S2;
-export function merge<T, S1, S2, S3>(target: T, source: [S1, S2, S3], options?: IMergeOptions): T & S1 & S2 & S3;
-export function merge<T, S1, S2, S3, S4>(
-  target: T,
-  source: [S1, S2, S3, S4],
-  options?: IMergeOptions
-): T & S1 & S2 & S3 & S4;
-export function merge<T>(target: T, source: any[], options?: IMergeOptions): any;
+export function merge<T>(target: T, source: [], options?: IMergeOptions): T
+export function merge<T, S1>(target: T, source: S1, options?: IMergeOptions): T & S1
+export function merge<T, S1>(target: T, source: [S1], options?: IMergeOptions): T & S1
+export function merge<T, S1, S2>(target: T, source: [S1, S2], options?: IMergeOptions): T & S1 & S2
+export function merge<T, S1, S2, S3>(target: T, source: [S1, S2, S3], options?: IMergeOptions): T & S1 & S2 & S3
+export function merge<T, S1, S2, S3, S4>(target: T, source: [S1, S2, S3, S4], options?: IMergeOptions): T & S1 & S2 & S3 & S4
+export function merge<T>(target: T, source: any[], options?: IMergeOptions): any
 
 /**
  * Recursively deep copies `source` properties into `target` *only* if not defined in target.
@@ -125,12 +107,12 @@ export function merge<T>(target: T, source: any[], options?: IMergeOptions): any
  * @param source - Object(s) to merge into `target`.
  * @returns The `target` object.
  */
-export function mergeIf<T>(target: T, source: []): T;
-export function mergeIf<T, S1>(target: T, source: S1): T & S1;
-export function mergeIf<T, S1>(target: T, source: [S1]): T & S1;
-export function mergeIf<T, S1, S2>(target: T, source: [S1, S2]): T & S1 & S2;
-export function mergeIf<T, S1, S2, S3>(target: T, source: [S1, S2, S3]): T & S1 & S2 & S3;
-export function mergeIf<T, S1, S2, S3, S4>(target: T, source: [S1, S2, S3, S4]): T & S1 & S2 & S3 & S4;
-export function mergeIf<T>(target: T, source: any[]): any;
+export function mergeIf<T>(target: T, source: []): T
+export function mergeIf<T, S1>(target: T, source: S1): T & S1
+export function mergeIf<T, S1>(target: T, source: [S1]): T & S1
+export function mergeIf<T, S1, S2>(target: T, source: [S1, S2]): T & S1 & S2
+export function mergeIf<T, S1, S2, S3>(target: T, source: [S1, S2, S3]): T & S1 & S2 & S3
+export function mergeIf<T, S1, S2, S3, S4>(target: T, source: [S1, S2, S3, S4]): T & S1 & S2 & S3 & S4
+export function mergeIf<T>(target: T, source: any[]): any
 
-export function resolveObjectKey(obj: any, key: string): any;
+export function resolveObjectKey(obj: any, key: string): any

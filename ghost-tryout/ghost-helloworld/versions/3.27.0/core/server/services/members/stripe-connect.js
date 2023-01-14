@@ -1,12 +1,12 @@
-const {Buffer} = require('buffer');
-const {randomBytes} = require('crypto');
-const {URL} = require('url');
+const { Buffer } = require('buffer')
+const { randomBytes } = require('crypto')
+const { URL } = require('url')
 
-const STATE_PROP = 'stripe-connect-state';
+const STATE_PROP = 'stripe-connect-state'
 
-const liveClientID = 'ca_8LBuZWhYshxF0A55KgCXu8PRTquCKC5x';
-const testClientID = 'ca_8LBum4Ctv3mmJ1oD0ZRmxjdAhNrrBUy3';
-const redirectURI = 'https://stripe.ghost.org';
+const liveClientID = 'ca_8LBuZWhYshxF0A55KgCXu8PRTquCKC5x'
+const testClientID = 'ca_8LBum4Ctv3mmJ1oD0ZRmxjdAhNrrBUy3'
+const redirectURI = 'https://stripe.ghost.org'
 
 /**
  * @function getStripeConnectOAuthUrl
@@ -18,24 +18,26 @@ const redirectURI = 'https://stripe.ghost.org';
  * @returns {Promise<URL>}
  */
 async function getStripeConnectOAuthUrl(setSessionProp, mode = 'live') {
-    const randomState = randomBytes(16).toString('hex');
-    const state = Buffer.from(JSON.stringify({
-        mode,
-        randomState
-    })).toString('base64');
+  const randomState = randomBytes(16).toString('hex')
+  const state = Buffer.from(
+    JSON.stringify({
+      mode,
+      randomState,
+    }),
+  ).toString('base64')
 
-    await setSessionProp(STATE_PROP, state);
+  await setSessionProp(STATE_PROP, state)
 
-    const clientID = mode === 'live' ? liveClientID : testClientID;
+  const clientID = mode === 'live' ? liveClientID : testClientID
 
-    const authUrl = new URL('https://connect.stripe.com/oauth/authorize');
-    authUrl.searchParams.set('response_type', 'code');
-    authUrl.searchParams.set('scope', 'read_write');
-    authUrl.searchParams.set('client_id', clientID);
-    authUrl.searchParams.set('redirect_uri', redirectURI);
-    authUrl.searchParams.set('state', state);
+  const authUrl = new URL('https://connect.stripe.com/oauth/authorize')
+  authUrl.searchParams.set('response_type', 'code')
+  authUrl.searchParams.set('scope', 'read_write')
+  authUrl.searchParams.set('client_id', clientID)
+  authUrl.searchParams.set('redirect_uri', redirectURI)
+  authUrl.searchParams.set('state', state)
 
-    return authUrl;
+  return authUrl
 }
 
 /**
@@ -48,25 +50,25 @@ async function getStripeConnectOAuthUrl(setSessionProp, mode = 'live') {
  * @returns {Promise<{secret_key: string, public_key: string, livemode: boolean}>}
  */
 async function getStripeConnectTokenData(encodedData, getSessionProp) {
-    const data = JSON.parse(Buffer.from(encodedData, 'base64').toString());
+  const data = JSON.parse(Buffer.from(encodedData, 'base64').toString())
 
-    const state = await getSessionProp(STATE_PROP);
+  const state = await getSessionProp(STATE_PROP)
 
-    if (state !== data.s) {
-        throw new Error('State did not match');
-    }
+  if (state !== data.s) {
+    throw new Error('State did not match')
+  }
 
-    return {
-        public_key: data.p,
-        secret_key: data.a,
-        livemode: data.l,
-        display_name: data.n,
-        account_id: data.i
-    };
+  return {
+    public_key: data.p,
+    secret_key: data.a,
+    livemode: data.l,
+    display_name: data.n,
+    account_id: data.i,
+  }
 }
 
 module.exports = {
-    getStripeConnectOAuthUrl,
-    getStripeConnectTokenData,
-    STATE_PROP
-};
+  getStripeConnectOAuthUrl,
+  getStripeConnectTokenData,
+  STATE_PROP,
+}

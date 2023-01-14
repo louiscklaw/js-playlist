@@ -1,18 +1,18 @@
-const { series, parallel } = require("gulp");
+const { series, parallel } = require('gulp')
 
 function clean(cb) {
   // body omitted
-  cb();
+  cb()
 }
 
 function css(cb) {
   // body omitted
-  cb();
+  cb()
 }
 
 function javascript(cb) {
   // body omitted
-  cb();
+  cb()
 }
 
-exports.default = series(clean, parallel(css, javascript));
+exports.default = series(clean, parallel(css, javascript))

@@ -2,13 +2,13 @@
  * # Utils
  * Parts of the model code which can be split out and unit tested
  */
-const _ = require('lodash');
+const _ = require('lodash')
 
-const Promise = require('bluebird');
-const ObjectId = require('bson-objectid');
-const errors = require('@tryghost/errors');
-let attach;
-let detach;
+const Promise = require('bluebird')
+const ObjectId = require('bson-objectid')
+const errors = require('@tryghost/errors')
+let attach
+let detach
 
 /**
  * Attach wrapper (please never call attach manual!)
@@ -24,77 +24,77 @@ let detach;
  * roles [BookshelfModel]
  */
 attach = function attach(Model, effectedModelId, relation, modelsToAttach, options) {
-    options = options || {};
+  options = options || {}
 
-    let fetchedModel;
-    const localOptions = {transacting: options.transacting};
+  let fetchedModel
+  const localOptions = { transacting: options.transacting }
 
-    return Model.forge({id: effectedModelId}).fetch(localOptions)
-        .then(function successFetchedModel(_fetchedModel) {
-            fetchedModel = _fetchedModel;
+  return Model.forge({ id: effectedModelId })
+    .fetch(localOptions)
+    .then(function successFetchedModel(_fetchedModel) {
+      fetchedModel = _fetchedModel
 
-            if (!fetchedModel) {
-                throw new errors.NotFoundError({level: 'critical', help: effectedModelId});
-            }
+      if (!fetchedModel) {
+        throw new errors.NotFoundError({ level: 'critical', help: effectedModelId })
+      }
 
-            fetchedModel.related(relation).on('creating', function (collection, data) {
-                data.id = ObjectId.generate();
-            });
+      fetchedModel.related(relation).on('creating', function (collection, data) {
+        data.id = ObjectId.generate()
+      })
 
-            return Promise.resolve(modelsToAttach)
-                .then(function then(models) {
-                    models = _.map(models, function mapper(model) {
-                        if (model.id) {
-                            return model.id;
-                        } else if (!_.isObject(model)) {
-                            return model.toString();
-                        } else {
-                            return model;
-                        }
-                    });
-
-                    return fetchedModel.related(relation).attach(models, localOptions);
-                });
+      return Promise.resolve(modelsToAttach).then(function then(models) {
+        models = _.map(models, function mapper(model) {
+          if (model.id) {
+            return model.id
+          } else if (!_.isObject(model)) {
+            return model.toString()
+          } else {
+            return model
+          }
         })
-        .finally(function () {
-            if (!fetchedModel) {
-                return;
-            }
 
-            fetchedModel.related(relation).off('creating');
-        });
-};
+        return fetchedModel.related(relation).attach(models, localOptions)
+      })
+    })
+    .finally(function () {
+      if (!fetchedModel) {
+        return
+      }
+
+      fetchedModel.related(relation).off('creating')
+    })
+}
 
 detach = function detach(Model, effectedModelId, relation, modelsToAttach, options) {
-    options = options || {};
+  options = options || {}
 
-    let fetchedModel;
-    const localOptions = {transacting: options.transacting};
+  let fetchedModel
+  const localOptions = { transacting: options.transacting }
 
-    return Model.forge({id: effectedModelId}).fetch(localOptions)
-        .then(function successFetchedModel(_fetchedModel) {
-            fetchedModel = _fetchedModel;
+  return Model.forge({ id: effectedModelId })
+    .fetch(localOptions)
+    .then(function successFetchedModel(_fetchedModel) {
+      fetchedModel = _fetchedModel
 
-            if (!fetchedModel) {
-                throw new errors.NotFoundError({level: 'critical', help: effectedModelId});
-            }
+      if (!fetchedModel) {
+        throw new errors.NotFoundError({ level: 'critical', help: effectedModelId })
+      }
 
-            return Promise.resolve(modelsToAttach)
-                .then(function then(models) {
-                    models = _.map(models, function mapper(model) {
-                        if (model.id) {
-                            return model.id;
-                        } else if (!_.isObject(model)) {
-                            return model.toString();
-                        } else {
-                            return model;
-                        }
-                    });
+      return Promise.resolve(modelsToAttach).then(function then(models) {
+        models = _.map(models, function mapper(model) {
+          if (model.id) {
+            return model.id
+          } else if (!_.isObject(model)) {
+            return model.toString()
+          } else {
+            return model
+          }
+        })
 
-                    return fetchedModel.related(relation).detach(models, localOptions);
-                });
-        });
-};
+        return fetchedModel.related(relation).detach(models, localOptions)
+      })
+    })
+}
 
-module.exports.attach = attach;
-module.exports.detach = detach;
+module.exports.attach = attach
+module.exports.detach = detach

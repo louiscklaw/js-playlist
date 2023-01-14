@@ -1,6 +1,6 @@
-import defaults from '../core/core.defaults';
-import {isArray, isObject, valueOrDefault} from './helpers.core';
-import {toFontString} from './helpers.canvas';
+import defaults from '../core/core.defaults'
+import { isArray, isObject, valueOrDefault } from './helpers.core'
+import { toFontString } from './helpers.canvas'
 
 /**
  * @alias Chart.helpers.options
@@ -15,24 +15,24 @@ import {toFontString} from './helpers.canvas';
  * @since 2.7.0
  */
 export function toLineHeight(value, size) {
-	const matches = ('' + value).match(/^(normal|(\d+(?:\.\d+)?)(px|em|%)?)$/);
-	if (!matches || matches[1] === 'normal') {
-		return size * 1.2;
-	}
+  const matches = ('' + value).match(/^(normal|(\d+(?:\.\d+)?)(px|em|%)?)$/)
+  if (!matches || matches[1] === 'normal') {
+    return size * 1.2
+  }
 
-	value = +matches[2];
+  value = +matches[2]
 
-	switch (matches[3]) {
-	case 'px':
-		return value;
-	case '%':
-		value /= 100;
-		break;
-	default:
-		break;
-	}
+  switch (matches[3]) {
+    case 'px':
+      return value
+    case '%':
+      value /= 100
+      break
+    default:
+      break
+  }
 
-	return size * value;
+  return size * value
 }
 
 /**
@@ -43,25 +43,25 @@ export function toLineHeight(value, size) {
  * @since 2.7.0
  */
 export function toPadding(value) {
-	let t, r, b, l;
+  let t, r, b, l
 
-	if (isObject(value)) {
-		t = +value.top || 0;
-		r = +value.right || 0;
-		b = +value.bottom || 0;
-		l = +value.left || 0;
-	} else {
-		t = r = b = l = +value || 0;
-	}
+  if (isObject(value)) {
+    t = +value.top || 0
+    r = +value.right || 0
+    b = +value.bottom || 0
+    l = +value.left || 0
+  } else {
+    t = r = b = l = +value || 0
+  }
 
-	return {
-		top: t,
-		right: r,
-		bottom: b,
-		left: l,
-		height: t + b,
-		width: l + r
-	};
+  return {
+    top: t,
+    right: r,
+    bottom: b,
+    left: l,
+    height: t + b,
+    width: l + r,
+  }
 }
 
 /**
@@ -72,29 +72,29 @@ export function toPadding(value) {
  * @private
  */
 export function toFont(options, fallback) {
-	options = options || {};
-	fallback = fallback || defaults.font;
+  options = options || {}
+  fallback = fallback || defaults.font
 
-	let size = valueOrDefault(options.size, fallback.size);
+  let size = valueOrDefault(options.size, fallback.size)
 
-	if (typeof size === 'string') {
-		size = parseInt(size, 10);
-	}
+  if (typeof size === 'string') {
+    size = parseInt(size, 10)
+  }
 
-	const font = {
-		color: valueOrDefault(options.color, fallback.color),
-		family: valueOrDefault(options.family, fallback.family),
-		lineHeight: toLineHeight(valueOrDefault(options.lineHeight, fallback.lineHeight), size),
-		lineWidth: valueOrDefault(options.lineWidth, fallback.lineWidth),
-		size,
-		style: valueOrDefault(options.style, fallback.style),
-		weight: valueOrDefault(options.weight, fallback.weight),
-		strokeStyle: valueOrDefault(options.strokeStyle, fallback.strokeStyle),
-		string: ''
-	};
+  const font = {
+    color: valueOrDefault(options.color, fallback.color),
+    family: valueOrDefault(options.family, fallback.family),
+    lineHeight: toLineHeight(valueOrDefault(options.lineHeight, fallback.lineHeight), size),
+    lineWidth: valueOrDefault(options.lineWidth, fallback.lineWidth),
+    size,
+    style: valueOrDefault(options.style, fallback.style),
+    weight: valueOrDefault(options.weight, fallback.weight),
+    strokeStyle: valueOrDefault(options.strokeStyle, fallback.strokeStyle),
+    string: '',
+  }
 
-	font.string = toFontString(font);
-	return font;
+  font.string = toFontString(font)
+  return font
 }
 
 /**
@@ -109,27 +109,27 @@ export function toFont(options, fallback) {
  * @since 2.7.0
  */
 export function resolve(inputs, context, index, info) {
-	let cacheable = true;
-	let i, ilen, value;
+  let cacheable = true
+  let i, ilen, value
 
-	for (i = 0, ilen = inputs.length; i < ilen; ++i) {
-		value = inputs[i];
-		if (value === undefined) {
-			continue;
-		}
-		if (context !== undefined && typeof value === 'function') {
-			value = value(context);
-			cacheable = false;
-		}
-		if (index !== undefined && isArray(value)) {
-			value = value[index % value.length];
-			cacheable = false;
-		}
-		if (value !== undefined) {
-			if (info && !cacheable) {
-				info.cacheable = false;
-			}
-			return value;
-		}
-	}
+  for (i = 0, ilen = inputs.length; i < ilen; ++i) {
+    value = inputs[i]
+    if (value === undefined) {
+      continue
+    }
+    if (context !== undefined && typeof value === 'function') {
+      value = value(context)
+      cacheable = false
+    }
+    if (index !== undefined && isArray(value)) {
+      value = value[index % value.length]
+      cacheable = false
+    }
+    if (value !== undefined) {
+      if (info && !cacheable) {
+        info.cacheable = false
+      }
+      return value
+    }
+  }
 }

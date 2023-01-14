@@ -1,9 +1,9 @@
-const adapterManager = require('../../services/adapter-manager');
+const adapterManager = require('../../services/adapter-manager')
 
 async function createAdapter() {
-    return adapterManager.getAdapter('scheduling');
+  return adapterManager.getAdapter('scheduling')
 }
 
 module.exports = {
-    createAdapter
-};
+  createAdapter,
+}

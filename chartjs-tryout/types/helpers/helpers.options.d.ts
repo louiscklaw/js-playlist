@@ -1,14 +1,14 @@
-import { IFontSpec } from '../core/interfaces';
+import { IFontSpec } from '../core/interfaces'
 
 export interface ICanvasFontSpec extends IFontSpec {
-  string: string;
+  string: string
 }
 /**
  * Parses font options and returns the font object.
  * @param {object} options - A object that contains font options to be parsed.
  * @return {object} The font object.
  */
-export function toFont(options: Partial<IFontSpec>): ICanvasFontSpec;
+export function toFont(options: Partial<IFontSpec>): ICanvasFontSpec
 
 /**
  * Converts the given line height `value` in pixels for a specific font `size`.
@@ -18,7 +18,7 @@ export function toFont(options: Partial<IFontSpec>): ICanvasFontSpec;
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/line-height
  * @since 2.7.0
  */
-export function toLineHeight(value: string, size: number): number;
+export function toLineHeight(value: string, size: number): number
 
 /**
  * Converts the given value into a padding object with pre-computed width/height.
@@ -27,9 +27,14 @@ export function toLineHeight(value: string, size: number): number;
  * @returns {object} The padding values (top, right, bottom, left, width, height)
  * @since 2.7.0
  */
-export function toPadding(
-  value?: number | { top?: number; left?: number; right?: number; bottom?: number }
-): { top: number; left: number; right: number; bottom: number; width: number; height: number };
+export function toPadding(value?: number | { top?: number; left?: number; right?: number; bottom?: number }): {
+  top: number
+  left: number
+  right: number
+  bottom: number
+  width: number
+  height: number
+}
 
 /**
  * Evaluates the given `inputs` sequentially and returns the first defined value.
@@ -42,9 +47,4 @@ export function toPadding(
  * @param [info.cacheable] - Will be set to `false` if option is not cacheable.
  * @since 2.7.0
  */
-export function resolve<T, C>(
-  inputs: undefined | T | ((c: C) => T) | readonly T[],
-  context?: C,
-  index?: number,
-  info?: { cacheable?: boolean }
-): T | undefined;
+export function resolve<T, C>(inputs: undefined | T | ((c: C) => T) | readonly T[], context?: C, index?: number, info?: { cacheable?: boolean }): T | undefined

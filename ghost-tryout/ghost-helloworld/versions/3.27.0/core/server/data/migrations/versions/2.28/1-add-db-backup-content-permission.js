@@ -1,9 +1,7 @@
-const {
-    addPermission
-} = require('../../utils');
+const { addPermission } = require('../../utils')
 
 module.exports = addPermission({
-    name: 'Backup database',
-    action: 'backupContect',
-    object: 'db'
-});
+  name: 'Backup database',
+  action: 'backupContect',
+  object: 'db',
+})

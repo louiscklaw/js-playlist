@@ -1,15 +1,15 @@
 function getOgType(data) {
-    let context = data.context ? data.context[0] : null;
+  let context = data.context ? data.context[0] : null
 
-    context = context === 'amp' ? 'post' : context;
+  context = context === 'amp' ? 'post' : context
 
-    if (context === 'author') {
-        return 'profile';
-    }
-    if (context === 'post') {
-        return 'article';
-    }
-    return 'website';
+  if (context === 'author') {
+    return 'profile'
+  }
+  if (context === 'post') {
+    return 'article'
+  }
+  return 'website'
 }
 
-module.exports = getOgType;
+module.exports = getOgType

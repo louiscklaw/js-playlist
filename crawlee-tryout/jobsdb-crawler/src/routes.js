@@ -63,7 +63,7 @@ router.addDefaultHandler(async ({ enqueueLinks, log }) => {
   // })
 
   log.info('enqueue done');
-};);
+});
 
 router.addHandler('example_handler', async ({ request, page, log }) => {
   log.info('example_handler hit !');

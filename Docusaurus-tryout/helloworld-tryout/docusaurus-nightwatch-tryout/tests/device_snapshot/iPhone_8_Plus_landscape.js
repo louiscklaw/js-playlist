@@ -1,4 +1,3 @@
-
 module.exports = {
   // disabled: true,
   '@tags': ['website'],

@@ -1,18 +1,18 @@
-const sizeOf = require('image-size');
-const Promise = require('bluebird');
-const _ = require('lodash');
-const path = require('path');
-const config = require('../../../shared/config');
-const {i18n} = require('../common');
-const errors = require('@tryghost/errors');
-const urlUtils = require('../../../shared/url-utils');
-const settingsCache = require('../../services/settings/cache');
-const storageUtils = require('../../adapters/storage/utils');
-let getIconDimensions;
-let isIcoImageType;
-let getIconType;
-let getIconUrl;
-let getIconPath;
+const sizeOf = require('image-size')
+const Promise = require('bluebird')
+const _ = require('lodash')
+const path = require('path')
+const config = require('../../../shared/config')
+const { i18n } = require('../common')
+const errors = require('@tryghost/errors')
+const urlUtils = require('../../../shared/url-utils')
+const settingsCache = require('../../services/settings/cache')
+const storageUtils = require('../../adapters/storage/utils')
+let getIconDimensions
+let isIcoImageType
+let getIconType
+let getIconUrl
+let getIconPath
 
 /**
  * Get dimensions for ico file from its real file storage path
@@ -22,35 +22,37 @@ let getIconPath;
  * @description Takes a file path and returns ico width and height.
  */
 getIconDimensions = function getIconDimensions(path) {
-    return new Promise(function getIconSize(resolve, reject) {
-        let dimensions;
+  return new Promise(function getIconSize(resolve, reject) {
+    let dimensions
 
-        try {
-            dimensions = sizeOf(path);
+    try {
+      dimensions = sizeOf(path)
 
-            if (dimensions.images) {
-                dimensions.width = _.maxBy(dimensions.images, function (w) {
-                    return w.width;
-                }).width;
-                dimensions.height = _.maxBy(dimensions.images, function (h) {
-                    return h.height;
-                }).height;
-            }
+      if (dimensions.images) {
+        dimensions.width = _.maxBy(dimensions.images, function (w) {
+          return w.width
+        }).width
+        dimensions.height = _.maxBy(dimensions.images, function (h) {
+          return h.height
+        }).height
+      }
 
-            return resolve({
-                width: dimensions.width,
-                height: dimensions.height
-            });
-        } catch (err) {
-            return reject(new errors.ValidationError({
-                message: i18n.t('errors.utils.blogIcon.error', {
-                    file: path,
-                    error: err.message
-                })
-            }));
-        }
-    });
-};
+      return resolve({
+        width: dimensions.width,
+        height: dimensions.height,
+      })
+    } catch (err) {
+      return reject(
+        new errors.ValidationError({
+          message: i18n.t('errors.utils.blogIcon.error', {
+            file: path,
+            error: err.message,
+          }),
+        }),
+      )
+    }
+  })
+}
 
 /**
  * Check if file is `.ico` extension
@@ -60,10 +62,10 @@ getIconDimensions = function getIconDimensions(path) {
  * @description Takes a path and returns boolean value.
  */
 isIcoImageType = function isIcoImageType(icon) {
-    const blogIcon = icon || settingsCache.get('icon');
+  const blogIcon = icon || settingsCache.get('icon')
 
-    return blogIcon.match(/.ico$/i) ? true : false;
-};
+  return blogIcon.match(/.ico$/i) ? true : false
+}
 
 /**
  * Check if file is `.ico` extension
@@ -73,10 +75,10 @@ isIcoImageType = function isIcoImageType(icon) {
  * @description Takes a path and returns boolean value.
  */
 getIconType = function getIconType(icon) {
-    const blogIcon = icon || settingsCache.get('icon');
+  const blogIcon = icon || settingsCache.get('icon')
 
-    return isIcoImageType(blogIcon) ? 'x-icon' : 'png';
-};
+  return isIcoImageType(blogIcon) ? 'x-icon' : 'png'
+}
 
 /**
  * Return URL for Blog icon: [subdirectory or not]favicon.[ico or png]
@@ -86,22 +88,22 @@ getIconType = function getIconType(icon) {
  * exists, we're returning the default `favicon.ico`
  */
 getIconUrl = function getIconUrl(absolut) {
-    const blogIcon = settingsCache.get('icon');
+  const blogIcon = settingsCache.get('icon')
 
-    if (absolut) {
-        if (blogIcon) {
-            return isIcoImageType(blogIcon) ? urlUtils.urlFor({relativeUrl: '/favicon.ico'}, true) : urlUtils.urlFor({relativeUrl: '/favicon.png'}, true);
-        } else {
-            return urlUtils.urlFor({relativeUrl: '/favicon.ico'}, true);
-        }
+  if (absolut) {
+    if (blogIcon) {
+      return isIcoImageType(blogIcon) ? urlUtils.urlFor({ relativeUrl: '/favicon.ico' }, true) : urlUtils.urlFor({ relativeUrl: '/favicon.png' }, true)
     } else {
-        if (blogIcon) {
-            return isIcoImageType(blogIcon) ? urlUtils.urlFor({relativeUrl: '/favicon.ico'}) : urlUtils.urlFor({relativeUrl: '/favicon.png'});
-        } else {
-            return urlUtils.urlFor({relativeUrl: '/favicon.ico'});
-        }
+      return urlUtils.urlFor({ relativeUrl: '/favicon.ico' }, true)
     }
-};
+  } else {
+    if (blogIcon) {
+      return isIcoImageType(blogIcon) ? urlUtils.urlFor({ relativeUrl: '/favicon.ico' }) : urlUtils.urlFor({ relativeUrl: '/favicon.png' })
+    } else {
+      return urlUtils.urlFor({ relativeUrl: '/favicon.ico' })
+    }
+  }
+}
 
 /**
  * Return path for Blog icon without [subdirectory]/content/image prefix
@@ -111,17 +113,17 @@ getIconUrl = function getIconUrl(absolut) {
  * exists, we're returning the default `favicon.ico`
  */
 getIconPath = function getIconPath() {
-    const blogIcon = settingsCache.get('icon');
+  const blogIcon = settingsCache.get('icon')
 
-    if (blogIcon) {
-        return storageUtils.getLocalFileStoragePath(blogIcon);
-    } else {
-        return path.join(config.get('paths:publicFilePath'), 'favicon.ico');
-    }
-};
+  if (blogIcon) {
+    return storageUtils.getLocalFileStoragePath(blogIcon)
+  } else {
+    return path.join(config.get('paths:publicFilePath'), 'favicon.ico')
+  }
+}
 
-module.exports.getIconDimensions = getIconDimensions;
-module.exports.isIcoImageType = isIcoImageType;
-module.exports.getIconUrl = getIconUrl;
-module.exports.getIconPath = getIconPath;
-module.exports.getIconType = getIconType;
+module.exports.getIconDimensions = getIconDimensions
+module.exports.isIcoImageType = isIcoImageType
+module.exports.getIconUrl = getIconUrl
+module.exports.getIconPath = getIconPath
+module.exports.getIconType = getIconType

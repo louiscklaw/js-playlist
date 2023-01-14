@@ -1,1 +1,2 @@
-const sayHello=()=>(console.log("helloworld"),"helloworld");sayHello();
+const sayHello = () => (console.log('helloworld'), 'helloworld')
+sayHello()

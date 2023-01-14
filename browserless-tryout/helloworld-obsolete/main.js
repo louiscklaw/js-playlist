@@ -1,19 +1,19 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer')
 
-(async () => {
-  let browser = null;
+;(async () => {
+  let browser = null
 
   try {
     // If your script executes too quickly, you can add a ?pause query parameter
     // to the connect call to pause the script from running until you're watching it
     browser = await puppeteer.connect({
-      browserWSEndpoint: `ws://192.168.10.61:3001`
-    });
-    const page = await browser.newPage();
+      browserWSEndpoint: `ws://192.168.10.61:3001`,
+    })
+    const page = await browser.newPage()
 
     // Full puppeteer API is available
-    await page.goto('https://louiscklaw.github.io/');
-    await page.screenshot({ path: './screens/01-main-screen.png' });
+    await page.goto('https://louiscklaw.github.io/')
+    await page.screenshot({ path: './screens/01-main-screen.png' })
 
     // await page.type('input[type="text"]', 'browserless.io');
     // await Promise.all([
@@ -33,10 +33,9 @@ const puppeteer = require('puppeteer');
     // await page.evaluate(() => { debugger; });
 
     // console.table(topLinks);
-
   } catch (error) {
-    console.log(error);
+    console.log(error)
   } finally {
-    browser && browser.close();
+    browser && browser.close()
   }
-})();
+})()

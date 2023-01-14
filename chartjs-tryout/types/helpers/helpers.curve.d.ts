@@ -1,6 +1,6 @@
 export interface ISplinePoint {
-  x: number;
-  y: number;
+  x: number
+  y: number
 }
 
 /**
@@ -11,18 +11,18 @@ export function splineCurve(
   firstPoint: ISplinePoint & { skip?: boolean },
   middlePoint: ISplinePoint,
   afterPoint: ISplinePoint,
-  t: number
+  t: number,
 ): {
-  previous: ISplinePoint;
-  next: ISplinePoint;
-};
+  previous: ISplinePoint
+  next: ISplinePoint
+}
 
 export interface IMonotoneSplinePoint extends ISplinePoint {
-  skip: boolean;
-  controlPointPreviousX?: number;
-  controlPointPreviousY?: number;
-  controlPointNextX?: number;
-  controlPointNextY?: number;
+  skip: boolean
+  controlPointPreviousX?: number
+  controlPointPreviousY?: number
+  controlPointNextX?: number
+  controlPointNextY?: number
 }
 
 /**
@@ -31,4 +31,4 @@ export interface IMonotoneSplinePoint extends ISplinePoint {
  * between the dataset discrete points due to the interpolation.
  * @see https://en.wikipedia.org/wiki/Monotone_cubic_interpolation
  */
-export function splineCurveMonotone(points: readonly IMonotoneSplinePoint[]): void;
+export function splineCurveMonotone(points: readonly IMonotoneSplinePoint[]): void

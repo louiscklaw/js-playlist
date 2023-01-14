@@ -1,8 +1,8 @@
-const _ = require('lodash');
-const themeList = require('./list');
-const active = require('./active');
-const packageJSON = require('../../../server/lib/fs/package-json');
-const settingsCache = require('../../../server/services/settings/cache');
+const _ = require('lodash')
+const themeList = require('./list')
+const active = require('./active')
+const packageJSON = require('../../../server/lib/fs/package-json')
+const settingsCache = require('../../../server/services/settings/cache')
 
 /**
  *
@@ -17,32 +17,32 @@ const settingsCache = require('../../../server/services/settings/cache');
  * @return {*}
  */
 module.exports = function toJSON(name, checkedTheme) {
-    let themeResult;
-    let toFilter;
+  let themeResult
+  let toFilter
 
-    if (!name) {
-        toFilter = themeList.getAll();
-        themeResult = packageJSON.filter(toFilter, settingsCache.get('active_theme'));
-    } else {
-        toFilter = {
-            [name]: themeList.get(name)
-        };
-
-        themeResult = packageJSON.filter(toFilter, settingsCache.get('active_theme'));
-
-        if (checkedTheme && checkedTheme.results.warning.length > 0) {
-            themeResult[0].warnings = _.cloneDeep(checkedTheme.results.warning);
-        }
-
-        if (checkedTheme && checkedTheme.results.error.length > 0) {
-            themeResult[0].errors = _.cloneDeep(checkedTheme.results.error);
-        }
+  if (!name) {
+    toFilter = themeList.getAll()
+    themeResult = packageJSON.filter(toFilter, settingsCache.get('active_theme'))
+  } else {
+    toFilter = {
+      [name]: themeList.get(name),
     }
 
-    // CASE: if you want a JSON response for a single theme, which is not active.
-    if (_.find(themeResult, {active: true}) && active.get()) {
-        _.find(themeResult, {active: true}).templates = active.get().customTemplates;
+    themeResult = packageJSON.filter(toFilter, settingsCache.get('active_theme'))
+
+    if (checkedTheme && checkedTheme.results.warning.length > 0) {
+      themeResult[0].warnings = _.cloneDeep(checkedTheme.results.warning)
     }
 
-    return {themes: themeResult};
-};
+    if (checkedTheme && checkedTheme.results.error.length > 0) {
+      themeResult[0].errors = _.cloneDeep(checkedTheme.results.error)
+    }
+  }
+
+  // CASE: if you want a JSON response for a single theme, which is not active.
+  if (_.find(themeResult, { active: true }) && active.get()) {
+    _.find(themeResult, { active: true }).templates = active.get().customTemplates
+  }
+
+  return { themes: themeResult }
+}

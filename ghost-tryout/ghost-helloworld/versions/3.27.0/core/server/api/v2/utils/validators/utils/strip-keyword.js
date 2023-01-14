@@ -8,15 +8,15 @@
  * responses in previous versions of API
  */
 module.exports = function defFunc(ajv) {
-    defFunc.definition = {
-        errors: false,
-        modifying: true,
-        valid: true,
-        validate: function (schema, data, parentSchema, dataPath, parentData, propName) {
-            delete parentData[propName];
-        }
-    };
+  defFunc.definition = {
+    errors: false,
+    modifying: true,
+    valid: true,
+    validate: function (schema, data, parentSchema, dataPath, parentData, propName) {
+      delete parentData[propName]
+    },
+  }
 
-    ajv.addKeyword('strip', defFunc.definition);
-    return ajv;
-};
+  ajv.addKeyword('strip', defFunc.definition)
+  return ajv
+}

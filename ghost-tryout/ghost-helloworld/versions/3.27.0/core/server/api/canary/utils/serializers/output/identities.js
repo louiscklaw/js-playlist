@@ -1,7 +1,7 @@
 module.exports = {
-    read(data, apiConfig, frame) {
-        frame.response = {
-            identities: [data]
-        };
+  read(data, apiConfig, frame) {
+    frame.response = {
+      identities: [data],
     }
-};
+  },
+}

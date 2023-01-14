@@ -1,20 +1,20 @@
-const membersService = require('../../../../../../services/members');
-const labs = require('../../../../../../services/labs');
+const membersService = require('../../../../../../services/members')
+const labs = require('../../../../../../services/labs')
 
 const forPost = (attrs, frame) => {
-    if (labs.isSet('members')) {
-        const memberHasAccess = membersService.contentGating.checkPostAccess(attrs, frame.original.context.member);
+  if (labs.isSet('members')) {
+    const memberHasAccess = membersService.contentGating.checkPostAccess(attrs, frame.original.context.member)
 
-        if (!memberHasAccess) {
-            ['plaintext', 'html'].forEach((field) => {
-                if (attrs[field] !== undefined) {
-                    attrs[field] = '';
-                }
-            });
+    if (!memberHasAccess) {
+      ;['plaintext', 'html'].forEach(field => {
+        if (attrs[field] !== undefined) {
+          attrs[field] = ''
         }
+      })
     }
+  }
 
-    return attrs;
-};
+  return attrs
+}
 
-module.exports.forPost = forPost;
+module.exports.forPost = forPost

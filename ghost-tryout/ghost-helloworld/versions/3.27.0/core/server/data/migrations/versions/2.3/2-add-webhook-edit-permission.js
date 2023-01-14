@@ -1,9 +1,7 @@
-const {
-    addPermission
-} = require('../../utils');
+const { addPermission } = require('../../utils')
 
 module.exports = addPermission({
-    name: 'Edit webhooks',
-    action: 'edit',
-    object: 'webhook'
-});
+  name: 'Edit webhooks',
+  action: 'edit',
+  object: 'webhook',
+})

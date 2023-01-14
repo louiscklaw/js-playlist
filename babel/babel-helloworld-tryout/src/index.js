@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import wd from 'wd';
+import wd from 'wd'
 
 console.log('helloworld')

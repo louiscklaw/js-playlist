@@ -3,8 +3,8 @@
 //
 // Overrides the standard behaviour of `{[title}}` to ensure the content is correctly escaped
 
-const {SafeString, escapeExpression} = require('../services/proxy');
+const { SafeString, escapeExpression } = require('../services/proxy')
 
 module.exports = function title() {
-    return new SafeString(escapeExpression(this.title || ''));
-};
+  return new SafeString(escapeExpression(this.title || ''))
+}

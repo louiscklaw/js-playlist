@@ -1,23 +1,22 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const authRoutes = require("./routes/authRoutes");
-const cookieParser = require("cookie-parser");
-const { requireAuth, checkUser } = require("./middleware/authMiddleware");
+const express = require('express')
+const mongoose = require('mongoose')
+const authRoutes = require('./routes/authRoutes')
+const cookieParser = require('cookie-parser')
+const { requireAuth, checkUser } = require('./middleware/authMiddleware')
 
-const app = express();
+const app = express()
 
 // middleware
-app.use(express.static("public"));
-app.use(express.json());
-app.use(cookieParser());
+app.use(express.static('public'))
+app.use(express.json())
+app.use(cookieParser())
 
 // view engine
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs')
 
 // database connection
 // const dbURI = "mongodb://root:example@localhost:27017/helloworld";
-const dbURI =
-  "mongodb://root:example@localhost:27017/helloworld_db?authSource=admin";
+const dbURI = 'mongodb://root:example@localhost:27017/helloworld_db?authSource=admin'
 
 mongoose
   .connect(dbURI, {
@@ -25,11 +24,11 @@ mongoose
     useUnifiedTopology: true,
     useCreateIndex: true,
   })
-  .then((result) => app.listen(3000))
-  .catch((err) => console.log(err));
+  .then(result => app.listen(3000))
+  .catch(err => console.log(err))
 
 // routes
-app.get("*", checkUser);
-app.get("/", (req, res) => res.render("home"));
-app.get("/smoothies", requireAuth, (req, res) => res.render("smoothies"));
-app.use(authRoutes);
+app.get('*', checkUser)
+app.get('/', (req, res) => res.render('home'))
+app.get('/smoothies', requireAuth, (req, res) => res.render('smoothies'))
+app.use(authRoutes)

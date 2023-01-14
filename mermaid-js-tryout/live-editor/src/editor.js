@@ -1,5 +1,5 @@
 // (1) Desired editor features:
-import 'monaco-editor/esm/vs/editor/browser/controller/coreCommands.js';
+import 'monaco-editor/esm/vs/editor/browser/controller/coreCommands.js'
 // import 'monaco-editor/esm/vs/editor/browser/widget/codeEditorWidget.js';
 // import 'monaco-editor/esm/vs/editor/browser/widget/diffEditorWidget.js';
 // import 'monaco-editor/esm/vs/editor/browser/widget/diffNavigator.js';
@@ -13,7 +13,7 @@ import 'monaco-editor/esm/vs/editor/browser/controller/coreCommands.js';
 // import 'monaco-editor/esm/vs/editor/contrib/contextmenu/contextmenu.js';
 // import 'monaco-editor/esm/vs/editor/contrib/cursorUndo/cursorUndo.js';
 // import 'monaco-editor/esm/vs/editor/contrib/dnd/dnd.js';
-import 'monaco-editor/esm/vs/editor/contrib/find/findController.js';
+import 'monaco-editor/esm/vs/editor/contrib/find/findController.js'
 // import 'monaco-editor/esm/vs/editor/contrib/folding/folding.js';
 // import 'monaco-editor/esm/vs/editor/contrib/format/formatActions.js';
 // import 'monaco-editor/esm/vs/editor/contrib/goToDeclaration/goToDeclarationCommands.js';
@@ -41,7 +41,7 @@ import 'monaco-editor/esm/vs/editor/contrib/find/findController.js';
 // import 'monaco-editor/esm/vs/editor/standalone/browser/quickOpen/gotoLine.js';
 // import 'monaco-editor/esm/vs/editor/standalone/browser/quickOpen/quickCommand.js';
 // import 'monaco-editor/esm/vs/editor/standalone/browser/toggleHighContrast/toggleHighContrast.js';
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
 
 // (2) Desired languages:
 // import 'monaco-editor/esm/vs/language/typescript/monaco.contribution';
@@ -72,7 +72,7 @@ import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
 // import 'monaco-editor/esm/vs/basic-languages/postiats/postiats.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/powershell/powershell.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/pug/pug.contribution.js';
-import 'monaco-editor/esm/vs/basic-languages/python/python.contribution.js';
+import 'monaco-editor/esm/vs/basic-languages/python/python.contribution.js'
 // import 'monaco-editor/esm/vs/basic-languages/r/r.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/razor/razor.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/redis/redis.contribution.js';
@@ -89,78 +89,72 @@ import 'monaco-editor/esm/vs/basic-languages/python/python.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
 // import 'monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution';
 
-
-monaco.languages.register({ id: 'mermaid' });
+monaco.languages.register({ id: 'mermaid' })
 
 // Register a tokens provider for the language
 monaco.languages.setMonarchTokensProvider('mermaid', {
-	tokenizer: {
-		root: [
-			[/\[graph.*/, "custom-error"],
-			[/\[notice.*/, "custom-notice"],
-			[/\[info.*/, "custom-info"],
-			[/\[[a-zA-Z 0-9:]+\]/, "custom-date"],
-		]
-	}
-});
-
+  tokenizer: {
+    root: [
+      [/\[graph.*/, 'custom-error'],
+      [/\[notice.*/, 'custom-notice'],
+      [/\[info.*/, 'custom-info'],
+      [/\[[a-zA-Z 0-9:]+\]/, 'custom-date'],
+    ],
+  },
+})
 
 self.MonacoEnvironment = {
-	getWorkerUrl: function (moduleId, label) {
-		return './editor.worker.bundle.js';
-	}
+  getWorkerUrl: function (moduleId, label) {
+    return './editor.worker.bundle.js'
+  },
 }
 
 // Define a new theme that contains only rules that match this language
 monaco.editor.defineTheme('myCoolTheme', {
-	base: 'vs',
-	inherit: false,
-	rules: [
-		{ token: 'custom-info', foreground: '808080' },
-		{ token: 'custom-error', foreground: 'ff0000', fontStyle: 'bold' },
-		{ token: 'custom-notice', foreground: 'FFA500' },
-		{ token: 'custom-date', foreground: '008800' },
-	]
-});
+  base: 'vs',
+  inherit: false,
+  rules: [
+    { token: 'custom-info', foreground: '808080' },
+    { token: 'custom-error', foreground: 'ff0000', fontStyle: 'bold' },
+    { token: 'custom-notice', foreground: 'FFA500' },
+    { token: 'custom-date', foreground: '008800' },
+  ],
+})
 
 // Register a completion item provider for the new language
 monaco.languages.registerCompletionItemProvider('mySpecialLanguage', {
-	provideCompletionItems: () => {
-		var suggestions = [{
-			label: 'simpleText',
-			kind: monaco.languages.CompletionItemKind.Text,
-			insertText: 'simpleText'
-		}, {
-			label: 'testing',
-			kind: monaco.languages.CompletionItemKind.Keyword,
-			insertText: 'testing(${1:condition})',
-			insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet
-		}, {
-			label: 'ifelse',
-			kind: monaco.languages.CompletionItemKind.Snippet,
-			insertText: [
-				'if (${1:condition}) {',
-				'\t$0',
-				'} else {',
-				'\t',
-				'}'
-			].join('\n'),
-			insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-			documentation: 'If-Else Statement'
-		}];
-		return { suggestions: suggestions };
-	}
-});
+  provideCompletionItems: () => {
+    var suggestions = [
+      {
+        label: 'simpleText',
+        kind: monaco.languages.CompletionItemKind.Text,
+        insertText: 'simpleText',
+      },
+      {
+        label: 'testing',
+        kind: monaco.languages.CompletionItemKind.Keyword,
+        insertText: 'testing(${1:condition})',
+        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+      },
+      {
+        label: 'ifelse',
+        kind: monaco.languages.CompletionItemKind.Snippet,
+        insertText: ['if (${1:condition}) {', '\t$0', '} else {', '\t', '}'].join('\n'),
+        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+        documentation: 'If-Else Statement',
+      },
+    ]
+    return { suggestions: suggestions }
+  },
+})
 
 const edit = monaco.editor.create(document.getElementById('editor'), {
-  value: [
-    code,
-  ].join('\n'),
+  value: [code].join('\n'),
   theme: 'myCoolTheme',
   // value: getCode(),
   //language: 'mySpecialLanguage'
-  language: 'mermaid'
-});
+  language: 'mermaid',
+})
 edit.onDidChangeModelContent(function (e) {
-      codeStore.set(edit.getValue());
-  });
+  codeStore.set(edit.getValue())
+})

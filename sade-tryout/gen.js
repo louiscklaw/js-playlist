@@ -1,12 +1,15 @@
-const fs = require('fs');
+const fs = require('fs')
 
-const pug = require('pug');
+const pug = require('pug')
 
 // Compile the source code
-const compiledFunction = pug.compileFile('template.pug');
+const compiledFunction = pug.compileFile('template.pug')
 
-const OUTPUT_PATH='public'
+const OUTPUT_PATH = 'public'
 
-fs.writeFileSync(`${OUTPUT_PATH}/index.html`,compiledFunction({
-  name: 'Timothy'
-}))
+fs.writeFileSync(
+  `${OUTPUT_PATH}/index.html`,
+  compiledFunction({
+    name: 'Timothy',
+  }),
+)

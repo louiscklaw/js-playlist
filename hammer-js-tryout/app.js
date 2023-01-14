@@ -1,9 +1,9 @@
-var square = document.querySelector(".square");
+var square = document.querySelector('.square')
 
-var myOptions = {};
+var myOptions = {}
 
-var hammertime = new Hammer(square, myOptions);
+var hammertime = new Hammer(square, myOptions)
 
-hammertime.on("pan", function (ev) {
-  console.log(ev);
-});
+hammertime.on('pan', function (ev) {
+  console.log(ev)
+})

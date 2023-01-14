@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+const jsdom = require('jsdom')
+const { JSDOM } = jsdom
 
 const dom = new JSDOM(`
 <!DOCTYPE html>

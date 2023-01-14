@@ -15,47 +15,47 @@
  * ```
  */
 
-(function (window, document) {
-    // set up Casper as a global object
-    if (!window.Casper) {
-        window.Casper = {};
+;(function (window, document) {
+  // set up Casper as a global object
+  if (!window.Casper) {
+    window.Casper = {}
+  }
+
+  window.Casper.stickyNavTitle = function stickyNavTitle(options) {
+    var nav = document.querySelector(options.navSelector)
+    var title = document.querySelector(options.titleSelector)
+
+    var lastScrollY = window.scrollY
+    var ticking = false
+
+    function onScroll() {
+      lastScrollY = window.scrollY
+      requestTick()
     }
 
-    window.Casper.stickyNavTitle = function stickyNavTitle(options) {
-        var nav = document.querySelector(options.navSelector);
-        var title = document.querySelector(options.titleSelector);
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(update)
+      }
+      ticking = true
+    }
 
-        var lastScrollY = window.scrollY;
-        var ticking = false;
+    function update() {
+      var trigger = title.getBoundingClientRect().top + window.scrollY
+      var triggerOffset = title.offsetHeight + 35
 
-        function onScroll() {
-            lastScrollY = window.scrollY;
-            requestTick();
-        }
+      // show/hide post title
+      if (lastScrollY >= trigger + triggerOffset) {
+        nav.classList.add(options.activeClass)
+      } else {
+        nav.classList.remove(options.activeClass)
+      }
 
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(update);
-            }
-            ticking = true;
-        }
+      ticking = false
+    }
 
-        function update() {
-            var trigger = title.getBoundingClientRect().top + window.scrollY;
-            var triggerOffset = title.offsetHeight + 35;
+    window.addEventListener('scroll', onScroll, { passive: true })
 
-            // show/hide post title
-            if (lastScrollY >= trigger + triggerOffset) {
-                nav.classList.add(options.activeClass);
-            } else {
-                nav.classList.remove(options.activeClass);
-            }
-
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', onScroll, {passive: true});
-
-        update();
-    };
-})(window, document);
+    update()
+  }
+})(window, document)

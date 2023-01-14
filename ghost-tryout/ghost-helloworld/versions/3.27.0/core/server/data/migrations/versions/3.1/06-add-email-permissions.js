@@ -1,15 +1,10 @@
-const {
-    addPermissionWithRoles
-} = require('../../utils');
+const { addPermissionWithRoles } = require('../../utils')
 
-module.exports = addPermissionWithRoles({
+module.exports = addPermissionWithRoles(
+  {
     name: 'Read emails',
     action: 'read',
-    object: 'email'
-}, [
-    'Administrator',
-    'Admin Integration',
-    'Editor',
-    'Author',
-    'Contributor'
-]);
+    object: 'email',
+  },
+  ['Administrator', 'Admin Integration', 'Editor', 'Author', 'Contributor'],
+)

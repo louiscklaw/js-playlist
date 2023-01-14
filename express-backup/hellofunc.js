@@ -1,9 +1,9 @@
 // module.mjs
 
-function sayHello(){
-    return 'hello';
+function sayHello() {
+  return 'hello'
 }
 
-module.exports={
-    sayHello: sayHello;
+module.exports = {
+  sayHello: sayHello,
 }

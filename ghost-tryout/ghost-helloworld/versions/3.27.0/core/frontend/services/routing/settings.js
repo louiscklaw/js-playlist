@@ -1,10 +1,10 @@
-const moment = require('moment-timezone');
-const fs = require('fs-extra');
-const path = require('path');
-const urlService = require('../url');
+const moment = require('moment-timezone')
+const fs = require('fs-extra')
+const path = require('path')
+const urlService = require('../url')
 
-const errors = require('@tryghost/errors');
-const config = require('../../../shared/config');
+const errors = require('@tryghost/errors')
+const config = require('../../../shared/config')
 
 /**
  * The `routes.yaml` file offers a way to configure your Ghost blog. It's currently a setting feature
@@ -17,84 +17,79 @@ const config = require('../../../shared/config');
  *   - we don't destroy the resources, we only release them (this avoids reloading all resources from the db again)
  * - then we reload the whole site app, which will reset all routers and re-create the url generators
  */
-const setFromFilePath = (filePath) => {
-    const settingsPath = config.getContentPath('settings');
-    const backupRoutesPath = path.join(settingsPath, `routes-${moment().format('YYYY-MM-DD-HH-mm-ss')}.yaml`);
+const setFromFilePath = filePath => {
+  const settingsPath = config.getContentPath('settings')
+  const backupRoutesPath = path.join(settingsPath, `routes-${moment().format('YYYY-MM-DD-HH-mm-ss')}.yaml`)
 
-    return fs.copy(`${settingsPath}/routes.yaml`, backupRoutesPath)
-        .then(() => {
-            return fs.copy(filePath, `${settingsPath}/routes.yaml`);
+  return fs
+    .copy(`${settingsPath}/routes.yaml`, backupRoutesPath)
+    .then(() => {
+      return fs.copy(filePath, `${settingsPath}/routes.yaml`)
+    })
+    .then(() => {
+      urlService.resetGenerators({ releaseResourcesOnly: true })
+    })
+    .then(() => {
+      const siteApp = require('../../../server/web/site/app')
+
+      const bringBackValidRoutes = () => {
+        urlService.resetGenerators({ releaseResourcesOnly: true })
+
+        return fs.copy(backupRoutesPath, `${settingsPath}/routes.yaml`).then(() => {
+          return siteApp.reload()
         })
-        .then(() => {
-            urlService.resetGenerators({releaseResourcesOnly: true});
+      }
+
+      try {
+        siteApp.reload()
+      } catch (err) {
+        return bringBackValidRoutes().finally(() => {
+          throw err
         })
-        .then(() => {
-            const siteApp = require('../../../server/web/site/app');
+      }
 
-            const bringBackValidRoutes = () => {
-                urlService.resetGenerators({releaseResourcesOnly: true});
+      let tries = 0
 
-                return fs.copy(backupRoutesPath, `${settingsPath}/routes.yaml`)
-                    .then(() => {
-                        return siteApp.reload();
-                    });
-            };
-
-            try {
-                siteApp.reload();
-            } catch (err) {
-                return bringBackValidRoutes()
-                    .finally(() => {
-                        throw err;
-                    });
+      function isBlogRunning() {
+        return Promise.delay(1000).then(() => {
+          if (!urlService.hasFinished()) {
+            if (tries > 5) {
+              throw new errors.InternalServerError({
+                message: 'Could not load routes.yaml file.',
+              })
             }
 
-            let tries = 0;
-
-            function isBlogRunning() {
-                return Promise.delay(1000)
-                    .then(() => {
-                        if (!urlService.hasFinished()) {
-                            if (tries > 5) {
-                                throw new errors.InternalServerError({
-                                    message: 'Could not load routes.yaml file.'
-                                });
-                            }
-
-                            tries = tries + 1;
-                            return isBlogRunning();
-                        }
-                    });
-            }
-
+            tries = tries + 1
             return isBlogRunning()
-                .catch((err) => {
-                    return bringBackValidRoutes()
-                        .finally(() => {
-                            throw err;
-                        });
-                });
-        });
-};
+          }
+        })
+      }
+
+      return isBlogRunning().catch(err => {
+        return bringBackValidRoutes().finally(() => {
+          throw err
+        })
+      })
+    })
+}
 
 const get = () => {
-    const routesPath = path.join(config.getContentPath('settings'), 'routes.yaml');
+  const routesPath = path.join(config.getContentPath('settings'), 'routes.yaml')
 
-    return fs.readFile(routesPath, 'utf-8')
-        .catch((err) => {
-            if (err.code === 'ENOENT') {
-                return Promise.resolve([]);
-            }
+  return fs.readFile(routesPath, 'utf-8').catch(err => {
+    if (err.code === 'ENOENT') {
+      return Promise.resolve([])
+    }
 
-            if (errors.utils.isIgnitionError(err)) {
-                throw err;
-            }
+    if (errors.utils.isIgnitionError(err)) {
+      throw err
+    }
 
-            throw new errors.NotFoundError({
-                err: err
-            });
-        });
-};
+    throw new errors.NotFoundError({
+      err: err,
+    })
+  })
+}
 
-module.exports.setFromFilePath = setFromFilePath;
-module.exports.get = get;
+module.exports.setFromFilePath = setFromFilePath
+module.exports.get = get

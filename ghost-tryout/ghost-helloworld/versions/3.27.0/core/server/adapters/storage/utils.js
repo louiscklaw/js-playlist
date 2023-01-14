@@ -1,4 +1,4 @@
-const urlUtils = require('../../../shared/url-utils');
+const urlUtils = require('../../../shared/url-utils')
 /**
  * @TODO: move `events.js` to here - e.g. storageUtils.getStorage
  */
@@ -13,28 +13,19 @@ const urlUtils = require('../../../shared/url-utils');
  * for the local file storage.
  */
 exports.getLocalFileStoragePath = function getLocalFileStoragePath(imagePath) {
-    // The '/' in urlJoin is necessary to add the '/' to `content/images`, if no subdirectory is setup
-    const urlRegExp = new RegExp(`^${urlUtils.urlJoin(
-        urlUtils.urlFor('home', true),
-        urlUtils.getSubdir(),
-        '/',
-        urlUtils.STATIC_IMAGE_URL_PREFIX)}`
-    );
+  // The '/' in urlJoin is necessary to add the '/' to `content/images`, if no subdirectory is setup
+  const urlRegExp = new RegExp(`^${urlUtils.urlJoin(urlUtils.urlFor('home', true), urlUtils.getSubdir(), '/', urlUtils.STATIC_IMAGE_URL_PREFIX)}`)
 
-    const filePathRegExp = new RegExp(`^${urlUtils.urlJoin(
-        urlUtils.getSubdir(),
-        '/',
-        urlUtils.STATIC_IMAGE_URL_PREFIX)}`
-    );
+  const filePathRegExp = new RegExp(`^${urlUtils.urlJoin(urlUtils.getSubdir(), '/', urlUtils.STATIC_IMAGE_URL_PREFIX)}`)
 
-    if (imagePath.match(urlRegExp)) {
-        return imagePath.replace(urlRegExp, '');
-    } else if (imagePath.match(filePathRegExp)) {
-        return imagePath.replace(filePathRegExp, '');
-    } else {
-        return imagePath;
-    }
-};
+  if (imagePath.match(urlRegExp)) {
+    return imagePath.replace(urlRegExp, '')
+  } else if (imagePath.match(filePathRegExp)) {
+    return imagePath.replace(filePathRegExp, '')
+  } else {
+    return imagePath
+  }
+}
 
 /**
  * @description compares the imagePath with a regex that reflects our local file storage
@@ -43,11 +34,11 @@ exports.getLocalFileStoragePath = function getLocalFileStoragePath(imagePath) {
  */
 
 exports.isLocalImage = function isLocalImage(imagePath) {
-    const localImagePath = this.getLocalFileStoragePath(imagePath);
+  const localImagePath = this.getLocalFileStoragePath(imagePath)
 
-    if (localImagePath !== imagePath) {
-        return true;
-    } else {
-        return false;
-    }
-};
+  if (localImagePath !== imagePath) {
+    return true
+  } else {
+    return false
+  }
+}

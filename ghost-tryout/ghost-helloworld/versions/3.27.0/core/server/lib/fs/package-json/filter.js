@@ -1,6 +1,6 @@
-const _ = require('lodash');
-const notAPackageRegex = /^\.|_messages|README.md/i;
-let filterPackages;
+const _ = require('lodash')
+const notAPackageRegex = /^\.|_messages|README.md/i
+let filterPackages
 
 /**
  * ### Filter Packages
@@ -20,25 +20,29 @@ let filterPackages;
  * @returns {Array}                         of objects with useful info about themes
  */
 filterPackages = function filterPackages(packages, active) {
-    // turn active into an array if it isn't one, so this function can deal with lists and one-offs
-    if (!Array.isArray(active)) {
-        active = [active];
-    }
+  // turn active into an array if it isn't one, so this function can deal with lists and one-offs
+  if (!Array.isArray(active)) {
+    active = [active]
+  }
 
-    return _.reduce(packages, function (result, pkg, key) {
-        let item = {};
-        if (!key.match(notAPackageRegex)) {
-            item = {
-                name: key,
-                package: pkg['package.json'] || false,
-                active: _.indexOf(active, key) !== -1
-            };
-
-            result.push(item);
+  return _.reduce(
+    packages,
+    function (result, pkg, key) {
+      let item = {}
+      if (!key.match(notAPackageRegex)) {
+        item = {
+          name: key,
+          package: pkg['package.json'] || false,
+          active: _.indexOf(active, key) !== -1,
         }
 
-        return result;
-    }, []);
-};
+        result.push(item)
+      }
 
-module.exports = filterPackages;
+      return result
+    },
+    [],
+  )
+}
+
+module.exports = filterPackages

@@ -1,4 +1,4 @@
-const _ = require('lodash');
+const _ = require('lodash')
 
 /**
  * @description Formats API response into handlebars/theme format.
@@ -6,29 +6,29 @@ const _ = require('lodash');
  * @return {Object} containing page variables
  */
 function formatPageResponse(result) {
-    const response = {};
+  const response = {}
 
-    if (result.posts) {
-        response.posts = result.posts;
+  if (result.posts) {
+    response.posts = result.posts
+  }
+
+  if (result.meta && result.meta.pagination) {
+    response.pagination = result.meta.pagination
+  }
+
+  _.each(result.data, function (data, name) {
+    if (data.meta) {
+      // Move pagination to be a top level key
+      response[name] = data
+      response[name].pagination = data.meta.pagination
+      delete response[name].meta
+    } else {
+      // This is a single object, don't wrap it in an array
+      response[name] = data[0]
     }
+  })
 
-    if (result.meta && result.meta.pagination) {
-        response.pagination = result.meta.pagination;
-    }
-
-    _.each(result.data, function (data, name) {
-        if (data.meta) {
-            // Move pagination to be a top level key
-            response[name] = data;
-            response[name].pagination = data.meta.pagination;
-            delete response[name].meta;
-        } else {
-            // This is a single object, don't wrap it in an array
-            response[name] = data[0];
-        }
-    });
-
-    return response;
+  return response
 }
 
 /**
@@ -43,12 +43,12 @@ function formatPageResponse(result) {
  * @return {Object} containing page variables
  */
 function formatResponse(post) {
-    return {
-        post: post
-    };
+  return {
+    post: post,
+  }
 }
 
 module.exports = {
-    entries: formatPageResponse,
-    entry: formatResponse
-};
+  entries: formatPageResponse,
+  entry: formatResponse,
+}

@@ -1,6 +1,6 @@
 const sayHello = () => {
-  console.log("helloworld");
-  return "helloworld";
-};
+  console.log('helloworld')
+  return 'helloworld'
+}
 
-sayHello();
+sayHello()

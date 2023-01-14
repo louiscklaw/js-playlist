@@ -1,25 +1,24 @@
 // canThis(someUser).edit.posts([id]|[[ids]])
 // canThis(someUser).edit.post(somePost|somePostId)
 
-const models = require('../../models');
+const models = require('../../models')
 
-const actionsMap = require('./actions-map-cache');
-let init;
+const actionsMap = require('./actions-map-cache')
+let init
 
 init = function init(options) {
-    options = options || {};
+  options = options || {}
 
-    // Load all the permissions
-    return models.Permission.findAll(options)
-        .then(function (permissionsCollection) {
-            return actionsMap.init(permissionsCollection);
-        });
-};
+  // Load all the permissions
+  return models.Permission.findAll(options).then(function (permissionsCollection) {
+    return actionsMap.init(permissionsCollection)
+  })
+}
 
 module.exports = {
-    init: init,
-    canThis: require('./can-this'),
-    // @TODO: Make it so that we don't need to export these
-    parseContext: require('./parse-context'),
-    applyPublicRules: require('./public')
-};
+  init: init,
+  canThis: require('./can-this'),
+  // @TODO: Make it so that we don't need to export these
+  parseContext: require('./parse-context'),
+  applyPublicRules: require('./public'),
+}

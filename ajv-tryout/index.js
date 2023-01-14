@@ -1,19 +1,19 @@
-console.log("helloworld");
+console.log('helloworld')
 
-let hello = "world";
+let hello = 'world'
 
 function changeHelloValue() {
   function insideChangeHelloValue() {
-    hello = "world 123321";
+    hello = 'world 123321'
   }
 
-  insideChangeHelloValue();
+  insideChangeHelloValue()
 }
 
-console.log("hello value:", hello);
+console.log('hello value:', hello)
 
-changeHelloValue();
+changeHelloValue()
 
-console.log("hello value:", hello);
+console.log('hello value:', hello)
 
-console.log("done");
+console.log('done')

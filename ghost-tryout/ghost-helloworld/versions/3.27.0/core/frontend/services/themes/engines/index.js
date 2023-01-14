@@ -1,5 +1,5 @@
 module.exports = {
-    get create() {
-        return require('./create');
-    }
-};
+  get create() {
+    return require('./create')
+  },
+}

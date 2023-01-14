@@ -1,25 +1,25 @@
-const debug = require('ghost-ignition').debug('api:v2:utils:serializers:output:themes');
+const debug = require('ghost-ignition').debug('api:v2:utils:serializers:output:themes')
 
 module.exports = {
-    browse(themes, apiConfig, frame) {
-        debug('browse');
+  browse(themes, apiConfig, frame) {
+    debug('browse')
 
-        frame.response = themes;
-    },
+    frame.response = themes
+  },
 
-    upload() {
-        debug('upload');
-        this.browse(...arguments);
-    },
+  upload() {
+    debug('upload')
+    this.browse(...arguments)
+  },
 
-    activate() {
-        debug('activate');
-        this.browse(...arguments);
-    },
+  activate() {
+    debug('activate')
+    this.browse(...arguments)
+  },
 
-    download(fn, apiConfig, frame) {
-        debug('download');
+  download(fn, apiConfig, frame) {
+    debug('download')
 
-        frame.response = fn;
-    }
-};
+    frame.response = fn
+  },
+}

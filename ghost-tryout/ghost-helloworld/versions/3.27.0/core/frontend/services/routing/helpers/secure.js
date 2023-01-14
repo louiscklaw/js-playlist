@@ -11,9 +11,9 @@
  * @param {Object} data
  */
 function setRequestIsSecure(req, data) {
-    (Array.isArray(data) ? data : [data]).forEach(function forEach(d) {
-        d.secure = req.secure;
-    });
+  ;(Array.isArray(data) ? data : [data]).forEach(function forEach(d) {
+    d.secure = req.secure
+  })
 }
 
-module.exports = setRequestIsSecure;
+module.exports = setRequestIsSecure

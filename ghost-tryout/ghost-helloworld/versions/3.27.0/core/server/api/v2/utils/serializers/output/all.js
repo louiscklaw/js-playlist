@@ -1,25 +1,25 @@
-const debug = require('ghost-ignition').debug('api:v2:utils:serializers:output:all');
-const _ = require('lodash');
+const debug = require('ghost-ignition').debug('api:v2:utils:serializers:output:all')
+const _ = require('lodash')
 
-const removeXBY = (object) => {
-    _.each(object, (value, key) => {
-        // CASE: go deeper
-        if (_.isObject(value) || _.isArray(value)) {
-            removeXBY(value);
-        } else if (['updated_by', 'created_by', 'published_by'].includes(key)) {
-            delete object[key];
-        }
-    });
+const removeXBY = object => {
+  _.each(object, (value, key) => {
+    // CASE: go deeper
+    if (_.isObject(value) || _.isArray(value)) {
+      removeXBY(value)
+    } else if (['updated_by', 'created_by', 'published_by'].includes(key)) {
+      delete object[key]
+    }
+  })
 
-    return object;
-};
+  return object
+}
 
 module.exports = {
-    after(apiConfig, frame) {
-        debug('all after');
+  after(apiConfig, frame) {
+    debug('all after')
 
-        if (frame.response) {
-            frame.response = removeXBY(frame.response);
-        }
+    if (frame.response) {
+      frame.response = removeXBY(frame.response)
     }
-};
+  },
+}

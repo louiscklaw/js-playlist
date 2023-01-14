@@ -1,18 +1,18 @@
-const _ = require('lodash');
+const _ = require('lodash')
 
 function getModifiedDate(data) {
-    let context = data.context ? data.context : null;
-    let modDate;
+  let context = data.context ? data.context : null
+  let modDate
 
-    context = _.includes(context, 'amp') ? 'post' : context;
+  context = _.includes(context, 'amp') ? 'post' : context
 
-    if (data[context]) {
-        modDate = data[context].updated_at || null;
-        if (modDate) {
-            return new Date(modDate).toISOString();
-        }
+  if (data[context]) {
+    modDate = data[context].updated_at || null
+    if (modDate) {
+      return new Date(modDate).toISOString()
     }
-    return null;
+  }
+  return null
 }
 
-module.exports = getModifiedDate;
+module.exports = getModifiedDate

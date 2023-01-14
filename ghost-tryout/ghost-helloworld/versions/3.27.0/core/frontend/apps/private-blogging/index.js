@@ -1,50 +1,52 @@
-const {i18n} = require('../../../server/lib/common');
-const urlUtils = require('../../../shared/url-utils');
-const logging = require('../../../shared/logging');
-const errors = require('@tryghost/errors');
-const middleware = require('./lib/middleware');
-const router = require('./lib/router');
-const registerHelpers = require('./lib/helpers');
+const { i18n } = require('../../../server/lib/common')
+const urlUtils = require('../../../shared/url-utils')
+const logging = require('../../../shared/logging')
+const errors = require('@tryghost/errors')
+const middleware = require('./lib/middleware')
+const router = require('./lib/router')
+const registerHelpers = require('./lib/helpers')
 
 // routeKeywords.private: 'private'
-const PRIVATE_KEYWORD = 'private';
+const PRIVATE_KEYWORD = 'private'
 
 let checkSubdir = function checkSubdir() {
-    let paths = '';
+  let paths = ''
 
-    if (urlUtils.getSubdir()) {
-        paths = urlUtils.getSubdir().split('/');
+  if (urlUtils.getSubdir()) {
+    paths = urlUtils.getSubdir().split('/')
 
-        if (paths.pop() === PRIVATE_KEYWORD) {
-            logging.error(new errors.GhostError({
-                message: i18n.t('errors.config.urlCannotContainPrivateSubdir.error'),
-                context: i18n.t('errors.config.urlCannotContainPrivateSubdir.description'),
-                help: i18n.t('errors.config.urlCannotContainPrivateSubdir.help')
-            }));
+    if (paths.pop() === PRIVATE_KEYWORD) {
+      logging.error(
+        new errors.GhostError({
+          message: i18n.t('errors.config.urlCannotContainPrivateSubdir.error'),
+          context: i18n.t('errors.config.urlCannotContainPrivateSubdir.description'),
+          help: i18n.t('errors.config.urlCannotContainPrivateSubdir.help'),
+        }),
+      )
 
-            // @TODO: why
-            process.exit(0);
-        }
+      // @TODO: why
+      process.exit(0)
     }
-};
+  }
+}
 
 module.exports = {
-    activate: function activate(ghost) {
-        let privateRoute = `/${PRIVATE_KEYWORD}/`;
+  activate: function activate(ghost) {
+    let privateRoute = `/${PRIVATE_KEYWORD}/`
 
-        checkSubdir();
+    checkSubdir()
 
-        ghost.routeService.registerRouter(privateRoute, router);
+    ghost.routeService.registerRouter(privateRoute, router)
 
-        registerHelpers(ghost);
-    },
+    registerHelpers(ghost)
+  },
 
-    setupMiddleware: function setupMiddleware(siteApp) {
-        siteApp.use(middleware.checkIsPrivate);
-        siteApp.use(middleware.filterPrivateRoutes);
-    },
+  setupMiddleware: function setupMiddleware(siteApp) {
+    siteApp.use(middleware.checkIsPrivate)
+    siteApp.use(middleware.filterPrivateRoutes)
+  },
 
-    setupErrorHandling: function setupErrorHandling(siteApp) {
-        siteApp.use(middleware.handle404);
-    }
-};
+  setupErrorHandling: function setupErrorHandling(siteApp) {
+    siteApp.use(middleware.handle404)
+  },
+}

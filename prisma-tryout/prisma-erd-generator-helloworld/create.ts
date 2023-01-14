@@ -7,9 +7,11 @@ async function main() {
     data: {
       name: 'Alice',
       email: 'alice1@prisma.io',
-      Profile: {create:{
-        title : 'hello'
-      }}
+      Profile: {
+        create: {
+          title: 'hello',
+        },
+      },
     },
   })
   console.log(user)

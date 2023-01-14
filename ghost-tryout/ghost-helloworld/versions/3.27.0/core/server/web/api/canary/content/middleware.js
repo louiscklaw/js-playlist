@@ -1,6 +1,6 @@
-const cors = require('cors');
-const auth = require('../../../../services/auth');
-const shared = require('../../../shared');
+const cors = require('cors')
+const auth = require('../../../../services/auth')
+const shared = require('../../../shared')
 
 /**
  * Auth Middleware Packages
@@ -14,10 +14,10 @@ const shared = require('../../../shared');
  * Authentication for public endpoints
  */
 module.exports.authenticatePublic = [
-    shared.middlewares.brute.contentApiKey,
-    auth.authenticate.authenticateContentApi,
-    auth.authorize.authorizeContentApi,
-    cors(),
-    shared.middlewares.urlRedirects.adminSSLAndHostRedirect,
-    shared.middlewares.prettyUrls
-];
+  shared.middlewares.brute.contentApiKey,
+  auth.authenticate.authenticateContentApi,
+  auth.authorize.authorizeContentApi,
+  cors(),
+  shared.middlewares.urlRedirects.adminSSLAndHostRedirect,
+  shared.middlewares.prettyUrls,
+]

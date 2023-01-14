@@ -1,6 +1,6 @@
-import defaults from './core.defaults';
-import registry from './core.registry';
-import {mergeIf} from '../helpers/helpers.core';
+import defaults from './core.defaults'
+import registry from './core.registry'
+import { mergeIf } from '../helpers/helpers.core'
 
 /**
  * @typedef { import("./core.controller").default } Chart
@@ -9,98 +9,98 @@ import {mergeIf} from '../helpers/helpers.core';
  */
 
 export default class PluginService {
-	/**
-	 * Calls enabled plugins for `chart` on the specified hook and with the given args.
-	 * This method immediately returns as soon as a plugin explicitly returns false. The
-	 * returned value can be used, for instance, to interrupt the current action.
-	 * @param {Chart} chart - The chart instance for which plugins should be called.
-	 * @param {string} hook - The name of the plugin method to call (e.g. 'beforeUpdate').
-	 * @param {Array} [args] - Extra arguments to apply to the hook call.
-	 * @returns {boolean} false if any of the plugins return false, else returns true.
-	 */
-	notify(chart, hook, args) {
-		const descriptors = this._descriptors(chart);
+  /**
+   * Calls enabled plugins for `chart` on the specified hook and with the given args.
+   * This method immediately returns as soon as a plugin explicitly returns false. The
+   * returned value can be used, for instance, to interrupt the current action.
+   * @param {Chart} chart - The chart instance for which plugins should be called.
+   * @param {string} hook - The name of the plugin method to call (e.g. 'beforeUpdate').
+   * @param {Array} [args] - Extra arguments to apply to the hook call.
+   * @returns {boolean} false if any of the plugins return false, else returns true.
+   */
+  notify(chart, hook, args) {
+    const descriptors = this._descriptors(chart)
 
-		for (let i = 0; i < descriptors.length; ++i) {
-			const descriptor = descriptors[i];
-			const plugin = descriptor.plugin;
-			const method = plugin[hook];
-			if (typeof method === 'function') {
-				const params = [chart].concat(args || []);
-				params.push(descriptor.options);
-				if (method.apply(plugin, params) === false) {
-					return false;
-				}
-			}
-		}
+    for (let i = 0; i < descriptors.length; ++i) {
+      const descriptor = descriptors[i]
+      const plugin = descriptor.plugin
+      const method = plugin[hook]
+      if (typeof method === 'function') {
+        const params = [chart].concat(args || [])
+        params.push(descriptor.options)
+        if (method.apply(plugin, params) === false) {
+          return false
+        }
+      }
+    }
 
-		return true;
-	}
+    return true
+  }
 
-	invalidate() {
-		this._cache = undefined;
-	}
+  invalidate() {
+    this._cache = undefined
+  }
 
-	/**
-	 * @param {Chart} chart
-	 * @private
-	 */
-	_descriptors(chart) {
-		if (this._cache) {
-			return this._cache;
-		}
+  /**
+   * @param {Chart} chart
+   * @private
+   */
+  _descriptors(chart) {
+    if (this._cache) {
+      return this._cache
+    }
 
-		const config = (chart && chart.config) || {};
-		const options = (config.options && config.options.plugins) || {};
-		const plugins = allPlugins(config);
-		const descriptors = createDescriptors(plugins, options);
+    const config = (chart && chart.config) || {}
+    const options = (config.options && config.options.plugins) || {}
+    const plugins = allPlugins(config)
+    const descriptors = createDescriptors(plugins, options)
 
-		this._cache = descriptors;
+    this._cache = descriptors
 
-		return descriptors;
-	}
+    return descriptors
+  }
 }
 
 function allPlugins(config) {
-	const plugins = [];
-	const keys = Object.keys(registry.plugins.items);
-	for (let i = 0; i < keys.length; i++) {
-		plugins.push(registry.getPlugin(keys[i]));
-	}
+  const plugins = []
+  const keys = Object.keys(registry.plugins.items)
+  for (let i = 0; i < keys.length; i++) {
+    plugins.push(registry.getPlugin(keys[i]))
+  }
 
-	const local = config.plugins || [];
-	for (let i = 0; i < local.length; i++) {
-		const plugin = local[i];
+  const local = config.plugins || []
+  for (let i = 0; i < local.length; i++) {
+    const plugin = local[i]
 
-		if (plugins.indexOf(plugin) === -1) {
-			plugins.push(plugin);
-		}
-	}
+    if (plugins.indexOf(plugin) === -1) {
+      plugins.push(plugin)
+    }
+  }
 
-	return plugins;
+  return plugins
 }
 
 function createDescriptors(plugins, options) {
-	const result = [];
+  const result = []
 
-	for (let i = 0; i < plugins.length; i++) {
-		const plugin = plugins[i];
-		const id = plugin.id;
+  for (let i = 0; i < plugins.length; i++) {
+    const plugin = plugins[i]
+    const id = plugin.id
 
-		let opts = options[id];
-		if (opts === false) {
-			continue;
-		}
-		if (opts === true) {
-			opts = {};
-		}
-		result.push({
-			plugin,
-			options: mergeIf({}, [opts, defaults.plugins[id]])
-		});
-	}
+    let opts = options[id]
+    if (opts === false) {
+      continue
+    }
+    if (opts === true) {
+      opts = {}
+    }
+    result.push({
+      plugin,
+      options: mergeIf({}, [opts, defaults.plugins[id]]),
+    })
+  }
 
-	return result;
+  return result
 }
 
 /**
@@ -151,7 +151,7 @@ function createDescriptors(plugins, options) {
  * @param {object} options - The plugin options.
  * @returns {boolean} false to cancel the datasets update.
  * @since version 2.1.5
-*/
+ */
 /**
  * @method IPlugin#afterDatasetsUpdate
  * @desc Called after the `chart` datasets have been updated. Note that this hook

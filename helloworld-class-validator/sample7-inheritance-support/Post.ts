@@ -1,14 +1,14 @@
-import { Contains, IsInt, MinLength, MaxLength } from 'class-validator';
-import { BaseContent } from './BaseContent';
+import { Contains, IsInt, MinLength, MaxLength } from 'class-validator'
+import { BaseContent } from './BaseContent'
 
 export class Post extends BaseContent {
   @MinLength(10)
   @MaxLength(20)
-  title: string;
+  title: string
 
   @Contains('hello')
-  text: string;
+  text: string
 
   @IsInt()
-  rating: number;
+  rating: number
 }

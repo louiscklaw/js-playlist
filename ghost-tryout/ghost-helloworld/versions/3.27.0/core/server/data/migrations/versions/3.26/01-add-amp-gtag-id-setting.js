@@ -1,20 +1,20 @@
-const logging = require('../../../../../shared/logging');
+const logging = require('../../../../../shared/logging')
 
 module.exports = {
-    config: {
-        transaction: true
-    },
+  config: {
+    transaction: true,
+  },
 
-    async up({transacting: knex}) {
-        logging.info('Updating amp_gtag_id setting to amp group');
-        await knex('settings')
-            .update({
-                group: 'amp'
-            })
-            .where({
-                key: 'amp_gtag_id'
-            });
-    },
+  async up({ transacting: knex }) {
+    logging.info('Updating amp_gtag_id setting to amp group')
+    await knex('settings')
+      .update({
+        group: 'amp',
+      })
+      .where({
+        key: 'amp_gtag_id',
+      })
+  },
 
-    async down() {}
-};
+  async down() {},
+}

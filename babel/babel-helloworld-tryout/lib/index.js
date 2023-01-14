@@ -1,8 +1,10 @@
 #!/usr/bin/env node
-"use strict";
+'use strict'
 
-var _wd = _interopRequireDefault(require("wd"));
+var _wd = _interopRequireDefault(require('wd'))
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj }
+}
 
-console.log('helloworld');
+console.log('helloworld')

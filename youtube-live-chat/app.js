@@ -1,6 +1,6 @@
-const YouTube = require('youtube-live-chat');
+const YouTube = require('youtube-live-chat')
 
-const yt = new YouTube('Hu1FkdAOws0', 'AIzaSyAniivNFUiBiyK_MELdOr2DT3d4Y1ZijNs');
+const yt = new YouTube('Hu1FkdAOws0', 'AIzaSyAniivNFUiBiyK_MELdOr2DT3d4Y1ZijNs')
 
 yt.on('ready', () => {
   console.log('ready!')
@@ -17,7 +17,6 @@ yt.on('error', error => {
 
 // API key
 // AIzaSyCbIQF1Q6VBT3SdI3bPVgf6PNlTr5ngXwM
-
 
 // client id
 // 423679156486-1hbbq0t78ca75kag1l6smlj1lu7vue29.apps.googleusercontent.com

@@ -1,4 +1,4 @@
-import { MaxLength, MinLength } from 'class-validator';
+import { MaxLength, MinLength } from 'class-validator'
 
 export enum PostType {
   Public,
@@ -8,5 +8,5 @@ export enum PostType {
 export class Post {
   @MinLength(10)
   @MaxLength(20)
-  title: string;
+  title: string
 }

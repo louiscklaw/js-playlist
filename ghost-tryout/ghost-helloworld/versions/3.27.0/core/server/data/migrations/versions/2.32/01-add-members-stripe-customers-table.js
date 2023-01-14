@@ -1,4 +1,4 @@
 module.exports = {
-    async up(){},
-    async down(){}
-};
+  async up() {},
+  async down() {},
+}

@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  for(var i = 0; i < 99; i++){
+  for (var i = 0; i < 99; i++) {
     const alice = await prisma.user.upsert({
       where: { email: `alice${i}@prisma.io` },
       update: {},
@@ -64,7 +64,7 @@ main()
   .then(async () => {
     await prisma.$disconnect()
   })
-  .catch(async (e) => {
+  .catch(async e => {
     console.error(e)
     await prisma.$disconnect()
     process.exit(1)

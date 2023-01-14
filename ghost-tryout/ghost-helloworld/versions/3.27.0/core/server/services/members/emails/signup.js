@@ -1,4 +1,4 @@
-module.exports = ({siteTitle, email, url}) => `
+module.exports = ({ siteTitle, email, url }) => `
 <!doctype html>
 <html>
   <head>
@@ -165,4 +165,4 @@ module.exports = ({siteTitle, email, url}) => `
     </table>
   </body>
 </html>
-`;
+`

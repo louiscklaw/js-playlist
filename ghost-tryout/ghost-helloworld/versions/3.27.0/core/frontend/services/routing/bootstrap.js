@@ -1,19 +1,19 @@
-const debug = require('ghost-ignition').debug('services:routing:bootstrap');
-const _ = require('lodash');
-const {events} = require('../../../server/lib/common');
-const settingsService = require('../settings');
-const StaticRoutesRouter = require('./StaticRoutesRouter');
-const StaticPagesRouter = require('./StaticPagesRouter');
-const CollectionRouter = require('./CollectionRouter');
-const TaxonomyRouter = require('./TaxonomyRouter');
-const PreviewRouter = require('./PreviewRouter');
-const ParentRouter = require('./ParentRouter');
-const UnsubscribeRouter = require('./UnsubscribeRouter');
+const debug = require('ghost-ignition').debug('services:routing:bootstrap')
+const _ = require('lodash')
+const { events } = require('../../../server/lib/common')
+const settingsService = require('../settings')
+const StaticRoutesRouter = require('./StaticRoutesRouter')
+const StaticPagesRouter = require('./StaticPagesRouter')
+const CollectionRouter = require('./CollectionRouter')
+const TaxonomyRouter = require('./TaxonomyRouter')
+const PreviewRouter = require('./PreviewRouter')
+const ParentRouter = require('./ParentRouter')
+const UnsubscribeRouter = require('./UnsubscribeRouter')
 
-const defaultApiVersion = 'v3';
+const defaultApiVersion = 'v3'
 
-const registry = require('./registry');
-let siteRouter;
+const registry = require('./registry')
+let siteRouter
 
 /**
  * @description The `init` function will return the wrapped parent express router and will start creating all
@@ -28,24 +28,24 @@ let siteRouter;
  * @param {Object} options
  * @returns {ExpressRouter}
  */
-module.exports.init = (options = {start: false}) => {
-    debug('bootstrap');
+module.exports.init = (options = { start: false }) => {
+  debug('bootstrap')
 
-    registry.resetAllRouters();
-    registry.resetAllRoutes();
+  registry.resetAllRouters()
+  registry.resetAllRoutes()
 
-    events.emit('routers.reset');
+  events.emit('routers.reset')
 
-    siteRouter = new ParentRouter('SiteRouter');
-    registry.setRouter('siteRouter', siteRouter);
+  siteRouter = new ParentRouter('SiteRouter')
+  registry.setRouter('siteRouter', siteRouter)
 
-    if (options.start) {
-        let apiVersion = _.isBoolean(options.start) ? defaultApiVersion : options.start;
-        this.start(apiVersion);
-    }
+  if (options.start) {
+    let apiVersion = _.isBoolean(options.start) ? defaultApiVersion : options.start
+    this.start(apiVersion)
+  }
 
-    return siteRouter.router();
-};
+  return siteRouter.router()
+}
 
 /**
  * @description This function will create the routers based on the routes.yaml config.
@@ -60,49 +60,49 @@ module.exports.init = (options = {start: false}) => {
  * 5. Static Pages: Weaker than collections, because we first try to find a post slug and fallback to lookup a static page.
  * 6. Internal Apps: Weakest
  */
-module.exports.start = (apiVersion) => {
-    const RESOURCE_CONFIG = require(`./config/${apiVersion}`);
+module.exports.start = apiVersion => {
+  const RESOURCE_CONFIG = require(`./config/${apiVersion}`)
 
-    const unsubscribeRouter = new UnsubscribeRouter();
-    siteRouter.mountRouter(unsubscribeRouter.router());
-    registry.setRouter('unsubscribeRouter', unsubscribeRouter);
+  const unsubscribeRouter = new UnsubscribeRouter()
+  siteRouter.mountRouter(unsubscribeRouter.router())
+  registry.setRouter('unsubscribeRouter', unsubscribeRouter)
 
-    const previewRouter = new PreviewRouter(RESOURCE_CONFIG);
-    siteRouter.mountRouter(previewRouter.router());
-    registry.setRouter('previewRouter', previewRouter);
+  const previewRouter = new PreviewRouter(RESOURCE_CONFIG)
+  siteRouter.mountRouter(previewRouter.router())
+  registry.setRouter('previewRouter', previewRouter)
 
-    // NOTE: Get the routes.yaml config
-    const dynamicRoutes = settingsService.get('routes');
+  // NOTE: Get the routes.yaml config
+  const dynamicRoutes = settingsService.get('routes')
 
-    _.each(dynamicRoutes.routes, (value, key) => {
-        const staticRoutesRouter = new StaticRoutesRouter(key, value, RESOURCE_CONFIG);
-        siteRouter.mountRouter(staticRoutesRouter.router());
+  _.each(dynamicRoutes.routes, (value, key) => {
+    const staticRoutesRouter = new StaticRoutesRouter(key, value, RESOURCE_CONFIG)
+    siteRouter.mountRouter(staticRoutesRouter.router())
 
-        registry.setRouter(staticRoutesRouter.identifier, staticRoutesRouter);
-    });
+    registry.setRouter(staticRoutesRouter.identifier, staticRoutesRouter)
+  })
 
-    _.each(dynamicRoutes.collections, (value, key) => {
-        const collectionRouter = new CollectionRouter(key, value, RESOURCE_CONFIG);
-        siteRouter.mountRouter(collectionRouter.router());
-        registry.setRouter(collectionRouter.identifier, collectionRouter);
-    });
+  _.each(dynamicRoutes.collections, (value, key) => {
+    const collectionRouter = new CollectionRouter(key, value, RESOURCE_CONFIG)
+    siteRouter.mountRouter(collectionRouter.router())
+    registry.setRouter(collectionRouter.identifier, collectionRouter)
+  })
 
-    const staticPagesRouter = new StaticPagesRouter(RESOURCE_CONFIG);
-    siteRouter.mountRouter(staticPagesRouter.router());
+  const staticPagesRouter = new StaticPagesRouter(RESOURCE_CONFIG)
+  siteRouter.mountRouter(staticPagesRouter.router())
 
-    registry.setRouter('staticPagesRouter', staticPagesRouter);
+  registry.setRouter('staticPagesRouter', staticPagesRouter)
 
-    _.each(dynamicRoutes.taxonomies, (value, key) => {
-        const taxonomyRouter = new TaxonomyRouter(key, value, RESOURCE_CONFIG);
-        siteRouter.mountRouter(taxonomyRouter.router());
+  _.each(dynamicRoutes.taxonomies, (value, key) => {
+    const taxonomyRouter = new TaxonomyRouter(key, value, RESOURCE_CONFIG)
+    siteRouter.mountRouter(taxonomyRouter.router())
 
-        registry.setRouter(taxonomyRouter.identifier, taxonomyRouter);
-    });
+    registry.setRouter(taxonomyRouter.identifier, taxonomyRouter)
+  })
 
-    const appRouter = new ParentRouter('AppsRouter');
-    siteRouter.mountRouter(appRouter.router());
+  const appRouter = new ParentRouter('AppsRouter')
+  siteRouter.mountRouter(appRouter.router())
 
-    registry.setRouter('appRouter', appRouter);
+  registry.setRouter('appRouter', appRouter)
 
-    debug('Routes:', registry.getAllRoutes());
-};
+  debug('Routes:', registry.getAllRoutes())
+}

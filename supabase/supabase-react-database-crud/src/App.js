@@ -1,7 +1,7 @@
-import logo from './logo.svg';
-import { supabase } from './lib/api';
+import logo from './logo.svg'
+import { supabase } from './lib/api'
 
-import './App.css';
+import './App.css'
 
 function App() {
   let helloworld_content = {
@@ -12,53 +12,41 @@ function App() {
     date_test: '2021-12-24',
     time_test: '12:23:56',
     date_and_time_tz: '2021-12-17T07:13:11+10:00',
-  };
+  }
   const createHellworld = async () => {
-    let add_result = await supabase.from('todos').insert(helloworld_content).single();
-    console.log('createHellworld', { add_result });
-  };
+    let add_result = await supabase.from('todos').insert(helloworld_content).single()
+    console.log('createHellworld', { add_result })
+  }
 
   const selectHelloworld = async () => {
-    let select_result = await supabase
-      .from('todos')
-      .select('*')
-      .eq('task', 'hello task')
-      .order('id', { ascending: false });
-    console.log('selectHelloworld', { select_result });
-  };
+    let select_result = await supabase.from('todos').select('*').eq('task', 'hello task').order('id', { ascending: false })
+    console.log('selectHelloworld', { select_result })
+  }
 
   const selectJsonParamsStringHelloworld = async () => {
-    let select_result = await supabase
-      .from('todos')
-      .select('*')
-      .eq('json_test->>"hello"', '12345')
-      .order('id', { ascending: false });
-    console.log('selectHelloworld', { select_result });
-  };
+    let select_result = await supabase.from('todos').select('*').eq('json_test->>"hello"', '12345').order('id', { ascending: false })
+    console.log('selectHelloworld', { select_result })
+  }
 
   const selectJsonParamsIntHelloworld = async () => {
-    let select_result = await supabase
-      .from('todos')
-      .select('*')
-      .eq('json_test->>"hello"', 67890)
-      .order('id', { ascending: false });
-    console.log('selectHelloworld', { select_result });
-  };
+    let select_result = await supabase.from('todos').select('*').eq('json_test->>"hello"', 67890).order('id', { ascending: false })
+    console.log('selectHelloworld', { select_result })
+  }
 
   const readHelloworld = async () => {
-    let read_result = await supabase.from('todos').select('*').order('id', { ascending: false });
-    console.log('readHelloworld', { read_result });
-  };
+    let read_result = await supabase.from('todos').select('*').order('id', { ascending: false })
+    console.log('readHelloworld', { read_result })
+  }
 
   const updateHelloworld = async () => {
-    const update_result = await supabase.from('todos').update({ task: 'Middle Earth' }).match({ id: 8 });
-    console.log('updateHelloworld', { update_result });
-  };
+    const update_result = await supabase.from('todos').update({ task: 'Middle Earth' }).match({ id: 8 })
+    console.log('updateHelloworld', { update_result })
+  }
 
   const deleteHelloworld = async () => {
-    let delete_result = await supabase.from('todos').delete().eq('id', 9);
-    console.log('deleteHelloworld', { delete_result });
-  };
+    let delete_result = await supabase.from('todos').delete().eq('id', 9)
+    console.log('deleteHelloworld', { delete_result })
+  }
 
   return (
     <div className="App">
@@ -102,7 +90,7 @@ function App() {
         <button onClick={deleteHelloworld}>deleteHelloworld</button>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

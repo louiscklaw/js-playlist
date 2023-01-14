@@ -1,25 +1,25 @@
 module.exports = {
-    get bootstrap() {
-        return require('./bootstrap');
-    },
+  get bootstrap() {
+    return require('./bootstrap')
+  },
 
-    get registry() {
-        return require('./registry');
-    },
+  get registry() {
+    return require('./registry')
+  },
 
-    get settings() {
-        return require('./settings');
-    },
+  get settings() {
+    return require('./settings')
+  },
 
-    get helpers() {
-        return require('./helpers');
-    },
+  get helpers() {
+    return require('./helpers')
+  },
 
-    get CollectionRouter() {
-        return require('./CollectionRouter');
-    },
+  get CollectionRouter() {
+    return require('./CollectionRouter')
+  },
 
-    get TaxonomyRouter() {
-        return require('./TaxonomyRouter');
-    }
-};
+  get TaxonomyRouter() {
+    return require('./TaxonomyRouter')
+  },
+}

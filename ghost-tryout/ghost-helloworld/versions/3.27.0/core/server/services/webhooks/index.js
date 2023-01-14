@@ -1,5 +1,5 @@
 module.exports = {
-    get listen() {
-        return require('./listen');
-    }
-};
+  get listen() {
+    return require('./listen')
+  },
+}

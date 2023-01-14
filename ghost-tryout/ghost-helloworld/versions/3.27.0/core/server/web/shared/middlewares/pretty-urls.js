@@ -6,14 +6,14 @@
 // Uncapitalise changes case to lowercase
 // @TODO optimise this to reduce the number of redirects required to get to a pretty URL
 // @TODO move this to being used by routers?
-const slashes = require('connect-slashes');
-const config = require('../../../../shared/config');
+const slashes = require('connect-slashes')
+const config = require('../../../../shared/config')
 
 module.exports = [
-    slashes(true, {
-        headers: {
-            'Cache-Control': `public, max-age=${config.get('caching:301:maxAge')}`
-        }
-    }),
-    require('./uncapitalise')
-];
+  slashes(true, {
+    headers: {
+      'Cache-Control': `public, max-age=${config.get('caching:301:maxAge')}`,
+    },
+  }),
+  require('./uncapitalise'),
+]

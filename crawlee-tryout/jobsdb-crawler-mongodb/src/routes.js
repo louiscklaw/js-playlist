@@ -1,6 +1,6 @@
-import { Dataset, createPlaywrightRouter } from 'crawlee';
+import { Dataset, createPlaywrightRouter } from 'crawlee'
 
-export const router = createPlaywrightRouter();
+export const router = createPlaywrightRouter()
 
 router.addDefaultHandler(async ({ enqueueLinks, log }) => {
   log.info(`enqueueing new URLs`)

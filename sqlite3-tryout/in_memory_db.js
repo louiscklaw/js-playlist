@@ -1,21 +1,21 @@
 #!/usr/bin/env node
 
-const sqlite3 = require("sqlite3").verbose();
+const sqlite3 = require('sqlite3').verbose()
 
 // open database in memory
-let db = new sqlite3.Database(":memory:", (err) => {
+let db = new sqlite3.Database(':memory:', err => {
   if (err) {
-    return console.error(err.message);
+    return console.error(err.message)
   }
-  console.log("Connected to the in-memory SQlite database.");
-});
+  console.log('Connected to the in-memory SQlite database.')
+})
 
 // close the database connection
-db.close((err) => {
+db.close(err => {
   if (err) {
-    return console.error(err.message);
+    return console.error(err.message)
   }
-  console.log("Close the database connection.");
-});
+  console.log('Close the database connection.')
+})
 
-console.log("helloworld");
+console.log('helloworld')

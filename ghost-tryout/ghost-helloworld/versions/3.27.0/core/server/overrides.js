@@ -3,9 +3,9 @@
  * You can reproduce by removing this line and import a big database export into Ghost.
  * `NODE_ENV=development node index.js`
  */
-process.env.BLUEBIRD_DEBUG = 0;
+process.env.BLUEBIRD_DEBUG = 0
 
-const moment = require('moment-timezone');
+const moment = require('moment-timezone')
 
 /**
  * oembed-parser uses promise-wtf to extend the global Promise with .finally
@@ -13,7 +13,7 @@ const moment = require('moment-timezone');
  *     doesn't error due to Bluebird's Promise already having a .finally
  *   - https://github.com/ndaidong/promise-wtf/issues/25
  */
-const {extract, hasProvider} = require('oembed-parser'); // eslint-disable-line
+const { extract, hasProvider } = require('oembed-parser') // eslint-disable-line
 
 /**
  * force UTC
@@ -22,9 +22,9 @@ const {extract, hasProvider} = require('oembed-parser'); // eslint-disable-line
  *   - be careful when not working with models, every value from the native JS Date is local TZ
  *   - be careful when you work with date operations, therefor always wrap a date into moment
  */
-moment.tz.setDefault('UTC');
+moment.tz.setDefault('UTC')
 
 /**
  * https://github.com/TryGhost/Ghost/issues/9064
  */
-global.Promise = require('bluebird');
+global.Promise = require('bluebird')

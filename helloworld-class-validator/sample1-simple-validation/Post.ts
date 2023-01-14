@@ -1,16 +1,4 @@
-import {
-  Contains,
-  IsInt,
-  MinLength,
-  MaxLength,
-  IsEmail,
-  IsFQDN,
-  IsDate,
-  ArrayNotEmpty,
-  ArrayMinSize,
-  ArrayMaxSize,
-  IsEnum,
-} from 'class-validator';
+import { Contains, IsInt, MinLength, MaxLength, IsEmail, IsFQDN, IsDate, ArrayNotEmpty, ArrayMinSize, ArrayMaxSize, IsEnum } from 'class-validator'
 
 export enum PostType {
   Public,
@@ -20,30 +8,30 @@ export enum PostType {
 export class Post {
   @MinLength(10)
   @MaxLength(20)
-  title: string;
+  title: string
 
   @Contains('hello')
-  text: string;
+  text: string
 
   @IsInt()
-  rating: number;
+  rating: number
 
   @IsEmail()
-  email: string;
+  email: string
 
   @IsFQDN()
-  site: string;
+  site: string
 
   @IsDate()
-  createDate: Date;
+  createDate: Date
 
   @ArrayNotEmpty()
   @ArrayMinSize(2)
   @ArrayMaxSize(5)
   @MinLength(3, { each: true, message: 'Tag is too short. Minimal length is $value characters' })
   @MaxLength(50, { each: true, message: 'Tag is too long. Maximal length is $value characters' })
-  tags: string[] | null;
+  tags: string[] | null
 
   @IsEnum(PostType)
-  type: PostType;
+  type: PostType
 }

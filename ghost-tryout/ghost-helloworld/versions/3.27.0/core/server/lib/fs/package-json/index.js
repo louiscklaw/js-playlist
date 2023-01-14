@@ -9,15 +9,15 @@
  */
 
 module.exports = {
-    get read() {
-        return require('./read');
-    },
+  get read() {
+    return require('./read')
+  },
 
-    get parse() {
-        return require('./parse');
-    },
+  get parse() {
+    return require('./parse')
+  },
 
-    get filter() {
-        return require('./filter');
-    }
-};
+  get filter() {
+    return require('./filter')
+  },
+}

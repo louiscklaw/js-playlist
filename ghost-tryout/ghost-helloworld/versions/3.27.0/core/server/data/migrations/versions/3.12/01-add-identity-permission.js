@@ -1,7 +1,7 @@
-const {addPermission} = require('../../utils');
+const { addPermission } = require('../../utils')
 
 module.exports = addPermission({
-    name: 'Read identities',
-    action: 'read',
-    object: 'identity'
-});
+  name: 'Read identities',
+  action: 'read',
+  object: 'identity',
+})

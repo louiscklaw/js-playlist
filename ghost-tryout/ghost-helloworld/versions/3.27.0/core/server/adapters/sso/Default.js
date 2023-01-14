@@ -1,19 +1,19 @@
-const Base = require('./Base');
+const Base = require('./Base')
 
 module.exports = class DefaultSSOAdapter extends Base {
-    constructor() {
-        super();
-    }
+  constructor() {
+    super()
+  }
 
-    async getRequestCredentials() {
-        return null;
-    }
+  async getRequestCredentials() {
+    return null
+  }
 
-    async getIdentityFromCredentials() {
-        return null;
-    }
+  async getIdentityFromCredentials() {
+    return null
+  }
 
-    async getUserForIdentity() {
-        return null;
-    }
-};
+  async getUserForIdentity() {
+    return null
+  }
+}
