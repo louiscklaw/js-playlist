@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx ts-node create.ts",
+    "migrate_reset":"npx prisma migrate reset",
+    "migrate_dev":"npx prisma migrate dev",
     "format": "npx prettier --loglevel warn --write \"**/*.{js,css,html,jsx,tsx,ts,json}\"",
     "gitSync": "git fetch --all && git pull --all ",
     "gitUpdate": "git add . && git commit -m \"update prisma-tryout,\" && yarn gitSync && git push"
