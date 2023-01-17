@@ -8,8 +8,8 @@ app.use(
     console.dir({ '.host': req.vhost.host }) // => 'foo.bar.example.com:8080'
     console.dir({ '.hostname': req.vhost.hostname }) // => 'foo.bar.example.com'
     console.dir({ '.length': req.vhost.length }) // => 2
-    console.dir({ '[0': req.vhost[0] }) // => 'foo'
-    console.dir({ '[1': req.vhost[1] }) // => 'bar'
+    console.dir({ 'vhost[0]': req.vhost[0] }) // => 'foo'
+    console.dir({ 'vhost[1]': req.vhost[1] }) // => 'bar'
 
     res.end('hello from mail!')
   }),
