@@ -1,0 +1,15 @@
+# CREDIT: https://github.com/shren207/nextjs-docker-compose
+services:
+  backend:
+    build: .
+    ports:
+      - 3001:3001
+    user: 1000:1000
+    working_dir: /app
+    volumes:
+      - $PWD:/app
+      - be_node_modules:/app/node_modules
+    command: sleep infinity
+
+volumes:
+  be_node_modules:

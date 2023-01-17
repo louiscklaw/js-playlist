@@ -1,0 +1,23 @@
+{
+  "name": "express-helloworld-tryout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "trim": "rm -rf node_modules ",
+    "gitUpdate": "git add . && git commit -m\"update express-helloworld-tryout,\"",
+    "dev": "nodemon ./index.js",
+    "docker_rebuild": "docker compose up -d --build",
+    "into_backend": "docker compose exec -it bash"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect": "^3.7.0",
+    "express": "latest",
+    "nodemon": "^2.0.16",
+    "vhost": "^3.0.2"
+  }
+}
