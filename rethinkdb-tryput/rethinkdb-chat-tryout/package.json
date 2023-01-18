@@ -1,0 +1,15 @@
+{
+  "name": "docker-rethinkdb-tryout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker_rebuild": "docker compose rm -v -f && docker compose up -d && docker compose logs -f",
+    "gitSync": "git fetch --all && git pull",
+    "gitUpdate": "yarn gitSync && git add . && git commit -m\"update docker-rethinkdb-tryout\" && git push"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

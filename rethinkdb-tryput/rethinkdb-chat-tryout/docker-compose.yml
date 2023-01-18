@@ -1,0 +1,15 @@
+services:
+  rethinkdb:
+    image: rethinkdb:latest
+    ports:
+      - '8093:8080'
+    volumes:
+      - './volumes/rethinkdb:/data/rethinkdb_data'
+
+  test:
+    build: ./src
+    volumes:
+      - ./src:/app
+    ports:
+      - '8000:8000'
+    command: sleep infinity
