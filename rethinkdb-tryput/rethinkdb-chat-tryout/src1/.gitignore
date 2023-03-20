@@ -1,0 +1,5 @@
+/node_modules/*
+notes.txt
+/rethinkdb_data/*
+/bower_components/*
+/src/*

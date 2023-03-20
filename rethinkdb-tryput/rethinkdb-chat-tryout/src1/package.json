@@ -1,0 +1,45 @@
+{
+  "name": "realtime-chat-rethinkdb",
+  "version": "1.0.0",
+  "description": "A foray into realtime communications. A base for our realtime editor. This version uses RethinkDB instead of GunDB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Unrestricted-Coding/realtime-chat-RethinkDB.git"
+  },
+  "author": "Shannon Duncan",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Unrestricted-Coding/realtime-chat-RethinkDB/issues"
+  },
+  "homepage": "https://github.com/Unrestricted-Coding/realtime-chat-RethinkDB#readme",
+  "dependencies": {
+    "async": "^1.5.0",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "rethinkdbdash": "^2.1.17",
+    "socket.io": "^1.3.7",
+    "validator": "^4.4.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-karma": "^0.12.1",
+    "grunt-mrdoc": "^0.1.5",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.15",
+    "karma-failed-reporter": "0.0.3",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-requirejs": "^0.2.2",
+    "karma-spec-reporter": "0.0.23",
+    "mr-doc": "^3.0.7",
+    "phantomjs": "^2.1.7",
+    "requirejs": "^2.1.22",
+    "socket.io-client": "^1.3.7"
+  }
+}
