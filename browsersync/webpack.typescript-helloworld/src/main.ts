@@ -3,9 +3,7 @@ type Person = {
 }
 
 const sayHi = ({name}:Person)=> {
-    document.querySelector('#example').textContent = `
-        Hi, ${name}
-    `
+    document.querySelector('#example').textContent = `Hi, ${name}`
 };
 
 sayHi({name: "Frank"});

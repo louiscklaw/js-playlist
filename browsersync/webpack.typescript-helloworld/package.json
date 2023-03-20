@@ -9,13 +9,15 @@
     "start": "node app",
     "gitUpdate": "git add . && git commit -m'update webpack.typescript-helloworld,' && git pull && git push"
   },
-  "dependencies": {},
+  "dependencies": {
+    "dot-env": "^0.0.1"
+  },
   "devDependencies": {
-    "ts-loader": "^0.8.1",
-    "typescript": "^1.7.5",
     "browser-sync": "^2.8.0",
     "bs-fullscreen-message": "^1.0.0",
     "strip-ansi": "^3.0.0",
+    "ts-loader": "^0.8.1",
+    "typescript": "^1.7.5",
     "webpack": "^1.10.5",
     "webpack-dev-middleware": "^1.2.0"
   }
