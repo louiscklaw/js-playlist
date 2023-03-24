@@ -5,9 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="output.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding: 0; margin: 0;">
     <h1 class="text-3xl font-bold underline">
-      Hello world!
+      Hello world! daisyui
+      <button class="btn btn-active btn-ghost">Button</button>
+
     </h1>
+
+    <div>
+      <div class="rating">
+        <input type="radio" name="rating-1" class="mask mask-star" />
+        <input type="radio" name="rating-1" class="mask mask-star" checked />
+        <input type="radio" name="rating-1" class="mask mask-star" />
+        <input type="radio" name="rating-1" class="mask mask-star" />
+        <input type="radio" name="rating-1" class="mask mask-star" />
+      </div>
+    </div>
+
+    <div class="artboard phone-1">320×568</div>
+
+    <div class="dropdown">
+      <label tabindex="0" class="btn m-1">Click</label>
+      <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+        <li><a>Item 1</a></li>
+        <li><a>Item 2</a></li>
+      </ul>
+    </div>
   </body>
 </html>
