@@ -7,6 +7,5 @@
     "format": "npx prettier --loglevel warn --write \"**/*.{js,jsx,tsx,ts,json}\""
   },
   "devDependencies": {
-    "prettier": "^2.8.0"
   }
 }
