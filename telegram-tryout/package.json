@@ -1,0 +1,14 @@
+{
+  "name": "telegram-tryout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gitUpdate":"git add . && git commit -m\"update,\" && git push",
+    "start":"node ./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
