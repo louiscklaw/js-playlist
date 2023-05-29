@@ -1,0 +1,12 @@
+{
+  "name": "google-web-fonts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "gitUpdate": "git add . && git commit -m\"update google web fonts tryout,\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
