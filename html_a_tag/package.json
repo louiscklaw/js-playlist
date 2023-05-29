@@ -1,0 +1,12 @@
+{
+  "name": "html_a_tag",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "gitUpdate": "git add . && git commit -m\"update html_a_tag tryout,\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
