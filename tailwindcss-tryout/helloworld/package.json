@@ -12,7 +12,7 @@
     "watch-assets": "nodemon --watch src/assets --exec \"npm run sync-assets\"",
     "watch-css": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "watch-browsersync":"browser-sync start --proxy 'localhost' --serveStatic 'dist' --files 'dist'",
-    "gitUpdate": "git add . && git commit -m'update tailwindcss-helloworld,' && git push"
+    "gitUpdate": "git add . && git commit -m'update tailwindcss-helloworld,'"
   },
   "keywords": [],
   "author": "",
