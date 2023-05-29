@@ -1,5 +1,7 @@
 ```bash
 
-npm run watch
+$ npm i -D
+
+$ npm run watch
 
 ```
