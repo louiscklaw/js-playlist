@@ -1,0 +1,12 @@
+{
+  "name": "brainjs-tryout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "gitUpdate": "git add . && git commit -m\"update brainjs-tryout, \""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
