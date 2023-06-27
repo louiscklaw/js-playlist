@@ -1,0 +1,27 @@
+{
+  "name": "11ty-docs-template",
+  "version": "1.0.0",
+  "description": "A minimal Bridgetown template for a documentation site using Tailwind CSS.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "eleventy --serve --port 8084 & npx tailwindcss -i src/assets/css/index.css -c tailwind.config.js -o _site/index.css --watch",
+    "build": "ELEVENTY_PRODUCTION=true eleventy && NODE_ENV=production npx tailwindcss -i src/assets/css/index.css -c tailwind.config.js -o _site/index.css --minify",
+    "serve": "http-server -a 0.0.0.0 -p 8089 _site --cors -d false",
+    "format": "npx prettier --write **/*.md",
+    "watch:format": "onchange --await-write-finish 5 '**/*.md' '**/*.njk' -e '**/_site' -- prettier --write './{{file}}'"
+  },
+  "author": "Spinal CMS Developers",
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^1.0.2",
+    "@11ty/eleventy-img": "^3.1.0",
+    "@tailwindcss/typography": "^0.5.7",
+    "http-server": "*"
+  },
+  "devDependencies": {
+
+    "onchange": "^7.1.0",
+    "prettier-plugin-jinja-template": "^0.5.0",
+    "tailwindcss": "^3.1.8"
+  }
+}

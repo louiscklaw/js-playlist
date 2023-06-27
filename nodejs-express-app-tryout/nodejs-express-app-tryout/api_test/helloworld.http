@@ -1,0 +1,31 @@
+GET http://localhost:3000/v1/docs HTTP/1.1
+
+###
+GET http://localhost:3000/v1/helloworld HTTP/1.1
+
+###
+GET http://localhost:3000/v1/admin/helloworld HTTP/1.1
+
+###
+POST http://localhost:3000/v1/helloworld HTTP/1.1
+content-type: application/json
+
+{
+  "name": "fake name",
+  "email": "fake1@example.com",
+  "password": "password1"
+}
+
+###
+PUT http://localhost:3000/v1/helloworld HTTP/1.1
+content-type: application/json
+
+{
+  "name": "fake name",
+  "email": "fake1@example.com",
+  "password": "password1"
+}
+
+###
+DELETE http://localhost:3000/v1/helloworld HTTP/1.1
+content-type: application/json
