@@ -1,0 +1,15 @@
+{
+  "name": "new_tryout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up",
+    "docker:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up",
+    "gitUpdate": "git add . && git commit -m\"update with-frontend-backend-tryout,\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,60 @@
+services:
+  node-app:
+    build: ./backend
+    image: node-app
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017/node-boilerplate
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/usr/src/node-app
+    networks:
+      - node-network
+
+  mongodb:
+    image: mongo:4.2.1-bionic
+    ports:
+      - 27017:27017
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - node-network
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=user
+    #   - MONGO_INITDB_ROOT_PASSWORD=password
+
+  frontend:
+    # NOTE: ./frontend contains source for frontend
+    build: ./frontend/app
+    volumes:
+      - frontend_node_modules:/app/node_modules
+      - ./frontend/app:/app
+    working_dir: /app
+    user: 1000:1000
+    ports:
+      - 3001:3000
+    command: ./entry.sh
+
+  documentation:
+    build: documentation
+    user: 1000:1000
+    ports:
+      - 8089:8089
+      - 8084:8084
+    volumes:
+      - ./documentation:/app
+      - documentation_node_modules:/app/node_modules
+    working_dir: /app
+    # command: sleep infinity
+    command: ./dev.sh
+
+volumes:
+  dbdata:
+  documentation_node_modules:
+  frontend_node_modules:
+
+networks:
+  node-network:
+    driver: bridge
