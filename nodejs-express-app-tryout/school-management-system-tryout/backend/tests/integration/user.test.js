@@ -272,42 +272,42 @@ describe('User routes', () => {
       expect(res.body.results[2].id).toBe(userTwo._id.toHexString());
     });
 
-  //   test('should correctly sort the returned array if multiple sorting criteria are specified', async () => {
-  //     await insertUsers([userOne, userTwo, admin]);
+    test('should correctly sort the returned array if multiple sorting criteria are specified', async () => {
+      await insertUsers([userOne, userTwo, admin]);
 
-  //     const res = await request(app)
-  //       .get('/v1/users')
-  //       .set('Authorization', `Bearer ${adminAccessToken}`)
-  //       .query({ sortBy: 'role:desc,name:asc' })
-  //       .send()
-  //       .expect(httpStatus.OK);
+      const res = await request(app)
+        .get('/v1/users')
+        .set('Authorization', `Bearer ${adminAccessToken}`)
+        .query({ sortBy: 'role:desc,name:asc' })
+        .send()
+        .expect(httpStatus.OK);
 
-  //     expect(res.body).toEqual({
-  //       results: expect.any(Array),
-  //       page: 1,
-  //       limit: 10,
-  //       totalPages: 1,
-  //       totalResults: 3,
-  //     });
-  //     expect(res.body.results).toHaveLength(3);
+      expect(res.body).toEqual({
+        results: expect.any(Array),
+        page: 1,
+        limit: 10,
+        totalPages: 1,
+        totalResults: 3,
+      });
+      expect(res.body.results).toHaveLength(3);
 
-  //     const expectedOrder = [userOne, userTwo, admin].sort((a, b) => {
-  //       if (a.role < b.role) {
-  //         return 1;
-  //       }
-  //       if (a.role > b.role) {
-  //         return -1;
-  //       }
-  //       return a.name < b.name ? -1 : 1;
-  //     });
+      const expectedOrder = [userOne, userTwo, admin].sort((a, b) => {
+        if (a.role < b.role) {
+          return 1;
+        }
+        if (a.role > b.role) {
+          return -1;
+        }
+        return a.name < b.name ? -1 : 1;
+      });
 
-  //     expectedOrder.forEach((user, index) => {
-  //       expect(res.body.results[index].id).toBe(user._id.toHexString());
-  //     });
-  });
+      expectedOrder.forEach((user, index) => {
+        expect(res.body.results[index].id).toBe(user._id.toHexString());
+      });
+    });
 
-  test('should limit returned array if limit param is specified', async () => {
-    await insertUsers([userOne, userTwo, admin]);
+    test('should limit returned array if limit param is specified', async () => {
+      await insertUsers([userOne, userTwo, admin]);
 
       const res = await request(app)
         .get('/v1/users')
@@ -328,27 +328,27 @@ describe('User routes', () => {
       expect(res.body.results[1].id).toBe(userTwo._id.toHexString());
     });
 
-  test('should return the correct page if page and limit params are specified', async () => {
-    await insertUsers([userOne, userTwo, admin]);
+    test('should return the correct page if page and limit params are specified', async () => {
+      await insertUsers([userOne, userTwo, admin]);
 
-    const res = await request(app)
-      .get('/v1/users')
-      .set('Authorization', `Bearer ${adminAccessToken}`)
-      .query({ page: 2, limit: 2 })
-      .send()
-      .expect(httpStatus.OK);
+      const res = await request(app)
+        .get('/v1/users')
+        .set('Authorization', `Bearer ${adminAccessToken}`)
+        .query({ page: 2, limit: 2 })
+        .send()
+        .expect(httpStatus.OK);
 
-    expect(res.body).toEqual({
-      results: expect.any(Array),
-      page: 2,
-      limit: 2,
-      totalPages: 2,
-      totalResults: 3,
+      expect(res.body).toEqual({
+        results: expect.any(Array),
+        page: 2,
+        limit: 2,
+        totalPages: 2,
+        totalResults: 3,
+      });
+      expect(res.body.results).toHaveLength(1);
+      expect(res.body.results[0].id).toBe(admin._id.toHexString());
     });
-    expect(res.body.results).toHaveLength(1);
-    expect(res.body.results[0].id).toBe(admin._id.toHexString());
   });
-  // });
 
   // describe('GET /v1/users/:userId', () => {
   //   test('should return 200 and the user object if data is ok', async () => {
