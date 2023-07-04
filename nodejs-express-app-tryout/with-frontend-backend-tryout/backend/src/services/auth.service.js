@@ -107,10 +107,24 @@ const verifyEmail = async (verifyEmailToken) => {
   }
 };
 
+const updateSelfBasicUserDetail = async (email, updateBody) => {
+  const user = await userService.getUserByEmail(email);
+
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+
+  Object.assign(user, updateBody);
+  await user.save();
+  return user;
+};
+
+
 module.exports = {
   loginUserWithEmailAndPassword,
   logout,
   refreshAuth,
   resetPassword,
   verifyEmail,
+  updateSelfBasicUserDetail
 };

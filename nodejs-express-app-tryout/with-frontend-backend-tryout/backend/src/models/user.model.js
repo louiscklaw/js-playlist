@@ -3,14 +3,12 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
+const { chargingPlan } = require('../config/chargingPlan');
 
 const userSchema = mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+    name: { type: String, required: true, trim: true, },
+    avatar: { type: String, required: true, trim: true, },
     email: {
       type: String,
       required: true,
@@ -35,19 +33,13 @@ const userSchema = mongoose.Schema(
       },
       private: true, // used by the toJSON plugin
     },
-    role: {
-      type: String,
-      enum: roles,
-      default: 'user',
-    },
-    isEmailVerified: {
-      type: Boolean,
-      default: false,
-    },
+    role: { type: String, enum: roles, default: 'user', },
+    contentInfoPublic: { type: String, default: 'yes', },
+    availableToHire: { type: String, default: 'yes', },
+    chargingPlan: { type: String, enum: chargingPlan, default: 'startup', },
+    isEmailVerified: { type: Boolean, default: false, },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true, }
 );
 
 // add plugin that converts mongoose to json

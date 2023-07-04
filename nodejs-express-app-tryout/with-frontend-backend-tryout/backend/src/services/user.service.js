@@ -47,6 +47,22 @@ const getUserByEmail = async (email) => {
 };
 
 /**
+ * Update user by email
+ */
+const updateUserByEmail = async (userEmail, updateBody) => {
+  const user = await getUserByEmail(userEmail);
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+  if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+  }
+  Object.assign(user, updateBody);
+  await user.save();
+  return user;
+};
+
+/**
  * Update user by id
  * @param {ObjectId} userId
  * @param {Object} updateBody
@@ -84,6 +100,6 @@ module.exports = {
   queryUsers,
   getUserById,
   getUserByEmail,
-  updateUserById,
+  updateUserById, updateUserByEmail,
   deleteUserById,
 };

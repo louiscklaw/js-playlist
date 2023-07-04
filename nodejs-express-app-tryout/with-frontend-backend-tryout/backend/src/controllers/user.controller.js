@@ -34,10 +34,21 @@ const deleteUser = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const updateUserBasicDetail = catchAsync(async (req, res) => {
+  const user = await userService.updateUserByEmail('demo@devias.io', req.body);
+  res.send(user);
+});
+
+const helloworld = catchAsync(async (req, res) => {
+  console.log('user.controller helloworld')
+  res.send({ hello: 'user.controller' });
+});
+
 module.exports = {
   createUser,
   getUsers,
   getUser,
   updateUser,
-  deleteUser,
+  deleteUser, updateUserBasicDetail,
+  helloworld
 };

@@ -6,6 +6,7 @@ const auth = require('../../middlewares/auth');
 
 const router = express.Router();
 
+// NOTE: under auth directive
 router.post('/register', validate(authValidation.register), authController.register);
 router.post('/login', validate(authValidation.login), authController.login);
 router.post('/logout', validate(authValidation.logout), authController.logout);
@@ -14,6 +15,8 @@ router.post('/forgot-password', validate(authValidation.forgotPassword), authCon
 router.post('/reset-password', validate(authValidation.resetPassword), authController.resetPassword);
 router.post('/send-verification-email', auth(), authController.sendVerificationEmail);
 router.post('/verify-email', validate(authValidation.verifyEmail), authController.verifyEmail);
+
+router.put('/basic-user-detail', authController.updateSelfBasicUserDetail);
 
 module.exports = router;
 
@@ -54,8 +57,9 @@ module.exports = router;
  *                 description: At least one number and one letter
  *             example:
  *               name: fake name
- *               email: fake@example.com
- *               password: password1
+ *               email: demo@devias.io
+ *               password: Password123!
+ *               avatar: avatar.jpg
  *     responses:
  *       "201":
  *         description: Created

@@ -47,6 +47,16 @@ const verifyEmail = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const updateSelfBasicUserDetail = catchAsync(async (req, res) => {
+  const user = req.body;
+  const email = user.email;
+
+  console.log({ user });
+  const updated_user = await authService.updateSelfBasicUserDetail(email, user);
+  res.send(updated_user);
+});
+
+
 module.exports = {
   register,
   login,
@@ -56,4 +66,5 @@ module.exports = {
   resetPassword,
   sendVerificationEmail,
   verifyEmail,
+  updateSelfBasicUserDetail,
 };

@@ -6,6 +6,8 @@ const userController = require('../../controllers/user.controller');
 
 const router = express.Router();
 
+
+// NOTE: under /users directive
 router
   .route('/')
   .post(auth('manageUsers'), validate(userValidation.createUser), userController.createUser)
@@ -16,6 +18,20 @@ router
   .get(auth('getUsers'), validate(userValidation.getUser), userController.getUser)
   .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
   .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
+
+router
+  .route('/basic_user_detail')
+  .put(userController.updateUserBasicDetail)
+// .put(auth('getUsers'), validate(userValidation.updateUserBasicDetail), userController.updateUserBasicDetail)
+// // .get(auth('getUsers'), validate(userValidation.getUser), userController.getUser)
+// // .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
+// // .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
+
+// NOTE: helloworld
+router
+  .route('/helloworld')
+  .get(userController.helloworld)
+  .put(userController.helloworld);
 
 module.exports = router;
 
