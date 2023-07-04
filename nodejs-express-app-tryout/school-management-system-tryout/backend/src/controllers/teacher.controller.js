@@ -71,7 +71,6 @@ const deleteTeacherById = catchAsync(async (req, res) => {
 });
 
 const helloworld = catchAsync(async (req, res) => {
-  console.log('teacher.controller helloworld')
   res.send({ hello: 'teacher.controller' });
 });
 

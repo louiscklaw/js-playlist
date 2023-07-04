@@ -67,7 +67,6 @@ const deleteAdminById = catchAsync(async (req, res) => {
 });
 
 const helloworld = catchAsync(async (req, res) => {
-  console.log('admin.controller helloworld')
   res.send({ hello: 'admin.controller' });
 });
 
