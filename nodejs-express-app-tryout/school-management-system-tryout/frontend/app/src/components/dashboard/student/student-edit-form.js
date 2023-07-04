@@ -375,7 +375,7 @@ export const StudentEditForm = props => {
             >
               {t('Update')}
             </LoadingButton>
-            <NextLink href="/dashboard/customers/1" passHref>
+            <NextLink href="/dashboard/students" passHref>
               <Button
                 component="a"
                 disabled={formik.isSubmitting}
