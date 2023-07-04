@@ -1,0 +1,41 @@
+// {
+//   title: 'mui-accordion',
+//   subtitle: '',
+//   image: '/static/browse/base-typography_${mode}.png',
+//   path: '/browse/mui-accordion',
+// },
+
+// {
+//   title: 'mui-container',
+//   subtitle: '',
+//   image: '/static/browse/base-typography_${mode}.png',
+//   path: '/browse/mui-container',
+// },
+
+// {
+//   title: 'mui-pagination',
+//   subtitle: '',
+//   image: '/static/browse/base-typography_${mode}.png',
+//   path: '/browse/mui-pagination',
+// },
+
+// {
+//   title: 'mui-stack',
+//   subtitle: '',
+//   image: '/static/browse/base-typography_${mode}.png',
+//   path: '/browse/mui-stack',
+// },
+
+// {
+//   title: 'mui-steppers',
+//   subtitle: '',
+//   image: '/static/browse/base-typography_${mode}.png',
+//   path: '/browse/mui-steppers',
+// },
+
+// {
+//   title: 'mui-switches',
+//   subtitle: '',
+//   image: '/static/browse/base-typography_${mode}.png',
+//   path: '/browse/mui-switches',
+// },

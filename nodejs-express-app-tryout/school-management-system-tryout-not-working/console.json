@@ -1,0 +1,67 @@
+{
+    "child": {
+        "child1": {
+            "directory": "\/workspace\/js-playlist\/nodejs-express-app-tryout\/school-management-system-tryout",
+            "height": 936,
+            "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+            "readOnly": false,
+            "synchronizedInput": true,
+            "type": "Terminal",
+            "uuid": "e6cd2de2-3e64-4a66-af0a-bbfc331e1df3",
+            "width": 634
+        },
+        "child2": {
+            "child1": {
+                "directory": "\/workspace\/js-playlist\/nodejs-express-app-tryout\/school-management-system-tryout\/backend",
+                "height": 936,
+                "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+                "readOnly": false,
+                "synchronizedInput": true,
+                "type": "Terminal",
+                "uuid": "d6aab6eb-f6a3-4ab0-90a9-0bc5b7048f6b",
+                "width": 571
+            },
+            "child2": {
+                "child1": {
+                    "directory": "\/workspace\/js-playlist\/nodejs-express-app-tryout\/school-management-system-tryout",
+                    "height": 464,
+                    "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+                    "readOnly": false,
+                    "synchronizedInput": true,
+                    "type": "Terminal",
+                    "uuid": "c7c30f26-51ee-40e5-99d9-8713f855d5e4",
+                    "width": 585
+                },
+                "child2": {
+                    "directory": "\/workspace\/js-playlist\/nodejs-express-app-tryout\/school-management-system-tryout",
+                    "height": 471,
+                    "profile": "2b7c4080-0ddd-46c5-8f23-563fd3ba789d",
+                    "readOnly": false,
+                    "synchronizedInput": true,
+                    "type": "Terminal",
+                    "uuid": "83a9ad9b-6304-4b0a-a397-6ac5f955c55e",
+                    "width": 585
+                },
+                "orientation": 1,
+                "position": 49,
+                "ratio": 0.495726495726495742,
+                "type": "Paned"
+            },
+            "orientation": 0,
+            "position": 31,
+            "ratio": 0.493517718236819336,
+            "type": "Paned"
+        },
+        "orientation": 0,
+        "position": 35,
+        "ratio": 0.353794642857142849,
+        "type": "Paned"
+    },
+    "height": 936,
+    "name": "${title}",
+    "synchronizedInput": false,
+    "type": "Session",
+    "uuid": "339684eb-b22a-4819-b4cf-9807e0d2e374",
+    "version": "1.0",
+    "width": 1792
+}
