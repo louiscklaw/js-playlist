@@ -1,4 +1,4 @@
-// BOOKMARK: Define the User schema
+// BOOKMARK: Student schema
 
 const mongoose = require('mongoose');
 const validator = require('validator');

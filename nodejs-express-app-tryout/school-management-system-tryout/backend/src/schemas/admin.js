@@ -1,4 +1,4 @@
-// BOOKMARK: Teacher schema
+// BOOKMARK: Admin schema
 
 const mongoose = require('mongoose');
 const validator = require('validator');
