@@ -103,7 +103,7 @@ const deleteUser = {
 
 const deleteTeacher = {
   params: Joi.object().keys({
-    studentId: Joi.string().custom(objectId),
+    teacherId: Joi.string().custom(objectId),
   }),
 };
 module.exports = {

@@ -35,7 +35,6 @@ import { LoadingButton } from '@mui/lab';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 
-import { studentApi } from 'src/api/student-api';
 import { teacherApi } from 'src/api/teacher-api';
 
 export const TeacherEditForm = props => {
@@ -119,11 +118,11 @@ export const TeacherEditForm = props => {
     p: 4,
   };
 
-  const handleDeleteStudent = async () => {
-    await studentApi
-      .deleteStudentById(student.id)
+  const handleDeleteTeacher = async () => {
+    await teacherApi
+      .deleteTeacherById(teacher.id)
       .then(() => {
-        toast.success(t('Student deleted!'));
+        toast.success(t('Teacher deleted!'));
         handleClose();
         route.replace(`/dashboard/teachers`);
       })
@@ -189,7 +188,7 @@ export const TeacherEditForm = props => {
                     '&:hover': { backgroundColor: 'error.dark' },
                   }}
                   variant="contained"
-                  onClick={handleDeleteStudent}
+                  onClick={handleDeleteTeacher}
                   startIcon={<DeleteIcon />}
                 >
                   {t('Delete')}
@@ -409,5 +408,5 @@ export const TeacherEditForm = props => {
 };
 
 TeacherEditForm.propTypes = {
-  customer: PropTypes.object.isRequired,
+  teacher: PropTypes.object.isRequired,
 };

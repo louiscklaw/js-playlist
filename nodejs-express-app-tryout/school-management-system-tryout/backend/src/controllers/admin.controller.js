@@ -62,7 +62,7 @@ const updateStudentById = catchAsync(async (req, res) => {
 });
 
 const deleteAdminById = catchAsync(async (req, res) => {
-  await adminService.deleteAdminById(req.params.studentId);
+  await adminService.deleteAdminById(req.params.adminId);
   res.status(httpStatus.NO_CONTENT).send();
 });
 

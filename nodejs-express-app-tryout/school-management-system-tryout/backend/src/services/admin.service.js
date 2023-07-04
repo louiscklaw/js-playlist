@@ -146,6 +146,8 @@ const deleteTeacherById = async (studentId) => {
  */
 const deleteAdminById = async (adminId) => {
   const admin = await getAdminById(adminId);
+  console.log({ admin, adminId });
+
   if (!admin) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Admin not found');
   }

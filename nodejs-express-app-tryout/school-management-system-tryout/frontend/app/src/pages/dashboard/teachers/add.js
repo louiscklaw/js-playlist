@@ -86,7 +86,7 @@ const TeacherAdd = () => {
             </div>
           </Box>
           <Box mt={3}>
-            <TeacherAddForm student={student} />
+            <TeacherAddForm teacher={student} />
           </Box>
         </Container>
       </Box>

@@ -13,6 +13,8 @@ import SaveIcon from '@mui/icons-material/Save';
 
 import * as Yup from 'yup';
 
+import { teacherApi } from 'src/api/teacher-api';
+
 import {
   Avatar,
   Box,
@@ -41,18 +43,18 @@ export const TeacherAddForm = props => {
   const { t } = useTranslation();
   const route = useRouter();
 
-  const { student, ...other } = props;
+  const { teacher, ...other } = props;
   const formik = useFormik({
     initialValues: {
-      address1: student.address1 || '',
-      address2: student.address2 || '',
-      country: student.country || '',
-      email: student.email || '',
-      hasDiscount: student.hasDiscount || false,
-      isVerified: student.isVerified || false,
-      name: student.name || '',
-      phone: student.phone || '',
-      state: student.state || '',
+      address1: teacher.address1 || '',
+      address2: teacher.address2 || '',
+      country: teacher.country || '',
+      email: teacher.email || '',
+      hasDiscount: teacher.hasDiscount || false,
+      isVerified: teacher.isVerified || false,
+      name: teacher.name || '',
+      phone: teacher.phone || '',
+      state: teacher.state || '',
       role: 'user',
       password: '',
       submit: null,
@@ -82,6 +84,7 @@ export const TeacherAddForm = props => {
         ),
     }),
     onSubmit: async (values, helpers) => {
+
       // backend/src/validations/student.validation.js
       const payload = {
         email: values.email,
@@ -97,15 +100,16 @@ export const TeacherAddForm = props => {
         role: 'user',
       };
 
-      await studentApi
-        .addStudent(payload)
+      await teacherApi
+        .addTeacher(payload)
         .then(response => {
+
           helpers.setStatus({ success: true });
           helpers.setSubmitting(false);
 
-          route.replace('/dashboard/students');
-
           toast.success(t('Student added!'));
+          route.replace('/dashboard/teachers');
+
         })
         .catch(err => {
           helpers.setStatus({ success: false });
@@ -331,5 +335,5 @@ export const TeacherAddForm = props => {
 };
 
 TeacherAddForm.propTypes = {
-  student: PropTypes.object.isRequired,
+  teacher: PropTypes.object.isRequired,
 };

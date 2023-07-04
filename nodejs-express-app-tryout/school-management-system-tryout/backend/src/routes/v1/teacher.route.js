@@ -18,15 +18,15 @@ router
 
 router
   .route('/')
-  .get(validate(teacherValidation.getTeachers), teacherController.getTeachers);
-  // .post(validate(teacherValidation.createTeacher), teacherController.createTeacher);
+  .get(validate(teacherValidation.getTeachers), teacherController.getTeachers)
+  .post(validate(teacherValidation.createTeacher), teacherController.createTeacher);
 
 //
 router
   .route('/:teacherId')
   .get(validate(teacherValidation.getTeacher), teacherController.getTeacherById)
   .patch(validate(teacherValidation.updateTeacher), teacherController.updateTeacherById)
-//   .delete(validate(teacherValidation.deleteTeacher), teacherController.deleteTeacherById);
+  .delete(validate(teacherValidation.deleteTeacher), teacherController.deleteTeacherById);
 
 
 module.exports = router;

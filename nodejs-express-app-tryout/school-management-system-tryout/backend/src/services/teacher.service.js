@@ -121,14 +121,15 @@ const updateTeacherById = async (teacherId, updateBody) => {
   return teacher;
 };
 
-// deleteTeacherById
-const deleteTeacherById = async (studentId) => {
-  const student = await getTeacherById(studentId);
-  if (!student) {
+const deleteTeacherById = async (teacherId) => {
+  console.log({ teacherId });
+
+  const teacher = await getTeacherById(teacherId);
+  if (!teacher) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Teacher not found');
   }
-  await student.remove();
-  return student;
+  await teacher.remove();
+  return teacher;
 };
 
 

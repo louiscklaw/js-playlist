@@ -29,9 +29,9 @@ const getTeachers = catchAsync(async (req, res) => {
 
 });
 
-const createStudent = catchAsync(async (req, res) => {
-  const student = await teacherService.createStudent(req.body);
-  res.status(httpStatus.CREATED).send(student);
+const createTeacher = catchAsync(async (req, res) => {
+  const teacher = await teacherService.createTeacher(req.body);
+  res.status(httpStatus.CREATED).send(teacher);
 });
 
 const getTeacherById = catchAsync(async (req, res) => {
@@ -65,8 +65,8 @@ const updateTeacherById = catchAsync(async (req, res) => {
   // res.send({ hello: "world" });
 });
 
-const deleteStudentById = catchAsync(async (req, res) => {
-  await teacherService.deleteStudentById(req.params.studentId);
+const deleteTeacherById = catchAsync(async (req, res) => {
+  await teacherService.deleteTeacherById(req.params.teacherId);
   res.status(httpStatus.NO_CONTENT).send();
 });
 
@@ -79,8 +79,8 @@ module.exports = {
   getStudents,
   getTeacherById,
   updateStudentById,
-  deleteStudentById,
-  createStudent,
-  getTeachers, updateTeacherById,
+  deleteTeacherById,
+  createStudent: createTeacher,
+  getTeachers, updateTeacherById, createTeacher,
   helloworld
 };

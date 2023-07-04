@@ -45,11 +45,11 @@ content-type: application/json
 }
 
 ###
-# http://localhost:3001/dashboard/teachers/64a402b3ec101a8ca834216d/edit
-GET {{baseUrl}}/teachers/64a402b3ec101a8ca834216d
+# http://localhost:3001/dashboard/teachers/64a45b69d5544232d345b96d/edit
+GET {{baseUrl}}/teachers/64a45b69d5544232d345b96d
 
 ###
-PATCH {{baseUrl}}/teachers/64a402b3ec101a8ca834216d
+PATCH {{baseUrl}}/teachers/64a45b69d5544232d345b96d
 content-type: application/json
 
 {
@@ -58,7 +58,7 @@ content-type: application/json
 }
 
 ###
-DELETE {{baseUrl}}/teachers/64a402b3ec101a8ca834216d
+DELETE {{baseUrl}}/teachers/64a45b69d5544232d345b96d
 
 ###
 POST {{baseUrl}}/teachers
