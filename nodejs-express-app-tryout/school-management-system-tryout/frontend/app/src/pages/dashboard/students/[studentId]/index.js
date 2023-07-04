@@ -133,7 +133,7 @@ const CustomerDetails = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <Typography variant="subtitle2">user_id:</Typography>
+                    <Typography variant="subtitle2">student_id:</Typography>
                     <Chip label={customer.id} size="small" sx={{ ml: 1 }} />
                   </Box>
                 </div>
