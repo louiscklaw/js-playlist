@@ -48,7 +48,6 @@ const TeacherEdit = () => {
   useEffect(
     () => {
       getStudent();
-      setStudent('blablabla');
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],

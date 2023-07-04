@@ -2,31 +2,29 @@ import PropTypes, { exact } from 'prop-types';
 import { List, ListSubheader } from '@mui/material';
 import { DashboardSidebarItem } from './dashboard-sidebar-item';
 
-
-const renderNavItems = ({ depth = 0, items, path, }) => {
-
+const renderNavItems = ({ depth = 0, items, path }) => {
   return (
     <List disablePadding>
       {items.reduce(
-        (acc, item) => reduceChildRoutes({
-          acc,
-          depth,
-          item,
-          path,
-          matching: item.matching
-        }),
+        (acc, item) =>
+          reduceChildRoutes({
+            acc,
+            depth,
+            item,
+            path,
+            matching: item.matching,
+          }),
         [],
       )}
     </List>
   );
-}
+};
 
 const reduceChildRoutes = ({ acc, depth, item, path, matching }) => {
   const key = `${item.title}-${depth}`;
 
   const exactMatch = path.split('?')[0] === item.path; // We don't compare query params
   var matched = exactMatch;
-
 
   if (matching == 'partial') {
     const partialMatch = item.path ? path.includes(item.path) : false;
