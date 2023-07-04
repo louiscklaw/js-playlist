@@ -45,11 +45,11 @@ content-type: application/json
 }
 
 ###
-# http://localhost:3001/dashboard/students/64a1b9114c772f02b3c3528c/edit
-GET {{baseUrl}}/students/64a1b9114c772f02b3c3528c
+# http://localhost:3001/dashboard/students/64a3ec37b3f8c819f3780473/edit
+GET {{baseUrl}}/students/64a3ec37b3f8c819f3780473
 
 ###
-PATCH {{baseUrl}}/students/64a185f5cb53df6d1b698b7f
+PATCH {{baseUrl}}/students/64a3ec37b3f8c819f3780473
 content-type: application/json
 
 {
@@ -59,7 +59,7 @@ content-type: application/json
 }
 
 ###
-DELETE {{baseUrl}}/students/64a185f5cb53df6d1b698b7f
+DELETE {{baseUrl}}/students/64a3ec37b3f8c819f3780473
 
 ###
 POST {{baseUrl}}/students
