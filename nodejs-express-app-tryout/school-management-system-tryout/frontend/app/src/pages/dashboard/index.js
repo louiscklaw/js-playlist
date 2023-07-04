@@ -170,9 +170,7 @@ const Overview = () => {
             <Grid item md={6} xs={12}>
               <Card>
                 <CardContent>
-                  <Box
-                    sx={{ alignItems: 'center', display: 'flex', }}
-                  >
+                  <Box sx={{ alignItems: 'center', display: 'flex' }}>
                     <InformationCircleOutlinedIcon color="primary" />
                     <Typography
                       color="primary.main"
@@ -205,9 +203,7 @@ const Overview = () => {
             <Grid item md={6} xs={12}>
               <Card>
                 <CardContent>
-                  <Box
-                    sx={{ alignItems: 'center', display: 'flex', }}
-                  >
+                  <Box sx={{ alignItems: 'center', display: 'flex' }}>
                     <DownloadIcon color="primary" />
                     <Typography
                       color="primary.main"
@@ -241,16 +237,14 @@ const Overview = () => {
             <Grid item md={6} xs={12}>
               <Card>
                 <CardContent>
-                  <Box
-                    sx={{ alignItems: 'center', display: 'flex', }}
-                  >
+                  <Box sx={{ alignItems: 'center', display: 'flex' }}>
                     <UsersIcon color="primary" />
                     <Typography
                       color="primary.main"
                       sx={{ pl: 1 }}
                       variant="subtitle2"
                     >
-                      {t("Contacts")}
+                      {t('Contacts')}
                     </Typography>
                   </Box>
                   <Typography sx={{ mt: 2 }} variant="h6">

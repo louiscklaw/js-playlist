@@ -40,41 +40,22 @@ import { Scrollbar } from '../../scrollbar';
 import { DashboardSidebarSection } from '../dashboard-sidebar-section';
 import { OrganizationPopover } from '../organization-popover';
 
+// bookmark: sidebar, config
 const getSections = t => [
   {
     title: t('General'),
     items: [
-      {
-        title: t('Overview'),
-        path: '/dashboard',
-        icon: <HomeIcon fontSize="small" />,
-      },
       {
         title: t('Analytics'),
         path: '/dashboard/analytics',
         icon: <ChartBarIcon fontSize="small" />,
       },
       {
-        title: t('Finance'),
-        path: '/dashboard/finance',
-        icon: <ChartPieIcon fontSize="small" />,
+        title: t('Overview'),
+        path: '/dashboard',
+        icon: <HomeIcon fontSize="small" />,
       },
-      {
-        title: t('Logistics'),
-        path: '/dashboard/logistics',
-        icon: <TruckIcon fontSize="small" />,
-        chip: (
-          <Chip
-            color="secondary"
-            label={
-              <Typography sx={{ fontSize: '10px', fontWeight: '600' }}>
-                NEW
-              </Typography>
-            }
-            size="small"
-          />
-        ),
-      },
+
       {
         title: t('Account'),
         path: '/dashboard/account',
@@ -100,85 +81,76 @@ const getSections = t => [
         path: '/dashboard/admins',
         icon: <UsersIcon fontSize="small" />,
       },
-      {
-        title: t('Customers'),
-        path: '/dashboard/customers',
-        icon: <UsersIcon fontSize="small" />,
-        children: [
-          { title: t('List'), path: '/dashboard/customers' },
-          { title: t('Details'), path: '/dashboard/customers/1' },
-          { title: t('Edit'), path: '/dashboard/customers/1/edit' },
-        ],
-      },
+
       {
         title: t('Subjects'),
         path: '/dashboard/subjects',
         icon: <UsersIcon fontSize="small" />,
-        children: [
-          { title: t('List'), path: '/dashboard/subjects' },
-          { title: t('Details'), path: '/dashboard/subjects/1' },
-          { title: t('Edit'), path: '/dashboard/subjects/1/edit' },
-        ],
+        // children: [
+        //   { title: t('List'), path: '/dashboard/subjects' },
+        //   { title: t('Details'), path: '/dashboard/subjects/1' },
+        //   { title: t('Edit'), path: '/dashboard/subjects/1/edit' },
+        // ],
       },
       {
         title: t('Schedules'),
         path: '/dashboard/schedules',
         icon: <UsersIcon fontSize="small" />,
-        children: [
-          { title: t('List'), path: '/dashboard/schedules' },
-          { title: t('Details'), path: '/dashboard/schedules/1' },
-          { title: t('Edit'), path: '/dashboard/schedules/1/edit' },
-        ],
+        // children: [
+        //   { title: t('List'), path: '/dashboard/schedules' },
+        //   { title: t('Details'), path: '/dashboard/schedules/1' },
+        //   { title: t('Edit'), path: '/dashboard/schedules/1/edit' },
+        // ],
       },
       {
         title: t('Classrooms'),
         path: '/dashboard/classrooms',
         icon: <UsersIcon fontSize="small" />,
-        children: [
-          { title: t('List'), path: '/dashboard/classrooms' },
-          { title: t('Details'), path: '/dashboard/classrooms/1' },
-          { title: t('Edit'), path: '/dashboard/classrooms/1/edit' },
-        ],
+        // children: [
+        //   { title: t('List'), path: '/dashboard/classrooms' },
+        //   { title: t('Details'), path: '/dashboard/classrooms/1' },
+        //   { title: t('Edit'), path: '/dashboard/classrooms/1/edit' },
+        // ],
       },
       {
         title: t('Attendances'),
         path: '/dashboard/attendances',
         icon: <UsersIcon fontSize="small" />,
-        children: [
-          { title: t('List'), path: '/dashboard/attendances' },
-          { title: t('Details'), path: '/dashboard/attendances/1' },
-          { title: t('Edit'), path: '/dashboard/attendances/1/edit' },
-        ],
+        // children: [
+        //   { title: t('List'), path: '/dashboard/attendances' },
+        //   { title: t('Details'), path: '/dashboard/attendances/1' },
+        //   { title: t('Edit'), path: '/dashboard/attendances/1/edit' },
+        // ],
       },
       {
         title: t('Exams'),
         path: '/dashboard/exams',
         icon: <UsersIcon fontSize="small" />,
-        children: [
-          { title: t('List'), path: '/dashboard/exams' },
-          { title: t('Details'), path: '/dashboard/exams/1' },
-          { title: t('Edit'), path: '/dashboard/exams/1/edit' },
-        ],
+        // children: [
+        //   { title: t('List'), path: '/dashboard/exams' },
+        //   { title: t('Details'), path: '/dashboard/exams/1' },
+        //   { title: t('Edit'), path: '/dashboard/exams/1/edit' },
+        // ],
       },
       {
         title: t('ExamResults'),
         path: '/dashboard/exam_results',
         icon: <UsersIcon fontSize="small" />,
-        children: [
-          { title: t('List'), path: '/dashboard/exam_results' },
-          { title: t('Details'), path: '/dashboard/exam_results/1' },
-          { title: t('Edit'), path: '/dashboard/exam_results/1/edit' },
-        ],
+        // children: [
+        //   { title: t('List'), path: '/dashboard/exam_results' },
+        //   { title: t('Details'), path: '/dashboard/exam_results/1' },
+        //   { title: t('Edit'), path: '/dashboard/exam_results/1/edit' },
+        // ],
       },
       {
         title: t('Payment Infos'),
         path: '/dashboard/payment_infos',
         icon: <UsersIcon fontSize="small" />,
-        children: [
-          { title: t('List'), path: '/dashboard/payment_infos' },
-          { title: t('Details'), path: '/dashboard/payment_infos/1' },
-          { title: t('Edit'), path: '/dashboard/payment_infos/1/edit' },
-        ],
+        // children: [
+        //   { title: t('List'), path: '/dashboard/payment_infos' },
+        //   { title: t('Details'), path: '/dashboard/payment_infos/1' },
+        //   { title: t('Edit'), path: '/dashboard/payment_infos/1/edit' },
+        // ],
       },
       {
         title: t('Products'),
@@ -205,6 +177,16 @@ const getSections = t => [
         children: [
           { title: t('List'), path: '/dashboard/invoices' },
           { title: t('Details'), path: '/dashboard/invoices/1' },
+        ],
+      },
+      {
+        title: t('Customers'),
+        path: '/dashboard/customers',
+        icon: <UsersIcon fontSize="small" />,
+        children: [
+          { title: t('List'), path: '/dashboard/customers' },
+          { title: t('Details'), path: '/dashboard/customers/1' },
+          { title: t('Edit'), path: '/dashboard/customers/1/edit' },
         ],
       },
     ],
@@ -311,6 +293,28 @@ const getSections = t => [
           { title: '500', path: '/500' },
         ],
       },
+
+      {
+        title: t('Finance'),
+        path: '/dashboard/finance',
+        icon: <ChartPieIcon fontSize="small" />,
+      },
+      {
+        title: t('Logistics'),
+        path: '/dashboard/logistics',
+        icon: <TruckIcon fontSize="small" />,
+        chip: (
+          <Chip
+            color="secondary"
+            label={
+              <Typography sx={{ fontSize: '10px', fontWeight: '600' }}>
+                NEW
+              </Typography>
+            }
+            size="small"
+          />
+        ),
+      },
     ],
   },
 ];
@@ -377,9 +381,8 @@ export const DashboardSidebar = props => {
                   <Logo sx={{ height: 42, width: 42 }} />
                 </a>
               </NextLink>
-              <Box sx={{ mt: 1 }}>School management system</Box>
             </Box>
-            <Box sx={{ px: 2 }} style={{ display: 'none' }}>
+            <Box sx={{ px: 2 }} >
               <Box
                 onClick={handleOpenOrganizationsPopover}
                 ref={organizationsRef}
@@ -399,7 +402,7 @@ export const DashboardSidebar = props => {
                     Acme Inc
                   </Typography>
                   <Typography color="neutral.400" variant="body2">
-                    {t('Your tier')} : Premium
+                    {t('Your tier')} : {t('Premium')}
                   </Typography>
                 </div>
                 <SelectorIcon

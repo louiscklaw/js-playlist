@@ -36,7 +36,8 @@ export const SplashScreen = () => (
       <img
         width="100px"
         height="100px"
-        src="https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-github-1.png" />
+        src="https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-github-1.png"
+      />
     </Box>
     <Box sx={{ mt: 4 }}>louislabs dashboard demo loading...</Box>
   </Box>

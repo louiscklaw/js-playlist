@@ -29,7 +29,7 @@ export const HomeHero = props => {
           Introducing
         </Typography>
         <Typography align="center" variant="h1">
-          Material Kit Pro v5.1
+          消費券用喺Carousell，精打細算慳一筆！
         </Typography>
         <Typography
           align="center"
@@ -37,9 +37,16 @@ export const HomeHero = props => {
           variant="subtitle1"
           sx={{ py: 3 }}
         >
-          A professional kit that comes with ready-to-use MUI© components
-          developed with one common goal in mind, help you build faster &amp;
-          beautiful applications.
+          用最抵嘅價錢，買最啱嘅產品
+        </Typography>
+
+        <Typography
+          align="center"
+          color="textSecondary"
+          variant="subtitle1"
+          sx={{ py: 3 }}
+        >
+          7月16派消費券！諗緊點樣用消費券？嚟Carousell啦！無論你想買新嘢舊嘢、貴嘅平嘅，包括傢俬、時裝同玩具收藏等等我哋都應有盡有！唔好等喇，快啲㩒入去下面嘅精選類別睇睇啦！
         </Typography>
         <Box
           sx={{

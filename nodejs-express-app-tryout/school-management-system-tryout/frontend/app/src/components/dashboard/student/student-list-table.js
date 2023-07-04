@@ -29,8 +29,8 @@ import { useTranslation } from 'react-i18next';
 
 export const StudentListTable = props => {
   const {
-    customers,
-    customersCount,
+    students,
+    studentsCount,
     onPageChange,
     onRowsPerPageChange,
     page,
@@ -48,12 +48,12 @@ export const StudentListTable = props => {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [customers],
+    [students],
   );
 
   const handleSelectAllCustomers = event => {
     setSelectedCustomers(
-      event.target.checked ? customers.map(customer => customer.id) : [],
+      event.target.checked ? students.map(customer => customer.id) : [],
     );
   };
 
@@ -69,8 +69,8 @@ export const StudentListTable = props => {
 
   const enableBulkActions = selectedCustomers.length > 0;
   const selectedSomeCustomers =
-    selectedCustomers.length > 0 && selectedCustomers.length < customers.length;
-  const selectedAllCustomers = selectedCustomers.length === customers.length;
+    selectedCustomers.length > 0 && selectedCustomers.length < students.length;
+  const selectedAllCustomers = selectedCustomers.length === students.length;
 
   const studentId = '64a12f7d92da2661085fa445';
 
@@ -118,18 +118,16 @@ export const StudentListTable = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {customers.map(customer => {
-              const isCustomerSelected = selectedCustomers.includes(
-                customer.id,
-              );
+            {students.map(student => {
+              const isCustomerSelected = selectedCustomers.includes(student.id);
 
               return (
-                <TableRow hover key={customer.id} selected={isCustomerSelected}>
+                <TableRow hover key={student.id} selected={isCustomerSelected}>
                   <TableCell padding="checkbox">
                     <Checkbox
                       checked={isCustomerSelected}
                       onChange={event =>
-                        handleSelectOneCustomer(event, customer.id)
+                        handleSelectOneCustomer(event, student.id)
                       }
                       value={isCustomerSelected}
                     />
@@ -137,35 +135,35 @@ export const StudentListTable = props => {
                   <TableCell>
                     <Box sx={{ alignItems: 'center', display: 'flex' }}>
                       <Avatar
-                        src={customer.avatar}
+                        src={student.avatar}
                         sx={{ height: 42, width: 42 }}
                       >
-                        {getInitials(customer.name)}
+                        {getInitials(student.name)}
                       </Avatar>
                       <Box sx={{ ml: 1 }}>
                         <NextLink href="/dashboard/students/1" passHref>
                           <Link color="inherit" variant="subtitle2">
-                            {customer.name}
+                            {student.name}
                           </Link>
                         </NextLink>
                         <Typography color="textSecondary" variant="body2">
-                          {customer.email}
+                          {student.email}
                         </Typography>
                       </Box>
                     </Box>
                   </TableCell>
-                  <TableCell>{`${customer.city}, ${customer.state}, ${customer.country}`}</TableCell>
-                  <TableCell>{customer.totalOrders}</TableCell>
+                  <TableCell>{`${student.city}, ${student.state}, ${student.country}`}</TableCell>
+                  <TableCell>{student.totalOrders}</TableCell>
                   <TableCell>
                     <Typography color="success.main" variant="subtitle2">
-                      {numeral(customer.totalAmountSpent).format(
-                        `${customer.currency}0,0.00`,
+                      {numeral(student.totalAmountSpent).format(
+                        `${student.currency}0,0.00`,
                       )}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
                     <NextLink
-                      href={`/dashboard/students/${customer.id}/edit`}
+                      href={`/dashboard/students/${student.id}/edit`}
                       passHref
                     >
                       <IconButton component="a">
@@ -173,7 +171,7 @@ export const StudentListTable = props => {
                       </IconButton>
                     </NextLink>
                     <NextLink
-                      href={`/dashboard/students/${customer.id}`}
+                      href={`/dashboard/students/${student.id}`}
                       passHref
                     >
                       <IconButton component="a">
@@ -189,7 +187,7 @@ export const StudentListTable = props => {
       </Scrollbar>
       <TablePagination
         component="div"
-        count={customersCount}
+        count={studentsCount}
         onPageChange={onPageChange}
         onRowsPerPageChange={onRowsPerPageChange}
         page={page}

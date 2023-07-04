@@ -210,7 +210,7 @@ const StudentList = () => {
           <Box sx={{ mb: 4 }}>
             <Grid container justifyContent="space-between" spacing={3}>
               <Grid item>
-                <Typography variant="h4">Students</Typography>
+                <Typography variant="h4">{t('Students')}</Typography>
               </Grid>
 
               <Grid item>
@@ -304,8 +304,8 @@ const StudentList = () => {
             </Box>
 
             <StudentListTable
-              customers={paginatedStudents}
-              customersCount={filteredStudents.length}
+              students={paginatedStudents}
+              studentsCount={filteredStudents.length}
               onPageChange={handlePageChange}
               onRowsPerPageChange={handleRowsPerPageChange}
               rowsPerPage={rowsPerPage}

@@ -7,14 +7,15 @@ import { customerApi } from 'src/__fake-api__/customer-api';
 import { studentApi } from 'src/api/student-api';
 import { AuthGuard } from 'src/components/authentication/auth-guard';
 import { DashboardLayout } from 'src/components/dashboard/dashboard-layout';
-import { StudentEditForm } from 'src/components/dashboard/student/student-edit-form';
+// import { StudentEditForm } from 'src/components/dashboard/student/student-edit-form';
+import { TeacherEditForm } from 'src/components/dashboard/teacher/teacher-edit-form';
 import { useMounted } from 'src/hooks/use-mounted';
 import { gtm } from 'src/lib/gtm';
 import { getInitials } from 'src/utils/get-initials';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 
-const StudentEdit = () => {
+const TeacherEdit = () => {
   const router = useRouter();
   const isMounted = useMounted();
   const [student, setStudent] = useState(null);
@@ -73,36 +74,22 @@ const StudentEdit = () => {
       >
         <Container maxWidth="md">
           <Box sx={{ mb: 4 }}>
-            <NextLink href="/dashboard/students" passHref>
+            <NextLink href="/dashboard/teachers" passHref>
               <Link
                 color="textPrimary"
                 component="a"
-                sx={{
-                  alignItems: 'center',
-                  display: 'flex',
-                }}
+                sx={{ alignItems: 'center', display: 'flex' }}
               >
                 <ArrowBackIcon fontSize="small" sx={{ mr: 1 }} />
-                <Typography variant="subtitle2">{t('Students')}</Typography>
+                <Typography variant="subtitle2">{t('Teachers')}</Typography>
               </Link>
             </NextLink>
           </Box>
 
           <Box
-            sx={{
-              alignItems: 'center',
-              display: 'flex',
-              overflow: 'hidden',
-            }}
+            sx={{ alignItems: 'center', display: 'flex', overflow: 'hidden' }}
           >
-            <Avatar
-              src={student.avatar}
-              sx={{
-                height: 64,
-                mr: 2,
-                width: 64,
-              }}
-            >
+            <Avatar src={student.avatar} sx={{ height: 64, mr: 2, width: 64 }}>
               {getInitials(student.name)}
             </Avatar>
             <div>
@@ -125,7 +112,7 @@ const StudentEdit = () => {
           </Box>
 
           <Box mt={3}>
-            <StudentEditForm student={student} />
+            <TeacherEditForm student={student} />
           </Box>
         </Container>
       </Box>
@@ -133,10 +120,10 @@ const StudentEdit = () => {
   );
 };
 
-StudentEdit.getLayout = page => (
+TeacherEdit.getLayout = page => (
   <AuthGuard>
     <DashboardLayout>{page}</DashboardLayout>
   </AuthGuard>
 );
 
-export default StudentEdit;
+export default TeacherEdit;

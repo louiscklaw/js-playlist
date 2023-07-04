@@ -10,8 +10,10 @@ import { StudentAddForm } from 'src/components/dashboard/student/student-add-for
 import { useMounted } from 'src/hooks/use-mounted';
 import { gtm } from 'src/lib/gtm';
 import { getInitials } from 'src/utils/get-initials';
+import { useTranslation } from 'react-i18next';
 
 const StudentAdd = () => {
+  const { t } = useTranslation();
   const isMounted = useMounted();
   const [student, setStudent] = useState(null);
 
@@ -62,7 +64,7 @@ const StudentAdd = () => {
                 sx={{ alignItems: 'center', display: 'flex' }}
               >
                 <ArrowBackIcon fontSize="small" sx={{ mr: 1 }} />
-                <Typography variant="subtitle2">Students</Typography>
+                <Typography variant="subtitle2">{t('Students')}</Typography>
               </Link>
             </NextLink>
           </Box>

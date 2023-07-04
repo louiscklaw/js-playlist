@@ -3,15 +3,20 @@ import NextLink from 'next/link';
 import Head from 'next/head';
 import { Avatar, Box, Chip, Container, Link, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 import { studentApi } from 'src/api/student-api';
+
 import { AuthGuard } from 'src/components/authentication/auth-guard';
 import { DashboardLayout } from 'src/components/dashboard/dashboard-layout';
-import { StudentAddForm } from 'src/components/dashboard/student/student-add-form';
+import { AdminAddForm } from 'src/components/dashboard/admin/admin-add-form';
 import { useMounted } from 'src/hooks/use-mounted';
 import { gtm } from 'src/lib/gtm';
 import { getInitials } from 'src/utils/get-initials';
+import { useTranslation } from 'react-i18next';
 
-const StudentAdd = () => {
+const AdminAdd = () => {
+  const { t } = useTranslation();
+
   const isMounted = useMounted();
   const [student, setStudent] = useState(null);
 
@@ -59,14 +64,16 @@ const StudentAdd = () => {
       >
         <Container maxWidth="md">
           <Box sx={{ mb: 4 }}>
-            <NextLink href="/dashboard/students" passHref>
+            <NextLink href="/dashboard/admins" passHref>
               <Link
                 color="textPrimary"
                 component="a"
                 sx={{ alignItems: 'center', display: 'flex' }}
               >
                 <ArrowBackIcon fontSize="small" sx={{ mr: 1 }} />
-                <Typography variant="subtitle2">Students</Typography>
+                <Typography variant="subtitle2">
+                  {t('Administrators')}
+                </Typography>
               </Link>
             </NextLink>
           </Box>
@@ -83,7 +90,7 @@ const StudentAdd = () => {
             </div>
           </Box>
           <Box mt={3}>
-            <StudentAddForm student={student} />
+            <AdminAddForm student={student} />
           </Box>
         </Container>
       </Box>
@@ -91,10 +98,10 @@ const StudentAdd = () => {
   );
 };
 
-StudentAdd.getLayout = page => (
+AdminAdd.getLayout = page => (
   <AuthGuard>
     <DashboardLayout>{page}</DashboardLayout>
   </AuthGuard>
 );
 
-export default StudentAdd;
+export default AdminAdd;

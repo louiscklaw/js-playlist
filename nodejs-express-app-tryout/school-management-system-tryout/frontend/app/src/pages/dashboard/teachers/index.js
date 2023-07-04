@@ -1,7 +1,6 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
 import NextLink from 'next/link';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import Head from 'next/head';
 import {
   Box,
   Button,
@@ -15,19 +14,21 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import Head from 'next/head';
 
-import { AuthGuard } from '../../../components/authentication/auth-guard';
-import { DashboardLayout } from '../../../components/dashboard/dashboard-layout';
-import { StudentListTable } from '../../../components/dashboard/student/student-list-table';
-import { useMounted } from '../../../hooks/use-mounted';
+import { AuthGuard } from 'src/components/authentication/auth-guard';
+import { DashboardLayout } from 'src/components/dashboard/dashboard-layout';
+import { TeacherListTable } from 'src/components/dashboard/teacher/teacher-list-table';
+import { useMounted } from 'src/hooks/use-mounted';
 import { Download as DownloadIcon } from 'src/icons/download';
 import { Plus as PlusIcon } from 'src/icons/plus';
 import { Search as SearchIcon } from 'src/icons/search';
 import { Upload as UploadIcon } from 'src/icons/upload';
-import { gtm } from '../../../lib/gtm';
+import { gtm } from 'src/lib/gtm';
 
-import { studentApi } from 'src/api/student-api';
 import { useTranslation } from 'react-i18next';
+import { studentApi } from 'src/api/student-api';
+import { teacherApi } from 'src/api/teacher-api';
 
 const tabs = [
   { label: 'All', value: 'all' },
@@ -141,7 +142,7 @@ const StudentList = () => {
   const getStudents = useCallback(async () => {
     try {
       // const data = await customerApi.getStudents();
-      const data = await studentApi.getStudents();
+      const data = await teacherApi.getStudents();
 
       if (isMounted()) {
         setStudents(data.results);
@@ -210,7 +211,7 @@ const StudentList = () => {
           <Box sx={{ mb: 4 }}>
             <Grid container justifyContent="space-between" spacing={3}>
               <Grid item>
-                <Typography variant="h4">Students</Typography>
+                <Typography variant="h4">{t('Teachers')}</Typography>
               </Grid>
 
               <Grid item>
@@ -229,7 +230,7 @@ const StudentList = () => {
                     </Button>
                   </Grid>
                   <Grid item>
-                    <NextLink href="/dashboard/students/add" passHref>
+                    <NextLink href="/dashboard/teachers/add" passHref>
                       <Button
                         startIcon={<PlusIcon fontSize="small" />}
                         variant="contained"
@@ -303,9 +304,9 @@ const StudentList = () => {
               </TextField>
             </Box>
 
-            <StudentListTable
-              customers={paginatedStudents}
-              customersCount={filteredStudents.length}
+            <TeacherListTable
+              teachers={paginatedStudents}
+              teachersCount={filteredStudents.length}
               onPageChange={handlePageChange}
               onRowsPerPageChange={handleRowsPerPageChange}
               rowsPerPage={rowsPerPage}

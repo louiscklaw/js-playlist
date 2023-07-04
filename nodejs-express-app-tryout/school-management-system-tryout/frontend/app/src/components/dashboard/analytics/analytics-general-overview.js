@@ -507,7 +507,6 @@ export const AnalyticsGeneralOverview = () => {
         </Grid>
       </Grid>
 
-
       <Grid container spacing={4} sx={{ mt: 0.1 }}>
         <Grid item md={3} sm={6} xs={12}>
           <Card>
@@ -611,9 +610,7 @@ export const AnalyticsGeneralOverview = () => {
               <LineChart />
             </Box>
             <Divider />
-            <CardActions
-              sx={{ alignItems: 'center', display: 'flex', }}
-            >
+            <CardActions sx={{ alignItems: 'center', display: 'flex' }}>
               <Avatar
                 sx={{
                   backgroundColor: theme =>
@@ -658,9 +655,7 @@ export const AnalyticsGeneralOverview = () => {
               <BarChart />
             </Box>
             <Divider />
-            <CardActions
-              sx={{ alignItems: 'center', display: 'flex', }}
-            >
+            <CardActions sx={{ alignItems: 'center', display: 'flex' }}>
               <Avatar
                 sx={{
                   backgroundColor: theme =>
@@ -683,7 +678,6 @@ export const AnalyticsGeneralOverview = () => {
           </Card>
         </Grid>
       </Grid>
-
     </>
   );
 };

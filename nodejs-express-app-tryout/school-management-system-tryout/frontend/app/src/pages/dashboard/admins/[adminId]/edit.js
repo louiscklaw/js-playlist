@@ -7,7 +7,10 @@ import { customerApi } from 'src/__fake-api__/customer-api';
 import { studentApi } from 'src/api/student-api';
 import { AuthGuard } from 'src/components/authentication/auth-guard';
 import { DashboardLayout } from 'src/components/dashboard/dashboard-layout';
-import { StudentEditForm } from 'src/components/dashboard/student/student-edit-form';
+
+import { AdminEditForm } from 'src/components/dashboard/admin/admin-edit-form';
+// import { StudentEditForm } from 'src/components/dashboard/student/student-edit-form';
+
 import { useMounted } from 'src/hooks/use-mounted';
 import { gtm } from 'src/lib/gtm';
 import { getInitials } from 'src/utils/get-initials';
@@ -73,7 +76,7 @@ const StudentEdit = () => {
       >
         <Container maxWidth="md">
           <Box sx={{ mb: 4 }}>
-            <NextLink href="/dashboard/students" passHref>
+            <NextLink href="/dashboard/admins" passHref>
               <Link
                 color="textPrimary"
                 component="a"
@@ -83,7 +86,7 @@ const StudentEdit = () => {
                 }}
               >
                 <ArrowBackIcon fontSize="small" sx={{ mr: 1 }} />
-                <Typography variant="subtitle2">{t('Students')}</Typography>
+                <Typography variant="subtitle2">{t('Admins')}</Typography>
               </Link>
             </NextLink>
           </Box>
@@ -125,7 +128,7 @@ const StudentEdit = () => {
           </Box>
 
           <Box mt={3}>
-            <StudentEditForm student={student} />
+            <AdminEditForm student={student} />
           </Box>
         </Container>
       </Box>
