@@ -350,25 +350,25 @@ describe('User routes', () => {
     });
   });
 
-  // describe('GET /v1/users/:userId', () => {
-  //   test('should return 200 and the user object if data is ok', async () => {
-  //     await insertUsers([userOne]);
+  describe('GET /v1/users/:userId', () => {
+    test('should return 200 and the user object if data is ok', async () => {
+      await insertUsers([userOne]);
 
-  //     const res = await request(app)
-  //       .get(`/v1/users/${userOne._id}`)
-  //       .set('Authorization', `Bearer ${userOneAccessToken}`)
-  //       .send()
-  //       .expect(httpStatus.OK);
+      const res = await request(app)
+        .get(`/v1/users/${userOne._id}`)
+        .set('Authorization', `Bearer ${userOneAccessToken}`)
+        .send()
+        .expect(httpStatus.OK);
 
-  //     expect(res.body).not.toHaveProperty('password');
-  //     expect(res.body).toEqual({
-  //       id: userOne._id.toHexString(),
-  //       email: userOne.email,
-  //       name: userOne.name,
-  //       role: userOne.role,
-  //       isEmailVerified: userOne.isEmailVerified,
-  //     });
-  //   });
+      expect(res.body).not.toHaveProperty('password');
+      expect(res.body).toEqual({
+        id: userOne._id.toHexString(),
+        email: userOne.email,
+        name: userOne.name,
+        role: userOne.role,
+        isEmailVerified: userOne.isEmailVerified,
+      });
+    });
 
   //   test('should return 401 error if access token is missing', async () => {
   //     await insertUsers([userOne]);
@@ -415,7 +415,7 @@ describe('User routes', () => {
   //       .send()
   //       .expect(httpStatus.NOT_FOUND);
   //   });
-  // });
+  });
 
   describe('DELETE /v1/users/:userId', () => {
     test('should return 204 if data is ok', async () => {
