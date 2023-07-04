@@ -39,7 +39,7 @@ const reduceChildRoutes = ({ acc, depth, item, path }) => {
   } else {
     acc.push(
       <DashboardSidebarItem
-        active={exactMatch}
+        active={partialMatch}
         chip={item.chip}
         depth={depth}
         icon={item.icon}
