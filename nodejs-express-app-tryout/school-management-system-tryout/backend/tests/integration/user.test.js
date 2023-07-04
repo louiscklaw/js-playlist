@@ -167,42 +167,42 @@ describe('User routes', () => {
       });
     });
 
-  //   test('should return 401 if access token is missing', async () => {
-  //     await insertUsers([userOne, userTwo, admin]);
+    test('should return 401 if access token is missing', async () => {
+      await insertUsers([userOne, userTwo, admin]);
 
-  //     await request(app).get('/v1/users').send().expect(httpStatus.UNAUTHORIZED);
-  //   });
+      await request(app).get('/v1/users').send().expect(httpStatus.UNAUTHORIZED);
+    });
 
-  //   test('should return 403 if a non-admin is trying to access all users', async () => {
-  //     await insertUsers([userOne, userTwo, admin]);
+    test('should return 403 if a non-admin is trying to access all users', async () => {
+      await insertUsers([userOne, userTwo, admin]);
 
-  //     await request(app)
-  //       .get('/v1/users')
-  //       .set('Authorization', `Bearer ${userOneAccessToken}`)
-  //       .send()
-  //       .expect(httpStatus.FORBIDDEN);
-  //   });
+      await request(app)
+        .get('/v1/users')
+        .set('Authorization', `Bearer ${userOneAccessToken}`)
+        .send()
+        .expect(httpStatus.FORBIDDEN);
+    });
 
-  //   test('should correctly apply filter on name field', async () => {
-  //     await insertUsers([userOne, userTwo, admin]);
+    test('should correctly apply filter on name field', async () => {
+      await insertUsers([userOne, userTwo, admin]);
 
-  //     const res = await request(app)
-  //       .get('/v1/users')
-  //       .set('Authorization', `Bearer ${adminAccessToken}`)
-  //       .query({ name: userOne.name })
-  //       .send()
-  //       .expect(httpStatus.OK);
+      const res = await request(app)
+        .get('/v1/users')
+        .set('Authorization', `Bearer ${adminAccessToken}`)
+        .query({ name: userOne.name })
+        .send()
+        .expect(httpStatus.OK);
 
-  //     expect(res.body).toEqual({
-  //       results: expect.any(Array),
-  //       page: 1,
-  //       limit: 10,
-  //       totalPages: 1,
-  //       totalResults: 1,
-  //     });
-  //     expect(res.body.results).toHaveLength(1);
-  //     expect(res.body.results[0].id).toBe(userOne._id.toHexString());
-  //   });
+      expect(res.body).toEqual({
+        results: expect.any(Array),
+        page: 1,
+        limit: 10,
+        totalPages: 1,
+        totalResults: 1,
+      });
+      expect(res.body.results).toHaveLength(1);
+      expect(res.body.results[0].id).toBe(userOne._id.toHexString());
+    });
 
   //   test('should correctly apply filter on role field', async () => {
   //     await insertUsers([userOne, userTwo, admin]);
