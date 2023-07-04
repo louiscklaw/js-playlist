@@ -90,6 +90,7 @@ export const StudentEditForm = props => {
           helpers.setStatus({ success: true });
           helpers.setSubmitting(false);
           toast.success(t('Student updated!'));
+          route.replace('/dashboard/students');
         })
         .catch(err => {
           console.error(err);
