@@ -6,13 +6,14 @@ const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 
 const { studentService } = require('../services');
+const { adminService } = require('../services');
 
 const getAdmins = catchAsync(async (req, res) => {
-  console.log('student.controller.getAdmins helloworld');
+  console.log('admin.controller.getAdmins helloworld');
 
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await studentService.queryStudents(filter, options);
+  const result = await adminService.queryAdmins(filter, options);
   // res.send({ hello: 'student.controller.getAdmins' });
   res.send(result);
 
@@ -27,9 +28,19 @@ const getStudentById = catchAsync(async (req, res) => {
   const student = await studentService.getStudentById(req.params.studentId);
 
   if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+    throw new ApiError(httpStatus.NOT_FOUND, 'Admin not found');
   }
   res.send(student);
+});
+
+const getAdminById = catchAsync(async (req, res) => {
+  const admin = await adminService.getAdminById(req.params.adminId);
+
+
+  if (!admin) {
+    throw new ApiError(httpStatus.NOT_FOUND, `Admin not found ${req.params.adminId}`);
+  }
+  res.send(admin);
 });
 
 // const updateStudentById = catchAsync(async (req, res) => {
@@ -37,6 +48,12 @@ const getStudentById = catchAsync(async (req, res) => {
 //     req.params.studentId, req.body);
 //   res.send(student);
 // });
+
+const updateAdminById = catchAsync(async (req, res) => {
+  const admin = await adminService.updateAdminById(
+    req.params.adminId, req.body);
+  res.send(admin);
+});
 
 const updateStudentById = catchAsync(async (req, res) => {
   const student = await studentService.updateStudentById(
@@ -56,6 +73,6 @@ const helloworld = catchAsync(async (req, res) => {
 
 module.exports = {
   getAdmins,
-  getStudentById, updateStudentById, deleteStudentById, createStudent,
+  getStudentById, updateStudentById, deleteStudentById, createStudent, getAdminById, updateAdminById,
   helloworld
 };

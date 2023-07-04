@@ -45,21 +45,20 @@ content-type: application/json
 }
 
 ###
-# http://localhost:3001/dashboard/admins/64a1b9114c772f02b3c3528c/edit
-GET {{baseUrl}}/admins/64a1b9114c772f02b3c3528c
+# http://localhost:3001/dashboard/admins/64a43c7c6506c53cb5c11455/edit
+GET {{baseUrl}}/admins/64a43c7c6506c53cb5c11455
 
 ###
-PATCH {{baseUrl}}/admins/64a185f5cb53df6d1b698b7f
+PATCH {{baseUrl}}/admins/64a43c7c6506c53cb5c11455
 content-type: application/json
 
 {
   "email": "demo@devias.io",
-  "password": "Password123!",
   "name":"aaaaaabcde"
 }
 
 ###
-DELETE {{baseUrl}}/admins/64a185f5cb53df6d1b698b7f
+DELETE {{baseUrl}}/admins/64a43c7c6506c53cb5c11455
 
 ###
 POST {{baseUrl}}/admins

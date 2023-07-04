@@ -8,22 +8,26 @@ const adminController = require('../../controllers/admin.controller');
 const router = express.Router();
 
 // NOTE: under /admins directive
+// NOTE: helloworld
+router
+  .route('/helloworld')
+  .get(adminController.helloworld)
+  .put(adminController.helloworld)
+  .post(adminController.helloworld)
+  .delete(adminController.helloworld);
+
+
+router
+  .route('/:adminId')
+  .get(validate(adminValidation.getAdmin), adminController.getAdminById)
+  .patch(validate(adminValidation.updateAdmin), adminController.updateAdminById)
+//   .delete(validate(adminValidation.deleteAdmin), adminController.deleteAdminById);
+
+
 router
   .route('/')
   .get(validate(adminValidation.getAdmins), adminController.getAdmins)
   .post(validate(adminValidation.createStudent), adminController.createStudent)
-
-// NOTE: helloworld
-router
-  .route('/helloworld')
-  .get(adminController.helloworld);
-// .put(adminController.helloworld);
-
-// router
-//   .route('/:adminId')
-//   .get(validate(adminValidation.getStudent), adminController.getStudentById)
-//   .patch(validate(adminValidation.updateStudent), adminController.updateStudentById)
-//   .delete(validate(adminValidation.deleteStudent), adminController.deleteStudentById);
 
 
 module.exports = router;

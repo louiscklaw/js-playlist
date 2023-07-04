@@ -21,11 +21,11 @@ router
   .get(validate(teacherValidation.getTeachers), teacherController.getTeachers);
   // .post(validate(teacherValidation.createTeacher), teacherController.createTeacher);
 
-// validate(teacherValidation.updateTeacher),
+//
 router
   .route('/:teacherId')
   .get(validate(teacherValidation.getTeacher), teacherController.getTeacherById)
-  .patch(teacherController.updateTeacherById)
+  .patch(validate(teacherValidation.updateTeacher), teacherController.updateTeacherById)
 //   .delete(validate(teacherValidation.deleteTeacher), teacherController.deleteTeacherById);
 
 

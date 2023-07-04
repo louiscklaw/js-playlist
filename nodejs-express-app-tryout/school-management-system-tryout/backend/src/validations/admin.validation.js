@@ -1,4 +1,5 @@
 const Joi = require('joi');
+
 const { password, objectId } = require('./custom.validation');
 
 const createUser = {
@@ -52,6 +53,12 @@ const getUser = {
   }),
 };
 
+const getAdmin = {
+  params: Joi.object().keys({
+    adminId: Joi.string().custom(objectId),
+  }),
+};
+
 const getTeacher = {
   params: Joi.object().keys({
     studentId: Joi.string().custom(objectId),
@@ -67,6 +74,26 @@ const updateUser = {
       email: Joi.string().email(),
       password: Joi.string().custom(password),
       name: Joi.string(),
+    })
+    .min(1),
+};
+
+const updateAdmin = {
+  params: Joi.object().keys({
+    adminId: Joi.required().custom(objectId),
+  }),
+  body: Joi.object()
+    .keys({
+      email: Joi.string().email(),
+      // password: Joi.string().custom(password),
+      name: Joi.string(),
+      address1: Joi.string().allow(''),
+      address2: Joi.string().allow(''),
+      country: Joi.string().allow(''),
+      hasDiscount: Joi.boolean(),
+      isVerified: Joi.boolean(),
+      phone: Joi.string().allow(''),
+      state: Joi.string(),
     })
     .min(1),
 };
@@ -119,13 +146,13 @@ const deleteTeacher = {
 module.exports = {
   createUser,
   getUsers,
-  getAdmins,
+  getAdmins, getAdmin,
   getUser,
   updateUser,
   deleteUser,
   updateUserBasicDetail,
   getTeacher,
   updateTeacher,
-  deleteTeacher,
+  deleteTeacher, updateAdmin,
   createTeacher,
 };

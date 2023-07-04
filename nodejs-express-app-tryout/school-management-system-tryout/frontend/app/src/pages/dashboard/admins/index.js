@@ -142,7 +142,8 @@ const AdminList = () => {
   const getStudents = useCallback(async () => {
     try {
       // const data = await customerApi.getStudents();
-      const data = await adminApi.getStudents();
+      // const data = await adminApi.getStudents();
+      const data = await adminApi.getAdmins();
 
       if (isMounted()) {
         setStudents(data.results);

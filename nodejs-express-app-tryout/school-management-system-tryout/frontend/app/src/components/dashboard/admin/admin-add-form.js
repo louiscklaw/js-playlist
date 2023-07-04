@@ -121,7 +121,7 @@ export const AdminAddForm = props => {
     <>
       <form onSubmit={formik.handleSubmit} {...other}>
         <Card>
-          <CardHeader title={t('Edit administrators')} />
+          <CardHeader title={t('Add administrators')} />
           <Divider />
           <CardContent>
             <Grid container spacing={3}>

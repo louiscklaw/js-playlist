@@ -4,7 +4,10 @@ import Head from 'next/head';
 import { Avatar, Box, Chip, Container, Link, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { customerApi } from 'src/__fake-api__/customer-api';
+
 import { studentApi } from 'src/api/student-api';
+import { adminApi } from 'src/api/admin-api';
+
 import { AuthGuard } from 'src/components/authentication/auth-guard';
 import { DashboardLayout } from 'src/components/dashboard/dashboard-layout';
 
@@ -24,7 +27,7 @@ const StudentEdit = () => {
 
   const { t } = useTranslation();
 
-  const { studentId } = router.query;
+  const { adminId } = router.query;
 
   useEffect(() => {
     gtm.push({ event: 'page_view' });
@@ -32,8 +35,7 @@ const StudentEdit = () => {
 
   const getStudent = useCallback(async () => {
     try {
-      const data = await studentApi.getStudentById(studentId);
-      console.dir(data);
+      const data = await adminApi.getAdminById(adminId);
 
       if (isMounted()) {
         setStudent(data);
@@ -127,7 +129,7 @@ const StudentEdit = () => {
           </Box>
 
           <Box mt={3}>
-            <AdminEditForm student={student} />
+            <AdminEditForm admin={student} />
           </Box>
         </Container>
       </Box>

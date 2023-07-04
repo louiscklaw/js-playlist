@@ -34,25 +34,27 @@ import {
 import { LoadingButton } from '@mui/lab';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+
 import { studentApi } from 'src/api/student-api';
+import { adminApi } from 'src/api/admin-api';
 
 export const AdminEditForm = props => {
   const { t } = useTranslation();
   const route = useRouter();
 
-  const { student, ...other } = props;
+  const { admin, ...other } = props;
 
   const formik = useFormik({
     initialValues: {
-      address1: student.address1 || '',
-      address2: student.address2 || '',
-      country: student.country || '',
-      email: student.email || '',
-      hasDiscount: student.hasDiscount || false,
-      isVerified: student.isVerified || false,
-      name: student.name || '',
-      phone: student.phone || '',
-      state: student.state || '',
+      address1: admin.address1 || '',
+      address2: admin.address2 || '',
+      country: admin.country || '',
+      email: admin.email || '',
+      hasDiscount: admin.hasDiscount || false,
+      isVerified: admin.isVerified || false,
+      name: admin.name || '',
+      phone: admin.phone || '',
+      state: admin.state || '',
       submit: null,
     },
     validationSchema: Yup.object({
@@ -73,7 +75,7 @@ export const AdminEditForm = props => {
       // backend/src/validations/student.validation.js
       const payload = {
         email: values.email,
-        password: values.password,
+        // password: values.password,
         name: values.name,
         address1: values.address1,
         address2: values.address2,
@@ -84,12 +86,13 @@ export const AdminEditForm = props => {
         isVerified: values.isVerified,
       };
 
-      await studentApi
-        .updateStudentById(student.id, payload)
+      await adminApi
+        .updateAdminById(admin.id, payload)
         .then(response => {
           helpers.setStatus({ success: true });
           helpers.setSubmitting(false);
-          toast.success(t('Student updated!'));
+          toast.success(t('Admin updated!'));
+          route.replace('/dashboard/admins');
         })
         .catch(err => {
           console.error(err);
@@ -116,8 +119,8 @@ export const AdminEditForm = props => {
   };
 
   const handleDeleteStudent = async () => {
-    await studentApi
-      .deleteStudentById(student.id)
+    await adminApi
+      .deleteStudentById(admin.id)
       .then(() => {
         toast.success(t('Student deleted!'));
         handleClose();
@@ -375,7 +378,7 @@ export const AdminEditForm = props => {
             >
               {t('Update')}
             </LoadingButton>
-            <NextLink href="/dashboard/customers/1" passHref>
+            <NextLink href="/dashboard/admins" passHref>
               <Button
                 component="a"
                 disabled={formik.isSubmitting}
