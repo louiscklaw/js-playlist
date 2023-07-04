@@ -54,6 +54,7 @@ const getSections = t => [
         title: t('Overview'),
         path: '/dashboard',
         icon: <HomeIcon fontSize="small" />,
+        matching: "exact"
       },
 
       {
@@ -70,22 +71,26 @@ const getSections = t => [
         title: t('Students'),
         path: '/dashboard/students',
         icon: <UsersIcon fontSize="small" />,
+        matching: "partial"
       },
       {
         title: t('Teachers'),
         path: '/dashboard/teachers',
         icon: <UsersIcon fontSize="small" />,
+        matching: "partial"
       },
       {
         title: t('Admins'),
         path: '/dashboard/admins',
         icon: <UsersIcon fontSize="small" />,
+        matching: "partial"
       },
 
       {
         title: t('Subjects'),
         path: '/dashboard/subjects',
         icon: <UsersIcon fontSize="small" />,
+        matching: "partial"
         // children: [
         //   { title: t('List'), path: '/dashboard/subjects' },
         //   { title: t('Details'), path: '/dashboard/subjects/1' },
@@ -96,6 +101,7 @@ const getSections = t => [
         title: t('Schedules'),
         path: '/dashboard/schedules',
         icon: <UsersIcon fontSize="small" />,
+        matching: "partial"
         // children: [
         //   { title: t('List'), path: '/dashboard/schedules' },
         //   { title: t('Details'), path: '/dashboard/schedules/1' },
@@ -106,6 +112,7 @@ const getSections = t => [
         title: t('Classrooms'),
         path: '/dashboard/classrooms',
         icon: <UsersIcon fontSize="small" />,
+        matching: "partial"
         // children: [
         //   { title: t('List'), path: '/dashboard/classrooms' },
         //   { title: t('Details'), path: '/dashboard/classrooms/1' },
@@ -116,6 +123,7 @@ const getSections = t => [
         title: t('Attendances'),
         path: '/dashboard/attendances',
         icon: <UsersIcon fontSize="small" />,
+        matching: "partial"
         // children: [
         //   { title: t('List'), path: '/dashboard/attendances' },
         //   { title: t('Details'), path: '/dashboard/attendances/1' },
@@ -126,6 +134,7 @@ const getSections = t => [
         title: t('Exams'),
         path: '/dashboard/exams',
         icon: <UsersIcon fontSize="small" />,
+        matching: "partial"
         // children: [
         //   { title: t('List'), path: '/dashboard/exams' },
         //   { title: t('Details'), path: '/dashboard/exams/1' },
@@ -136,6 +145,7 @@ const getSections = t => [
         title: t('ExamResults'),
         path: '/dashboard/exam_results',
         icon: <UsersIcon fontSize="small" />,
+        matching: "partial"
         // children: [
         //   { title: t('List'), path: '/dashboard/exam_results' },
         //   { title: t('Details'), path: '/dashboard/exam_results/1' },
@@ -146,6 +156,7 @@ const getSections = t => [
         title: t('Payment Infos'),
         path: '/dashboard/payment_infos',
         icon: <UsersIcon fontSize="small" />,
+        matching: "partial"
         // children: [
         //   { title: t('List'), path: '/dashboard/payment_infos' },
         //   { title: t('Details'), path: '/dashboard/payment_infos/1' },

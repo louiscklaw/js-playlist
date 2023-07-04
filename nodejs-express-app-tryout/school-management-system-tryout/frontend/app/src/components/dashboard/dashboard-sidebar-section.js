@@ -1,31 +1,48 @@
-import PropTypes from 'prop-types';
+import PropTypes, { exact } from 'prop-types';
 import { List, ListSubheader } from '@mui/material';
 import { DashboardSidebarItem } from './dashboard-sidebar-item';
 
-const renderNavItems = ({ depth = 0, items, path }) => (
-  <List disablePadding>
-    {items.reduce(
-      (acc, item) => reduceChildRoutes({ acc, depth, item, path }),
-      [],
-    )}
-  </List>
-);
 
-const reduceChildRoutes = ({ acc, depth, item, path }) => {
+const renderNavItems = ({ depth = 0, items, path, }) => {
+
+  return (
+    <List disablePadding>
+      {items.reduce(
+        (acc, item) => reduceChildRoutes({
+          acc,
+          depth,
+          item,
+          path,
+          matching: item.matching
+        }),
+        [],
+      )}
+    </List>
+  );
+}
+
+const reduceChildRoutes = ({ acc, depth, item, path, matching }) => {
   const key = `${item.title}-${depth}`;
-  const partialMatch = item.path ? path.includes(item.path) : false;
+
   const exactMatch = path.split('?')[0] === item.path; // We don't compare query params
+  var matched = exactMatch;
+
+
+  if (matching == 'partial') {
+    const partialMatch = item.path ? path.includes(item.path) : false;
+    matched = partialMatch;
+  }
 
   if (item.children) {
     acc.push(
       <DashboardSidebarItem
-        active={partialMatch}
+        active={matched}
         chip={item.chip}
         depth={depth}
         icon={item.icon}
         info={item.info}
         key={key}
-        open={partialMatch}
+        open={matched}
         path={item.path}
         title={item.title}
       >
@@ -39,7 +56,7 @@ const reduceChildRoutes = ({ acc, depth, item, path }) => {
   } else {
     acc.push(
       <DashboardSidebarItem
-        active={partialMatch}
+        active={matched}
         chip={item.chip}
         depth={depth}
         icon={item.icon}
