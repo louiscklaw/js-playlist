@@ -14,6 +14,7 @@ import {
   Tabs,
   Typography,
 } from '@mui/material';
+
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { customerApi } from 'src/__fake-api__/customer-api';
 import { AuthGuard } from 'src/components/authentication/auth-guard';
@@ -30,7 +31,10 @@ import { PencilAlt as PencilAltIcon } from 'src/icons/pencil-alt';
 import { gtm } from 'src/lib/gtm';
 import { getInitials } from 'src/utils/get-initials';
 import { useTranslation } from 'react-i18next';
+import { adminApi } from 'src/api/admin-api';
+
 // import { getInitials } from '../../../../utils/get-initials';
+import { useRouter } from 'next/router';
 
 const tabs = [
   { label: 'Details', value: 'details' },
@@ -38,12 +42,15 @@ const tabs = [
   { label: 'Logs', value: 'logs' },
 ];
 
-const CustomerDetails = () => {
+const AdminDetails = () => {
+  const { t } = useTranslation();
+
   const isMounted = useMounted();
   const [customer, setCustomer] = useState(null);
   const [currentTab, setCurrentTab] = useState('details');
 
-  const { t } = useTranslation();
+  const router = useRouter();
+  const { adminId } = router.query;
 
   useEffect(() => {
     gtm.push({ event: 'page_view' });
@@ -51,7 +58,7 @@ const CustomerDetails = () => {
 
   const getCustomer = useCallback(async () => {
     try {
-      const data = await customerApi.getCustomer();
+      const data = await adminApi.getAdminById(adminId);
 
       if (isMounted()) {
         setCustomer(data);
@@ -82,27 +89,18 @@ const CustomerDetails = () => {
       <Head>
         <title>Dashboard: Customer Details | Material Kit Pro</title>
       </Head>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          py: 8,
-        }}
-      >
+      <Box component="main" sx={{ flexGrow: 1, py: 8 }}>
         <Container maxWidth="md">
           <div>
             <Box sx={{ mb: 4 }}>
-              <NextLink href="/dashboard/students" passHref>
+              <NextLink href="/dashboard/admins" passHref>
                 <Link
                   color="textPrimary"
                   component="a"
-                  sx={{
-                    alignItems: 'center',
-                    display: 'flex',
-                  }}
+                  sx={{ alignItems: 'center', display: 'flex' }}
                 >
                   <ArrowBackIcon fontSize="small" sx={{ mr: 1 }} />
-                  <Typography variant="subtitle2">Students</Typography>
+                  <Typography variant="subtitle2">{t('Admins')}</Typography>
                 </Link>
               </NextLink>
             </Box>
@@ -117,29 +115,23 @@ const CustomerDetails = () => {
               >
                 <Avatar
                   src={customer.avatar}
-                  sx={{
-                    height: 64,
-                    mr: 2,
-                    width: 64,
-                  }}
+                  sx={{ height: 64, mr: 2, width: 64 }}
                 >
                   {getInitials(customer.name)}
                 </Avatar>
                 <div>
                   <Typography variant="h4">{customer.email}</Typography>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                    }}
-                  >
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Typography variant="subtitle2">user_id:</Typography>
                     <Chip label={customer.id} size="small" sx={{ ml: 1 }} />
                   </Box>
                 </div>
               </Grid>
               <Grid item sx={{ m: -1 }}>
-                <NextLink href="/dashboard/students/1/edit" passHref>
+                <NextLink
+                  href={`/dashboard/admins/${customer.id}/edit`}
+                  passHref
+                >
                   <Button
                     component="a"
                     endIcon={<PencilAltIcon fontSize="small" />}
@@ -207,10 +199,10 @@ const CustomerDetails = () => {
   );
 };
 
-CustomerDetails.getLayout = page => (
+AdminDetails.getLayout = page => (
   <AuthGuard>
     <DashboardLayout>{page}</DashboardLayout>
   </AuthGuard>
 );
 
-export default CustomerDetails;
+export default AdminDetails;

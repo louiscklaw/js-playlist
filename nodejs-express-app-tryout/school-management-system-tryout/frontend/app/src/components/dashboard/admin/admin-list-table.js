@@ -118,16 +118,16 @@ export const AdminListTable = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {admins.map(student => {
-              const isCustomerSelected = selectedCustomers.includes(student.id);
+            {admins.map(admin => {
+              const isCustomerSelected = selectedCustomers.includes(admin.id);
 
               return (
-                <TableRow hover key={student.id} selected={isCustomerSelected}>
+                <TableRow hover key={admin.id} selected={isCustomerSelected}>
                   <TableCell padding="checkbox">
                     <Checkbox
                       checked={isCustomerSelected}
                       onChange={event =>
-                        handleSelectOneCustomer(event, student.id)
+                        handleSelectOneCustomer(event, admin.id)
                       }
                       value={isCustomerSelected}
                     />
@@ -135,42 +135,42 @@ export const AdminListTable = props => {
                   <TableCell>
                     <Box sx={{ alignItems: 'center', display: 'flex' }}>
                       <Avatar
-                        src={student.avatar}
+                        src={admin.avatar}
                         sx={{ height: 42, width: 42 }}
                       >
-                        {getInitials(student.name)}
+                        {getInitials(admin.name)}
                       </Avatar>
                       <Box sx={{ ml: 1 }}>
                         <NextLink href="/dashboard/students/1" passHref>
                           <Link color="inherit" variant="subtitle2">
-                            {student.name}
+                            {admin.name}
                           </Link>
                         </NextLink>
                         <Typography color="textSecondary" variant="body2">
-                          {student.email}
+                          {admin.email}
                         </Typography>
                       </Box>
                     </Box>
                   </TableCell>
-                  <TableCell>{`${student.city}, ${student.state}, ${student.country}`}</TableCell>
-                  <TableCell>{student.totalOrders}</TableCell>
+                  <TableCell>{`${admin.city}, ${admin.state}, ${admin.country}`}</TableCell>
+                  <TableCell>{admin.totalOrders}</TableCell>
                   <TableCell>
                     <Typography color="success.main" variant="subtitle2">
-                      {numeral(student.totalAmountSpent).format(
-                        `${student.currency}0,0.00`,
+                      {numeral(admin.totalAmountSpent).format(
+                        `${admin.currency}0,0.00`,
                       )}
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
                     <NextLink
-                      href={`/dashboard/admins/${student.id}/edit`}
+                      href={`/dashboard/admins/${admin.id}/edit`}
                       passHref
                     >
                       <IconButton component="a">
                         <PencilAltIcon fontSize="small" />
                       </IconButton>
                     </NextLink>
-                    <NextLink href={`/dashboard/admins/${student.id}`} passHref>
+                    <NextLink href={`/dashboard/admins/${admin.id}`} passHref>
                       <IconButton component="a">
                         <ArrowRightIcon fontSize="small" />
                       </IconButton>

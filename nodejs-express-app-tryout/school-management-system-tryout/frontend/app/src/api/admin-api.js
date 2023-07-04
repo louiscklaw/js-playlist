@@ -27,7 +27,7 @@ class AdminApi {
       });
   }
 
-  getStudents() {
+  getStudentsObsolete() {
     return axios.get(`${API}/students`).then(({ data }) => {
       return data;
     });

@@ -163,7 +163,7 @@ export const StudentListTable = props => {
                   </TableCell>
                   <TableCell align="right">
                     <NextLink
-                      href={`/dashboard/students/${student.id}/edit`}
+                      href={`/dashboard/admins/${student.id}/edit`}
                       passHref
                     >
                       <IconButton component="a">
@@ -171,7 +171,7 @@ export const StudentListTable = props => {
                       </IconButton>
                     </NextLink>
                     <NextLink
-                      href={`/dashboard/students/${student.id}`}
+                      href={`/dashboard/admins/${student.id}`}
                       passHref
                     >
                       <IconButton component="a">
