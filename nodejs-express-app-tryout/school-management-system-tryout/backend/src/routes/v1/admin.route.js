@@ -10,7 +10,7 @@ const router = express.Router();
 // NOTE: under /admins directive
 router
   .route('/')
-  .get(validate(adminValidation.getStudents), adminController.getStudents)
+  .get(validate(adminValidation.getAdmins), adminController.getAdmins)
   .post(validate(adminValidation.createStudent), adminController.createStudent)
 
 // NOTE: helloworld

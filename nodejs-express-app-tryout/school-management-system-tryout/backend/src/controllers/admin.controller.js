@@ -7,13 +7,13 @@ const catchAsync = require('../utils/catchAsync');
 
 const { studentService } = require('../services');
 
-const getStudents = catchAsync(async (req, res) => {
-  console.log('student.controller.getStudents helloworld');
+const getAdmins = catchAsync(async (req, res) => {
+  console.log('student.controller.getAdmins helloworld');
 
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await studentService.queryStudents(filter, options);
-  // res.send({ hello: 'student.controller.getStudents' });
+  // res.send({ hello: 'student.controller.getAdmins' });
   res.send(result);
 
 });
@@ -55,7 +55,7 @@ const helloworld = catchAsync(async (req, res) => {
 });
 
 module.exports = {
-  getStudents,
+  getAdmins,
   getStudentById, updateStudentById, deleteStudentById, createStudent,
   helloworld
 };
