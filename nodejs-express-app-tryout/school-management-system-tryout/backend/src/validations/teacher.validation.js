@@ -44,7 +44,7 @@ const getUser = {
 
 const getTeacher = {
   params: Joi.object().keys({
-    studentId: Joi.string().custom(objectId),
+    teacherId: Joi.string().custom(objectId),
   }),
 };
 
@@ -64,12 +64,12 @@ const updateUser = {
 // frontend/app/src/components/dashboard/student/student-edit-form.js
 const updateTeacher = {
   params: Joi.object().keys({
-    studentId: Joi.required().custom(objectId),
+    teacherId: Joi.required().custom(objectId),
   }),
   body: Joi.object()
     .keys({
       email: Joi.string().email(),
-      password: Joi.string().custom(password),
+      // password: Joi.string().custom(password),
       name: Joi.string(),
       address1: Joi.string().allow(''),
       address2: Joi.string().allow(''),

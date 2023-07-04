@@ -34,25 +34,27 @@ import {
 import { LoadingButton } from '@mui/lab';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+
 import { studentApi } from 'src/api/student-api';
+import { teacherApi } from 'src/api/teacher-api';
 
 export const TeacherEditForm = props => {
   const { t } = useTranslation();
   const route = useRouter();
 
-  const { student, ...other } = props;
+  const { teacher, ...other } = props;
 
   const formik = useFormik({
     initialValues: {
-      address1: student.address1 || '',
-      address2: student.address2 || '',
-      country: student.country || '',
-      email: student.email || '',
-      hasDiscount: student.hasDiscount || false,
-      isVerified: student.isVerified || false,
-      name: student.name || '',
-      phone: student.phone || '',
-      state: student.state || '',
+      address1: teacher.address1 || '',
+      address2: teacher.address2 || '',
+      country: teacher.country || '',
+      email: teacher.email || '',
+      hasDiscount: teacher.hasDiscount || false,
+      isVerified: teacher.isVerified || false,
+      name: teacher.name || '',
+      phone: teacher.phone || '',
+      state: teacher.state || '',
       submit: null,
     },
     validationSchema: Yup.object({
@@ -70,7 +72,8 @@ export const TeacherEditForm = props => {
       state: Yup.string().max(255),
     }),
     onSubmit: async (values, helpers) => {
-      // backend/src/validations/student.validation.js
+      // backend/src/validations/teacher.validation.js
+
       const payload = {
         email: values.email,
         password: values.password,
@@ -84,12 +87,13 @@ export const TeacherEditForm = props => {
         isVerified: values.isVerified,
       };
 
-      await studentApi
-        .updateStudentById(student.id, payload)
+      await teacherApi
+        .updateTeacherById(teacher.id, payload)
         .then(response => {
           helpers.setStatus({ success: true });
           helpers.setSubmitting(false);
-          toast.success(t('Student updated!'));
+          toast.success(t('Teacher updated!'));
+          route.replace('/dashboard/teachers')
         })
         .catch(err => {
           console.error(err);

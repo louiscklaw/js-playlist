@@ -17,13 +17,11 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
+
 import { ArrowRight as ArrowRightIcon } from 'src/icons/arrow-right';
 import { PencilAlt as PencilAltIcon } from 'src/icons/pencil-alt';
 
-// import { getInitials } from '../../../utils/get-initials';
 import { getInitials } from 'src/utils/get-initials';
-
-// import { Scrollbar } from '../../scrollbar';
 import { Scrollbar } from 'src/components/scrollbar';
 import { useTranslation } from 'react-i18next';
 
@@ -72,7 +70,6 @@ export const TeacherListTable = props => {
     selectedCustomers.length > 0 && selectedCustomers.length < teachers.length;
   const selectedAllCustomers = selectedCustomers.length === teachers.length;
 
-  const studentId = '64a12f7d92da2661085fa445';
 
   return (
     <div {...other}>
@@ -91,10 +88,10 @@ export const TeacherListTable = props => {
           onChange={handleSelectAllCustomers}
         />
         <Button size="small" sx={{ ml: 2 }}>
-          Delete
+          {t('Delete')}
         </Button>
         <Button size="small" sx={{ ml: 2 }}>
-          Edit
+          {t('Edit')}
         </Button>
       </Box>
       <Scrollbar>
@@ -141,7 +138,7 @@ export const TeacherListTable = props => {
                         {getInitials(teacher.name)}
                       </Avatar>
                       <Box sx={{ ml: 1 }}>
-                        <NextLink href="/dashboard/students/1" passHref>
+                        <NextLink href={`/dashboard/teachers/${teacher.id}`} passHref>
                           <Link color="inherit" variant="subtitle2">
                             {teacher.name}
                           </Link>

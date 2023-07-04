@@ -53,7 +53,7 @@ const StudentEdit = () => {
   );
 
   if (!student) {
-    return <>loading students</>;
+    return <>loading exam_results</>;
   }
 
   return (

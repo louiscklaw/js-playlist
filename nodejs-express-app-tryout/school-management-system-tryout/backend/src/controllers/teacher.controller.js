@@ -34,13 +34,13 @@ const createStudent = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(student);
 });
 
-const getStudentById = catchAsync(async (req, res) => {
-  const student = await teacherService.getStudentById(req.params.studentId);
+const getTeacherById = catchAsync(async (req, res) => {
+  const teacher = await teacherService.getTeacherById(req.params.teacherId);
 
-  if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+  if (!teacher) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Teacher not found');
   }
-  res.send(student);
+  res.send(teacher);
 });
 
 // const updateStudentById = catchAsync(async (req, res) => {
@@ -55,6 +55,16 @@ const updateStudentById = catchAsync(async (req, res) => {
   res.send(student);
 });
 
+const updateTeacherById = catchAsync(async (req, res) => {
+
+  const teacher = await teacherService.updateTeacherById(
+    req.params.teacherId, req.body);
+
+  res.send(teacher);
+  // console.log({ hello: 'world' });
+  // res.send({ hello: "world" });
+});
+
 const deleteStudentById = catchAsync(async (req, res) => {
   await teacherService.deleteStudentById(req.params.studentId);
   res.status(httpStatus.NO_CONTENT).send();
@@ -67,10 +77,10 @@ const helloworld = catchAsync(async (req, res) => {
 
 module.exports = {
   getStudents,
-  getStudentById,
+  getTeacherById,
   updateStudentById,
   deleteStudentById,
   createStudent,
-  getTeachers,
+  getTeachers, updateTeacherById,
   helloworld
 };

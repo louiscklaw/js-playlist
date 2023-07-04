@@ -5,6 +5,7 @@ import { Avatar, Box, Chip, Container, Link, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { customerApi } from 'src/__fake-api__/customer-api';
 import { studentApi } from 'src/api/student-api';
+import { teacherApi } from 'src/api/teacher-api';
 import { AuthGuard } from 'src/components/authentication/auth-guard';
 import { DashboardLayout } from 'src/components/dashboard/dashboard-layout';
 // import { StudentEditForm } from 'src/components/dashboard/student/student-edit-form';
@@ -22,7 +23,7 @@ const TeacherEdit = () => {
 
   const { t } = useTranslation();
 
-  const { studentId } = router.query;
+  const { teacherId } = router.query;
 
   useEffect(() => {
     gtm.push({ event: 'page_view' });
@@ -30,7 +31,7 @@ const TeacherEdit = () => {
 
   const getStudent = useCallback(async () => {
     try {
-      const data = await studentApi.getStudentById(studentId);
+      const data = await teacherApi.getTeacherById(teacherId);
       console.dir(data);
 
       if (isMounted()) {
@@ -54,7 +55,7 @@ const TeacherEdit = () => {
   );
 
   if (!student) {
-    return <>loading students</>;
+    return <>loading teachers</>;
   }
 
   return (
@@ -111,7 +112,7 @@ const TeacherEdit = () => {
           </Box>
 
           <Box mt={3}>
-            <TeacherEditForm student={student} />
+            <TeacherEditForm teacher={student} />
           </Box>
         </Container>
       </Box>

@@ -11,19 +11,21 @@ const router = express.Router();
 // NOTE: helloworld
 router
   .route('/helloworld')
-  .get(teacherController.helloworld);
-// .put(teacherController.helloworld);
+  .get(teacherController.helloworld)
+  .put(teacherController.helloworld)
+  .post(teacherController.helloworld)
+  .delete(teacherController.helloworld);
 
 router
   .route('/')
-  .get(validate(teacherValidation.getTeachers), teacherController.getTeachers)
-//   .post(validate(teacherValidation.createTeacher), teacherController.createTeacher)
+  .get(validate(teacherValidation.getTeachers), teacherController.getTeachers);
+  // .post(validate(teacherValidation.createTeacher), teacherController.createTeacher);
 
-
-// router
-//   .route('/:teacherId')
-//   .get(validate(teacherValidation.getTeacher), teacherController.getTeacherById)
-//   .patch(validate(teacherValidation.updateTeacher), teacherController.updateTeacherById)
+// validate(teacherValidation.updateTeacher),
+router
+  .route('/:teacherId')
+  .get(validate(teacherValidation.getTeacher), teacherController.getTeacherById)
+  .patch(teacherController.updateTeacherById)
 //   .delete(validate(teacherValidation.deleteTeacher), teacherController.deleteTeacherById);
 
 

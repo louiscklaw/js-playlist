@@ -104,17 +104,21 @@ const updateUserById = async (userId, updateBody) => {
   return user;
 };
 
-const updateTeacherById = async (studentId, updateBody) => {
-  const student = await getTeacherById(studentId);
-  if (!student) {
+const updateTeacherById = async (teacherId, updateBody) => {
+  const teacher = await getTeacherById(teacherId);
+
+  if (!teacher) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Teacher not found');
   }
-  if (updateBody.email && (await Teacher.isEmailTaken(updateBody.email, studentId))) {
+  if (updateBody.email && (await Teacher.isEmailTaken(updateBody.email, teacherId))) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }
-  Object.assign(student, updateBody);
-  await student.save();
-  return student;
+
+  Object.assign(teacher, updateBody);
+
+  await teacher.save();
+
+  return teacher;
 };
 
 // deleteTeacherById

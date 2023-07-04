@@ -56,7 +56,7 @@ const StudentEdit = () => {
   );
 
   if (!student) {
-    return <>loading students</>;
+    return <>loading admins</>;
   }
 
   return (

@@ -141,8 +141,7 @@ const StudentList = () => {
 
   const getStudents = useCallback(async () => {
     try {
-      // const data = await customerApi.getStudents();
-      const data = await teacherApi.getStudents();
+      const data = await teacherApi.getTeachers();
 
       if (isMounted()) {
         setStudents(data.results);
@@ -284,7 +283,7 @@ const StudentList = () => {
                       </InputAdornment>
                     ),
                   }}
-                  placeholder="Search students"
+                  placeholder="Search teachers"
                 />
               </Box>
               <TextField

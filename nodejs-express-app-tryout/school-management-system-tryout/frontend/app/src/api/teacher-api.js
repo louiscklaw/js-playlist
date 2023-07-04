@@ -27,6 +27,19 @@ class TeacherApi {
       });
   }
 
+  updateTeacherById(studentId, values) {
+    return axios
+      .patch(`${API}/teachers/${studentId}`, values)
+      .then(response => {
+        console.log(response.data);
+        // Handle response here...
+      })
+      .catch(error => {
+        console.error(error);
+        // Handle error here...
+      });
+  }
+
   getStudents() {
     return axios.get(`${API}/students`).then(({ data }) => {
       return data;
@@ -229,9 +242,17 @@ class TeacherApi {
   }
 
   getStudentById(student_id) {
-    return axios.get(`${API}/students/${student_id}`).then(({ data }) => {
-      return data;
-    });
+    return axios.get(`${API}/students/${student_id}`)
+      .then(({ data }) => {
+        return data;
+      });
+  }
+
+  getTeacherById(student_id) {
+    return axios.get(`${API}/teachers/${student_id}`)
+      .then(({ data }) => {
+        return data;
+      });
   }
 
   getCustomerEmails() {
