@@ -5,6 +5,7 @@ const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const studentRoute = require('./student.route');
 const teacherRoute = require('./teacher.route');
+const adminRoute = require('./admin.route');
 
 const helloworldRoute = require('./helloworld.route');
 
@@ -20,6 +21,7 @@ const defaultRoutes = [
   { path: '/users', route: userRoute },
   { path: '/students', route: studentRoute },
   { path: '/teachers', route: teacherRoute },
+  { path: '/admins', route: adminRoute },
   { path: '/helloworld', route: helloworldRoute },
 ];
 

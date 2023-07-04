@@ -26,12 +26,12 @@ content-type: application/json
 @access_token= {{login.response.body.tokens.access.token}}
 @refresh_token = {{login.response.body.tokens.refresh.token}}
 
-GET {{baseUrl}}/students HTTP/1.1
+GET {{baseUrl}}/admins HTTP/1.1
 Authorization: Bearer {{access_token}}
 
 ###
 
-GET {{baseUrl}}/students/helloworld HTTP/1.1
+GET {{baseUrl}}/admins/helloworld HTTP/1.1
 Authorization: Bearer {{access_token}}
 
 ###
@@ -45,11 +45,11 @@ content-type: application/json
 }
 
 ###
-# http://localhost:3001/dashboard/students/64a1b9114c772f02b3c3528c/edit
-GET {{baseUrl}}/students/64a1b9114c772f02b3c3528c
+# http://localhost:3001/dashboard/admins/64a1b9114c772f02b3c3528c/edit
+GET {{baseUrl}}/admins/64a1b9114c772f02b3c3528c
 
 ###
-PATCH {{baseUrl}}/students/64a185f5cb53df6d1b698b7f
+PATCH {{baseUrl}}/admins/64a185f5cb53df6d1b698b7f
 content-type: application/json
 
 {
@@ -59,10 +59,10 @@ content-type: application/json
 }
 
 ###
-DELETE {{baseUrl}}/students/64a185f5cb53df6d1b698b7f
+DELETE {{baseUrl}}/admins/64a185f5cb53df6d1b698b7f
 
 ###
-POST {{baseUrl}}/students
+POST {{baseUrl}}/admins
 content-type: application/json
 
 {

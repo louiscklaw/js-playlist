@@ -50,8 +50,8 @@ const deleteStudentById = catchAsync(async (req, res) => {
 });
 
 const helloworld = catchAsync(async (req, res) => {
-  console.log('teacher.controller helloworld')
-  res.send({ hello: 'teacher.controller' });
+  console.log('admin.controller helloworld')
+  res.send({ hello: 'admin.controller' });
 });
 
 module.exports = {
