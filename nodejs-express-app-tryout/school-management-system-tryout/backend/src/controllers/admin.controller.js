@@ -61,8 +61,8 @@ const updateStudentById = catchAsync(async (req, res) => {
   res.send(student);
 });
 
-const deleteStudentById = catchAsync(async (req, res) => {
-  await studentService.deleteStudentById(req.params.studentId);
+const deleteAdminById = catchAsync(async (req, res) => {
+  await adminService.deleteAdminById(req.params.studentId);
   res.status(httpStatus.NO_CONTENT).send();
 });
 
@@ -73,6 +73,11 @@ const helloworld = catchAsync(async (req, res) => {
 
 module.exports = {
   getAdmins,
-  getStudentById, updateStudentById, deleteStudentById, createStudent, getAdminById, updateAdminById,
+  getStudentById,
+  updateStudentById,
+  deleteAdminById,
+  createStudent,
+  getAdminById,
+  updateAdminById,
   helloworld
 };

@@ -21,7 +21,7 @@ router
   .route('/:adminId')
   .get(validate(adminValidation.getAdmin), adminController.getAdminById)
   .patch(validate(adminValidation.updateAdmin), adminController.updateAdminById)
-//   .delete(validate(adminValidation.deleteAdmin), adminController.deleteAdminById);
+  .delete(validate(adminValidation.deleteAdmin), adminController.deleteAdminById);
 
 
 router

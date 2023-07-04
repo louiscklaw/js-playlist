@@ -141,16 +141,16 @@ const deleteTeacherById = async (studentId) => {
 
 /**
  * Delete user by id
- * @param {ObjectId} userId
+ * @param {ObjectId} adminId
  * @returns {Promise<User>}
  */
-const deleteUserById = async (userId) => {
-  const user = await getAdminById(userId);
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+const deleteAdminById = async (adminId) => {
+  const admin = await getAdminById(adminId);
+  if (!admin) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Admin not found');
   }
-  await user.remove();
-  return user;
+  await admin.remove();
+  return admin;
 };
 
 module.exports = {
@@ -158,7 +158,7 @@ module.exports = {
   createUser,
 
   deleteTeacherById,
-  deleteUserById,
+  deleteAdminById,
 
   getTeacherById,
   getUserByEmail,

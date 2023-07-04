@@ -118,13 +118,13 @@ export const AdminEditForm = props => {
     p: 4,
   };
 
-  const handleDeleteStudent = async () => {
+  const handleDeleteAdmin = async () => {
     await adminApi
-      .deleteStudentById(admin.id)
+      .deleteAdminById(admin.id)
       .then(() => {
         toast.success(t('Student deleted!'));
         handleClose();
-        route.replace(`/dashboard/students`);
+        route.replace(`/dashboard/admins`);
       })
       .catch(err => {
         console.error(err);
@@ -188,7 +188,7 @@ export const AdminEditForm = props => {
                     '&:hover': { backgroundColor: 'error.dark' },
                   }}
                   variant="contained"
-                  onClick={handleDeleteStudent}
+                  onClick={handleDeleteAdmin}
                   startIcon={<DeleteIcon />}
                 >
                   {t('Delete')}

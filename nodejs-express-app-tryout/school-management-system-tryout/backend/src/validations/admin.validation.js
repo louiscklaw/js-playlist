@@ -132,27 +132,26 @@ const updateUserBasicDetail = {
     .min(1),
 };
 
-const deleteUser = {
-  params: Joi.object().keys({
-    studentId: Joi.string().custom(objectId),
-  }),
-};
 
-const deleteTeacher = {
+const deleteAdmin = {
   params: Joi.object().keys({
-    studentId: Joi.string().custom(objectId),
+    adminId: Joi.string().custom(objectId),
   }),
 };
 module.exports = {
-  createUser,
-  getUsers,
-  getAdmins, getAdmin,
-  getUser,
-  updateUser,
-  deleteUser,
-  updateUserBasicDetail,
-  getTeacher,
-  updateTeacher,
-  deleteTeacher, updateAdmin,
   createTeacher,
+  createUser,
+
+  deleteAdmin,
+
+  getAdmins,
+  getAdmin,
+  getTeacher,
+  getUser,
+  getUsers,
+
+  updateAdmin,
+  updateTeacher,
+  updateUser,
+  updateUserBasicDetail,
 };

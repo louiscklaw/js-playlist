@@ -7,16 +7,16 @@ const now = new Date();
 
 class AdminApi {
   addStudent(values) {
-    return axios.post(`${API}/students`, values);
+    return axios.post(`${API}/admins`, values);
   }
 
-  deleteStudentById(studentId) {
-    return axios.delete(`${API}/students/${studentId}`);
+  deleteAdminById(adminId) {
+    return axios.delete(`${API}/admins/${adminId}`);
   }
 
-  updateAdminById(studentId, values) {
+  updateAdminById(adminId, values) {
     return axios
-      .patch(`${API}/admins/${studentId}`, values)
+      .patch(`${API}/admins/${adminId}`, values)
       .then(response => {
         console.log(response.data);
         // Handle response here...
