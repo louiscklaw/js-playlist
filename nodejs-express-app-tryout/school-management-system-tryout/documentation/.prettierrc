@@ -1,0 +1,31 @@
+{
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "htmlWhitespaceSensitivity": "strict",
+  "insertPragma": false,
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false,
+  "printWidth": 80,
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed",
+  "requirePragma": false,
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "useTabs": false,
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": [
+        "**/*.njk"
+      ],
+      "options": {
+        "printWidth": 80,
+        "tabWidth": 2,
+        "parser": "jinja-template",
+        "singleAttributePerLine": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+services:
+  node-app:
+    container_name: node-app-test
+    command: yarn test
+    # command: sleep infinity
+    depends_on:
+      - mongodb
+      - email-server
+
+  email-server:
+    image: mailhog/mailhog:latest
+    ports:
+      - 1025:1025
+      - 8025:8025
+    networks:
+      - node-network
+
+  mongo-express:
+    image: mongo-express:latest
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./volumes/mongo-express:/app
+      - ./volumes/mongo-express/docker-entrypoint.sh:/docker-entrypoint.sh
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    environment:
+      # for wait in docker-entrypoint.sh
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_PORT=27017
+      # - ME_CONFIG_BASICAUTH_USERNAME=user
+      # - ME_CONFIG_BASICAUTH_PASSWORD=password
+    networks:
+      - node-network

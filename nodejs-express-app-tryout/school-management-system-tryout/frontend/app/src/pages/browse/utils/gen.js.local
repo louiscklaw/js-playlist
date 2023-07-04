@@ -1,0 +1,15 @@
+
+const list = ['Inputs',
+'Data-Display',
+'Feedback',
+'Surfaces',
+'Navigation',
+]
+
+const template =`
+{ title: 'Surface', [] }
+`.trim();
+
+const result = list.map(s => template.replace('Surface',s)).join(',')
+
+console.log(result)

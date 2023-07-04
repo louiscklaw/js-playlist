@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const template = (comp_name) => {
+  comp_name = comp_name.replace(' ', '');
+  const lc_comp_name = comp_name.toLowerCase();
+  return `
+  {
+    title: 'Cards, cards.js',
+    subtitle: '',
+    image: "/static/browse/base-buttons_\${mode}.png",
+    path: '/browse/cards',
+  }
+`.trim().replace('Card', comp_name).replace('card', lc_comp_name);
+}
+
+const list = [
+  'Accordion',
+  'App Bar',
+  'Card',
+  'Paper',
+]
+
+const result = list.map(cn => {
+  return template(cn)
+}).join(',')
+
+console.log(result)

@@ -1,0 +1,6 @@
+FROM node:16-buster
+
+RUN mkdir -p /app/node_modules
+RUN chown 1000:1000 -R /app/node_modules
+
+USER 1000:1000
