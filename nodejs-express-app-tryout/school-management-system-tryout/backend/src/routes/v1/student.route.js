@@ -7,16 +7,16 @@ const studentController = require('../../controllers/student.controller');
 const router = express.Router();
 
 // NOTE: under /students directive
-router
-  .route('/')
-  .get(validate(studentValidation.getStudents), studentController.getStudents)
-  .post(validate(studentValidation.createStudent), studentController.createStudent)
-
 // NOTE: helloworld
 router
   .route('/helloworld')
   .get(studentController.helloworld);
 // .put(studentController.helloworld);
+
+router
+  .route('/')
+  .post(validate(studentValidation.createStudent), studentController.createStudent)
+  .get(validate(studentValidation.getStudents), studentController.getStudents);
 
 router
   .route('/:studentId')

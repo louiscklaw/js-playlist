@@ -8,22 +8,23 @@ const teacherController = require('../../controllers/teacher.controller');
 const router = express.Router();
 
 // NOTE: under /teachers directive
-router
-  .route('/')
-  .get(validate(teacherValidation.getStudents), teacherController.getStudents)
-  .post(validate(teacherValidation.createStudent), teacherController.createStudent)
-
 // NOTE: helloworld
 router
   .route('/helloworld')
   .get(teacherController.helloworld);
 // .put(teacherController.helloworld);
 
+router
+  .route('/')
+  .get(validate(teacherValidation.getTeachers), teacherController.getTeachers)
+//   .post(validate(teacherValidation.createTeacher), teacherController.createTeacher)
+
+
 // router
 //   .route('/:teacherId')
-//   .get(validate(teacherValidation.getStudent), teacherController.getStudentById)
-//   .patch(validate(teacherValidation.updateStudent), teacherController.updateStudentById)
-//   .delete(validate(teacherValidation.deleteStudent), teacherController.deleteStudentById);
+//   .get(validate(teacherValidation.getTeacher), teacherController.getTeacherById)
+//   .patch(validate(teacherValidation.updateTeacher), teacherController.updateTeacherById)
+//   .delete(validate(teacherValidation.deleteTeacher), teacherController.deleteTeacherById);
 
 
 module.exports = router;
@@ -31,8 +32,8 @@ module.exports = router;
 /**
  * @swagger
  * tags:
- *   name: Students
- *   description: Student management and retrieval
+ *   name: Teachers
+ *   description: Teacher management and retrieval
  */
 
 /**
@@ -41,7 +42,7 @@ module.exports = router;
  *   post:
  *     summary: Create a teacher
  *     description: Only admins can create other teachers.
- *     tags: [Students]
+ *     tags: [Teachers]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -81,7 +82,7 @@ module.exports = router;
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/Student'
+ *                $ref: '#/components/schemas/Teacher'
  *       "400":
  *         $ref: '#/components/responses/DuplicateEmail'
  *       "401":
@@ -92,7 +93,7 @@ module.exports = router;
  *   get:
  *     summary: Get all teachers
  *     description: Only admins can retrieve all teachers.
- *     tags: [Students]
+ *     tags: [Teachers]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -100,12 +101,12 @@ module.exports = router;
  *         name: name
  *         schema:
  *           type: string
- *         description: Student name
+ *         description: Teacher name
  *       - in: query
  *         name: role
  *         schema:
  *           type: string
- *         description: Student role
+ *         description: Teacher role
  *       - in: query
  *         name: sortBy
  *         schema:
@@ -136,7 +137,7 @@ module.exports = router;
  *                 results:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/Student'
+ *                     $ref: '#/components/schemas/Teacher'
  *                 page:
  *                   type: integer
  *                   example: 1
@@ -161,7 +162,7 @@ module.exports = router;
  *   get:
  *     summary: Get a teacher
  *     description: Logged in teachers can fetch only their own teacher information. Only admins can fetch other teachers.
- *     tags: [Students]
+ *     tags: [Teachers]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -170,14 +171,14 @@ module.exports = router;
  *         required: true
  *         schema:
  *           type: string
- *         description: Student id
+ *         description: Teacher id
  *     responses:
  *       "200":
  *         description: OK
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/Student'
+ *                $ref: '#/components/schemas/Teacher'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
@@ -188,7 +189,7 @@ module.exports = router;
  *   patch:
  *     summary: Update a teacher
  *     description: Logged in teachers can only update their own information. Only admins can update other teachers.
- *     tags: [Students]
+ *     tags: [Teachers]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -197,7 +198,7 @@ module.exports = router;
  *         required: true
  *         schema:
  *           type: string
- *         description: Student id
+ *         description: Teacher id
  *     requestBody:
  *       required: true
  *       content:
@@ -226,7 +227,7 @@ module.exports = router;
  *         content:
  *           application/json:
  *             schema:
- *                $ref: '#/components/schemas/Student'
+ *                $ref: '#/components/schemas/Teacher'
  *       "400":
  *         $ref: '#/components/responses/DuplicateEmail'
  *       "401":
@@ -239,7 +240,7 @@ module.exports = router;
  *   delete:
  *     summary: Delete a teacher
  *     description: Logged in teachers can delete only themselves. Only admins can delete other teachers.
- *     tags: [Students]
+ *     tags: [Teachers]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -248,7 +249,7 @@ module.exports = router;
  *         required: true
  *         schema:
  *           type: string
- *         description: Student id
+ *         description: Teacher id
  *     responses:
  *       "200":
  *         description: No content

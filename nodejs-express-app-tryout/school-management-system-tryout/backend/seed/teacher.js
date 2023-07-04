@@ -20,7 +20,7 @@ const seedTeacher = () => mongoose.connect("mongodb://localhost:27017/node-boile
   .then(() => {
     const saving = Array(1).fill(0).map((_, idx) => {
       const newTeacher = new Teacher({
-        avatar: 'https://images.unsplash.com/photo-1660798027105-5da8ad164e27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80',
+        avatar: 'https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
         city: 'Cleveland',
         country: 'USA',
         currency: '$',

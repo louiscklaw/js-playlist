@@ -26,7 +26,7 @@ const createTeacher = {
   }),
 };
 
-const getUsers = {
+const getTeachers = {
   query: Joi.object().keys({
     name: Joi.string(),
     role: Joi.string(),
@@ -108,7 +108,7 @@ const deleteTeacher = {
 };
 module.exports = {
   createUser,
-  getUsers,
+  getTeachers,
   getUser,
   updateUser,
   deleteUser,

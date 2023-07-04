@@ -5,26 +5,37 @@ const ApiError = require('../utils/ApiError');
 
 const catchAsync = require('../utils/catchAsync');
 
-const { studentService } = require('../services');
+const { teacherService } = require('../services');
 
 const getStudents = catchAsync(async (req, res) => {
   console.log('student.controller.getStudents helloworld');
 
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await studentService.queryStudents(filter, options);
+  const result = await teacherService.queryStudents(filter, options);
   // res.send({ hello: 'student.controller.getStudents' });
   res.send(result);
 
 });
 
+const getTeachers = catchAsync(async (req, res) => {
+  console.log('teacher.controller.getTeachers helloworld');
+
+  const filter = pick(req.query, ['name', 'role']);
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const result = await teacherService.queryTeachers(filter, options);
+  // res.send({ hello: 'teacher.controller.getTeachers' });
+  res.send(result);
+
+});
+
 const createStudent = catchAsync(async (req, res) => {
-  const student = await studentService.createStudent(req.body);
+  const student = await teacherService.createStudent(req.body);
   res.status(httpStatus.CREATED).send(student);
 });
 
 const getStudentById = catchAsync(async (req, res) => {
-  const student = await studentService.getStudentById(req.params.studentId);
+  const student = await teacherService.getStudentById(req.params.studentId);
 
   if (!student) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
@@ -33,19 +44,19 @@ const getStudentById = catchAsync(async (req, res) => {
 });
 
 // const updateStudentById = catchAsync(async (req, res) => {
-//   const student = await studentService.updateStudentById(
+//   const student = await ​teacherService.updateStudentById(
 //     req.params.studentId, req.body);
 //   res.send(student);
 // });
 
 const updateStudentById = catchAsync(async (req, res) => {
-  const student = await studentService.updateStudentById(
+  const student = await teacherService.updateStudentById(
     req.params.studentId, req.body);
   res.send(student);
 });
 
 const deleteStudentById = catchAsync(async (req, res) => {
-  await studentService.deleteStudentById(req.params.studentId);
+  await teacherService.deleteStudentById(req.params.studentId);
   res.status(httpStatus.NO_CONTENT).send();
 });
 
@@ -56,6 +67,10 @@ const helloworld = catchAsync(async (req, res) => {
 
 module.exports = {
   getStudents,
-  getStudentById, updateStudentById, deleteStudentById, createStudent,
+  getStudentById,
+  updateStudentById,
+  deleteStudentById,
+  createStudent,
+  getTeachers,
   helloworld
 };

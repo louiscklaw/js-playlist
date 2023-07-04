@@ -26,7 +26,7 @@ const createStudent = {
   }),
 };
 
-const getUsers = {
+const getStudents = {
   query: Joi.object().keys({
     name: Joi.string(),
     role: Joi.string(),
@@ -69,7 +69,7 @@ const updateStudent = {
   body: Joi.object()
     .keys({
       email: Joi.string().email(),
-      password: Joi.string().custom(password),
+      // password: Joi.string().custom(password),
       name: Joi.string(),
       address1: Joi.string().allow(''),
       address2: Joi.string().allow(''),
@@ -108,7 +108,7 @@ const deleteStudent = {
 };
 module.exports = {
   createUser,
-  getUsers,
+  getStudents,
   getUser,
   updateUser,
   deleteUser,

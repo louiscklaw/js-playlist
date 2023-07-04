@@ -73,7 +73,6 @@ export const StudentEditForm = props => {
       // backend/src/validations/student.validation.js
       const payload = {
         email: values.email,
-        password: values.password,
         name: values.name,
         address1: values.address1,
         address2: values.address2,
@@ -301,6 +300,7 @@ export const StudentEditForm = props => {
                   value={formik.values.phone}
                 />
               </Grid>
+
             </Grid>
             <Box
               sx={{

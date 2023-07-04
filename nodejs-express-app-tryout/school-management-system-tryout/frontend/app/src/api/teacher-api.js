@@ -33,6 +33,12 @@ class TeacherApi {
     });
   }
 
+  getTeachers() {
+    return axios.get(`${API}/teachers`).then(({ data }) => {
+      return data;
+    });
+  }
+
   getStudentsObsoleted() {
     const customers = [
       {
