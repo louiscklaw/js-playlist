@@ -39,5 +39,5 @@ services:
 
   frontend:
     # NOTE: ./frontend contains source for frontend
-    # command: ./dev.sh
-    command: sleep infinity
+    command: ./dev.sh
+    # command: sleep infinity
