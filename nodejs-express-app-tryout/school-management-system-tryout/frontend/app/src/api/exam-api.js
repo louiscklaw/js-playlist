@@ -350,4 +350,4 @@ class ExamApi {
   }
 }
 
-export const classroomApi = new ExamApi();
+export const examApi = new ExamApi();

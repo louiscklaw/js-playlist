@@ -11,7 +11,7 @@ import { alpha, useTheme } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { adminApi } from 'src/api/admin-api';
-import { classroomApi } from 'src/api/classroom-api';
+import { attendanceApi } from 'src/api/attendance-api';
 import { Chart } from 'src/components/chart';
 import { useMounted } from 'src/hooks/use-mounted';
 import { ArrowRight as ArrowRightIcon } from 'src/icons/arrow-right';
@@ -57,16 +57,16 @@ const LineChart = () => {
   );
 };
 
-const TotalClassroomCard = () => {
+const TotalAttendanceCard = () => {
   const { t } = useTranslation();
   const isMounted = useMounted();
-  const [classroomCount, setClassroomCount] = useState(0);
+  const [attendanceCount, setAttendanceCount] = useState(0);
 
   useEffect(() => {
     if (isMounted) {
-      classroomApi
-        .getClassroomCount()
-        .then(({ data }) => setClassroomCount(data.count));
+      attendanceApi
+        .getAttendanceCount()
+        .then(({ data }) => setAttendanceCount(data.count));
     }
   }, [isMounted]);
 
@@ -84,11 +84,11 @@ const TotalClassroomCard = () => {
         >
           <div>
             <Typography color="textSecondary" variant="body2">
-              {t('Classroom')}
+              {t('Attendance')}
             </Typography>
 
             <Typography sx={{ mt: 1 }} variant="h5">
-              {classroomCount}
+              {attendanceCount}
             </Typography>
           </div>
           <LineChart />
@@ -105,4 +105,4 @@ const TotalClassroomCard = () => {
   );
 };
 
-export default TotalClassroomCard;
+export default TotalAttendanceCard;

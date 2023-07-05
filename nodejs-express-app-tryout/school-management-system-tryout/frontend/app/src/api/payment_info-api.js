@@ -350,4 +350,4 @@ class ClassroomApi {
   }
 }
 
-export const classroomApi = new ClassroomApi();
+export const paymentInfoApi = new ClassroomApi();

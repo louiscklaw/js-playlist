@@ -3,13 +3,13 @@ import { subDays, subHours, subMinutes, subSeconds } from 'date-fns';
 
 const HOST = '//localhost:3000';
 const API = `${HOST}/v1`;
-const API_ENDPOINT = `${API}/classrooms`;
+const API_ENDPOINT = `${API}/attendances`;
 
 const now = new Date();
 
-class ClassroomApi {
-  getClassroomCount() {
-    return axios.get(`${API_ENDPOINT}/getClassroomCount`);
+class AttendanceApi {
+  getAttendanceCount() {
+    return axios.get(`${API_ENDPOINT}/getAttendanceCount`);
   }
 
   addStudent(values) {
@@ -39,194 +39,6 @@ class ClassroomApi {
     });
   }
 
-  getStudentsObsoleted() {
-    const customers = [
-      {
-        id: '5e887ac47eed253091be10cb',
-        avatar: '/static/mock-images/avatars/avatar-carson_darrin.png',
-        city: 'Cleveland',
-        country: 'USA',
-        currency: '$',
-        email: 'carson.darrin@devias.io',
-        hasAcceptedMarketing: true,
-        isProspect: false,
-        isReturning: true,
-        name: 'Carson Darrin',
-        state: 'Ohio',
-        totalAmountSpent: 300.0,
-        totalOrders: 3,
-        updatedAt: subDays(subHours(now, 7), 1).getTime(),
-      },
-      {
-        id: '5e887b209c28ac3dd97f6db5',
-        avatar: '/static/mock-images/avatars/avatar-fran_perez.png',
-        city: 'Atlanta',
-        country: 'USA',
-        currency: '$',
-        email: 'fran.perez@devias.io',
-        hasAcceptedMarketing: true,
-        isProspect: true,
-        isReturning: false,
-        name: 'Fran Perez',
-        state: 'Georgia',
-        totalAmountSpent: 0.0,
-        totalOrders: 0,
-        updatedAt: subDays(subHours(now, 1), 2).getTime(),
-      },
-      {
-        id: '5e887b7602bdbc4dbb234b27',
-        avatar: '/static/mock-images/avatars/avatar-jie_yan_song.png',
-        city: 'North Canton',
-        country: 'USA',
-        currency: '$',
-        email: 'jie.yan.song@devias.io',
-        hasAcceptedMarketing: false,
-        isProspect: false,
-        isReturning: false,
-        name: 'Jie Yan Song',
-        state: 'Ohio',
-        totalAmountSpent: 5600.0,
-        totalOrders: 6,
-        updatedAt: subDays(subHours(now, 4), 2).getTime(),
-      },
-      {
-        id: '5e86809283e28b96d2d38537',
-        avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
-        city: 'Madrid',
-        country: 'Spain',
-        currency: '$',
-        email: 'anika.visser@devias.io',
-        hasAcceptedMarketing: true,
-        isProspect: false,
-        isReturning: true,
-        name: 'Anika Visser',
-        state: 'Madrid',
-        totalAmountSpent: 500.0,
-        totalOrders: 1,
-        updatedAt: subDays(subHours(now, 11), 2).getTime(),
-      },
-      {
-        id: '5e86805e2bafd54f66cc95c3',
-        avatar: '/static/mock-images/avatars/avatar-miron_vitold.png',
-        city: 'San Diego',
-        country: 'USA',
-        currency: '$',
-        email: 'miron.vitold@devias.io',
-        hasAcceptedMarketing: true,
-        isProspect: true,
-        isReturning: false,
-        name: 'Miron Vitold',
-        totalAmountSpent: 0.0,
-        totalOrders: 0,
-        state: 'California',
-        updatedAt: subDays(subHours(now, 7), 3).getTime(),
-      },
-      {
-        id: '5e887a1fbefd7938eea9c981',
-        avatar: '/static/mock-images/avatars/avatar-penjani_inyene.png',
-        city: 'Berkeley',
-        country: 'USA',
-        currency: '$',
-        email: 'penjani.inyene@devias.io',
-        hasAcceptedMarketing: false,
-        isProspect: true,
-        isReturning: false,
-        name: 'Penjani Inyene',
-        state: 'California',
-        totalAmountSpent: 0.0,
-        totalOrders: 0,
-        updatedAt: subDays(subHours(now, 5), 4).getTime(),
-      },
-      {
-        id: '5e887d0b3d090c1b8f162003',
-        avatar: '/static/mock-images/avatars/avatar-omar_darboe.png',
-        currency: '$',
-        email: 'omar.darobe@devias.io',
-        hasAcceptedMarketing: true,
-        isProspect: false,
-        isReturning: false,
-        city: 'Carson City',
-        country: 'USA',
-        name: 'Omar Darobe',
-        state: 'Nevada',
-        totalAmountSpent: 100.0,
-        totalOrders: 4,
-        updatedAt: subDays(subHours(now, 15), 4).getTime(),
-      },
-      {
-        id: '5e88792be2d4cfb4bf0971d9',
-        avatar: '/static/mock-images/avatars/avatar-siegbert_gottfried.png',
-        city: 'Los Angeles',
-        country: 'USA',
-        currency: '$',
-        email: 'siegbert.gottfried@devias.io',
-        hasAcceptedMarketing: true,
-        isProspect: false,
-        isReturning: true,
-        name: 'Siegbert Gottfried',
-        state: 'California',
-        totalAmountSpent: 1000.0,
-        totalOrders: 2,
-        updatedAt: subDays(subHours(now, 2), 5).getTime(),
-      },
-      {
-        id: '5e8877da9a65442b11551975',
-        avatar: '/static/mock-images/avatars/avatar-iulia_albu.png',
-        city: 'Murray',
-        country: 'USA',
-        email: 'iulia.albu@devias.io',
-        hasAcceptedMarketing: true,
-        isProspect: true,
-        isReturning: false,
-        name: 'Iulia Albu',
-        state: 'Utah',
-        totalAmountSpent: 0.0,
-        totalOrders: 0,
-        updatedAt: subDays(subHours(now, 8), 6).getTime(),
-      },
-      {
-        id: '5e8680e60cba5019c5ca6fda',
-        avatar: '/static/mock-images/avatars/avatar-nasimiyu_danai.png',
-        city: 'Salt Lake City',
-        country: 'USA',
-        currency: '$',
-        email: 'nasimiyu.danai@devias.io',
-        hasAcceptedMarketing: false,
-        isProspect: false,
-        isReturning: true,
-        name: 'Nasimiyu Danai',
-        state: 'Utah',
-        totalAmountSpent: 200.0,
-        totalOrders: 7,
-        updatedAt: subDays(subHours(now, 1), 9).getTime(),
-      },
-    ];
-
-    return Promise.resolve(customers);
-  }
-
-  getCustomerObsolete() {
-    const customer = {
-      id: '5e86805e2bafd54f66cc95c3',
-      address1: 'Street John Wick, no. 7',
-      address2: 'House #25',
-      avatar: '/static/mock-images/avatars/avatar-miron_vitold.png',
-      balance: 0,
-      city: 'San Diego',
-      country: 'USA',
-      currency: '$',
-      email: 'miron.vitold@devias.io',
-      hasDiscount: false,
-      isVerified: true,
-      name: 'Miron Vitold',
-      phone: '+55 748 327 439',
-      state: 'New York',
-      vatRate: 19,
-      zipCode: '240355',
-    };
-
-    return Promise.resolve(customer);
-  }
 
   getStudentById(student_id) {
     return axios.get(`${API}/students/${student_id}`).then(({ data }) => {
@@ -350,4 +162,4 @@ class ClassroomApi {
   }
 }
 
-export const classroomApi = new ClassroomApi();
+export const attendanceApi = new AttendanceApi();
