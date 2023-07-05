@@ -3,14 +3,14 @@ import { subDays, subHours, subMinutes, subSeconds } from 'date-fns';
 
 const HOST = '//localhost:3000';
 const API = `${HOST}/v1`;
-const API_ENDPOINT = `${API}/subjects`;
+const API_ENDPOINT = `${API}/schedules`;
 
 const now = new Date();
 
-class SubjectApi {
+class ScheduleApi {
 
-  getSubjectCount() {
-    return axios.get(`${API_ENDPOINT}/getSubjectCount`);
+  getScheduleCount() {
+    return axios.get(`${API_ENDPOINT}/getScheduleCount`);
   }
 
   addStudent(values) {
@@ -162,4 +162,4 @@ class SubjectApi {
   }
 }
 
-export const subjectApi = new SubjectApi();
+export const scheduleApi = new ScheduleApi();

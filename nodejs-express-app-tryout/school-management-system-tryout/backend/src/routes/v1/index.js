@@ -6,7 +6,10 @@ const userRoute = require('./user.route');
 
 const studentRoute = require('./student.route');
 const subjectRoute = require('./subject.route');
+const scheduleRoute = require('./schedule.route');
 const teacherRoute = require('./teacher.route');
+const attendanceRoute = require('./attendance.route');
+const classroomRoute = require('./classroom.route');
 
 const adminRoute = require('./admin.route');
 
@@ -23,6 +26,9 @@ const defaultRoutes = [
   { path: '/users', route: userRoute },
   { path: '/students', route: studentRoute },
   { path: '/subjects', route: subjectRoute },
+  { path: '/schedules', route: scheduleRoute },
+  { path: '/attendances', route: attendanceRoute },
+  { path: '/classrooms', route: classroomRoute },
   { path: '/teachers', route: teacherRoute },
   { path: '/admins', route: adminRoute },
   { path: '/helloworld', route: helloworldRoute },
