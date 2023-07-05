@@ -15,15 +15,17 @@ const { Teacher, User, Token } = require('../../../src/models');
 const { roleRights } = require('../../../src/config/roles');
 const { tokenTypes } = require('../../../src/config/tokens');
 
-const { userOne, admin, insertUsers } = require('../../fixtures/user.fixture');
-const { userOneAccessToken, adminAccessToken } = require('../../fixtures/token.fixture');
+const { userOne, insertUsers } = require('../../fixtures/user.fixture');
+const { teacherOne, admin, insertTeachers } = require('../../fixtures/teacher.fixture');
+const { teacherOneAccessToken, adminAccessToken } = require('../../fixtures/token.fixture');
 
 setupTestDB();
 
-describe('Auth routes', () => {
-  let newUser;
+describe('Teacher CRUD test', () => {
+  let newTeacher;
+
   beforeEach(() => {
-    newUser = {
+    newTeacher = {
       name: faker.name.findName(),
       email: faker.internet.email().toLowerCase(),
       password: 'password1',
@@ -31,10 +33,10 @@ describe('Auth routes', () => {
     };
   });
 
-  test('create teacher', async () => {
+  test('add new teacher', async () => {
     const res = await request(app)
       .post('/v1/teachers')
-      .send(newUser)
+      .send(newTeacher)
       .expect(httpStatus.CREATED);
 
     expect(res.body).not.toHaveProperty('password');
@@ -42,12 +44,92 @@ describe('Auth routes', () => {
     const dbUser = await Teacher.findById(res.body.id);
     expect(dbUser).toBeDefined();
 
-    expect(dbUser.password).not.toBe(newUser.password);
+    expect(dbUser.password).not.toBe(newTeacher.password);
 
-    expect(dbUser).toMatchObject({ name: newUser.name, email: newUser.email, role: 'user', isEmailVerified: false });
+    expect(dbUser).toMatchObject({
+      name: newTeacher.name,
+      email: newTeacher.email,
+      role: 'user',
+      isEmailVerified: false
+    });
 
   });
 
+  test('get teacher information', async () => {
+    await insertTeachers([teacherOne]);
+    const res = await request(app)
+      .get('/v1/teachers')
+      .expect(httpStatus.OK);
+
+    expect(res.body).toEqual({
+      results: expect.any(Array),
+      page: 1,
+      limit: 10,
+      totalPages: 1,
+      totalResults: 1,
+    });
+
+    expect(res.body.results).toHaveLength(1);
+
+    expect(res.body.results[0]).toEqual({
+      id: teacherOne._id.toHexString(),
+      address1: "",
+      address2: "",
+      country: "",
+      hasDiscount: false,
+      isVerified: false,
+      phone: "",
+      state: "",
+      name: teacherOne.name,
+      email: teacherOne.email,
+      role: teacherOne.role,
+      isEmailVerified: teacherOne.isEmailVerified,
+    });
+  })
+
+  // NOTE: createTeacher
+  test('create new teacher', async () => {
+    const res = await request(app)
+      .post('/v1/teachers')
+      .set('Authorization', `Bearer ${teacherOneAccessToken}`)
+      .send(newTeacher)
+      .expect(httpStatus.CREATED);
+
+    expect(res.body).not.toHaveProperty('password');
+    expect(res.body).toEqual({
+      id: expect.anything(),
+      name: newTeacher.name,
+      email: newTeacher.email,
+      role: newTeacher.role,
+      isEmailVerified: false,
+      address1: "",
+      address2: "",
+      country: "",
+      hasDiscount: false,
+      isVerified: false,
+      phone: "",
+      state: "",
+    });
+
+    const dbUser = await Teacher.findById(res.body.id);
+    expect(dbUser).toBeDefined();
+
+    expect(dbUser.password).not.toBe(newTeacher.password);
+
+    expect(dbUser).toMatchObject({
+      name: newTeacher.name,
+      email: newTeacher.email,
+      role: newTeacher.role,
+      isEmailVerified: false,
+      address1: "",
+      address2: "",
+      country: "",
+      hasDiscount: false,
+      isVerified: false,
+      phone: "",
+      state: "",
+    });
+  })
 
   test('teacher api helloworld', async () => {
     const res = await request(app)

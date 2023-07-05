@@ -5,7 +5,7 @@ const tokenService = require('../../src/services/token.service');
 
 const { userOne, admin } = require('./user.fixture');
 const { studentOne } = require('./student.fixture');
-
+const { teacherOne } = require('./teacher.fixture');
 
 const accessTokenExpires = moment().add(config.jwt.accessExpirationMinutes, 'minutes');
 
@@ -18,8 +18,12 @@ const adminAccessToken = tokenService.generateToken(
 const studentOneAccessToken = tokenService.generateToken(
   studentOne._id, accessTokenExpires, tokenTypes.ACCESS);
 
+const teacherOneAccessToken = tokenService.generateToken(
+  teacherOne._id, accessTokenExpires, tokenTypes.ACCESS);
+
 module.exports = {
   userOneAccessToken,
   adminAccessToken,
-  studentOneAccessToken
+  studentOneAccessToken,
+  teacherOneAccessToken
 };

@@ -21,7 +21,7 @@ const { userOneAccessToken, adminAccessToken, studentOneAccessToken } = require(
 
 setupTestDB();
 
-describe('Auth routes', () => {
+describe('Student CRUD test', () => {
   let newStudent;
   beforeEach(() => {
     newStudent = {

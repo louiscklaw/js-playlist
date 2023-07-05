@@ -15,7 +15,7 @@
     "dev": "cross-env NODE_ENV=development nodemon src/index.js",
     "test": "jest -i --colors --verbose --detectOpenHandles",
     "test_api": "jest -i --colors --verbose --detectOpenHandles tests/api",
-    "test:watch": "jest -i --watchAll",
+    "test:watch": "jest -i --watchAll --maxConcurrency 3",
     "coverage": "jest -i --coverage",
     "coverage:coveralls": "jest -i --coverage --coverageReporters=text-lcov | coveralls",
     "lint": "eslint .",
