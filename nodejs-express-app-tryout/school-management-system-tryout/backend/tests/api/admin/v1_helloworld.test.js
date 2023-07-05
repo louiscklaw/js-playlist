@@ -195,7 +195,7 @@ describe('Admin CRUD test', () => {
     expect(dbAdminOne).toBeNull();
   })
 
-  test('admin api helloworld', async () => {
+  test('GET /v1/admins/helloworld', async () => {
     const res = await request(app).get('/v1/admins/helloworld').expect(httpStatus.OK);
 
   });

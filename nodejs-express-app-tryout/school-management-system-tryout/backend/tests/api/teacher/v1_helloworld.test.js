@@ -194,7 +194,7 @@ describe('Teacher CRUD test', () => {
     expect(dbTeacherOne).toBeNull();
   })
 
-  test('teacher api helloworld', async () => {
+  test('GET /v1/teachers/helloworld', async () => {
     const res = await request(app)
       .get('/v1/teachers/helloworld')
       .expect(httpStatus.OK);

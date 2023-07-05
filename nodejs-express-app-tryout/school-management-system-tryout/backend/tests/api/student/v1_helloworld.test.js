@@ -193,7 +193,7 @@ describe('Student CRUD test', () => {
     expect(dbStudentOne).toBeNull();
   })
 
-  test('student api helloworld', async () => {
+  test('GET /v1/students/helloworld', async () => {
     const res = await request(app)
       .get('/v1/students/helloworld')
       .expect(httpStatus.OK);
