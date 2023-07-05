@@ -1,11 +1,17 @@
 import axios from 'axios';
 import { subDays, subHours, subMinutes, subSeconds } from 'date-fns';
+
 const HOST = '//localhost:3000';
 const API = `${HOST}/v1`;
+const API_ENDPOINT = API;
 
 const now = new Date();
 
 class StudentApi {
+  getStudentCount() {
+    return axios.get(`${API_ENDPOINT}/students/getStudentCount`);
+  }
+
   addStudent(values) {
     return axios.post(`${API}/students`, values);
   }
@@ -330,7 +336,7 @@ class StudentApi {
         status: 200,
       },
       {
-        id: '5ece2d22e68d5498917e47bc',
+        id: '5ecse2d22e68d5498917e47bc',
         createdAt: subDays(subMinutes(subSeconds(now, 5), 57), 2).getTime(),
         description: 'Login',
         ip: '84.234.243.42',

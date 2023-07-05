@@ -8,9 +8,17 @@ import {
 } from '@mui/material';
 
 import { alpha, useTheme } from '@mui/material/styles';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { studentApi } from 'src/api/student-api';
 import { Chart } from 'src/components/chart';
+import { useMounted } from 'src/hooks/use-mounted';
 import { ArrowRight as ArrowRightIcon } from 'src/icons/arrow-right';
+
+const HOST = '//localhost:3000';
+const API = `${HOST}/v1`;
+const API_ENDPOINT = API;
 
 const LineChart = () => {
   const theme = useTheme();
@@ -54,6 +62,16 @@ const LineChart = () => {
 
 const TotalStudentCard = () => {
   const { t } = useTranslation();
+  const isMounted = useMounted();
+  const [studentCount, setStudentCount] = useState(0);
+
+  useEffect(() => {
+    if (isMounted) {
+      studentApi
+        .getStudentCount()
+        .then(({ data }) => setStudentCount(data.count));
+    }
+  }, [isMounted]);
 
   return (
     <>
@@ -72,7 +90,7 @@ const TotalStudentCard = () => {
               {t('Students')}
             </Typography>
             <Typography sx={{ mt: 1 }} variant="h5">
-              {'1.9M'}
+              {studentCount}
             </Typography>
           </div>
           <LineChart />

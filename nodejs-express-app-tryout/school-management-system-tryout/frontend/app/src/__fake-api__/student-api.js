@@ -2,7 +2,7 @@ import { subDays, subHours, subMinutes, subSeconds } from 'date-fns';
 
 const now = new Date();
 
-class StudentApi {
+class StudentApiFake {
   getStudents() {
     const customers = [
       {
@@ -308,4 +308,4 @@ class StudentApi {
   }
 }
 
-export const studentApi = new StudentApi();
+export const studentApi = new StudentApiFake();
