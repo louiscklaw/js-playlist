@@ -1,11 +1,17 @@
 import axios from 'axios';
 import { subDays, subHours, subMinutes, subSeconds } from 'date-fns';
+
 const HOST = '//localhost:3000';
 const API = `${HOST}/v1`;
+const API_ENDPOINT = `${HOST}/v1`;
 
 const now = new Date();
 
 class AdminApi {
+  getAdminCount() {
+    return axios.get(`${API_ENDPOINT}/admins/getAdminCount`);
+  }
+
   addStudent(values) {
     return axios.post(`${API}/admins`, values);
   }

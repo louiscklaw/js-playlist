@@ -8,8 +8,11 @@ import {
 } from '@mui/material';
 
 import { alpha, useTheme } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { teacherApi } from 'src/api/teacher-api';
 import { Chart } from 'src/components/chart';
+import { useMounted } from 'src/hooks/use-mounted';
 import { ArrowRight as ArrowRightIcon } from 'src/icons/arrow-right';
 
 const LineChart = () => {
@@ -55,6 +58,16 @@ const LineChart = () => {
 
 const TotalTeacherCard = () => {
   const { t } = useTranslation();
+  const isMounted = useMounted();
+  const [teacherCount, setTeacherCount] = useState(0);
+
+  useEffect(() => {
+    if (isMounted) {
+      teacherApi
+        .getTeacherCount()
+        .then(({ data }) => setTeacherCount(data.count));
+    }
+  }, [isMounted]);
 
   return (
     <>
@@ -73,7 +86,7 @@ const TotalTeacherCard = () => {
               {t('Teachers')}
             </Typography>
             <Typography sx={{ mt: 1 }} variant="h5">
-              {'1.9M'}
+              {teacherCount}
             </Typography>
           </div>
           <LineChart />
