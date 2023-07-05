@@ -16,10 +16,6 @@ import { Chart } from 'src/components/chart';
 import { useMounted } from 'src/hooks/use-mounted';
 import { ArrowRight as ArrowRightIcon } from 'src/icons/arrow-right';
 
-const HOST = '//localhost:3000';
-const API = `${HOST}/v1`;
-const API_ENDPOINT = API;
-
 const LineChart = () => {
   const theme = useTheme();
 
