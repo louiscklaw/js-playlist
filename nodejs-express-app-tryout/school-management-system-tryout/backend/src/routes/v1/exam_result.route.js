@@ -6,32 +6,32 @@ const validate = require('../../middlewares/validate');
 const studentValidation = require('../../validations/student.validation');
 const studentController = require('../../controllers/student.controller');
 
-const scheduleValidation = require('../../validations/schedule.validation');
-const scheduleController = require('../../controllers/schedule.controller');
+const examResultValidation = require('../../validations/exam_result.validation');
+const examResultController = require('../../controllers/exam_result.controller');
 
 const router = express.Router();
 
-// NOTE: under /schedules directive
+// NOTE: under /examResults directive
 // NOTE: helloworld
 router
   .route('/helloworld')
-  .get(scheduleController.helloworld);
-// .put(scheduleController.helloworld);
+  .get(examResultController.helloworld);
+// .put(examResultController.helloworld);
 
 router
-  .route('/getScheduleCount')
-  .get(scheduleController.getScheduleCount);
+  .route('/getExamResultCount')
+  .get(examResultController.getExamResultCount);
 
 // router
 //   .route('/')
-//   .post(validate(scheduleValidation.createSchedule), scheduleController.createSchedule)
-//   .get(validate(scheduleValidation.getSchedules), scheduleController.getSchedules);
+//   .post(validate(examResultValidation.createExamResult), examResultController.createExamResult)
+//   .get(validate(examResultValidation.getExamResults), examResultController.getExamResults);
 
 // router
-//   .route('/:scheduleId')
-//   .get(validate(scheduleValidation.getSchedule), scheduleController.getScheduleById)
-//   .patch(validate(scheduleValidation.updateSchedule), scheduleController.updateScheduleById)
-//   .delete(validate(scheduleValidation.deleteSchedule), scheduleController.deleteScheduleById);
+//   .route('/:examResultId')
+//   .get(validate(examResultValidation.getExamResult), examResultController.getExamResultById)
+//   .patch(validate(examResultValidation.updateExamResult), examResultController.updateExamResultById)
+//   .delete(validate(examResultValidation.deleteExamResult), examResultController.deleteExamResultById);
 
 
 module.exports = router;

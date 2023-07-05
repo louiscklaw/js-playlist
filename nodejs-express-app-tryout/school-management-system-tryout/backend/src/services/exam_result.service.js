@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { User } = require('../models');
-const { Classroom } = require('../models');
+const { ExamResult } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 /**
@@ -15,15 +15,15 @@ const createUser = async (userBody) => {
   return User.create(userBody);
 };
 
-const createClassroom = async (userBody) => {
-  if (await Classroom.isEmailTaken(userBody.email)) {
+const createExamResult = async (userBody) => {
+  if (await ExamResult.isEmailTaken(userBody.email)) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }
-  return Classroom.create(userBody);
+  return ExamResult.create(userBody);
 };
 
-const countClassroom = async () => {
-  const count = await Classroom.find().countDocuments();
+const countExamResult = async () => {
+  const count = await ExamResult.find().countDocuments();
   return { count };
 };
 
@@ -33,7 +33,7 @@ const countClassroom = async () => {
  * @returns {Promise<Student>}
  */
 const getStudentById = async (id) => {
-  return Classroom.findById(id)
+  return ExamResult.findById(id)
 };
 
 /**
@@ -51,7 +51,7 @@ const queryUsers = async (filter, options) => {
 };
 
 const queryStudents = async (filter, options) => {
-  const students = await Classroom.paginate(filter, options);
+  const students = await ExamResult.paginate(filter, options);
   return students;
 };
 
@@ -113,7 +113,7 @@ const updateStudentById = async (studentId, updateBody) => {
   if (!student) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
   }
-  if (updateBody.email && (await Classroom.isEmailTaken(updateBody.email, studentId))) {
+  if (updateBody.email && (await ExamResult.isEmailTaken(updateBody.email, studentId))) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }
   Object.assign(student, updateBody);
@@ -153,5 +153,5 @@ module.exports = {
   getUserById,
   getUserByEmail,
   updateUserById, updateUserByEmail, getStudentById, updateStudentById,
-  deleteUserById, deleteStudentById, createClassroom, countClassroom
+  deleteUserById, deleteStudentById, createExamResult, countExamResult
 };

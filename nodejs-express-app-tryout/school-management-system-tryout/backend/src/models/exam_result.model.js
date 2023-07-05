@@ -7,7 +7,7 @@ const { roles } = require('../config/roles');
 // NOTE: related to these files:
 // frontend/app/src/components/dashboard/student/student-edit-form.js
 // backend/src/validations/student.validation.js
-const scheduleSchema = mongoose.Schema(
+const examResultSchema = mongoose.Schema(
   {
     name: { type: String, required: true, trim: true, },
 
@@ -55,8 +55,8 @@ const scheduleSchema = mongoose.Schema(
 );
 
 // add plugin that converts mongoose to json
-scheduleSchema.plugin(toJSON);
-scheduleSchema.plugin(paginate);
+examResultSchema.plugin(toJSON);
+examResultSchema.plugin(paginate);
 
 /**
  * Check if email is taken
@@ -64,7 +64,7 @@ scheduleSchema.plugin(paginate);
  * @param {ObjectId} [excludeUserId] - The id of the user to be excluded
  * @returns {Promise<boolean>}
  */
-scheduleSchema.statics.isEmailTaken = async function (email, excludeUserId) {
+examResultSchema.statics.isEmailTaken = async function (email, excludeUserId) {
   const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
   return !!user;
 };
@@ -74,12 +74,12 @@ scheduleSchema.statics.isEmailTaken = async function (email, excludeUserId) {
  * @param {string} password
  * @returns {Promise<boolean>}
  */
-scheduleSchema.methods.isPasswordMatch = async function (password) {
+examResultSchema.methods.isPasswordMatch = async function (password) {
   const user = this;
   return bcrypt.compare(password, user.password);
 };
 
-scheduleSchema.pre('save', async function (next) {
+examResultSchema.pre('save', async function (next) {
   const user = this;
   if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8);
@@ -90,6 +90,6 @@ scheduleSchema.pre('save', async function (next) {
 /**
  * @typedef ExamResult
  */
-const ExamResult = mongoose.model('ExamResult', scheduleSchema);
+const ExamResult = mongoose.model('ExamResult', examResultSchema);
 
 module.exports = ExamResult;

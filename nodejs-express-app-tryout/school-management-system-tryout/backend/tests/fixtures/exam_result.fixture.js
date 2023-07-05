@@ -2,29 +2,29 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const faker = require('faker');
 
-const Schedule = require('../../src/models/schedule.model');
+const ExamResult = require('../../src/models/exam_result.model');
 
 const password = 'password1';
 const salt = bcrypt.genSaltSync(8);
 const hashedPassword = bcrypt.hashSync(password, salt);
 
-const scheduleOne = {
+const examResultOne = {
   _id: mongoose.Types.ObjectId(),
   name: faker.name.findName(),
 };
 
-const scheduleTwo = {
+const examResultTwo = {
   _id: mongoose.Types.ObjectId(),
   name: faker.name.findName(),
 };
 
-const insertSchedules = async (schedules) => {
-  await Schedule
-    .insertMany(schedules.map((schedule) => ({ ...schedule, password: hashedPassword })));
+const insertExamResults = async (examResults) => {
+  await ExamResult
+    .insertMany(examResults.map((examResult) => ({ ...examResult, password: hashedPassword })));
 };
 
 module.exports = {
-  scheduleOne,
-  scheduleTwo,
-  insertSchedules,
+  examResultOne,
+  examResultTwo,
+  insertExamResults,
 };
