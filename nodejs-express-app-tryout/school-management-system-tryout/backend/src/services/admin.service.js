@@ -3,6 +3,11 @@ const { Admin } = require('../models');
 const { Teacher } = require('../models');
 const ApiError = require('../utils/ApiError');
 
+const countAdmin = async () => {
+  const count = await Admin.find().countDocuments();
+  return { count };
+};
+
 /**
  * Create a user
  * @param {Object} userBody
@@ -174,5 +179,5 @@ module.exports = {
 
   updateTeacherById,
   updateUserByEmail,
-  updateAdminById,
+  updateAdminById, countAdmin,
 };

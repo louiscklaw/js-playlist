@@ -8,6 +8,12 @@ const catchAsync = require('../utils/catchAsync');
 const { studentService } = require('../services');
 const { adminService } = require('../services');
 
+const getAdminCount = catchAsync(async (req, res) => {
+  const result = await adminService.countAdmin()
+  res.send(result);
+});
+
+
 const getAdmins = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
@@ -74,6 +80,6 @@ module.exports = {
   updateStudentById,
   deleteAdminById,
   getAdminById,
-  updateAdminById, createAdmin,
+  updateAdminById, createAdmin, getAdminCount,
   helloworld
 };

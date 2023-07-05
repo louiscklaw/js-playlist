@@ -17,6 +17,10 @@ router
   .delete(teacherController.helloworld);
 
 router
+  .route('/getTeacherCount')
+  .get(teacherController.getTeacherCount);
+
+router
   .route('/')
   .get(validate(teacherValidation.getTeachers), teacherController.getTeachers)
   .post(validate(teacherValidation.createTeacher), teacherController.createTeacher);

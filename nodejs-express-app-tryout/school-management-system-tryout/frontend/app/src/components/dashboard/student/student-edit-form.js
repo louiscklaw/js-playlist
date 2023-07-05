@@ -300,7 +300,6 @@ export const StudentEditForm = props => {
                   value={formik.values.phone}
                 />
               </Grid>
-
             </Grid>
             <Box
               sx={{

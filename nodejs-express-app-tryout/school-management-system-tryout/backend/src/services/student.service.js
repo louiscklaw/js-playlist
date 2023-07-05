@@ -22,6 +22,10 @@ const createStudent = async (userBody) => {
   return Student.create(userBody);
 };
 
+const countStudent = async () => {
+  const count = await Student.find().countDocuments();
+  return { count };
+};
 
 /**
  * Get user by id
@@ -149,5 +153,5 @@ module.exports = {
   getUserById,
   getUserByEmail,
   updateUserById, updateUserByEmail, getStudentById, updateStudentById,
-  deleteUserById, deleteStudentById, createStudent,
+  deleteUserById, deleteStudentById, createStudent, countStudent
 };

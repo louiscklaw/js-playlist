@@ -16,6 +16,9 @@ router
   .post(adminController.helloworld)
   .delete(adminController.helloworld);
 
+router
+  .route('/getAdminCount')
+  .get(adminController.getAdminCount);
 
 router
   .route('/:adminId')

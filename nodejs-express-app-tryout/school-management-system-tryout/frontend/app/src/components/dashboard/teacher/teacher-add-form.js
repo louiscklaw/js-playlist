@@ -84,7 +84,6 @@ export const TeacherAddForm = props => {
         ),
     }),
     onSubmit: async (values, helpers) => {
-
       // backend/src/validations/student.validation.js
       const payload = {
         email: values.email,
@@ -103,13 +102,11 @@ export const TeacherAddForm = props => {
       await teacherApi
         .addTeacher(payload)
         .then(response => {
-
           helpers.setStatus({ success: true });
           helpers.setSubmitting(false);
 
           toast.success(t('Student added!'));
           route.replace('/dashboard/teachers');
-
         })
         .catch(err => {
           helpers.setStatus({ success: false });

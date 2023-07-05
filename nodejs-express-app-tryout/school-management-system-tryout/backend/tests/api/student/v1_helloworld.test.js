@@ -30,6 +30,11 @@ describe('Student CRUD test', () => {
       password: 'password1',
       role: "user"
     };
+
+    setTimeout(() => {
+      expect(true).toBe(true);
+    }, 200);
+
   });
 
   test('add new student', async () => {
@@ -53,6 +58,18 @@ describe('Student CRUD test', () => {
     });
 
   });
+
+  test('get student count', async () => {
+    await insertStudents([studentOne]);
+    const res = await request(app)
+      .get('/v1/students/getStudentCount')
+      .expect(httpStatus.OK);
+
+    expect(res.body).toEqual({
+      count: 1
+    });
+
+  })
 
   test('get student information', async () => {
     await insertStudents([studentOne]);

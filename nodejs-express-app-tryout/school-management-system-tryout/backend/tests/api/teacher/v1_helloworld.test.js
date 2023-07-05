@@ -31,6 +31,11 @@ describe('Teacher CRUD test', () => {
       password: 'password1',
       role: "user"
     };
+
+    setTimeout(() => {
+      expect(true).toBe(true);
+    }, 200);
+
   });
 
   test('add new teacher', async () => {
@@ -54,6 +59,18 @@ describe('Teacher CRUD test', () => {
     });
 
   });
+
+  test('get teacher count', async () => {
+    await insertTeachers([teacherOne]);
+    const res = await request(app)
+      .get('/v1/teachers/getTeacherCount')
+      .expect(httpStatus.OK);
+
+    expect(res.body).toEqual({
+      count: 1
+    });
+
+  })
 
   test('get teacher information', async () => {
     await insertTeachers([teacherOne]);

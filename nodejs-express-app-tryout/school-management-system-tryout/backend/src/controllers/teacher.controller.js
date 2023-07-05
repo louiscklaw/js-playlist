@@ -72,12 +72,18 @@ const helloworld = catchAsync(async (req, res) => {
   res.send({ hello: 'teacher.controller' });
 });
 
+const getTeacherCount = catchAsync(async (req, res) => {
+  const result = await teacherService.countTeacher();
+  // res.send({ hello: 'teacher.controller.getTeachers' });
+  res.send(result);
+});
+
 module.exports = {
   getStudents,
   getTeacherById,
   updateStudentById,
   deleteTeacherById,
   createStudent: createTeacher,
-  getTeachers, updateTeacherById, createTeacher,
+  getTeachers, updateTeacherById, createTeacher, getTeacherCount,
   helloworld
 };

@@ -92,7 +92,7 @@ export const TeacherEditForm = props => {
           helpers.setStatus({ success: true });
           helpers.setSubmitting(false);
           toast.success(t('Teacher updated!'));
-          route.replace('/dashboard/teachers')
+          route.replace('/dashboard/teachers');
         })
         .catch(err => {
           console.error(err);

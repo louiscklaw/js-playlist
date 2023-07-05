@@ -14,6 +14,9 @@ import { ChevronDown as ChevronDownIcon } from 'src/icons/chevron-down';
 import { ChevronUp as ChevronUpIcon } from 'src/icons/chevron-up';
 import { Chart } from '../../chart';
 import { useTranslation } from 'react-i18next';
+import TotalStudentCard from './cards/total-student-card';
+import TotalTeacherCard from './cards/total-teacher-card';
+import TotalAdministratorCard from './cards/total-administrator-card';
 
 const LineChart = () => {
   const theme = useTheme();
@@ -145,133 +148,15 @@ export const AnalyticsGeneralOverview = () => {
     <>
       <Grid container spacing={4}>
         <Grid item md={3} sm={6} xs={12}>
-          <Card>
-            <Box
-              sx={{
-                alignItems: 'center',
-                display: 'flex',
-                justifyContent: 'space-between',
-                px: 3,
-                py: 2,
-              }}
-            >
-              <div>
-                <Typography color="textSecondary" variant="body2">
-                  {t('Students')}
-                </Typography>
-                <Typography sx={{ mt: 1 }} variant="h5">
-                  {'1.9M'}
-                </Typography>
-              </div>
-              <LineChart />
-            </Box>
-            <Divider />
-            <CardActions>
-              <Button endIcon={<ArrowRightIcon fontSize="small" />}>
-                See all visits
-              </Button>
-            </CardActions>
-          </Card>
+          <TotalStudentCard />
         </Grid>
 
         <Grid item md={3} sm={6} xs={12}>
-          <Card>
-            <Box
-              sx={{
-                alignItems: 'center',
-                display: 'flex',
-                justifyContent: 'space-between',
-                px: 3,
-                py: 2,
-              }}
-            >
-              <div>
-                <Typography color="textSecondary" variant="body2">
-                  Spent
-                </Typography>
-                <Typography sx={{ mt: 1 }} variant="h5">
-                  $41.2K
-                </Typography>
-              </div>
-              <LineChart />
-            </Box>
-            <Divider />
-            <CardActions
-              sx={{
-                alignItems: 'center',
-                display: 'flex',
-              }}
-            >
-              <Avatar
-                sx={{
-                  backgroundColor: theme =>
-                    alpha(theme.palette.success.main, 0.08),
-                  color: 'success.main',
-                  height: 36,
-                  width: 36,
-                }}
-              >
-                <ChevronUpIcon fontSize="small" />
-              </Avatar>
-              <Typography
-                color="textSecondary"
-                sx={{ ml: 1 }}
-                variant="caption"
-              >
-                12% more then last month
-              </Typography>
-            </CardActions>
-          </Card>
+          <TotalTeacherCard />
         </Grid>
 
         <Grid item md={3} sm={6} xs={12}>
-          <Card>
-            <Box
-              sx={{
-                alignItems: 'center',
-                display: 'flex',
-                justifyContent: 'space-between',
-                px: 3,
-                py: 2,
-              }}
-            >
-              <div>
-                <Typography color="textSecondary" variant="body2">
-                  Engagements
-                </Typography>
-                <Typography sx={{ mt: 1 }} variant="h5">
-                  36,6K
-                </Typography>
-              </div>
-              <LineChart />
-            </Box>
-            <Divider />
-            <CardActions
-              sx={{
-                alignItems: 'center',
-                display: 'flex',
-              }}
-            >
-              <Avatar
-                sx={{
-                  backgroundColor: theme =>
-                    alpha(theme.palette.error.main, 0.08),
-                  color: 'error.main',
-                  height: 36,
-                  width: 36,
-                }}
-              >
-                <ChevronDownIcon fontSize="small" />
-              </Avatar>
-              <Typography
-                color="textSecondary"
-                sx={{ ml: 1 }}
-                variant="caption"
-              >
-                30% less then last month
-              </Typography>
-            </CardActions>
-          </Card>
+          <TotalAdministratorCard />
         </Grid>
 
         <Grid item md={3} sm={6} xs={12}>

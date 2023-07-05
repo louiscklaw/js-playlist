@@ -17,6 +17,13 @@ const getStudents = catchAsync(async (req, res) => {
 
 });
 
+const getStudentCount = catchAsync(async (req, res) => {
+  const result = await studentService.countStudent()
+  // res.send({ hello: 'student.controller.getStudents' });
+  res.send(result);
+});
+
+
 const createStudent = catchAsync(async (req, res) => {
   const student = await studentService.createStudent(req.body);
   res.status(httpStatus.CREATED).send(student);
@@ -54,6 +61,10 @@ const helloworld = catchAsync(async (req, res) => {
 
 module.exports = {
   getStudents,
-  getStudentById, updateStudentById, deleteStudentById, createStudent,
+  getStudentById,
+  updateStudentById,
+  deleteStudentById,
+  createStudent,
+  getStudentCount,
   helloworld
 };

@@ -70,7 +70,6 @@ export const TeacherListTable = props => {
     selectedCustomers.length > 0 && selectedCustomers.length < teachers.length;
   const selectedAllCustomers = selectedCustomers.length === teachers.length;
 
-
   return (
     <div {...other}>
       <Box
@@ -138,7 +137,10 @@ export const TeacherListTable = props => {
                         {getInitials(teacher.name)}
                       </Avatar>
                       <Box sx={{ ml: 1 }}>
-                        <NextLink href={`/dashboard/teachers/${teacher.id}`} passHref>
+                        <NextLink
+                          href={`/dashboard/teachers/${teacher.id}`}
+                          passHref
+                        >
                           <Link color="inherit" variant="subtitle2">
                             {teacher.name}
                           </Link>

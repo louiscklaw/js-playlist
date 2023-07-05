@@ -30,6 +30,11 @@ describe('Admin CRUD test', () => {
       password: 'password1',
       role: "admin"
     };
+
+    setTimeout(() => {
+      expect(true).toBe(true);
+    }, 200);
+
   });
 
   test('add new admin', async () => {
@@ -53,6 +58,19 @@ describe('Admin CRUD test', () => {
     });
 
   });
+
+  test('get admin count', async () => {
+    await insertAdmins([adminOne]);
+
+    const res = await request(app)
+      .get('/v1/admins/getAdminCount')
+      .expect(httpStatus.OK);
+
+    expect(res.body).toEqual({
+      count: 1
+    });
+
+  })
 
   test('get admin information', async () => {
     await insertAdmins([adminOne]);

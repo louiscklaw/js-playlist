@@ -134,10 +134,7 @@ export const AdminListTable = props => {
                   </TableCell>
                   <TableCell>
                     <Box sx={{ alignItems: 'center', display: 'flex' }}>
-                      <Avatar
-                        src={admin.avatar}
-                        sx={{ height: 42, width: 42 }}
-                      >
+                      <Avatar src={admin.avatar} sx={{ height: 42, width: 42 }}>
                         {getInitials(admin.name)}
                       </Avatar>
                       <Box sx={{ ml: 1 }}>

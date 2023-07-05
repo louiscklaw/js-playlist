@@ -170,10 +170,7 @@ export const StudentListTable = props => {
                         <PencilAltIcon fontSize="small" />
                       </IconButton>
                     </NextLink>
-                    <NextLink
-                      href={`/dashboard/admins/${student.id}`}
-                      passHref
-                    >
+                    <NextLink href={`/dashboard/admins/${student.id}`} passHref>
                       <IconButton component="a">
                         <ArrowRightIcon fontSize="small" />
                       </IconButton>

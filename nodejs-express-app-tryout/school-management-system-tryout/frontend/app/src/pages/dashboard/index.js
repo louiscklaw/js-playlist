@@ -45,6 +45,7 @@ const Overview = () => {
   useEffect(() => {
     // Restore the persistent state from local/session storage
     const value = globalThis.sessionStorage.getItem('dismiss-banner');
+    console.log('findme', value);
 
     if (value === 'true') {
       setDisplayBanner(false);

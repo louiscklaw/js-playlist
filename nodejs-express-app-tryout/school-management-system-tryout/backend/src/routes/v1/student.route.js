@@ -14,6 +14,10 @@ router
 // .put(studentController.helloworld);
 
 router
+  .route('/getStudentCount')
+  .get(studentController.getStudentCount);
+
+router
   .route('/')
   .post(validate(studentValidation.createStudent), studentController.createStudent)
   .get(validate(studentValidation.getStudents), studentController.getStudents);
