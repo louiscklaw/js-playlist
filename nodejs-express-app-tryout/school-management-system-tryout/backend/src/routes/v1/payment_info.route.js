@@ -6,32 +6,32 @@ const validate = require('../../middlewares/validate');
 const studentValidation = require('../../validations/student.validation');
 const studentController = require('../../controllers/student.controller');
 
-const scheduleValidation = require('../../validations/schedule.validation');
-const scheduleController = require('../../controllers/schedule.controller');
+const paymentInfoValidation = require('../../validations/payment_info.validation');
+const paymentInfoController = require('../../controllers/payment_info.controller');
 
 const router = express.Router();
 
-// NOTE: under /schedules directive
+// NOTE: under /paymentInfos directive
 // NOTE: helloworld
 router
   .route('/helloworld')
-  .get(scheduleController.helloworld);
-// .put(scheduleController.helloworld);
+  .get(paymentInfoController.helloworld);
+// .put(paymentInfoController.helloworld);
 
 router
-  .route('/getScheduleCount')
-  .get(scheduleController.getScheduleCount);
+  .route('/getPaymentInfoCount')
+  .get(paymentInfoController.getPaymentInfoCount);
 
 // router
 //   .route('/')
-//   .post(validate(scheduleValidation.createSchedule), scheduleController.createSchedule)
-//   .get(validate(scheduleValidation.getSchedules), scheduleController.getSchedules);
+//   .post(validate(paymentInfoValidation.createPaymentInfo), paymentInfoController.createPaymentInfo)
+//   .get(validate(paymentInfoValidation.getPaymentInfos), paymentInfoController.getPaymentInfos);
 
 // router
-//   .route('/:scheduleId')
-//   .get(validate(scheduleValidation.getSchedule), scheduleController.getScheduleById)
-//   .patch(validate(scheduleValidation.updateSchedule), scheduleController.updateScheduleById)
-//   .delete(validate(scheduleValidation.deleteSchedule), scheduleController.deleteScheduleById);
+//   .route('/:paymentInfoId')
+//   .get(validate(paymentInfoValidation.getPaymentInfo), paymentInfoController.getPaymentInfoById)
+//   .patch(validate(paymentInfoValidation.updatePaymentInfo), paymentInfoController.updatePaymentInfoById)
+//   .delete(validate(paymentInfoValidation.deletePaymentInfo), paymentInfoController.deletePaymentInfoById);
 
 
 module.exports = router;

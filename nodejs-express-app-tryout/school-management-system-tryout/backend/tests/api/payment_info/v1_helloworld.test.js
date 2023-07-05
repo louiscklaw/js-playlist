@@ -15,7 +15,7 @@ const { Student, User, Token } = require('../../../src/models');
 const { roleRights } = require('../../../src/config/roles');
 const { tokenTypes } = require('../../../src/config/tokens');
 
-const { scheduleOne, insertSchedules } = require('../../fixtures/schedule.fixture');
+const { paymentInfoOne, insertPaymentInfos } = require('../../fixtures/payment_info.fixture');
 
 const { userOne, insertUsers } = require('../../fixtures/user.fixture');
 const { studentOne, studentTwo, insertStudents } = require('../../fixtures/student.fixture');
@@ -23,11 +23,11 @@ const { userOneAccessToken, adminAccessToken, studentOneAccessToken } = require(
 
 setupTestDB();
 
-describe('Schedule CRUD test', () => {
-  let newSchedule;
+describe('PaymentInfo CRUD test', () => {
+  let newPaymentInfo;
 
   beforeEach(() => {
-    newSchedule = {
+    newPaymentInfo = {
       name: faker.name.findName(),
     };
 
@@ -37,11 +37,11 @@ describe('Schedule CRUD test', () => {
 
   });
 
-  test('get schedule count', async () => {
-    await insertSchedules([scheduleOne]);
+  test('get paymentInfo count', async () => {
+    await insertPaymentInfos([paymentInfoOne]);
 
     const res = await request(app)
-      .get('/v1/schedules/getScheduleCount')
+      .get('/v1/payment-infos/getPaymentInfoCount')
       .expect(httpStatus.OK);
 
     expect(res.body).toEqual({
@@ -223,10 +223,10 @@ describe('Schedule CRUD test', () => {
   //   expect(dbStudentOne).toBeNull();
   // })
 
-  test('GET /v1/schedules/helloworld',
+  test('GET /v1/payment-infos/helloworld',
     async () => {
       const res = await request(app)
-        .get('/v1/schedules/helloworld')
+        .get('/v1/payment-infos/helloworld')
         .expect(httpStatus.OK);
     });
 });

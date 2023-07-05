@@ -5,63 +5,63 @@ const ApiError = require('../utils/ApiError');
 
 const catchAsync = require('../utils/catchAsync');
 
-const { scheduleService } = require('../services');
+const { paymentInfoService } = require('../services');
 
-const getSchedules = catchAsync(async (req, res) => {
+const getPaymentInfos = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await scheduleService.querySchedules(filter, options);
+  const result = await paymentInfoService.queryPaymentInfos(filter, options);
   res.send(result);
 });
 
-const getScheduleCount = catchAsync(async (req, res) => {
-  const result = await scheduleService.countSchedule()
+const getPaymentInfoCount = catchAsync(async (req, res) => {
+  const result = await paymentInfoService.countPaymentInfo()
   res.send(result);
 });
 
-const createSchedule = catchAsync(async (req, res) => {
-  const schedule = await scheduleService.createSchedule(req.body);
-  res.status(httpStatus.CREATED).send(schedule);
+const createPaymentInfo = catchAsync(async (req, res) => {
+  const paymentInfo = await paymentInfoService.createPaymentInfo(req.body);
+  res.status(httpStatus.CREATED).send(paymentInfo);
 });
 
-// const getScheduleById = catchAsync(async (req, res) => {
-//   const schedule = await scheduleService.getScheduleById(req.params.scheduleId);
+// const getPaymentInfoById = catchAsync(async (req, res) => {
+//   const paymentInfo = await paymentInfoService.getPaymentInfoById(req.params.paymentInfoId);
 
-//   if (!schedule) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Schedule not found');
+//   if (!paymentInfo) {
+//     throw new ApiError(httpStatus.NOT_FOUND, 'PaymentInfo not found');
 //   }
-//   res.send(schedule);
+//   res.send(paymentInfo);
 // });
 
-// // const updateScheduleById = catchAsync(async (req, res) => {
-// //   const schedule = await scheduleService.updateScheduleById(
-// //     req.params.scheduleId, req.body);
-// //   res.send(schedule);
+// // const updatePaymentInfoById = catchAsync(async (req, res) => {
+// //   const paymentInfo = await paymentInfoService.updatePaymentInfoById(
+// //     req.params.paymentInfoId, req.body);
+// //   res.send(paymentInfo);
 // // });
 
-// const updateScheduleById = catchAsync(async (req, res) => {
-//   const schedule = await scheduleService.updateScheduleById(
-//     req.params.scheduleId, req.body);
-//   res.send(schedule);
+// const updatePaymentInfoById = catchAsync(async (req, res) => {
+//   const paymentInfo = await paymentInfoService.updatePaymentInfoById(
+//     req.params.paymentInfoId, req.body);
+//   res.send(paymentInfo);
 // });
 
-// const deleteScheduleById = catchAsync(async (req, res) => {
-//   await scheduleService.deleteScheduleById(req.params.scheduleId);
+// const deletePaymentInfoById = catchAsync(async (req, res) => {
+//   await paymentInfoService.deletePaymentInfoById(req.params.paymentInfoId);
 //   res.status(httpStatus.NO_CONTENT).send();
 // });
 
 const helloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'schedule.controller' });
+  res.send({ hello: 'paymentInfo.controller' });
 });
 
 module.exports = {
-  getSchedules,
-  getScheduleCount,
-  // getScheduleById,
-  // updateScheduleById,
-  // deleteScheduleById,
-  // createSchedule,
-  // getScheduleCount,
-  createSchedule,
+  getPaymentInfos,
+  getPaymentInfoCount,
+  // getPaymentInfoById,
+  // updatePaymentInfoById,
+  // deletePaymentInfoById,
+  // createPaymentInfo,
+  // getPaymentInfoCount,
+  createPaymentInfo,
   helloworld
 };

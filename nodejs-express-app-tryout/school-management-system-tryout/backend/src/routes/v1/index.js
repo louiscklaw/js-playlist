@@ -12,6 +12,7 @@ const attendanceRoute = require('./attendance.route');
 const classroomRoute = require('./classroom.route');
 const examRoute = require('./exam.route');
 const examResultRoute = require('./exam_result.route');
+const paymentInfoRoute = require('./payment_info.route');
 
 const adminRoute = require('./admin.route');
 
@@ -33,6 +34,7 @@ const defaultRoutes = [
   { path: '/classrooms', route: classroomRoute },
   { path: '/exams', route: examRoute },
   { path: '/exam-results', route: examResultRoute },
+  { path: '/payment-infos', route: paymentInfoRoute },
   { path: '/teachers', route: teacherRoute },
   { path: '/admins', route: adminRoute },
   { path: '/helloworld', route: helloworldRoute },
