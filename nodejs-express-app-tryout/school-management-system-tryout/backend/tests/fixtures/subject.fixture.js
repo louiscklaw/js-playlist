@@ -10,11 +10,13 @@ const hashedPassword = bcrypt.hashSync(password, salt);
 const subjectOne = {
   _id: mongoose.Types.ObjectId(),
   name: faker.name.findName(),
+  description: "helloworld subject one"
 };
 
 const subjectTwo = {
   _id: mongoose.Types.ObjectId(),
   name: faker.name.findName(),
+  description: "helloworld subject two"
 };
 
 const insertSubjects = async (subjects) => {

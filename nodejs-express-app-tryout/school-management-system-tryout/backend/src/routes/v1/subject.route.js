@@ -12,8 +12,8 @@ const router = express.Router();
 // NOTE: helloworld
 router
   .route('/helloworld')
-  .get(subjectController.helloworld);
-// .put(subjectController.helloworld);
+  .get(subjectController.helloworld)
+  .put(subjectController.helloworld);
 
 router
   .route('/getSubjectCount')

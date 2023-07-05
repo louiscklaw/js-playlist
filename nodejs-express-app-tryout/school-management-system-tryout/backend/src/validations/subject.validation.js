@@ -13,13 +13,12 @@ const createUser = {
 const createSubject = {
   body: Joi.object().keys({
     name: Joi.string().required(),
+    description: Joi.string().required(),
   }),
 };
 
 const getSubjects = {
   query: Joi.object().keys({
-    name: Joi.string(),
-    role: Joi.string(),
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
     page: Joi.number().integer(),

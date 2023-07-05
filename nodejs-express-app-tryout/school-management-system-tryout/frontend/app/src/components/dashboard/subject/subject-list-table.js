@@ -72,7 +72,7 @@ export const SubjectListTable = props => {
     selectedCustomers.length > 0 && selectedCustomers.length < subjects.length;
   const selectedAllCustomers = selectedCustomers.length === subjects.length;
 
-  const studentId = '64a12f7d92da2661085fa445';
+  const subjectId = '64a12f7d92da2661085fa445';
 
   return (
     <div {...other}>
@@ -111,23 +111,21 @@ export const SubjectListTable = props => {
                 />
               </TableCell>
               <TableCell>{t('Name')}</TableCell>
-              <TableCell>{t('Location')}</TableCell>
-              <TableCell>{t('Orders')}</TableCell>
-              <TableCell>{t('Spent')}</TableCell>
+              <TableCell>{t('Description')}</TableCell>
               <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {subjects.map(student => {
-              const isCustomerSelected = selectedCustomers.includes(student.id);
+            {subjects.map(subject => {
+              const isCustomerSelected = selectedCustomers.includes(subject.id);
 
               return (
-                <TableRow hover key={student.id} selected={isCustomerSelected}>
+                <TableRow hover key={subject.id} selected={isCustomerSelected}>
                   <TableCell padding="checkbox">
                     <Checkbox
                       checked={isCustomerSelected}
                       onChange={event =>
-                        handleSelectOneCustomer(event, student.id)
+                        handleSelectOneCustomer(event, subject.id)
                       }
                       value={isCustomerSelected}
                     />
@@ -135,35 +133,32 @@ export const SubjectListTable = props => {
                   <TableCell>
                     <Box sx={{ alignItems: 'center', display: 'flex' }}>
                       <Avatar
-                        src={student.avatar}
+                        src={subject.avatar}
                         sx={{ height: 42, width: 42 }}
                       >
-                        {getInitials(student.name)}
+                        {getInitials(subject.name)}
                       </Avatar>
                       <Box sx={{ ml: 1 }}>
-                        <NextLink href="/dashboard/students/1" passHref>
+                        <NextLink href="/dashboard/subjects/1" passHref>
                           <Link color="inherit" variant="subtitle2">
-                            {student.name}
+                            {subject.name}
                           </Link>
                         </NextLink>
                         <Typography color="textSecondary" variant="body2">
-                          {student.email}
+                          {subject.email}
                         </Typography>
                       </Box>
                     </Box>
                   </TableCell>
-                  <TableCell>{`${student.city}, ${student.state}, ${student.country}`}</TableCell>
-                  <TableCell>{student.totalOrders}</TableCell>
+
                   <TableCell>
                     <Typography color="success.main" variant="subtitle2">
-                      {numeral(student.totalAmountSpent).format(
-                        `${student.currency}0,0.00`,
-                      )}
+                      <div>Helloworld</div>
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
                     <NextLink
-                      href={`/dashboard/students/${student.id}/edit`}
+                      href={`/dashboard/subjects/${subject.id}/edit`}
                       passHref
                     >
                       <IconButton component="a">
@@ -171,7 +166,7 @@ export const SubjectListTable = props => {
                       </IconButton>
                     </NextLink>
                     <NextLink
-                      href={`/dashboard/students/${student.id}`}
+                      href={`/dashboard/subjects/${subject.id}`}
                       passHref
                     >
                       <IconButton component="a">

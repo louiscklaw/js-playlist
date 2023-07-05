@@ -50,9 +50,9 @@ const queryUsers = async (filter, options) => {
   return users;
 };
 
-const queryStudents = async (filter, options) => {
-  const students = await Subject.paginate(filter, options);
-  return students;
+const querySubjects = async (filter, options) => {
+  const subjects = await Subject.paginate(filter, options);
+  return subjects;
 };
 
 /**
@@ -149,7 +149,7 @@ const deleteUserById = async (userId) => {
 module.exports = {
   createUser,
   queryUsers,
-  queryStudents,
+  querySubjects,
   getUserById,
   getUserByEmail,
   updateUserById, updateUserByEmail, getStudentById, updateStudentById,
