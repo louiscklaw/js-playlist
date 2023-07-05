@@ -6,8 +6,8 @@ content-type: application/json
 
 {
   "name": "fake name",
-  "email": "fake@example.com",
-  "password": "password1"
+  "email": "demo@devias.io",
+  "password": "Password123!"
 }
 
 ###

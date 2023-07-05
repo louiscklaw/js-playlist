@@ -16,14 +16,15 @@ const { roleRights } = require('../../../src/config/roles');
 const { tokenTypes } = require('../../../src/config/tokens');
 
 const { userOne, admin, insertUsers } = require('../../fixtures/user.fixture');
-const { userOneAccessToken, adminAccessToken } = require('../../fixtures/token.fixture');
+const { studentOne, insertStudents } = require('../../fixtures/student.fixture');
+const { userOneAccessToken, adminAccessToken, studentOneAccessToken } = require('../../fixtures/token.fixture');
 
 setupTestDB();
 
 describe('Auth routes', () => {
-  let newUser;
+  let newStudent;
   beforeEach(() => {
-    newUser = {
+    newStudent = {
       name: faker.name.findName(),
       email: faker.internet.email().toLowerCase(),
       password: 'password1',
@@ -31,10 +32,10 @@ describe('Auth routes', () => {
     };
   });
 
-  test('create student', async () => {
+  test('add new student', async () => {
     const res = await request(app)
       .post('/v1/students')
-      .send(newUser)
+      .send(newStudent)
       .expect(httpStatus.CREATED);
 
     expect(res.body).not.toHaveProperty('password');
@@ -42,17 +43,93 @@ describe('Auth routes', () => {
     const dbUser = await Student.findById(res.body.id);
     expect(dbUser).toBeDefined();
 
-    expect(dbUser.password).not.toBe(newUser.password);
+    expect(dbUser.password).not.toBe(newStudent.password);
 
     expect(dbUser).toMatchObject({
-      name: newUser.name,
-      email: newUser.email,
+      name: newStudent.name,
+      email: newStudent.email,
       role: 'user',
       isEmailVerified: false
     });
 
   });
 
+  test('get student information', async () => {
+    await insertStudents([studentOne]);
+    const res = await request(app)
+      .get('/v1/students')
+      .expect(httpStatus.OK);
+
+    expect(res.body).toEqual({
+      results: expect.any(Array),
+      page: 1,
+      limit: 10,
+      totalPages: 1,
+      totalResults: 1,
+    });
+
+    expect(res.body.results).toHaveLength(1);
+
+    expect(res.body.results[0]).toEqual({
+      id: studentOne._id.toHexString(),
+      address1: "",
+      address2: "",
+      country: "",
+      hasDiscount: false,
+      isVerified: false,
+      phone: "",
+      state: "",
+      name: studentOne.name,
+      email: studentOne.email,
+      role: studentOne.role,
+      isEmailVerified: studentOne.isEmailVerified,
+    });
+  })
+
+
+  test('create student information', async () => {
+    const res = await request(app)
+      .post('/v1/students')
+      .set('Authorization', `Bearer ${studentOneAccessToken}`)
+      .send(newStudent)
+      .expect(httpStatus.CREATED);
+
+    expect(res.body).not.toHaveProperty('password');
+    expect(res.body).toEqual({
+      id: expect.anything(),
+      name: newStudent.name,
+      email: newStudent.email,
+      role: newStudent.role,
+      isEmailVerified: false,
+      address1: "",
+      address2: "",
+      country: "",
+      hasDiscount: false,
+      isVerified: false,
+      phone: "",
+      state: "",
+    });
+
+    const dbUser = await Student.findById(res.body.id);
+    expect(dbUser).toBeDefined();
+
+    expect(dbUser.password).not.toBe(newStudent.password);
+
+    expect(dbUser).toMatchObject({
+      name: newStudent.name,
+      email: newStudent.email,
+      role: newStudent.role,
+      isEmailVerified: false,
+      address1: "",
+      address2: "",
+      country: "",
+      hasDiscount: false,
+      isVerified: false,
+      phone: "",
+      state: "",
+    });
+
+  })
 
   test('student api helloworld', async () => {
     const res = await request(app)

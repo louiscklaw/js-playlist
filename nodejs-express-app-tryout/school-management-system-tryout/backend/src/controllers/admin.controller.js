@@ -19,9 +19,9 @@ const getAdmins = catchAsync(async (req, res) => {
 
 });
 
-const createStudent = catchAsync(async (req, res) => {
-  const student = await studentService.createStudent(req.body);
-  res.status(httpStatus.CREATED).send(student);
+const createAdmin = catchAsync(async (req, res) => {
+  const admin = await adminService.createAdmin(req.body);
+  res.status(httpStatus.CREATED).send(admin);
 });
 
 const getStudentById = catchAsync(async (req, res) => {
@@ -75,8 +75,7 @@ module.exports = {
   getStudentById,
   updateStudentById,
   deleteAdminById,
-  createStudent,
   getAdminById,
-  updateAdminById,
+  updateAdminById, createAdmin,
   helloworld
 };

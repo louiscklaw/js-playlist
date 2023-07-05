@@ -27,8 +27,10 @@ router
 router
   .route('/')
   .get(validate(adminValidation.getAdmins), adminController.getAdmins)
-  .post(validate(adminValidation.createStudent), adminController.createStudent)
+  .post(adminController.createAdmin);
 
+
+  // validate(adminValidation.createAdmin),
 
 module.exports = router;
 

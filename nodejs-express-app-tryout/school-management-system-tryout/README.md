@@ -8,6 +8,16 @@
 ### CODE
 
 ### TEST
+```bash
+# for backend, goto backend container
+$ docker compose exec -it node-app bash
+$ npm run test:watch
+```
+
+```bash
+# for frontend,
+TBA
+```
 
 
 ### DOCS
