@@ -22,9 +22,9 @@ remove some of the existing ones.
 // src/pages/_app.js
 import { SettingsProvider } from '../contexts/settings-context';
 
-const App = (props) => {
+const App = props => {
   const { Component, pageProps } = props;
-    
+
   return (
     <SettingsProvider>
       <Component {...pageProps} />
@@ -33,7 +33,7 @@ const App = (props) => {
 };
 ```
 
-The content of the `App` component is wrapped with the `SettingsProvider`, and by doing this its 
+The content of the `App` component is wrapped with the `SettingsProvider`, and by doing this its
 context data is made available inside the component tree.
 
 ## How to use
@@ -47,11 +47,7 @@ import { useSettings } from '../hooks/useSettings';
 const Home = () => {
   const { settings } = useSettings();
 
-  return (
-    <div>
-      Current theme: {settings.theme}
-    </div>
-  );
+  return <div>Current theme: {settings.theme}</div>;
 };
 ```
 
@@ -62,11 +58,7 @@ import { SettingsConsumer } from '../contexts/settings-context';
 const Home = () => {
   return (
     <SettingsConsumer>
-      {({settings}) => (
-        <div>
-          Current theme: {settings.theme}
-        </div>
-      )}
+      {({ settings }) => <div>Current theme: {settings.theme}</div>}
     </SettingsConsumer>
   );
 };
@@ -85,16 +77,14 @@ const Home = () => {
 
   const handleSave = () => {
     saveSettings({
-     ...settings,
-     theme: 'dark'
-   });
+      ...settings,
+      theme: 'dark',
+    });
   };
 
   return (
     <div>
-      <Button onClick={handleSave}>
-        Save
-      </Button>
+      <Button onClick={handleSave}>Save</Button>
     </div>
   );
 };

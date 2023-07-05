@@ -11,7 +11,7 @@ import { alpha, useTheme } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { adminApi } from 'src/api/admin-api';
-import { scheduleApi } from 'src/api/schedule-api';
+import { classroomApi } from 'src/api/classroom-api';
 import { Chart } from 'src/components/chart';
 import { useMounted } from 'src/hooks/use-mounted';
 import { ArrowRight as ArrowRightIcon } from 'src/icons/arrow-right';
@@ -57,18 +57,19 @@ const LineChart = () => {
   );
 };
 
-const TotalScheduleCard = () => {
+const TotalClassroomCard = () => {
   const { t } = useTranslation();
   const isMounted = useMounted();
-  const [scheduleCount, setScheduleCount] = useState(0);
+  const [classroomCount, setClassroomCount] = useState(0);
 
   useEffect(() => {
     if (isMounted) {
-      scheduleApi
-        .getScheduleCount()
-        .then(({ data }) => setScheduleCount(data.count));
+      classroomApi
+        .getClassroomCount()
+        .then(({ data }) => setClassroomCount(data.count));
     }
   }, [isMounted]);
+
   return (
     <>
       <Card>
@@ -83,11 +84,11 @@ const TotalScheduleCard = () => {
         >
           <div>
             <Typography color="textSecondary" variant="body2">
-              {t('Schedule')}
+              {t('Classroom')}
             </Typography>
 
             <Typography sx={{ mt: 1 }} variant="h5">
-              {scheduleCount}
+              {classroomCount}
             </Typography>
           </div>
           <LineChart />
@@ -104,4 +105,4 @@ const TotalScheduleCard = () => {
   );
 };
 
-export default TotalScheduleCard;
+export default TotalClassroomCard;

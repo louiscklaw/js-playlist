@@ -15,11 +15,7 @@ the app provides a `hoc` to prevent the entire page render.
 import { withAuthGuard } from '../../hocs/with-auth-guard';
 
 const Overview = () => {
-  return (
-    <div>
-      content
-    </div>
-  );
+  return <div>content</div>;
 };
 
 export default withAuthGuard(Overview);
@@ -30,7 +26,7 @@ export default withAuthGuard(Overview);
 It connects with the authentication provider (Amplify, Auth0, Firebase, or JWT, depending on your
 setup) and extracts the required data to detect whether it should render the children passed as
 props, otherwise it redirects to the `Login` component with a redirect url query string parameter
-to allow the Login component to redirect back to the requested url after a successful 
+to allow the Login component to redirect back to the requested url after a successful
 authentication.
 
 ## How it can be extended

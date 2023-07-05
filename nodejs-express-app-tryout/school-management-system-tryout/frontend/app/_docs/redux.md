@@ -50,13 +50,13 @@ IDE, and import
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  articles: []
+  articles: [],
 };
 
 const slice = createSlice({
   name: 'blog',
   initialState,
-  reducers: {}
+  reducers: {},
 });
 
 export const { reducer } = slice;
@@ -76,17 +76,17 @@ const slice = createSlice({
   initialState,
   reducers: {
     setArticles(state, payload) {
-      // You should get articles from the action payload. 
+      // You should get articles from the action payload.
       // For simplicity's sake let's use static data instead.
 
       state.articles = [
         {
           id: '1',
-          title: 'My first article'
-        }
+          title: 'My first article',
+        },
       ];
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -102,7 +102,7 @@ In the created slice file, create a `getPosts` method that dispatches the slice 
 action.
 
 ```js
-export const getPosts = () => async (dispatch) => {
+export const getPosts = () => async dispatch => {
   // Here make an async request to your sever and extract the data from the server response
   // const response = await axios.get('/__fake-api__/blog/articles');
   // const { data } = reponse;
@@ -110,8 +110,8 @@ export const getPosts = () => async (dispatch) => {
   const data = [
     {
       id: '1',
-      title: 'My first article'
-    }
+      title: 'My first article',
+    },
   ];
 
   dispatch(slice.actions.setArticles(data));
@@ -128,8 +128,8 @@ const slice = createSlice({
   reducers: {
     setArticles(state, payload) {
       state.articles = payload.articles;
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -138,11 +138,11 @@ const slice = createSlice({
 In the file `src/store/rootReducer.js` use the reducer from your newly created slice.
 
 ```js
-import {reducer as blogReducer} from 'src/slices/blog';
+import { reducer as blogReducer } from 'src/slices/blog';
 
 const rootReducer = combineReducers({
   // ...other reducers
-  blog: blogReducer
+  blog: blogReducer,
 });
 ```
 
@@ -152,15 +152,13 @@ const rootReducer = combineReducers({
 import { useSelector } from 'react-redux';
 
 const Blog = () => {
-  const { articles } = useSelector((state) => state.blog);
+  const { articles } = useSelector(state => state.blog);
 
   return (
     <div>
       <div>
-        {articles.map((article) => (
-          <div>
-            Article ID: {article.id}
-          </div>
+        {articles.map(article => (
+          <div>Article ID: {article.id}</div>
         ))}
       </div>
     </div>
@@ -182,7 +180,7 @@ import { getPosts } from 'src/slices/blog';
 
 const Blog = () => {
   const dispatch = useDispatch();
-  const { articles } = useSelector((state) => state.blog);
+  const { articles } = useSelector(state => state.blog);
 
   const handleClick = () => {
     dispatch(getPosts());
@@ -191,15 +189,11 @@ const Blog = () => {
   return (
     <div>
       <div>
-        {articles.map((article) => (
-          <div>
-            Article ID: {article.id}
-          </div>
+        {articles.map(article => (
+          <div>Article ID: {article.id}</div>
         ))}
       </div>
-      <Button onClick={handleClick}>
-        Load articles
-      </Button>
+      <Button onClick={handleClick}>Load articles</Button>
     </div>
   );
 };

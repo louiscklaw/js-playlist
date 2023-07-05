@@ -21,18 +21,18 @@ First step is to declare the app translations as resources.
 const resources = {
   en: {
     translation: {
-      'Welcome to React': 'Welcome to React and react-i18next'
-    }
+      'Welcome to React': 'Welcome to React and react-i18next',
+    },
   },
   fr: {
     translation: {
-      'Welcome to React': 'Bienvenue à React et react-i18next'
-    }
+      'Welcome to React': 'Bienvenue à React et react-i18next',
+    },
   },
   es: {
     translation: {
-      'Welcome to React': 'Bienvenido a React and react-i18next'
-    }
+      'Welcome to React': 'Bienvenido a React and react-i18next',
+    },
   },
   // ...
 };
@@ -48,12 +48,8 @@ import { useTranslation } from 'react-i18next';
 const Home = () => {
   const { t } = useTranslation();
 
-  return (
-    <h1>
-      {t('Welcome to React')}
-    </h1>
-  );
-}
+  return <h1>{t('Welcome to React')}</h1>;
+};
 ```
 
 For all configuration options, please follow the
@@ -64,4 +60,4 @@ For all configuration options, please follow the
 1. Remove `import './i18n` line from `App` component.
 2. Remove `i18n.js` configuration file from `src` folder.
 3. Remove `LanguagePopover` component since it connects with the library.
-3. Uninstall `i18next` and `react-i18next` dependencies.
+4. Uninstall `i18next` and `react-i18next` dependencies.

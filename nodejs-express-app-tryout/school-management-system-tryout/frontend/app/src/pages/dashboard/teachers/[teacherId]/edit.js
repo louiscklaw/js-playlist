@@ -105,9 +105,7 @@ const TeacherEdit = () => {
                   whiteSpace: 'nowrap',
                 }}
               >
-                <Typography variant="subtitle2">
-                  teacher_id:
-                </Typography>
+                <Typography variant="subtitle2">teacher_id:</Typography>
                 <Chip label={student.id} size="small" sx={{ ml: 1 }} />
               </Box>
             </div>

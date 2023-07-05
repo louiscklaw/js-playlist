@@ -27,6 +27,6 @@ the `gtmConfig` object found in the `src/config.js` file.
 
 ```js
 export const gtmConfig = {
-  containerId: ''
+  containerId: '',
 };
 ```

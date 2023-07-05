@@ -46,17 +46,15 @@ class AdminApi {
   }
 
   getStudentById(student_id) {
-    return axios.get(`${API}/students/${student_id}`)
-      .then(({ data }) => {
-        return data;
-      });
+    return axios.get(`${API}/students/${student_id}`).then(({ data }) => {
+      return data;
+    });
   }
 
   getAdminById(admin_id) {
-    return axios.get(`${API}/admins/${admin_id}`)
-      .then(({ data }) => {
-        return data;
-      });
+    return axios.get(`${API}/admins/${admin_id}`).then(({ data }) => {
+      return data;
+    });
   }
 
   getCustomerEmails() {

@@ -59,19 +59,16 @@ class TeacherApi {
     });
   }
 
-
   getStudentById(student_id) {
-    return axios.get(`${API}/students/${student_id}`)
-      .then(({ data }) => {
-        return data;
-      });
+    return axios.get(`${API}/students/${student_id}`).then(({ data }) => {
+      return data;
+    });
   }
 
   getTeacherById(student_id) {
-    return axios.get(`${API}/teachers/${student_id}`)
-      .then(({ data }) => {
-        return data;
-      });
+    return axios.get(`${API}/teachers/${student_id}`).then(({ data }) => {
+      return data;
+    });
   }
 
   getCustomerEmails() {

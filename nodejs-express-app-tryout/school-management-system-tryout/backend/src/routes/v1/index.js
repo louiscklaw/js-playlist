@@ -10,6 +10,7 @@ const scheduleRoute = require('./schedule.route');
 const teacherRoute = require('./teacher.route');
 const attendanceRoute = require('./attendance.route');
 const classroomRoute = require('./classroom.route');
+const examRoute = require('./exam.route');
 
 const adminRoute = require('./admin.route');
 
@@ -29,6 +30,7 @@ const defaultRoutes = [
   { path: '/schedules', route: scheduleRoute },
   { path: '/attendances', route: attendanceRoute },
   { path: '/classrooms', route: classroomRoute },
+  { path: '/exams', route: examRoute },
   { path: '/teachers', route: teacherRoute },
   { path: '/admins', route: adminRoute },
   { path: '/helloworld', route: helloworldRoute },

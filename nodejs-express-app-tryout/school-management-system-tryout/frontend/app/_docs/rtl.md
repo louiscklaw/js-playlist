@@ -15,9 +15,9 @@ mirror the margins and paddings.
 
 ```jsx
 // src/pages/_app.js
-const App = (props) => {
+const App = props => {
   const { Component, pageProps } = props;
-    
+
   return (
     <RTL direction="rtl">
       <Component {...pageProps} />
@@ -35,4 +35,4 @@ If you do not need to support RTL, you can remove it by following the next steps
 
 1. Remove `RTL` component from `src/components`.
 2. Remove `RTL` component import and usage from `App` component.
-2. Uninstall the `@emotion/cache` and`stylis-plugin-rtl` dependencies.
+3. Uninstall the `@emotion/cache` and`stylis-plugin-rtl` dependencies.

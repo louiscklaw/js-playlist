@@ -8,7 +8,6 @@ const API_ENDPOINT = `${API}/schedules`;
 const now = new Date();
 
 class ScheduleApi {
-
   getScheduleCount() {
     return axios.get(`${API_ENDPOINT}/getScheduleCount`);
   }

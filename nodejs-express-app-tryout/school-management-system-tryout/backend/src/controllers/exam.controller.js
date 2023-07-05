@@ -5,63 +5,63 @@ const ApiError = require('../utils/ApiError');
 
 const catchAsync = require('../utils/catchAsync');
 
-const { scheduleService } = require('../services');
+const { examService } = require('../services');
 
-const getSchedules = catchAsync(async (req, res) => {
+const getExams = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await scheduleService.querySchedules(filter, options);
+  const result = await examService.queryExams(filter, options);
   res.send(result);
 });
 
-const getScheduleCount = catchAsync(async (req, res) => {
-  const result = await scheduleService.countSchedule()
+const getExamCount = catchAsync(async (req, res) => {
+  const result = await examService.countExam()
   res.send(result);
 });
 
-const createSchedule = catchAsync(async (req, res) => {
-  const schedule = await scheduleService.createSchedule(req.body);
-  res.status(httpStatus.CREATED).send(schedule);
+const createExam = catchAsync(async (req, res) => {
+  const exam = await examService.createExam(req.body);
+  res.status(httpStatus.CREATED).send(exam);
 });
 
-// const getScheduleById = catchAsync(async (req, res) => {
-//   const schedule = await scheduleService.getScheduleById(req.params.scheduleId);
+// const getExamById = catchAsync(async (req, res) => {
+//   const exam = await examService.getExamById(req.params.examId);
 
-//   if (!schedule) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Schedule not found');
+//   if (!exam) {
+//     throw new ApiError(httpStatus.NOT_FOUND, 'Exam not found');
 //   }
-//   res.send(schedule);
+//   res.send(exam);
 // });
 
-// // const updateScheduleById = catchAsync(async (req, res) => {
-// //   const schedule = await scheduleService.updateScheduleById(
-// //     req.params.scheduleId, req.body);
-// //   res.send(schedule);
+// // const updateExamById = catchAsync(async (req, res) => {
+// //   const exam = await examService.updateExamById(
+// //     req.params.examId, req.body);
+// //   res.send(exam);
 // // });
 
-// const updateScheduleById = catchAsync(async (req, res) => {
-//   const schedule = await scheduleService.updateScheduleById(
-//     req.params.scheduleId, req.body);
-//   res.send(schedule);
+// const updateExamById = catchAsync(async (req, res) => {
+//   const exam = await examService.updateExamById(
+//     req.params.examId, req.body);
+//   res.send(exam);
 // });
 
-// const deleteScheduleById = catchAsync(async (req, res) => {
-//   await scheduleService.deleteScheduleById(req.params.scheduleId);
+// const deleteExamById = catchAsync(async (req, res) => {
+//   await examService.deleteExamById(req.params.examId);
 //   res.status(httpStatus.NO_CONTENT).send();
 // });
 
 const helloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'schedule.controller' });
+  res.send({ hello: 'exam.controller' });
 });
 
 module.exports = {
-  getSchedules,
-  getScheduleCount,
-  // getScheduleById,
-  // updateScheduleById,
-  // deleteScheduleById,
-  // createSchedule,
-  // getScheduleCount,
-  createSchedule,
+  getExams,
+  getExamCount,
+  // getExamById,
+  // updateExamById,
+  // deleteExamById,
+  // createExam,
+  // getExamCount,
+  createExam,
   helloworld
 };

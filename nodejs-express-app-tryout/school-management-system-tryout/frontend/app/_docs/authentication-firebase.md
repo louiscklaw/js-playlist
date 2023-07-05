@@ -39,7 +39,7 @@ export const firebaseConfig = {
   authDomain: '',
   messagingSenderId: '',
   projectId: '',
-  storageBucket: ''
+  storageBucket: '',
 };
 ```
 
@@ -102,11 +102,7 @@ import { useAuth } from '../hooks/use-auth';
 const Home = () => {
   const { user } = useAuth();
 
-  return (
-    <div>
-      Email: {user.email}
-    </div>
-  );
+  return <div>Email: {user.email}</div>;
 };
 ```
 
@@ -120,7 +116,7 @@ import { useAuth } from '../hooks/use-auth';
 
 const Home = () => {
   const { signInWithEmailAndPassword } = useAuth();
-  
+
   const handleLogin = () => {
     // Email and password
     signInWithEmailAndPassword('demo@devias.io', 'Password123!');
@@ -128,9 +124,7 @@ const Home = () => {
 
   return (
     <div>
-      <button onClick={handleLogin}>
-        Login
-      </button>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };

@@ -64,7 +64,8 @@ const TotalSubjectCard = () => {
 
   useEffect(() => {
     if (isMounted) {
-      subjectApi.getSubjectCount()
+      subjectApi
+        .getSubjectCount()
         .then(({ data }) => setSubjectCount(data.count));
     }
   }, [isMounted]);

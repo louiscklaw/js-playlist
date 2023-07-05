@@ -31,7 +31,7 @@ from `src/config.js` file.
 ```js
 export const auth0Config = {
   client_id: '',
-  domain: ''
+  domain: '',
 };
 ```
 
@@ -94,11 +94,7 @@ import { useAuth } from '../hooks/use-auth';
 const Home = () => {
   const { user } = useAuth();
 
-  return (
-    <div>
-      Email: {user.email}
-    </div>
-  );
+  return <div>Email: {user.email}</div>;
 };
 ```
 
@@ -112,16 +108,14 @@ import { useAuth } from '../hooks/use-auth';
 
 const Home = () => {
   const { loginWithPopup } = useAuth();
-  
+
   const handleLogin = () => {
     loginWithPopup();
   };
 
   return (
     <div>
-      <button onClick={handleLogin}>
-        Login
-      </button>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };

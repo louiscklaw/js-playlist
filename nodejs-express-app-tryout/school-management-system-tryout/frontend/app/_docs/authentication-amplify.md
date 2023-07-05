@@ -37,7 +37,7 @@ export const amplifyConfig = {
   aws_cognito_identity_pool_id: '',
   aws_cognito_region: '',
   aws_user_pools_id: '',
-  aws_user_pools_web_client_id: ''
+  aws_user_pools_web_client_id: '',
 };
 ```
 
@@ -100,11 +100,7 @@ import { useAuth } from '../hooks/use-auth';
 const Home = () => {
   const { user } = useAuth();
 
-  return (
-    <div>
-      Email: {user.email}
-    </div>
-  );
+  return <div>Email: {user.email}</div>;
 };
 ```
 
@@ -118,7 +114,7 @@ import { useAuth } from '../hooks/use-auth';
 
 const Home = () => {
   const { login } = useAuth();
-  
+
   const handleLogin = () => {
     // Email/username and password
     login('demo@devias.io', 'Password123!');
@@ -126,9 +122,7 @@ const Home = () => {
 
   return (
     <div>
-      <button onClick={handleLogin}>
-        Login
-      </button>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };

@@ -17,14 +17,10 @@ import { gtm } from '../lib/gtm';
 
 const Login = () => {
   useEffect(() => {
-    gtm.push({event: 'page_view'});
+    gtm.push({ event: 'page_view' });
   }, []);
 
-  return (
-    <div>
-      content
-    </div>
-  );
+  return <div>content</div>;
 };
 ```
 
@@ -43,7 +39,7 @@ const Product = () => {
       event: 'add_to_cart',
       price: '317,65',
       currency: 'EUR',
-      name: 'Dell Monitor 27"'
+      name: 'Dell Monitor 27"',
     });
   };
 
@@ -51,9 +47,7 @@ const Product = () => {
     <div>
       <div>Dell Monitor 27"</div>
       <div>EUR 317,65</div>
-      <button onClick={handleAddToCart}>
-        Add to cart
-      </button>
+      <button onClick={handleAddToCart}>Add to cart</button>
     </div>
   );
 };

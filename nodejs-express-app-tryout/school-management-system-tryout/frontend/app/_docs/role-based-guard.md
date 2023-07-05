@@ -23,17 +23,17 @@ still too many of them and picking one is not fathomable in any way.
 As an effect you can find below a suggestion on how it _could_ be implemented, should you want it.
 
 In situations where various rights determine bits of the same UI, you may want to change the
-redirection to either only display the functionality as disabled or simply not display it. The 
+redirection to either only display the functionality as disabled or simply not display it. The
 conditional rendering scenario is a much easier one.
 
 ```jsx
-const RoleBasedGuard = (props) => {
+const RoleBasedGuard = props => {
   const { children, permissions } = props;
   const { user } = useAuth();
-  
+
   // Here check the user permissions
   const canView = true;
-  
+
   if (!canView) {
     return null;
   }
@@ -46,9 +46,7 @@ const Overview = () => {
     <div>
       <RoleBasedGuard permissions={['article/edit']}>
         <div>
-          <button>
-            Edit
-          </button>
+          <button>Edit</button>
         </div>
       </RoleBasedGuard>
       <ArticleContent />

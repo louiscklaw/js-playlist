@@ -19,11 +19,11 @@ class CustomerApi {
     return Promise.resolve([
       {
         id: '238339KDC',
-        name: 'John'   
-      }
+        name: 'John',
+      },
     ]);
   }
-};
+}
 
 const customerApi = new CustomerApi();
 
@@ -39,11 +39,7 @@ const Customers = () => {
     getCustomers();
   }, []);
 
-  return (
-    <div>
-      {/* render content */}
-    </div>
-  );
+  return <div>{/* render content */}</div>;
 };
 ```
 
@@ -67,11 +63,7 @@ const Customers = () => {
     getCustomers();
   }, []);
 
-  return (
-    <div>
-      {/* render content */}
-    </div>
-  );
+  return <div>{/* render content */}</div>;
 };
 ```
 
@@ -92,11 +84,7 @@ const Customers = () => {
     getCustomers();
   }, []);
 
-  return (
-    <div>
-      {/* render content */}
-    </div>
-  );
+  return <div>{/* render content */}</div>;
 };
 ```
 
@@ -114,23 +102,26 @@ It takes ony a few seconds to add a new http request listener. The interceptor h
 to Express JS, for example:
 
 ```js
-import axios from 'axios';  // You need to install it
-import AxiosMockAdapter from 'axios-mock-adapter';  // You need to install it
+import axios from 'axios'; // You need to install it
+import AxiosMockAdapter from 'axios-mock-adapter'; // You need to install it
 
 export const axiosInstance = axios.create();
 
 axiosInstance.interceptors.response.use(
-  (response) => response,
-  (error) => Promise.reject((error.response && error.response.data) || 'Something went wrong')
+  response => response,
+  error =>
+    Promise.reject(
+      (error.response && error.response.data) || 'Something went wrong',
+    ),
 );
 
-const mock = new AxiosMockAdapter(axiosInstance, {delayResponse: 0});
+const mock = new AxiosMockAdapter(axiosInstance, { delayResponse: 0 });
 
 mock.onGet('/__fake-api__/invoices').reply(200, {
   invoices: [
-    {id: 1, total: 32.43},
-    {id: 2, total: 67.00}
-  ]
+    { id: 1, total: 32.43 },
+    { id: 2, total: 67.0 },
+  ],
 });
 ```
 

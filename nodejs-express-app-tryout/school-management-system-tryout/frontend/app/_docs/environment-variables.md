@@ -20,7 +20,7 @@ DB_USER=myuser
 DB_PASS=mypassword
 ```
 
-This loads `process.env.DB_HOST`, `process.env.DB_USER`, and `process.env.DB_PASS` into the Node.js 
+This loads `process.env.DB_HOST`, `process.env.DB_USER`, and `process.env.DB_PASS` into the Node.js
 environment automatically allowing you to use them in Next.js data fetching methods and API routes.
 
 For example, using `getStaticProps`:
@@ -42,7 +42,7 @@ export async function getStaticProps() {
 By default environment variables are only available in the Node.js environment, meaning they won't
 be exposed to the browser.
 
-In order to expose a variable to the browser you have to prefix the variable with `NEXT_PUBLIC_`. 
+In order to expose a variable to the browser you have to prefix the variable with `NEXT_PUBLIC_`.
 For example:
 
 ```shell
@@ -50,7 +50,7 @@ NEXT_PUBLIC_ANALYTICS_ID=abcdefghijk
 ```
 
 > WARNING: Do not store any secrets (such as private API keys or passwords) in the public variables!
-> These environment variables are embedded into the build, meaning anyone can view them by 
+> These environment variables are embedded into the build, meaning anyone can view them by
 > inspecting your app's files.
 
 ## Private Variables

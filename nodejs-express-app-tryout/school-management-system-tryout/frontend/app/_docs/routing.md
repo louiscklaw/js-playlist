@@ -27,7 +27,7 @@ The router supports nested files. If you create a nested folder structure files 
 ## Dynamic route segments
 
 Defining routes by using predefined paths is not always enough for complex applications. In Next.js
-you can add brackets to a page ([param]) to create a dynamic route (a.k.a. url slugs, pretty urls, 
+you can add brackets to a page ([param]) to create a dynamic route (a.k.a. url slugs, pretty urls,
 and others).
 
 To match a dynamic segment you can use the bracket syntax. This allows you to match named parameters.

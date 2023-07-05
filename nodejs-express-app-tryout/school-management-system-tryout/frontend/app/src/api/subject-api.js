@@ -8,7 +8,6 @@ const API_ENDPOINT = `${API}/subjects`;
 const now = new Date();
 
 class SubjectApi {
-
   getSubjectCount() {
     return axios.get(`${API_ENDPOINT}/getSubjectCount`);
   }

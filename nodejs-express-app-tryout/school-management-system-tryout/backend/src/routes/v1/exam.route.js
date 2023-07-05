@@ -6,32 +6,32 @@ const validate = require('../../middlewares/validate');
 const studentValidation = require('../../validations/student.validation');
 const studentController = require('../../controllers/student.controller');
 
-const scheduleValidation = require('../../validations/schedule.validation');
-const scheduleController = require('../../controllers/schedule.controller');
+const examValidation = require('../../validations/exam.validation');
+const examController = require('../../controllers/exam.controller');
 
 const router = express.Router();
 
-// NOTE: under /schedules directive
+// NOTE: under /exams directive
 // NOTE: helloworld
 router
   .route('/helloworld')
-  .get(scheduleController.helloworld);
-// .put(scheduleController.helloworld);
+  .get(examController.helloworld);
+// .put(examController.helloworld);
 
 router
-  .route('/getScheduleCount')
-  .get(scheduleController.getScheduleCount);
+  .route('/getExamCount')
+  .get(examController.getExamCount);
 
 // router
 //   .route('/')
-//   .post(validate(scheduleValidation.createSchedule), scheduleController.createSchedule)
-//   .get(validate(scheduleValidation.getSchedules), scheduleController.getSchedules);
+//   .post(validate(examValidation.createExam), examController.createExam)
+//   .get(validate(examValidation.getExams), examController.getExams);
 
 // router
-//   .route('/:scheduleId')
-//   .get(validate(scheduleValidation.getSchedule), scheduleController.getScheduleById)
-//   .patch(validate(scheduleValidation.updateSchedule), scheduleController.updateScheduleById)
-//   .delete(validate(scheduleValidation.deleteSchedule), scheduleController.deleteScheduleById);
+//   .route('/:examId')
+//   .get(validate(examValidation.getExam), examController.getExamById)
+//   .patch(validate(examValidation.updateExam), examController.updateExamById)
+//   .delete(validate(examValidation.deleteExam), examController.deleteExamById);
 
 
 module.exports = router;

@@ -28,18 +28,16 @@ import { createTheme } from '../theme';
 const Home = () => {
   const theme = createTheme({
     direction: 'ltr',
-    responsiveFontSizes: true, 
-    mode: 'dark'
+    responsiveFontSizes: true,
+    mode: 'dark',
   });
 
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        content
-      </div>
+      <div>content</div>
     </ThemeProvider>
   );
-}
+};
 ```
 
 ## Nested themes
@@ -56,11 +54,11 @@ const Home = () => {
   const theme = createTheme({
     direction: 'ltr',
     responsiveFontSizes: true,
-    mode: 'dark'
+    mode: 'dark',
   });
 
   const theme2 = createTheme({
-    mode: 'light'
+    mode: 'light',
   });
 
   return (
@@ -73,5 +71,5 @@ const Home = () => {
       </div>
     </ThemeProvider>
   );
-}
+};
 ```

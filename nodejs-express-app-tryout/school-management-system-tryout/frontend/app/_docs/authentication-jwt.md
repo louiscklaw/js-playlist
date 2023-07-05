@@ -28,9 +28,9 @@ Open `src/pages/_app.js` file, import the provider and wrap the App component wi
 // src/pages/_app.js
 import { AuthConsumer, AuthProvider } from '../contexts/jwt-context';
 
-const App = (props) => {
+const App = props => {
   const { Component, pageProps } = props;
-    
+
   return (
     <AuthProvider>
       <Component {...pageProps} />
@@ -62,11 +62,7 @@ import { useAuth } from '../hooks/use-auth';
 const Home = () => {
   const { user } = useAuth();
 
-  return (
-    <div>
-      Email: {user.email}
-    </div>
-  );
+  return <div>Email: {user.email}</div>;
 };
 ```
 
@@ -80,7 +76,7 @@ import { useAuth } from '../hooks/use-auth';
 
 const Home = () => {
   const { login } = useAuth();
-  
+
   const handleLogin = () => {
     // Email/username and password
     login('demo@devias.io', 'Password123!');
@@ -88,9 +84,7 @@ const Home = () => {
 
   return (
     <div>
-      <button onClick={handleLogin}>
-        Login
-      </button>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };
