@@ -16,7 +16,7 @@ const { roleRights } = require('../../../src/config/roles');
 const { tokenTypes } = require('../../../src/config/tokens');
 
 const { userOne, insertUsers } = require('../../fixtures/user.fixture');
-const { teacherOne, admin, insertTeachers } = require('../../fixtures/teacher.fixture');
+const { teacherOne, teacherTwo, admin, insertTeachers } = require('../../fixtures/teacher.fixture');
 const { teacherOneAccessToken, adminAccessToken } = require('../../fixtures/token.fixture');
 
 setupTestDB();
@@ -129,6 +129,69 @@ describe('Teacher CRUD test', () => {
       phone: "",
       state: "",
     });
+  })
+
+  // NOTE: getTeachers
+  test('get teacher information', async () => {
+    await insertTeachers([teacherOne, teacherTwo]);
+
+    const res = await request(app)
+      .get('/v1/teachers')
+      .set('Authorization', `Bearer ${teacherOneAccessToken}`)
+      .expect(httpStatus.OK);
+
+    expect(res.body).toEqual({
+      results: expect.any(Array),
+      page: 1,
+      limit: 10,
+      totalPages: 1,
+      totalResults: 2,
+    });
+
+    expect(res.body.results).toHaveLength(2);
+    expect(res.body.results[0]).toEqual({
+      id: teacherOne._id.toHexString(),
+      name: teacherOne.name,
+      email: teacherOne.email,
+      role: teacherOne.role,
+      isEmailVerified: teacherOne.isEmailVerified,
+      address1: "",
+      address2: "",
+      country: "",
+      hasDiscount: false,
+      isVerified: false,
+      phone: "",
+      state: "",
+    });
+  })
+
+  // NOTE: updateTeacherById
+  test('modify teacher by id', async () => {
+    await insertTeachers([teacherOne]);
+
+    const res = await request(app)
+      .patch(`/v1/teachers/${teacherOne._id}`)
+      .set('Authorization', `Bearer ${teacherOneAccessToken}`)
+      .send({ name: 'blablabla' })
+      .expect(httpStatus.OK);
+
+    const dbUser = await Teacher.findById(teacherOne._id);
+    expect(dbUser).toBeDefined();
+
+    expect(dbUser.name).toMatch('blablabla');
+  })
+
+  // NOTE: deleteTeacherById
+  test('delete teacher by id', async () => {
+    await insertTeachers([teacherOne]);
+
+    const res = await request(app)
+      .delete(`/v1/teachers/${teacherOne._id}`)
+      .set('Authorization', `Bearer ${teacherOneAccessToken}`)
+      .expect(httpStatus.NO_CONTENT);
+
+    const dbTeacherOne = await Teacher.findById(teacherOne._id);
+    expect(dbTeacherOne).toBeNull();
   })
 
   test('teacher api helloworld', async () => {
