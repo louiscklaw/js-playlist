@@ -25,6 +25,7 @@ import TotalClassroomCard from './cards/total-classroom-card';
 import TotalAttendanceCard from './cards/total-attendance-card';
 import TotalExamCard from './cards/total-exam-card';
 import TotalExamResultCard from './cards/total-exam-result-card';
+import TotalPaymentInfoCard from './cards/total-payment-info-card';
 
 export const AnalyticsGeneralOverview = () => {
   return (
@@ -71,7 +72,7 @@ export const AnalyticsGeneralOverview = () => {
         </Grid>
 
         <Grid item md={3} sm={6} xs={12}>
-          <TotalAdministratorCard />
+          <TotalPaymentInfoCard />
         </Grid>
 
         <Grid item md={3} sm={6} xs={12}>
