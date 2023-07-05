@@ -15,6 +15,7 @@ const createAdmin = async (userBody) => {
   return Admin.create(userBody);
 };
 
+// TODO: remove me
 const createTeacher = async (userBody) => {
   if (await Teacher.isEmailTaken(userBody.email)) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');

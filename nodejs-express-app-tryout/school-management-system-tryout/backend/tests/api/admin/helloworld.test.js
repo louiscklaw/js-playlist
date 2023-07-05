@@ -16,14 +16,15 @@ const { roleRights } = require('../../../src/config/roles');
 const { tokenTypes } = require('../../../src/config/tokens');
 
 const { userOne, admin, insertUsers } = require('../../fixtures/user.fixture');
-const { userOneAccessToken, adminAccessToken } = require('../../fixtures/token.fixture');
+const { userOneAccessToken, adminAccessToken, adminOneAccessToken } = require('../../fixtures/token.fixture');
+const { adminOne, adminTwo, insertAdmins } = require('../../fixtures/admin.fixture');
 
 setupTestDB();
 
-describe('Auth routes', () => {
-  let newUser;
+describe('Admin CRUD test', () => {
+  let newAdmin;
   beforeEach(() => {
-    newUser = {
+    newAdmin = {
       name: faker.name.findName(),
       email: faker.internet.email().toLowerCase(),
       password: 'password1',
@@ -31,28 +32,168 @@ describe('Auth routes', () => {
     };
   });
 
-  test('create admin', async () => {
-    const res = await request(app).post('/v1/admins')
-      .send(newUser)
+  test('add new admin', async () => {
+    const res = await request(app)
+      .post('/v1/admins')
+      .send(newAdmin)
       .expect(httpStatus.CREATED);
 
     expect(res.body).not.toHaveProperty('password');
 
     const dbUser = await Admin.findById(res.body.id);
-
     expect(dbUser).toBeDefined();
 
-    expect(dbUser.password).not.toBe(newUser.password);
+    expect(dbUser.password).not.toBe(newAdmin.password);
 
     expect(dbUser).toMatchObject({
-      name: newUser.name,
-      email: newUser.email,
-      role: 'user',
+      name: newAdmin.name,
+      email: newAdmin.email,
+      role: 'admin',
       isEmailVerified: false
     });
 
   });
 
+  test('get admin information', async () => {
+    await insertAdmins([adminOne]);
+
+    const res = await request(app)
+      .get('/v1/admins')
+      .expect(httpStatus.OK);
+
+
+    expect(res.body).toEqual({
+      results: expect.any(Array),
+      page: 1,
+      limit: 10,
+      totalPages: 1,
+      totalResults: 1,
+    });
+
+    expect(res.body.results).toHaveLength(1);
+
+    expect(res.body.results[0]).toEqual({
+      id: adminOne._id.toHexString(),
+      address1: "",
+      address2: "",
+      country: "",
+      hasDiscount: false,
+      isVerified: false,
+      phone: "",
+      state: "",
+      name: adminOne.name,
+      email: adminOne.email,
+      role: adminOne.role,
+      isEmailVerified: adminOne.isEmailVerified,
+    });
+  })
+
+  // NOTE: createAdmin
+  test('create new admin', async () => {
+    const res = await request(app)
+      .post('/v1/admins')
+      .set('Authorization', `Bearer ${adminOneAccessToken}`)
+      .send(newAdmin)
+      .expect(httpStatus.CREATED);
+
+    expect(res.body).not.toHaveProperty('password');
+    expect(res.body).toEqual({
+      id: expect.anything(),
+      name: newAdmin.name,
+      email: newAdmin.email,
+      role: newAdmin.role,
+      isEmailVerified: false,
+      address1: "",
+      address2: "",
+      country: "",
+      hasDiscount: false,
+      isVerified: false,
+      phone: "",
+      state: "",
+    });
+
+    const dbAdmin = await Admin.findById(res.body.id);
+    expect(dbAdmin).toBeDefined();
+
+    expect(dbAdmin.password).not.toBe(newAdmin.password);
+
+    expect(dbAdmin).toMatchObject({
+      name: newAdmin.name,
+      email: newAdmin.email,
+      role: newAdmin.role,
+      isEmailVerified: false,
+      address1: "",
+      address2: "",
+      country: "",
+      hasDiscount: false,
+      isVerified: false,
+      phone: "",
+      state: "",
+    });
+  })
+
+  // NOTE: getAdmins
+  test('get admin information', async () => {
+    await insertAdmins([adminOne, adminTwo]);
+
+    const res = await request(app)
+      .get('/v1/admins')
+      .set('Authorization', `Bearer ${adminOneAccessToken}`)
+      .expect(httpStatus.OK);
+
+    expect(res.body).toEqual({
+      results: expect.any(Array),
+      page: 1,
+      limit: 10,
+      totalPages: 1,
+      totalResults: 2,
+    });
+
+    expect(res.body.results).toHaveLength(2);
+    expect(res.body.results[0]).toEqual({
+      id: adminOne._id.toHexString(),
+      name: adminOne.name,
+      email: adminOne.email,
+      role: adminOne.role,
+      isEmailVerified: adminOne.isEmailVerified,
+      address1: "",
+      address2: "",
+      country: "",
+      hasDiscount: false,
+      isVerified: false,
+      phone: "",
+      state: "",
+    });
+  })
+
+  // NOTE: updateAdminById
+  test('modify admin by id', async () => {
+    await insertAdmins([adminOne]);
+
+    const res = await request(app)
+      .patch(`/v1/admins/${adminOne._id}`)
+      .set('Authorization', `Bearer ${adminOneAccessToken}`)
+      .send({ name: 'blablabla' })
+      .expect(httpStatus.OK);
+
+    const dbUser = await Admin.findById(adminOne._id);
+    expect(dbUser).toBeDefined();
+
+    expect(dbUser.name).toMatch('blablabla');
+  })
+
+  // NOTE: deleteAdminById
+  test('delete admin by id', async () => {
+    await insertAdmins([adminOne]);
+
+    const res = await request(app)
+      .delete(`/v1/admins/${adminOne._id}`)
+      .set('Authorization', `Bearer ${adminOneAccessToken}`)
+      .expect(httpStatus.NO_CONTENT);
+
+    const dbAdminOne = await Admin.findById(adminOne._id);
+    expect(dbAdminOne).toBeNull();
+  })
 
   test('admin api helloworld', async () => {
     const res = await request(app).get('/v1/admins/helloworld').expect(httpStatus.OK);

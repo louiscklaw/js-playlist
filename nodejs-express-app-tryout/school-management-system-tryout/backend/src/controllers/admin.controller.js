@@ -9,8 +9,6 @@ const { studentService } = require('../services');
 const { adminService } = require('../services');
 
 const getAdmins = catchAsync(async (req, res) => {
-  console.log('admin.controller.getAdmins helloworld');
-
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await adminService.queryAdmins(filter, options);

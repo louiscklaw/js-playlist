@@ -122,8 +122,6 @@ const updateTeacherById = async (teacherId, updateBody) => {
 };
 
 const deleteTeacherById = async (teacherId) => {
-  console.log({ teacherId });
-
   const teacher = await getTeacherById(teacherId);
   if (!teacher) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Teacher not found');

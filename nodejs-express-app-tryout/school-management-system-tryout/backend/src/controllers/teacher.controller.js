@@ -8,7 +8,6 @@ const catchAsync = require('../utils/catchAsync');
 const { teacherService } = require('../services');
 
 const getStudents = catchAsync(async (req, res) => {
-  console.log('student.controller.getStudents helloworld');
 
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
@@ -19,7 +18,6 @@ const getStudents = catchAsync(async (req, res) => {
 });
 
 const getTeachers = catchAsync(async (req, res) => {
-  console.log('teacher.controller.getTeachers helloworld');
 
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
