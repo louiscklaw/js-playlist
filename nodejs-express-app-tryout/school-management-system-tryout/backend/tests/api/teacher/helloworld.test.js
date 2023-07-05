@@ -32,7 +32,8 @@ describe('Auth routes', () => {
   });
 
   test('create teacher', async () => {
-    const res = await request(app).post('/v1/teachers')
+    const res = await request(app)
+      .post('/v1/teachers')
       .send(newUser)
       .expect(httpStatus.CREATED);
 

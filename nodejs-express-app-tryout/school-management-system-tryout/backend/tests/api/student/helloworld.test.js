@@ -32,7 +32,8 @@ describe('Auth routes', () => {
   });
 
   test('create student', async () => {
-    const res = await request(app).post('/v1/students')
+    const res = await request(app)
+      .post('/v1/students')
       .send(newUser)
       .expect(httpStatus.CREATED);
 
@@ -41,8 +42,7 @@ describe('Auth routes', () => {
     const dbUser = await Student.findById(res.body.id);
     expect(dbUser).toBeDefined();
 
-    // FIXME: password for student
-    // expect(dbUser.password).not.toBe(newUser.password);
+    expect(dbUser.password).not.toBe(newUser.password);
 
     expect(dbUser).toMatchObject({
       name: newUser.name,

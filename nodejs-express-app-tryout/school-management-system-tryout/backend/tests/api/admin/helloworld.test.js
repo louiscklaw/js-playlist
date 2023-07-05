@@ -27,7 +27,7 @@ describe('Auth routes', () => {
       name: faker.name.findName(),
       email: faker.internet.email().toLowerCase(),
       password: 'password1',
-      role: "user"
+      role: "admin"
     };
   });
 
@@ -38,20 +38,18 @@ describe('Auth routes', () => {
 
     expect(res.body).not.toHaveProperty('password');
 
-    // const dbUser = await Admin.findById(res.body.id);
-    // expect(dbUser).toBeDefined();
+    const dbUser = await Admin.findById(res.body.id);
 
-    // console.error(dbUser);
+    expect(dbUser).toBeDefined();
 
-    // // FIXME: password for admin
-    // // expect(dbUser.password).not.toBe(newUser.password);
+    expect(dbUser.password).not.toBe(newUser.password);
 
-    // expect(dbUser).toMatchObject({
-    //   name: newUser.name,
-    //   email: newUser.email,
-    //   role: 'user',
-    //   isEmailVerified: false
-    // });
+    expect(dbUser).toMatchObject({
+      name: newUser.name,
+      email: newUser.email,
+      role: 'user',
+      isEmailVerified: false
+    });
 
   });
 
