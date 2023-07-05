@@ -7,3 +7,5 @@ module.exports.userService = require('./user.service');
 module.exports.studentService = require('./student.service');
 module.exports.teacherService = require('./teacher.service');
 module.exports.adminService = require('./admin.service');
+
+module.exports.subjectService = require('./subject.service');

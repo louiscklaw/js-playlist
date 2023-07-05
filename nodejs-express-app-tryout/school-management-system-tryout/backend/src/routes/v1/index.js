@@ -3,12 +3,14 @@ const express = require('express');
 const authRoute = require('./auth.route');
 
 const userRoute = require('./user.route');
+
 const studentRoute = require('./student.route');
+const subjectRoute = require('./subject.route');
 const teacherRoute = require('./teacher.route');
+
 const adminRoute = require('./admin.route');
 
 const helloworldRoute = require('./helloworld.route');
-
 
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
@@ -20,6 +22,7 @@ const defaultRoutes = [
   { path: '/auth', route: authRoute },
   { path: '/users', route: userRoute },
   { path: '/students', route: studentRoute },
+  { path: '/subjects', route: subjectRoute },
   { path: '/teachers', route: teacherRoute },
   { path: '/admins', route: adminRoute },
   { path: '/helloworld', route: helloworldRoute },
