@@ -164,6 +164,39 @@ const getSections = t => [
         // ],
       },
       {
+        title: t('Notifications'),
+        path: '/dashboard/notifications',
+        icon: <UsersIcon fontSize="small" />,
+        matching: 'partial',
+        // children: [
+        //   { title: t('List'), path: '/dashboard/payment_infos' },
+        //   { title: t('Details'), path: '/dashboard/payment_infos/1' },
+        //   { title: t('Edit'), path: '/dashboard/payment_infos/1/edit' },
+        // ],
+      },
+      {
+        title: t('Permissions'),
+        path: '/dashboard/permissions',
+        icon: <UsersIcon fontSize="small" />,
+        matching: 'partial',
+        // children: [
+        //   { title: t('List'), path: '/dashboard/payment_infos' },
+        //   { title: t('Details'), path: '/dashboard/payment_infos/1' },
+        //   { title: t('Edit'), path: '/dashboard/payment_infos/1/edit' },
+        // ],
+      },
+      {
+        title: t('Roles'),
+        path: '/dashboard/roles',
+        icon: <UsersIcon fontSize="small" />,
+        matching: 'partial',
+        // children: [
+        //   { title: t('List'), path: '/dashboard/payment_infos' },
+        //   { title: t('Details'), path: '/dashboard/payment_infos/1' },
+        //   { title: t('Edit'), path: '/dashboard/payment_infos/1/edit' },
+        // ],
+      },
+      {
         title: t('Products'),
         path: '/dashboard/products',
         icon: <ShoppingBagIcon fontSize="small" />,
