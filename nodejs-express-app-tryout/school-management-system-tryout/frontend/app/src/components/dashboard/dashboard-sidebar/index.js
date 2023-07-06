@@ -214,19 +214,11 @@ const getSections = t => [
         matching: 'partial',
         children: [
           { title: t('Food'), path: '/dashboard/foods' },
-          { title: t('Take away'), path: '/dashboard/take_away' },
-          { title: t('Food Set'), path: '/dashboard/food_set' },
+          { title: t('Take away'), path: '/dashboard/take_aways' },
+          { title: t('Food Set'), path: '/dashboard/food_sets' },
         ],
       },
-      {
-        title: t('Products'),
-        path: '/dashboard/products',
-        icon: <ShoppingBagIcon fontSize="small" />,
-        children: [
-          { title: t('List'), path: '/dashboard/products' },
-          { title: t('Create'), path: '/dashboard/products/new' },
-        ],
-      },
+
       {
         title: t('Orders'),
         icon: <ShoppingCartIcon fontSize="small" />,
@@ -246,19 +238,14 @@ const getSections = t => [
         ],
       },
       {
-        title: t('Customers'),
-        path: '/dashboard/customers',
-        icon: <UsersIcon fontSize="small" />,
-        children: [
-          { title: t('List'), path: '/dashboard/customers' },
-          { title: t('Details'), path: '/dashboard/customers/1' },
-          { title: t('Edit'), path: '/dashboard/customers/1/edit' },
-        ],
+        title: t('Mail'),
+        path: '/dashboard/mail',
+        icon: <MailIcon fontSize="small" />,
       },
     ],
   },
   {
-    title: t('Platforms'),
+    title: t('Contents'),
     items: [
       {
         title: t('Job Listings'),
@@ -292,18 +279,14 @@ const getSections = t => [
     ],
   },
   {
-    title: t('Apps'),
+    title: t('Pages'),
     items: [
       {
         title: t('Kanban'),
         path: '/dashboard/kanban',
         icon: <ClipboardListIcon fontSize="small" />,
       },
-      {
-        title: t('Mail'),
-        path: '/dashboard/mail',
-        icon: <MailIcon fontSize="small" />,
-      },
+
       {
         title: t('Chat'),
         path: '/dashboard/chat',
@@ -314,11 +297,25 @@ const getSections = t => [
         path: '/dashboard/calendar',
         icon: <CalendarIcon fontSize="small" />,
       },
-    ],
-  },
-  {
-    title: t('Pages'),
-    items: [
+      {
+        title: t('Products'),
+        path: '/dashboard/products',
+        icon: <ShoppingBagIcon fontSize="small" />,
+        children: [
+          { title: t('List'), path: '/dashboard/products' },
+          { title: t('Create'), path: '/dashboard/products/new' },
+        ],
+      },
+      {
+        title: t('Customers'),
+        path: '/dashboard/customers',
+        icon: <UsersIcon fontSize="small" />,
+        children: [
+          { title: t('List'), path: '/dashboard/customers' },
+          { title: t('Details'), path: '/dashboard/customers/1' },
+          { title: t('Edit'), path: '/dashboard/customers/1/edit' },
+        ],
+      },
       {
         title: t('Auth'),
         path: '/authentication',

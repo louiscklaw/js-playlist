@@ -85,15 +85,7 @@ export const DashboardSidebarItem = props => {
 
   // Leaf
   return (
-    <ListItem
-      disableGutters
-      sx={{
-        display: 'flex',
-        mb: 0.5,
-        py: 0,
-        px: 2,
-      }}
-    >
+    <ListItem disableGutters sx={{ display: 'flex', mb: 0.5, py: 0, px: 2 }}>
       <NextLink href={path} passHref>
         <Button
           component="a"
