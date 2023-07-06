@@ -1,4 +1,9 @@
 services:
+  frontend:
+    # NOTE: ./frontend contains source for frontend
+    command: ./dev.sh
+    # command: sleep infinity
+
   node-app:
     container_name: node-app-dev
     command: yarn dev -L
@@ -36,8 +41,3 @@ services:
       # - ME_CONFIG_BASICAUTH_PASSWORD=password
     networks:
       - node-network
-
-  frontend:
-    # NOTE: ./frontend contains source for frontend
-    command: ./dev.sh
-    # command: sleep infinity
