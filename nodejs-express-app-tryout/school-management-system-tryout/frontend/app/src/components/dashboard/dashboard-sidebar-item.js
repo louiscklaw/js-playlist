@@ -114,9 +114,7 @@ export const DashboardSidebarItem = props => {
             },
           }}
         >
-          <Box sx={{ flexGrow: 1 }}>
-            {title}
-          </Box>
+          <Box sx={{ flexGrow: 1 }}>{title}</Box>
           {info}
         </Button>
       </NextLink>

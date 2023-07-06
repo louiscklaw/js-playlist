@@ -44,5 +44,5 @@ export const SplashScreen = () => {
       </Box>
       <Box sx={{ mt: 4 }}>{t('hello')}...</Box>
     </Box>
-  )
-}
+  );
+};

@@ -202,9 +202,26 @@ const getSections = t => [
         icon: <UsersIcon fontSize="small" />,
         matching: 'partial',
         children: [
-          { title: t('List'), path: '/dashboard/CMS' },
-          { title: t('Details'), path: '/dashboard/CMS/1' },
-          { title: t('Edit'), path: '/dashboard/CMS/1/edit' },
+          {
+            title: t('facilities'),
+            icon: <UsersIcon fontSize="small" />,
+            path: '/dashboard/cms/facilities',
+          },
+          {
+            title: t('restaurants'),
+            icon: <UsersIcon fontSize="small" />,
+            path: '/dashboard/cms/restaurants',
+          },
+          {
+            title: t('services'),
+            icon: <UsersIcon fontSize="small" />,
+            path: '/dashboard/cms/services',
+          },
+          {
+            title: t('posts'),
+            icon: <UsersIcon fontSize="small" />,
+            path: '/dashboard/cms/posts',
+          },
         ],
       },
       {
@@ -534,7 +551,6 @@ export const DashboardSidebar = props => {
               </Button>
             </NextLink>
           </Box>
-
         </Box>
       </Scrollbar>
       <OrganizationPopover
