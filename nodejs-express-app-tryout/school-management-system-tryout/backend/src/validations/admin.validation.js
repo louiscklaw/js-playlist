@@ -132,7 +132,6 @@ const updateUserBasicDetail = {
     .min(1),
 };
 
-
 const deleteAdmin = {
   params: Joi.object().keys({
     adminId: Joi.string().custom(objectId),

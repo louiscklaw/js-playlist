@@ -15,29 +15,44 @@ const getClassrooms = catchAsync(async (req, res) => {
 });
 
 const getClassroomCount = catchAsync(async (req, res) => {
-  const result = await classroomService.countClassroom()
-  res.send(result);
+  try {
+    const result = await classroomService.countClassroom();
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const createClassroom = catchAsync(async (req, res) => {
-  const classroom = await classroomService.createClassroom(req.body);
-  res.status(httpStatus.CREATED).send(classroom);
+  try {
+    const classroom = await classroomService.createClassroom(req.body);
+    res.status(httpStatus.CREATED).send(classroom);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
-// const getClassroomById = catchAsync(async (req, res) => {
-//   const classroom = await classroomService.getClassroomById(req.params.classroomId);
+const getClassroomById = catchAsync(async (req, res) => {
+  try {
+    const classroom = await classroomService.getClassroomById(req.params.classroomId);
 
-//   if (!classroom) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Classroom not found');
-//   }
-//   res.send(classroom);
-// });
+    if (!classroom) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'Classroom not found');
+    }
+    res.send(classroom);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
-// // const updateClassroomById = catchAsync(async (req, res) => {
-// //   const classroom = await classroomService.updateClassroomById(
-// //     req.params.classroomId, req.body);
-// //   res.send(classroom);
-// // });
+const updateClassroomById = catchAsync(async (req, res) => {
+  try {
+    const classroom = await classroomService.updateClassroomById(req.params.classroomId, req.body);
+    res.send(classroom);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 // const updateClassroomById = catchAsync(async (req, res) => {
 //   const classroom = await classroomService.updateClassroomById(
@@ -45,10 +60,14 @@ const createClassroom = catchAsync(async (req, res) => {
 //   res.send(classroom);
 // });
 
-// const deleteClassroomById = catchAsync(async (req, res) => {
-//   await classroomService.deleteClassroomById(req.params.classroomId);
-//   res.status(httpStatus.NO_CONTENT).send();
-// });
+const deleteClassroomById = catchAsync(async (req, res) => {
+  try {
+    await classroomService.deleteClassroomById(req.params.classroomId);
+    res.status(httpStatus.NO_CONTENT).send();
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 const helloworld = catchAsync(async (req, res) => {
   res.send({ hello: 'classroom.controller' });
@@ -57,10 +76,10 @@ const helloworld = catchAsync(async (req, res) => {
 module.exports = {
   getClassrooms,
   getClassroomCount,
-  // getClassroomById,
-  // updateClassroomById,
-  // deleteClassroomById,
+  getClassroomById,
+  updateClassroomById,
+  deleteClassroomById,
   // createClassroom,
   createClassroom,
-  helloworld
+  helloworld,
 };

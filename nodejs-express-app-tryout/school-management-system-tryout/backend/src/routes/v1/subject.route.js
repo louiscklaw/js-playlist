@@ -10,14 +10,9 @@ const router = express.Router();
 
 // NOTE: under /subjects directive
 // NOTE: helloworld
-router
-  .route('/helloworld')
-  .get(subjectController.helloworld)
-  .put(subjectController.helloworld);
+router.route('/helloworld').get(subjectController.helloworld).put(subjectController.helloworld);
 
-router
-  .route('/getSubjectCount')
-  .get(subjectController.getSubjectCount);
+router.route('/getSubjectCount').get(subjectController.getSubjectCount);
 
 router
   .route('/')
@@ -29,7 +24,6 @@ router
   // .get(validate(subjectValidation.getSubject), subjectController.getSubjectById)
   .patch(validate(subjectValidation.updateSubject), subjectController.updateSubjectById)
   .delete(validate(subjectValidation.deleteSubject), subjectController.deleteSubjectById);
-
 
 module.exports = router;
 

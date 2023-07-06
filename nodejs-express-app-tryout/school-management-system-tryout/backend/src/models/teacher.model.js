@@ -9,7 +9,7 @@ const { roles } = require('../config/roles');
 // backend/src/validations/student.validation.js
 const teacherSchema = mongoose.Schema(
   {
-    name: { type: String, required: true, trim: true, },
+    name: { type: String, required: true, trim: true },
     address1: { type: String, required: false, trim: true, default: '' },
     address2: { type: String, required: false, trim: true, default: '' },
     country: { type: String, required: false, trim: true, default: '' },
@@ -44,9 +44,9 @@ const teacherSchema = mongoose.Schema(
       enum: roles,
       default: 'user',
     },
-    isEmailVerified: { type: Boolean, default: false, },
-    isVerified: { type: Boolean, default: false, },
-    hasDiscount: { type: Boolean, default: false, },
+    isEmailVerified: { type: Boolean, default: false },
+    isVerified: { type: Boolean, default: false },
+    hasDiscount: { type: Boolean, default: false },
   },
   {
     timestamps: true,

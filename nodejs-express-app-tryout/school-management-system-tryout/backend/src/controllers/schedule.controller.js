@@ -16,11 +16,10 @@ const getSchedules = catchAsync(async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-
 });
 
 const getScheduleCount = catchAsync(async (req, res) => {
-  const result = await scheduleService.countSchedule()
+  const result = await scheduleService.countSchedule();
   res.send(result);
 });
 
@@ -39,7 +38,7 @@ const getScheduleById = catchAsync(async (req, res) => {
 
     res.send(schedule);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 });
 
@@ -51,8 +50,7 @@ const getScheduleById = catchAsync(async (req, res) => {
 
 const updateScheduleById = catchAsync(async (req, res) => {
   try {
-    const schedule = await scheduleService.updateScheduleById(
-      req.params.scheduleId, req.body);
+    const schedule = await scheduleService.updateScheduleById(req.params.scheduleId, req.body);
     res.send(schedule);
   } catch (error) {
     console.error(error);
@@ -77,5 +75,5 @@ module.exports = {
   // createSchedule,
   // getScheduleCount,
   createSchedule,
-  helloworld
+  helloworld,
 };

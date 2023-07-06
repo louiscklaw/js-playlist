@@ -29,21 +29,17 @@ describe('Teacher CRUD test', () => {
       name: faker.name.findName(),
       email: faker.internet.email().toLowerCase(),
       password: 'password1',
-      role: "user"
+      role: 'user',
     };
 
     setTimeout(() => {
       expect(true).toBe(true);
       done();
     }, 20);
-
   });
 
   test('add new teacher', async () => {
-    const res = await request(app)
-      .post('/v1/teachers')
-      .send(newTeacher)
-      .expect(httpStatus.CREATED);
+    const res = await request(app).post('/v1/teachers').send(newTeacher).expect(httpStatus.CREATED);
 
     expect(res.body).not.toHaveProperty('password');
 
@@ -56,28 +52,22 @@ describe('Teacher CRUD test', () => {
       name: newTeacher.name,
       email: newTeacher.email,
       role: 'user',
-      isEmailVerified: false
+      isEmailVerified: false,
     });
-
   });
 
   test('get teacher count', async () => {
     await insertTeachers([teacherOne]);
-    const res = await request(app)
-      .get('/v1/teachers/getTeacherCount')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/teachers/getTeacherCount').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
-      count: 1
+      count: 1,
     });
-
-  })
+  });
 
   test('get teacher information', async () => {
     await insertTeachers([teacherOne]);
-    const res = await request(app)
-      .get('/v1/teachers')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/teachers').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
       results: expect.any(Array),
@@ -91,19 +81,19 @@ describe('Teacher CRUD test', () => {
 
     expect(res.body.results[0]).toEqual({
       id: teacherOne._id.toHexString(),
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
       name: teacherOne.name,
       email: teacherOne.email,
       role: teacherOne.role,
       isEmailVerified: teacherOne.isEmailVerified,
     });
-  })
+  });
 
   // NOTE: createTeacher
   test('create new teacher', async () => {
@@ -120,13 +110,13 @@ describe('Teacher CRUD test', () => {
       email: newTeacher.email,
       role: newTeacher.role,
       isEmailVerified: false,
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
     });
 
     const dbUser = await Teacher.findById(res.body.id);
@@ -139,15 +129,15 @@ describe('Teacher CRUD test', () => {
       email: newTeacher.email,
       role: newTeacher.role,
       isEmailVerified: false,
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
     });
-  })
+  });
 
   // NOTE: getTeachers
   test('get teacher information', async () => {
@@ -173,15 +163,15 @@ describe('Teacher CRUD test', () => {
       email: teacherOne.email,
       role: teacherOne.role,
       isEmailVerified: teacherOne.isEmailVerified,
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
     });
-  })
+  });
 
   // NOTE: updateTeacherById
   test('modify teacher by id', async () => {
@@ -197,7 +187,7 @@ describe('Teacher CRUD test', () => {
     expect(dbUser).toBeDefined();
 
     expect(dbUser.name).toMatch('blablabla');
-  })
+  });
 
   // NOTE: deleteTeacherById
   test('delete teacher by id', async () => {
@@ -210,12 +200,9 @@ describe('Teacher CRUD test', () => {
 
     const dbTeacherOne = await Teacher.findById(teacherOne._id);
     expect(dbTeacherOne).toBeNull();
-  })
+  });
 
   test('GET /v1/teachers/helloworld', async () => {
-    const res = await request(app)
-      .get('/v1/teachers/helloworld')
-      .expect(httpStatus.OK);
-
+    const res = await request(app).get('/v1/teachers/helloworld').expect(httpStatus.OK);
   });
 });

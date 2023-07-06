@@ -8,23 +8,19 @@ const catchAsync = require('../utils/catchAsync');
 const { teacherService } = require('../services');
 
 const getStudents = catchAsync(async (req, res) => {
-
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await teacherService.queryStudents(filter, options);
   // res.send({ hello: 'student.controller.getStudents' });
   res.send(result);
-
 });
 
 const getTeachers = catchAsync(async (req, res) => {
-
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await teacherService.queryTeachers(filter, options);
   // res.send({ hello: 'teacher.controller.getTeachers' });
   res.send(result);
-
 });
 
 const createTeacher = catchAsync(async (req, res) => {
@@ -48,15 +44,12 @@ const getTeacherById = catchAsync(async (req, res) => {
 // });
 
 const updateStudentById = catchAsync(async (req, res) => {
-  const student = await teacherService.updateStudentById(
-    req.params.studentId, req.body);
+  const student = await teacherService.updateStudentById(req.params.studentId, req.body);
   res.send(student);
 });
 
 const updateTeacherById = catchAsync(async (req, res) => {
-
-  const teacher = await teacherService.updateTeacherById(
-    req.params.teacherId, req.body);
+  const teacher = await teacherService.updateTeacherById(req.params.teacherId, req.body);
 
   res.send(teacher);
   // console.log({ hello: 'world' });
@@ -84,6 +77,9 @@ module.exports = {
   updateStudentById,
   deleteTeacherById,
   createStudent: createTeacher,
-  getTeachers, updateTeacherById, createTeacher, getTeacherCount,
-  helloworld
+  getTeachers,
+  updateTeacherById,
+  createTeacher,
+  getTeacherCount,
+  helloworld,
 };

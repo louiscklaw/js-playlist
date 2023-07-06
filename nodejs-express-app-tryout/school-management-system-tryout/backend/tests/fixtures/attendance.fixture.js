@@ -19,8 +19,7 @@ const attendanceTwo = {
 };
 
 const insertAttendances = async (attendances) => {
-  await Attendance
-    .insertMany(attendances.map((attendance) => ({ ...attendance, password: hashedPassword })));
+  await Attendance.insertMany(attendances.map((attendance) => ({ ...attendance, password: hashedPassword })));
 };
 
 module.exports = {

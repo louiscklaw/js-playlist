@@ -33,7 +33,7 @@ const countAttendance = async () => {
  * @returns {Promise<Student>}
  */
 const getStudentById = async (id) => {
-  return Attendance.findById(id)
+  return Attendance.findById(id);
 };
 
 /**
@@ -131,7 +131,6 @@ const deleteStudentById = async (studentId) => {
   return student;
 };
 
-
 /**
  * Delete user by id
  * @param {ObjectId} userId
@@ -152,6 +151,12 @@ module.exports = {
   queryStudents,
   getUserById,
   getUserByEmail,
-  updateUserById, updateUserByEmail, getStudentById, updateStudentById,
-  deleteUserById, deleteStudentById, createAttendance, countAttendance
+  updateUserById,
+  updateUserByEmail,
+  getStudentById,
+  updateStudentById,
+  deleteUserById,
+  deleteStudentById,
+  createAttendance,
+  countAttendance,
 };

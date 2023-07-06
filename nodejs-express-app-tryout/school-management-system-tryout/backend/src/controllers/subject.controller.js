@@ -17,7 +17,7 @@ const getSubjects = catchAsync(async (req, res) => {
 });
 
 const getSubjectCount = catchAsync(async (req, res) => {
-  const result = await subjectService.countSubject()
+  const result = await subjectService.countSubject();
   res.send(result);
 });
 
@@ -43,8 +43,7 @@ const createSubject = catchAsync(async (req, res) => {
 // // });
 
 const updateSubjectById = catchAsync(async (req, res) => {
-  const subject = await subjectService.updateSubjectById(
-    req.params.subjectId, req.body);
+  const subject = await subjectService.updateSubjectById(req.params.subjectId, req.body);
   res.send(subject);
 });
 
@@ -66,5 +65,5 @@ module.exports = {
   // createSubject,
   // getSubjectCount,
   createSubject,
-  helloworld
+  helloworld,
 };

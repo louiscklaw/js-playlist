@@ -623,10 +623,7 @@ describe('User routes', () => {
     });
   });
 
-
   test('teacher api helloworld', async () => {
-    const res = await request(app)
-      .get('/v1/teachers/helloworld')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/teachers/helloworld').expect(httpStatus.OK);
   });
 });

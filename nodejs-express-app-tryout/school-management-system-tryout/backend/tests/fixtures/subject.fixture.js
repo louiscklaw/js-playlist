@@ -10,18 +10,17 @@ const hashedPassword = bcrypt.hashSync(password, salt);
 const subjectOne = {
   _id: mongoose.Types.ObjectId(),
   name: faker.name.findName(),
-  description: "helloworld subject one"
+  description: 'helloworld subject one',
 };
 
 const subjectTwo = {
   _id: mongoose.Types.ObjectId(),
   name: faker.name.findName(),
-  description: "helloworld subject two"
+  description: 'helloworld subject two',
 };
 
 const insertSubjects = async (subjects) => {
-  await Subject
-    .insertMany(subjects.map((subject) => ({ ...subject, password: hashedPassword })));
+  await Subject.insertMany(subjects.map((subject) => ({ ...subject, password: hashedPassword })));
 };
 
 module.exports = {

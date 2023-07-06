@@ -19,8 +19,7 @@ const paymentInfoTwo = {
 };
 
 const insertPaymentInfos = async (paymentInfos) => {
-  await PaymentInfo
-    .insertMany(paymentInfos.map((paymentInfo) => ({ ...paymentInfo, password: hashedPassword })));
+  await PaymentInfo.insertMany(paymentInfos.map((paymentInfo) => ({ ...paymentInfo, password: hashedPassword })));
 };
 
 module.exports = {

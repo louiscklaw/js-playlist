@@ -13,14 +13,10 @@ const router = express.Router();
 
 // NOTE: under /paymentInfos directive
 // NOTE: helloworld
-router
-  .route('/helloworld')
-  .get(paymentInfoController.helloworld);
+router.route('/helloworld').get(paymentInfoController.helloworld);
 // .put(paymentInfoController.helloworld);
 
-router
-  .route('/getPaymentInfoCount')
-  .get(paymentInfoController.getPaymentInfoCount);
+router.route('/getPaymentInfoCount').get(paymentInfoController.getPaymentInfoCount);
 
 // router
 //   .route('/')
@@ -32,7 +28,6 @@ router
 //   .get(validate(paymentInfoValidation.getPaymentInfo), paymentInfoController.getPaymentInfoById)
 //   .patch(validate(paymentInfoValidation.updatePaymentInfo), paymentInfoController.updatePaymentInfoById)
 //   .delete(validate(paymentInfoValidation.deletePaymentInfo), paymentInfoController.deletePaymentInfoById);
-
 
 module.exports = router;
 

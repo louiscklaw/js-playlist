@@ -15,7 +15,7 @@ const getPaymentInfos = catchAsync(async (req, res) => {
 });
 
 const getPaymentInfoCount = catchAsync(async (req, res) => {
-  const result = await paymentInfoService.countPaymentInfo()
+  const result = await paymentInfoService.countPaymentInfo();
   res.send(result);
 });
 
@@ -63,5 +63,5 @@ module.exports = {
   // createPaymentInfo,
   // getPaymentInfoCount,
   createPaymentInfo,
-  helloworld
+  helloworld,
 };

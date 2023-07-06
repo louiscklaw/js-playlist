@@ -32,9 +32,9 @@ const getUser = {
   }),
 };
 
-const getStudent = {
+const getClassroom = {
   params: Joi.object().keys({
-    studentId: Joi.string().custom(objectId),
+    classroomId: Joi.string().custom(objectId),
   }),
 };
 
@@ -51,10 +51,10 @@ const updateUser = {
     .min(1),
 };
 
-// frontend/app/src/components/dashboard/student/student-edit-form.js
-const updateStudent = {
+// frontend/app/src/components/dashboard/classroom/classroom-edit-form.js
+const updateClassroom = {
   params: Joi.object().keys({
-    studentId: Joi.required().custom(objectId),
+    classroomId: Joi.required().custom(objectId),
   }),
   body: Joi.object()
     .keys({
@@ -87,27 +87,27 @@ const updateUserBasicDetail = {
 
 const deleteUser = {
   params: Joi.object().keys({
-    studentId: Joi.string().custom(objectId),
+    classroomId: Joi.string().custom(objectId),
   }),
 };
 
-const deleteStudent = {
+const deleteClassroom = {
   params: Joi.object().keys({
-    studentId: Joi.string().custom(objectId),
+    classroomId: Joi.string().custom(objectId),
   }),
 };
 module.exports = {
   createSchedule,
   createUser,
 
-  deleteStudent,
+  deleteClassroom,
   deleteUser,
 
-  getStudent,
+  getClassroom,
   getSchedules,
   getUser,
 
-  updateStudent,
+  updateClassroom,
   updateUser,
   updateUserBasicDetail,
 };

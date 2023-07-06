@@ -28,21 +28,17 @@ describe('Admin CRUD test', () => {
       name: faker.name.findName(),
       email: faker.internet.email().toLowerCase(),
       password: 'password1',
-      role: "admin"
+      role: 'admin',
     };
 
     setTimeout(() => {
       expect(true).toBe(true);
       done();
     }, 20);
-
   });
 
   test('add new admin', async () => {
-    const res = await request(app)
-      .post('/v1/admins')
-      .send(newAdmin)
-      .expect(httpStatus.CREATED);
+    const res = await request(app).post('/v1/admins').send(newAdmin).expect(httpStatus.CREATED);
 
     expect(res.body).not.toHaveProperty('password');
 
@@ -55,31 +51,24 @@ describe('Admin CRUD test', () => {
       name: newAdmin.name,
       email: newAdmin.email,
       role: 'admin',
-      isEmailVerified: false
+      isEmailVerified: false,
     });
-
   });
 
   test('get admin count', async () => {
     await insertAdmins([adminOne]);
 
-    const res = await request(app)
-      .get('/v1/admins/getAdminCount')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/admins/getAdminCount').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
-      count: 1
+      count: 1,
     });
-
-  })
+  });
 
   test('get admin information', async () => {
     await insertAdmins([adminOne]);
 
-    const res = await request(app)
-      .get('/v1/admins')
-      .expect(httpStatus.OK);
-
+    const res = await request(app).get('/v1/admins').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
       results: expect.any(Array),
@@ -93,19 +82,19 @@ describe('Admin CRUD test', () => {
 
     expect(res.body.results[0]).toEqual({
       id: adminOne._id.toHexString(),
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
       name: adminOne.name,
       email: adminOne.email,
       role: adminOne.role,
       isEmailVerified: adminOne.isEmailVerified,
     });
-  })
+  });
 
   // NOTE: createAdmin
   test('create new admin', async () => {
@@ -122,13 +111,13 @@ describe('Admin CRUD test', () => {
       email: newAdmin.email,
       role: newAdmin.role,
       isEmailVerified: false,
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
     });
 
     const dbAdmin = await Admin.findById(res.body.id);
@@ -141,15 +130,15 @@ describe('Admin CRUD test', () => {
       email: newAdmin.email,
       role: newAdmin.role,
       isEmailVerified: false,
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
     });
-  })
+  });
 
   // NOTE: getAdmins
   test('get admin information', async () => {
@@ -175,15 +164,15 @@ describe('Admin CRUD test', () => {
       email: adminOne.email,
       role: adminOne.role,
       isEmailVerified: adminOne.isEmailVerified,
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
     });
-  })
+  });
 
   // NOTE: updateAdminById
   test('modify admin by id', async () => {
@@ -199,7 +188,7 @@ describe('Admin CRUD test', () => {
     expect(dbUser).toBeDefined();
 
     expect(dbUser.name).toMatch('blablabla');
-  })
+  });
 
   // NOTE: deleteAdminById
   test('delete admin by id', async () => {
@@ -212,10 +201,9 @@ describe('Admin CRUD test', () => {
 
     const dbAdminOne = await Admin.findById(adminOne._id);
     expect(dbAdminOne).toBeNull();
-  })
+  });
 
   test('GET /v1/admins/helloworld', async () => {
     const res = await request(app).get('/v1/admins/helloworld').expect(httpStatus.OK);
-
   });
 });

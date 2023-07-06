@@ -9,10 +9,9 @@ const { studentService } = require('../services');
 const { adminService } = require('../services');
 
 const getAdminCount = catchAsync(async (req, res) => {
-  const result = await adminService.countAdmin()
+  const result = await adminService.countAdmin();
   res.send(result);
 });
-
 
 const getAdmins = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name', 'role']);
@@ -20,7 +19,6 @@ const getAdmins = catchAsync(async (req, res) => {
   const result = await adminService.queryAdmins(filter, options);
   // res.send({ hello: 'student.controller.getAdmins' });
   res.send(result);
-
 });
 
 const createAdmin = catchAsync(async (req, res) => {
@@ -40,7 +38,6 @@ const getStudentById = catchAsync(async (req, res) => {
 const getAdminById = catchAsync(async (req, res) => {
   const admin = await adminService.getAdminById(req.params.adminId);
 
-
   if (!admin) {
     throw new ApiError(httpStatus.NOT_FOUND, `Admin not found ${req.params.adminId}`);
   }
@@ -54,14 +51,12 @@ const getAdminById = catchAsync(async (req, res) => {
 // });
 
 const updateAdminById = catchAsync(async (req, res) => {
-  const admin = await adminService.updateAdminById(
-    req.params.adminId, req.body);
+  const admin = await adminService.updateAdminById(req.params.adminId, req.body);
   res.send(admin);
 });
 
 const updateStudentById = catchAsync(async (req, res) => {
-  const student = await studentService.updateStudentById(
-    req.params.studentId, req.body);
+  const student = await studentService.updateStudentById(req.params.studentId, req.body);
   res.send(student);
 });
 
@@ -80,6 +75,8 @@ module.exports = {
   updateStudentById,
   deleteAdminById,
   getAdminById,
-  updateAdminById, createAdmin, getAdminCount,
-  helloworld
+  updateAdminById,
+  createAdmin,
+  getAdminCount,
+  helloworld,
 };

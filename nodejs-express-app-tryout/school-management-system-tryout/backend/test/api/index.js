@@ -1,4 +1,3 @@
-
 require('./teacher');
 // import { } from './student.mjs'
 // import { } from './teacher.mjs'

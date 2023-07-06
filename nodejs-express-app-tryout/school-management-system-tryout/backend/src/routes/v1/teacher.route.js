@@ -16,9 +16,7 @@ router
   .post(teacherController.helloworld)
   .delete(teacherController.helloworld);
 
-router
-  .route('/getTeacherCount')
-  .get(teacherController.getTeacherCount);
+router.route('/getTeacherCount').get(teacherController.getTeacherCount);
 
 router
   .route('/')
@@ -31,7 +29,6 @@ router
   .get(validate(teacherValidation.getTeacher), teacherController.getTeacherById)
   .patch(validate(teacherValidation.updateTeacher), teacherController.updateTeacherById)
   .delete(validate(teacherValidation.deleteTeacher), teacherController.deleteTeacherById);
-
 
 module.exports = router;
 

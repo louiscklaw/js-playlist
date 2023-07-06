@@ -10,4 +10,4 @@ const { seedAdmin } = require('./admin');
   await seedStudent();
   await seedTeacher();
   await seedAdmin();
-})()
+})();

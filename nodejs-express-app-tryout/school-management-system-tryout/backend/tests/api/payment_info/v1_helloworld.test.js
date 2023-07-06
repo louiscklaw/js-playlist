@@ -35,21 +35,17 @@ describe('PaymentInfo CRUD test', () => {
       expect(true).toBe(true);
       done();
     }, 20);
-
   });
 
   test('get paymentInfo count', async () => {
     await insertPaymentInfos([paymentInfoOne]);
 
-    const res = await request(app)
-      .get('/v1/payment-infos/getPaymentInfoCount')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/payment-infos/getPaymentInfoCount').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
-      count: 1
+      count: 1,
     });
-
-  })
+  });
 
   // test('add new student', async () => {
   //   const res = await request(app)
@@ -224,11 +220,7 @@ describe('PaymentInfo CRUD test', () => {
   //   expect(dbStudentOne).toBeNull();
   // })
 
-  test('GET /v1/payment-infos/helloworld',
-    async () => {
-      const res = await request(app)
-        .get('/v1/payment-infos/helloworld')
-        .expect(httpStatus.OK);
-    });
+  test('GET /v1/payment-infos/helloworld', async () => {
+    const res = await request(app).get('/v1/payment-infos/helloworld').expect(httpStatus.OK);
+  });
 });
-

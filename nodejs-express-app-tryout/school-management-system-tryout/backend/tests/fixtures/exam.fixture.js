@@ -19,8 +19,7 @@ const examTwo = {
 };
 
 const insertExams = async (exams) => {
-  await Exam
-    .insertMany(exams.map((exam) => ({ ...exam, password: hashedPassword })));
+  await Exam.insertMany(exams.map((exam) => ({ ...exam, password: hashedPassword })));
 };
 
 module.exports = {

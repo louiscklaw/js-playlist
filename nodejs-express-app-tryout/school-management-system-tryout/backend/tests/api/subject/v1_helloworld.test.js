@@ -29,16 +29,14 @@ describe('Subject CRUD test', () => {
   beforeEach((done) => {
     newSubject = {
       name: faker.name.findName(),
-      description: 'helloworld'
+      description: 'helloworld',
     };
 
     setTimeout(() => {
       expect(true).toBe(true);
       done();
     }, 20);
-
   });
-
 
   // NOTE: updateSubjectById
   test('modify subject by id', async () => {
@@ -53,13 +51,11 @@ describe('Subject CRUD test', () => {
     const dbUser = await Subject.findById(subjectOne._id);
 
     expect(dbUser).toBeDefined();
-    expect(dbUser).toMatchObject(
-      {
-        ...subjectOne,
-        "name": "blablabla"
-      }
-    );
-  })
+    expect(dbUser).toMatchObject({
+      ...subjectOne,
+      name: 'blablabla',
+    });
+  });
 
   // NOTE: deleteSubjectById
   test('delete subject by id', async () => {
@@ -72,38 +68,30 @@ describe('Subject CRUD test', () => {
 
     const dbSubjectOne = await Subject.findById(subjectOne._id);
     expect(dbSubjectOne).toBeNull();
-  })
+  });
 
   test('get subject count', async () => {
     await insertSubjects([subjectOne]);
 
-    const res = await request(app)
-      .get('/v1/subjects/getSubjectCount')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/subjects/getSubjectCount').expect(httpStatus.OK);
 
     expect(res.body).toEqual({ count: 1 });
-  })
+  });
 
   test('CREATE /v1/subjects, add new subject', async () => {
-    const res = await request(app)
-      .post('/v1/subjects')
-      .send(newSubject)
-      .expect(httpStatus.CREATED);
+    const res = await request(app).post('/v1/subjects').send(newSubject).expect(httpStatus.CREATED);
 
     expect(res.body).not.toHaveProperty('password');
 
     const dbSubject = await Subject.findById(res.body.id);
     expect(dbSubject).toBeDefined();
     expect(dbSubject).toMatchObject(res.body);
-
   });
 
   test('GET /subjects, list subjects', async () => {
     await insertSubjects([subjectOne]);
 
-    const res = await request(app)
-      .get('/v1/subjects')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/subjects').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
       results: expect.any(Array),
@@ -118,9 +106,9 @@ describe('Subject CRUD test', () => {
     expect(res.body.results[0]).toEqual({
       id: subjectOne._id.toHexString(),
       name: subjectOne.name,
-      description: subjectOne.description
+      description: subjectOne.description,
     });
-  })
+  });
 
   // NOTE: createSubject
   test('create new subject', async () => {
@@ -144,7 +132,7 @@ describe('Subject CRUD test', () => {
       name: newSubject.name,
       description: newSubject.description,
     });
-  })
+  });
 
   // NOTE: getSubjects
   test('get subject information', async () => {
@@ -169,13 +157,9 @@ describe('Subject CRUD test', () => {
       name: subjectOne.name,
       description: subjectOne.description,
     });
-  })
+  });
 
   test('GET /v1/subjects/helloworld', async () => {
-    const res = await request(app)
-      .get('/v1/subjects/helloworld')
-      .expect(httpStatus.OK);
-
+    const res = await request(app).get('/v1/subjects/helloworld').expect(httpStatus.OK);
   });
 });
-

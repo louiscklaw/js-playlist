@@ -15,7 +15,7 @@ const getAttendances = catchAsync(async (req, res) => {
 });
 
 const getAttendanceCount = catchAsync(async (req, res) => {
-  const result = await attendanceService.countAttendance()
+  const result = await attendanceService.countAttendance();
   res.send(result);
 });
 
@@ -63,5 +63,5 @@ module.exports = {
   // createAttendance,
   // getAttendanceCount,
   createAttendance,
-  helloworld
+  helloworld,
 };

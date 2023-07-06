@@ -8,14 +8,10 @@ const router = express.Router();
 
 // NOTE: under /students directive
 // NOTE: helloworld
-router
-  .route('/helloworld')
-  .get(studentController.helloworld);
+router.route('/helloworld').get(studentController.helloworld);
 // .put(studentController.helloworld);
 
-router
-  .route('/getStudentCount')
-  .get(studentController.getStudentCount);
+router.route('/getStudentCount').get(studentController.getStudentCount);
 
 router
   .route('/')
@@ -27,7 +23,6 @@ router
   .get(validate(studentValidation.getStudent), studentController.getStudentById)
   .patch(validate(studentValidation.updateStudent), studentController.updateStudentById)
   .delete(validate(studentValidation.deleteStudent), studentController.deleteStudentById);
-
 
 module.exports = router;
 

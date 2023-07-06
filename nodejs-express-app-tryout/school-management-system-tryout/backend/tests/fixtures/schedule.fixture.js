@@ -19,8 +19,7 @@ const scheduleTwo = {
 };
 
 const insertSchedules = async (schedules) => {
-  await Schedule
-    .insertMany(schedules.map((schedule) => ({ ...schedule, password: hashedPassword })));
+  await Schedule.insertMany(schedules.map((schedule) => ({ ...schedule, password: hashedPassword })));
 };
 
 module.exports = {

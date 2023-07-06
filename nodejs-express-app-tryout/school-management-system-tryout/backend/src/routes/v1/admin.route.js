@@ -16,9 +16,7 @@ router
   .post(adminController.helloworld)
   .delete(adminController.helloworld);
 
-router
-  .route('/getAdminCount')
-  .get(adminController.getAdminCount);
+router.route('/getAdminCount').get(adminController.getAdminCount);
 
 router
   .route('/:adminId')
@@ -26,14 +24,9 @@ router
   .patch(validate(adminValidation.updateAdmin), adminController.updateAdminById)
   .delete(validate(adminValidation.deleteAdmin), adminController.deleteAdminById);
 
+router.route('/').get(validate(adminValidation.getAdmins), adminController.getAdmins).post(adminController.createAdmin);
 
-router
-  .route('/')
-  .get(validate(adminValidation.getAdmins), adminController.getAdmins)
-  .post(adminController.createAdmin);
-
-
-  // validate(adminValidation.createAdmin),
+// validate(adminValidation.createAdmin),
 
 module.exports = router;
 

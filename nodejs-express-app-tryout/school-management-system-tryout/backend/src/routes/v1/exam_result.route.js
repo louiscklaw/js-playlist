@@ -13,14 +13,10 @@ const router = express.Router();
 
 // NOTE: under /examResults directive
 // NOTE: helloworld
-router
-  .route('/helloworld')
-  .get(examResultController.helloworld);
+router.route('/helloworld').get(examResultController.helloworld);
 // .put(examResultController.helloworld);
 
-router
-  .route('/getExamResultCount')
-  .get(examResultController.getExamResultCount);
+router.route('/getExamResultCount').get(examResultController.getExamResultCount);
 
 // router
 //   .route('/')
@@ -32,7 +28,6 @@ router
 //   .get(validate(examResultValidation.getExamResult), examResultController.getExamResultById)
 //   .patch(validate(examResultValidation.updateExamResult), examResultController.updateExamResultById)
 //   .delete(validate(examResultValidation.deleteExamResult), examResultController.deleteExamResultById);
-
 
 module.exports = router;
 

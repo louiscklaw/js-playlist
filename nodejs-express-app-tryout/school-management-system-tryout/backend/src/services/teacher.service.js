@@ -22,13 +22,10 @@ const createTeacher = async (userBody) => {
   return Teacher.create(userBody);
 };
 
-
 const countTeacher = async () => {
   const count = await Teacher.find().countDocuments();
   return { count };
-
 };
-
 
 /**
  * Get user by id
@@ -36,7 +33,7 @@ const countTeacher = async () => {
  * @returns {Promise<Teacher>}
  */
 const getTeacherById = async (id) => {
-  return Teacher.findById(id)
+  return Teacher.findById(id);
 };
 
 /**
@@ -137,7 +134,6 @@ const deleteTeacherById = async (teacherId) => {
   return teacher;
 };
 
-
 /**
  * Delete user by id
  * @param {ObjectId} userId
@@ -158,6 +154,12 @@ module.exports = {
   queryTeachers,
   getUserById,
   getUserByEmail,
-  updateUserById, updateUserByEmail, getTeacherById, updateTeacherById,
-  deleteUserById, deleteTeacherById, createTeacher, countTeacher,
+  updateUserById,
+  updateUserByEmail,
+  getTeacherById,
+  updateTeacherById,
+  deleteUserById,
+  deleteTeacherById,
+  createTeacher,
+  countTeacher,
 };

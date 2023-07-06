@@ -9,8 +9,8 @@ const { roles } = require('../config/roles');
 // backend/src/validations/student.validation.js
 const subjectSchema = mongoose.Schema(
   {
-    name: { type: String, required: true, trim: true, },
-    description: { type: String, required: true, trim: true, },
+    name: { type: String, required: true, trim: true },
+    description: { type: String, required: true, trim: true },
 
     // address1: { type: String, required: false, trim: true, default: '' },
     // address2: { type: String, required: false, trim: true, default: '' },

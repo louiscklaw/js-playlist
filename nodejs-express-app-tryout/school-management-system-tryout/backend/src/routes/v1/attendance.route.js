@@ -13,14 +13,10 @@ const router = express.Router();
 
 // NOTE: under /attendances directive
 // NOTE: helloworld
-router
-  .route('/helloworld')
-  .get(attendanceController.helloworld);
+router.route('/helloworld').get(attendanceController.helloworld);
 // .put(attendanceController.helloworld);
 
-router
-  .route('/getAttendanceCount')
-  .get(attendanceController.getAttendanceCount);
+router.route('/getAttendanceCount').get(attendanceController.getAttendanceCount);
 
 // router
 //   .route('/')
@@ -32,7 +28,6 @@ router
 //   .get(validate(attendanceValidation.getSchedule), attendanceController.getScheduleById)
 //   .patch(validate(attendanceValidation.updateSchedule), attendanceController.updateScheduleById)
 //   .delete(validate(attendanceValidation.deleteSchedule), attendanceController.deleteScheduleById);
-
 
 module.exports = router;
 

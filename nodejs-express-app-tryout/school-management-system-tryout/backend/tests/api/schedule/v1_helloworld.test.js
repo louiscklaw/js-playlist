@@ -33,27 +33,20 @@ describe('Schedule CRUD test', () => {
       expect(true).toBe(true);
       done();
     }, 100);
-
   });
 
   test('get schedule count', async () => {
     await insertSchedules([scheduleOne]);
 
-    const res = await request(app)
-      .get('/v1/schedules/getScheduleCount')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/schedules/getScheduleCount').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
-      count: 1
+      count: 1,
     });
-
-  })
+  });
 
   test('add new schedule', async () => {
-    const res = await request(app)
-      .post('/v1/schedules')
-      .send(newSchedule)
-      .expect(httpStatus.CREATED);
+    const res = await request(app).post('/v1/schedules').send(newSchedule).expect(httpStatus.CREATED);
 
     expect(res.body).not.toHaveProperty('password');
 
@@ -68,9 +61,7 @@ describe('Schedule CRUD test', () => {
 
   test('list all schedules', async () => {
     await insertSchedules([scheduleOne]);
-    const res = await request(app)
-      .get('/v1/schedules')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/schedules').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
       results: expect.any(Array),
@@ -86,7 +77,7 @@ describe('Schedule CRUD test', () => {
       id: scheduleOne._id.toHexString(),
       name: scheduleOne.name,
     });
-  })
+  });
 
   // // NOTE: createStudent
   test('create new schedule', async () => {
@@ -108,7 +99,7 @@ describe('Schedule CRUD test', () => {
     expect(dbUser).toMatchObject({
       name: newSchedule.name,
     });
-  })
+  });
 
   // // NOTE: getSchedules
   test('list all schedule', async () => {
@@ -132,7 +123,7 @@ describe('Schedule CRUD test', () => {
       id: scheduleOne._id.toHexString(),
       name: scheduleOne.name,
     });
-  })
+  });
 
   // // NOTE: getSchedules
   test('show schedule by id', async () => {
@@ -147,7 +138,7 @@ describe('Schedule CRUD test', () => {
       id: scheduleOne._id.toHexString(),
       name: scheduleOne.name,
     });
-  })
+  });
 
   // NOTE: updateScheduleById
   test('modify schedule by id', async () => {
@@ -163,7 +154,7 @@ describe('Schedule CRUD test', () => {
     expect(dbUser).toBeDefined();
 
     expect(dbUser.name).toMatch('blablabla');
-  })
+  });
 
   // NOTE: deleteScheduleById
   test('delete schedule by id', async () => {
@@ -176,13 +167,9 @@ describe('Schedule CRUD test', () => {
 
     const dbScheduleOne = await Schedule.findById(scheduleOne._id);
     expect(dbScheduleOne).toBeNull();
-  })
+  });
 
-  test('GET /v1/schedules/helloworld',
-    async () => {
-      const res = await request(app)
-        .get('/v1/schedules/helloworld')
-        .expect(httpStatus.OK);
-    });
+  test('GET /v1/schedules/helloworld', async () => {
+    const res = await request(app).get('/v1/schedules/helloworld').expect(httpStatus.OK);
+  });
 });
-

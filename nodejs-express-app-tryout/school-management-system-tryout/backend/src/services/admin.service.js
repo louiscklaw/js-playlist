@@ -34,7 +34,7 @@ const createTeacher = async (userBody) => {
  * @returns {Promise<Teacher>}
  */
 const getTeacherById = async (id) => {
-  return Teacher.findById(id)
+  return Teacher.findById(id);
 };
 
 /**
@@ -144,7 +144,6 @@ const deleteTeacherById = async (studentId) => {
   return student;
 };
 
-
 /**
  * Delete user by id
  * @param {ObjectId} adminId
@@ -179,5 +178,6 @@ module.exports = {
 
   updateTeacherById,
   updateUserByEmail,
-  updateAdminById, countAdmin,
+  updateAdminById,
+  countAdmin,
 };

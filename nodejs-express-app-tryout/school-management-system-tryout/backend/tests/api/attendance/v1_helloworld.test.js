@@ -35,21 +35,17 @@ describe('Attendance CRUD test', () => {
       expect(true).toBe(true);
       done();
     }, 20);
-
   });
 
   test('get attendance count', async () => {
     await insertAttendances([attendanceOne]);
 
-    const res = await request(app)
-      .get('/v1/attendances/getAttendanceCount')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/attendances/getAttendanceCount').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
-      count: 1
+      count: 1,
     });
-
-  })
+  });
 
   // test('add new student', async () => {
   //   const res = await request(app)
@@ -224,11 +220,7 @@ describe('Attendance CRUD test', () => {
   //   expect(dbStudentOne).toBeNull();
   // })
 
-  test('GET /v1/attendances/helloworld',
-    async () => {
-      const res = await request(app)
-        .get('/v1/attendances/helloworld')
-        .expect(httpStatus.OK);
-    });
+  test('GET /v1/attendances/helloworld', async () => {
+    const res = await request(app).get('/v1/attendances/helloworld').expect(httpStatus.OK);
+  });
 });
-

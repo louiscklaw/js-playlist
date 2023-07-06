@@ -26,7 +26,7 @@ const getUserById = catchAsync(async (req, res) => {
 });
 
 // abonded
-const getUser = getUserById
+const getUser = getUserById;
 
 const updateUser = catchAsync(async (req, res) => {
   const user = await userService.updateUserById(req.params.userId, req.body);
@@ -39,7 +39,7 @@ const deleteUser = catchAsync(async (req, res) => {
 });
 
 const helloworld = catchAsync(async (req, res) => {
-  console.log('user.controller helloworld')
+  console.log('user.controller helloworld');
   res.send({ hello: 'user.controller' });
 });
 
@@ -50,5 +50,5 @@ module.exports = {
   updateUser,
   deleteUser,
   helloworld,
-  getUserById
+  getUserById,
 };

@@ -8,21 +8,18 @@ const catchAsync = require('../utils/catchAsync');
 const { studentService } = require('../services');
 
 const getStudents = catchAsync(async (req, res) => {
-
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await studentService.queryStudents(filter, options);
   // res.send({ hello: 'student.controller.getStudents' });
   res.send(result);
-
 });
 
 const getStudentCount = catchAsync(async (req, res) => {
-  const result = await studentService.countStudent()
+  const result = await studentService.countStudent();
   // res.send({ hello: 'student.controller.getStudents' });
   res.send(result);
 });
-
 
 const createStudent = catchAsync(async (req, res) => {
   const student = await studentService.createStudent(req.body);
@@ -45,8 +42,7 @@ const getStudentById = catchAsync(async (req, res) => {
 // });
 
 const updateStudentById = catchAsync(async (req, res) => {
-  const student = await studentService.updateStudentById(
-    req.params.studentId, req.body);
+  const student = await studentService.updateStudentById(req.params.studentId, req.body);
   res.send(student);
 });
 
@@ -66,5 +62,5 @@ module.exports = {
   deleteStudentById,
   createStudent,
   getStudentCount,
-  helloworld
+  helloworld,
 };

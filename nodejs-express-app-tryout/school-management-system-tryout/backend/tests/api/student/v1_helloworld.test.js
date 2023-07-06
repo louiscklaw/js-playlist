@@ -28,21 +28,17 @@ describe('Student CRUD test', () => {
       name: faker.name.findName(),
       email: faker.internet.email().toLowerCase(),
       password: 'password1',
-      role: "user"
+      role: 'user',
     };
 
     setTimeout(() => {
       expect(true).toBe(true);
       done();
     }, 20);
-
   });
 
   test('add new student', async () => {
-    const res = await request(app)
-      .post('/v1/students')
-      .send(newStudent)
-      .expect(httpStatus.CREATED);
+    const res = await request(app).post('/v1/students').send(newStudent).expect(httpStatus.CREATED);
 
     expect(res.body).not.toHaveProperty('password');
 
@@ -55,28 +51,22 @@ describe('Student CRUD test', () => {
       name: newStudent.name,
       email: newStudent.email,
       role: 'user',
-      isEmailVerified: false
+      isEmailVerified: false,
     });
-
   });
 
   test('get student count', async () => {
     await insertStudents([studentOne]);
-    const res = await request(app)
-      .get('/v1/students/getStudentCount')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/students/getStudentCount').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
-      count: 1
+      count: 1,
     });
-
-  })
+  });
 
   test('get student information', async () => {
     await insertStudents([studentOne]);
-    const res = await request(app)
-      .get('/v1/students')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/students').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
       results: expect.any(Array),
@@ -90,19 +80,19 @@ describe('Student CRUD test', () => {
 
     expect(res.body.results[0]).toEqual({
       id: studentOne._id.toHexString(),
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
       name: studentOne.name,
       email: studentOne.email,
       role: studentOne.role,
       isEmailVerified: studentOne.isEmailVerified,
     });
-  })
+  });
 
   // NOTE: createStudent
   test('create new student', async () => {
@@ -119,13 +109,13 @@ describe('Student CRUD test', () => {
       email: newStudent.email,
       role: newStudent.role,
       isEmailVerified: false,
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
     });
 
     const dbUser = await Student.findById(res.body.id);
@@ -138,15 +128,15 @@ describe('Student CRUD test', () => {
       email: newStudent.email,
       role: newStudent.role,
       isEmailVerified: false,
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
     });
-  })
+  });
 
   // NOTE: getStudents
   test('get student information', async () => {
@@ -172,15 +162,15 @@ describe('Student CRUD test', () => {
       email: studentOne.email,
       role: studentOne.role,
       isEmailVerified: studentOne.isEmailVerified,
-      address1: "",
-      address2: "",
-      country: "",
+      address1: '',
+      address2: '',
+      country: '',
       hasDiscount: false,
       isVerified: false,
-      phone: "",
-      state: "",
+      phone: '',
+      state: '',
     });
-  })
+  });
 
   // NOTE: updateStudentById
   test('modify student by id', async () => {
@@ -196,7 +186,7 @@ describe('Student CRUD test', () => {
     expect(dbUser).toBeDefined();
 
     expect(dbUser.name).toMatch('blablabla');
-  })
+  });
 
   // NOTE: deleteStudentById
   test('delete student by id', async () => {
@@ -209,13 +199,9 @@ describe('Student CRUD test', () => {
 
     const dbStudentOne = await Student.findById(studentOne._id);
     expect(dbStudentOne).toBeNull();
-  })
+  });
 
   test('GET /v1/students/helloworld', async () => {
-    const res = await request(app)
-      .get('/v1/students/helloworld')
-      .expect(httpStatus.OK);
-
+    const res = await request(app).get('/v1/students/helloworld').expect(httpStatus.OK);
   });
 });
-

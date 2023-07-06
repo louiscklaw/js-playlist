@@ -13,14 +13,10 @@ const router = express.Router();
 
 // NOTE: under /schedules directive
 // NOTE: helloworld
-router
-  .route('/helloworld')
-  .get(scheduleController.helloworld);
+router.route('/helloworld').get(scheduleController.helloworld);
 // .put(scheduleController.helloworld);
 
-router
-  .route('/getScheduleCount')
-  .get(scheduleController.getScheduleCount);
+router.route('/getScheduleCount').get(scheduleController.getScheduleCount);
 
 router
   .route('/')
@@ -32,7 +28,6 @@ router
   .get(validate(scheduleValidation.getSchedule), scheduleController.getScheduleById)
   .patch(validate(scheduleValidation.updateSchedule), scheduleController.updateScheduleById)
   .delete(validate(scheduleValidation.deleteSchedule), scheduleController.deleteScheduleById);
-
 
 module.exports = router;
 

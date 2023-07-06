@@ -7,10 +7,7 @@ const userController = require('../../controllers/user.controller');
 const router = express.Router();
 
 // NOTE: under /users directive
-router
-  .route('/helloworld')
-  .get(userController.helloworld)
-  .put(userController.helloworld);
+router.route('/helloworld').get(userController.helloworld).put(userController.helloworld);
 
 router
   .route('/:userId')

@@ -30,10 +30,10 @@ const countClassroom = async () => {
 /**
  * Get user by id
  * @param {ObjectId} id
- * @returns {Promise<Student>}
+ * @returns {Promise<Classroom>}
  */
-const getStudentById = async (id) => {
-  return Classroom.findById(id)
+const getClassroomById = async (id) => {
+  return Classroom.findById(id);
 };
 
 /**
@@ -50,7 +50,7 @@ const queryUsers = async (filter, options) => {
   return users;
 };
 
-const queryStudents = async (filter, options) => {
+const queryClassrooms = async (filter, options) => {
   const students = await Classroom.paginate(filter, options);
   return students;
 };
@@ -108,10 +108,10 @@ const updateUserById = async (userId, updateBody) => {
   return user;
 };
 
-const updateStudentById = async (studentId, updateBody) => {
-  const student = await getStudentById(studentId);
+const updateClassroomById = async (studentId, updateBody) => {
+  const student = await getClassroomById(studentId);
   if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+    throw new ApiError(httpStatus.NOT_FOUND, 'Classroom not found');
   }
   if (updateBody.email && (await Classroom.isEmailTaken(updateBody.email, studentId))) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
@@ -121,16 +121,19 @@ const updateStudentById = async (studentId, updateBody) => {
   return student;
 };
 
-// deleteStudentById
-const deleteStudentById = async (studentId) => {
-  const student = await getStudentById(studentId);
-  if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+// deleteClassroomById
+const deleteClassroomById = async (classroomId) => {
+  try {
+    const classroom = await getClassroomById(classroomId);
+    if (!classroom) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'Classroom not found');
+    }
+    await classroom.remove();
+    return classroom;
+  } catch (error) {
+    console.error(error);
   }
-  await student.remove();
-  return student;
 };
-
 
 /**
  * Delete user by id
@@ -147,11 +150,21 @@ const deleteUserById = async (userId) => {
 };
 
 module.exports = {
+  countClassroom,
+  createClassroom,
   createUser,
-  queryUsers,
-  queryStudents,
-  getUserById,
+
+  deleteClassroomById,
+  deleteUserById,
+
+  getClassroomById,
   getUserByEmail,
-  updateUserById, updateUserByEmail, getStudentById, updateStudentById,
-  deleteUserById, deleteStudentById, createClassroom, countClassroom
+  getUserById,
+
+  queryClassrooms,
+  queryUsers,
+
+  updateClassroomById,
+  updateUserByEmail,
+  updateUserById,
 };

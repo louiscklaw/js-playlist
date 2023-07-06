@@ -13,26 +13,21 @@ const router = express.Router();
 
 // NOTE: under /classrooms directive
 // NOTE: helloworld
-router
-  .route('/helloworld')
-  .get(classroomController.helloworld);
+router.route('/helloworld').get(classroomController.helloworld);
 // .put(classroomController.helloworld);
 
+router.route('/getClassroomCount').get(classroomController.getClassroomCount);
+
 router
-  .route('/getClassroomCount')
-  .get(classroomController.getClassroomCount);
+  .route('/')
+  .post(validate(classroomValidation.createClassroom), classroomController.createClassroom)
+  .get(validate(classroomValidation.getClassrooms), classroomController.getClassrooms);
 
-// router
-//   .route('/')
-//   .post(validate(classroomValidation.createClassroom), classroomController.createClassroom)
-//   .get(validate(classroomValidation.getClassrooms), classroomController.getClassrooms);
-
-// router
-//   .route('/:classroomId')
-//   .get(validate(classroomValidation.getClassroom), classroomController.getClassroomById)
-//   .patch(validate(classroomValidation.updateClassroom), classroomController.updateClassroomById)
-//   .delete(validate(classroomValidation.deleteClassroom), classroomController.deleteClassroomById);
-
+router
+  .route('/:classroomId')
+  //   .get(validate(classroomValidation.getClassroom), classroomController.getClassroomById)
+  .patch(validate(classroomValidation.updateClassroom), classroomController.updateClassroomById)
+  .delete(validate(classroomValidation.deleteClassroom), classroomController.deleteClassroomById);
 
 module.exports = router;
 

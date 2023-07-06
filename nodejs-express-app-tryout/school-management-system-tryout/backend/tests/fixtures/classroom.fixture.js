@@ -19,8 +19,7 @@ const classroomTwo = {
 };
 
 const insertClassrooms = async (classrooms) => {
-  await Classroom
-    .insertMany(classrooms.map((classroom) => ({ ...classroom, password: hashedPassword })));
+  await Classroom.insertMany(classrooms.map((classroom) => ({ ...classroom, password: hashedPassword })));
 };
 
 module.exports = {

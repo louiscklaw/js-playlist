@@ -37,7 +37,7 @@ const countSchedule = async () => {
  * @returns {Promise<Student>}
  */
 const getScheduleById = async (id) => {
-  return Schedule.findById(id)
+  return Schedule.findById(id);
 };
 
 /**
@@ -135,7 +135,6 @@ const deleteScheduleById = async (studentId) => {
   return student;
 };
 
-
 /**
  * Delete user by id
  * @param {ObjectId} userId
@@ -168,5 +167,5 @@ module.exports = {
   updateUserByEmail,
   updateUserById,
 
-  countSchedule
+  countSchedule,
 };

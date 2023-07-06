@@ -15,7 +15,7 @@ const getExamResults = catchAsync(async (req, res) => {
 });
 
 const getExamResultCount = catchAsync(async (req, res) => {
-  const result = await examResultService.countExamResult()
+  const result = await examResultService.countExamResult();
   res.send(result);
 });
 
@@ -63,5 +63,5 @@ module.exports = {
   // createExamResult,
   // getExamResultCount,
   createExamResult,
-  helloworld
+  helloworld,
 };

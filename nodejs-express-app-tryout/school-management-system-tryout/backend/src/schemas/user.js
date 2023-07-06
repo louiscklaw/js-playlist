@@ -6,7 +6,7 @@ const { roles } = require('../config/roles');
 const { chargingPlan } = require('../config/chargingPlan');
 
 module.exports = mongoose.Schema({
-  name: { type: String, required: true, trim: true, },
+  name: { type: String, required: true, trim: true },
   email: {
     type: String,
     required: true,
@@ -31,10 +31,10 @@ module.exports = mongoose.Schema({
     },
     private: true, // used by the toJSON plugin
   },
-  avatar: { type: String, required: true, trim: true, },
-  role: { type: String, enum: roles, default: 'user', },
-  contentInfoPublic: { type: String, default: 'yes', },
-  availableToHire: { type: String, default: 'yes', },
-  chargingPlan: { type: String, enum: chargingPlan, default: 'startup', },
-  isEmailVerified: { type: Boolean, default: false, },
+  avatar: { type: String, required: true, trim: true },
+  role: { type: String, enum: roles, default: 'user' },
+  contentInfoPublic: { type: String, default: 'yes' },
+  availableToHire: { type: String, default: 'yes' },
+  chargingPlan: { type: String, enum: chargingPlan, default: 'startup' },
+  isEmailVerified: { type: Boolean, default: false },
 });

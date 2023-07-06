@@ -35,21 +35,17 @@ describe('ExamResult CRUD test', () => {
       expect(true).toBe(true);
       done();
     }, 20);
-
   });
 
   test('get exam-result count', async () => {
     await insertExamResults([examResultOne]);
 
-    const res = await request(app)
-      .get('/v1/exam-results/getExamResultCount')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/exam-results/getExamResultCount').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
-      count: 1
+      count: 1,
     });
-
-  })
+  });
 
   // test('add new student', async () => {
   //   const res = await request(app)
@@ -224,11 +220,7 @@ describe('ExamResult CRUD test', () => {
   //   expect(dbStudentOne).toBeNull();
   // })
 
-  test('GET /v1/exam-results/helloworld',
-    async () => {
-      const res = await request(app)
-        .get('/v1/exam-results/helloworld')
-        .expect(httpStatus.OK);
-    });
+  test('GET /v1/exam-results/helloworld', async () => {
+    const res = await request(app).get('/v1/exam-results/helloworld').expect(httpStatus.OK);
+  });
 });
-
