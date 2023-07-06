@@ -200,6 +200,14 @@ const StudentList = () => {
   const sortedStudents = applySort(filteredStudents, sort);
   const paginatedStudents = applyPagination(sortedStudents, page, rowsPerPage);
 
+  if (!students) {
+    return (
+      <>
+        <LoadingTable resource_name={'admin'} />
+      </>
+    );
+  }
+
   return (
     <>
       <Head>

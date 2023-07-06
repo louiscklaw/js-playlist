@@ -28,6 +28,7 @@ import { gtm } from '../../../lib/gtm';
 
 import { studentApi } from 'src/api/student-api';
 import { useTranslation } from 'react-i18next';
+import LoadingTable from 'src/components/LoadingTable';
 
 const tabs = [
   { label: 'All', value: 'all' },
@@ -199,6 +200,14 @@ const StudentList = () => {
   const filteredStudents = applyFilters(students, filters);
   const sortedStudents = applySort(filteredStudents, sort);
   const paginatedStudents = applyPagination(sortedStudents, page, rowsPerPage);
+
+  if (!students) {
+    return (
+      <>
+        <LoadingTable resource_name={'admin'} />
+      </>
+    );
+  }
 
   return (
     <>

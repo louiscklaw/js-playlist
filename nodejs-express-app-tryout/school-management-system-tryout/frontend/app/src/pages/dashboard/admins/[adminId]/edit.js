@@ -19,11 +19,12 @@ import { gtm } from 'src/lib/gtm';
 import { getInitials } from 'src/utils/get-initials';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
+import LoadingTable from 'src/components/LoadingTable';
 
-const StudentEdit = () => {
+const AdminEdit = () => {
   const router = useRouter();
   const isMounted = useMounted();
-  const [student, setStudent] = useState(null);
+  const [admin, setStudent] = useState(null);
 
   const { t } = useTranslation();
 
@@ -57,8 +58,12 @@ const StudentEdit = () => {
     [],
   );
 
-  if (!student) {
-    return <>loading admins</>;
+  if (!admin) {
+    return (
+      <>
+        <LoadingTable resource_name={'admin'} />
+      </>
+    );
   }
 
   return (
@@ -100,18 +105,18 @@ const StudentEdit = () => {
             }}
           >
             <Avatar
-              src={student.avatar}
+              src={admin.avatar}
               sx={{
                 height: 64,
                 mr: 2,
                 width: 64,
               }}
             >
-              {getInitials(student.name)}
+              {getInitials(admin.name)}
             </Avatar>
             <div>
               <Typography noWrap variant="h4">
-                {student.email}
+                {admin.email}
               </Typography>
               <Box
                 sx={{
@@ -123,13 +128,13 @@ const StudentEdit = () => {
                 }}
               >
                 <Typography variant="subtitle2">user_id:</Typography>
-                <Chip label={student.id} size="small" sx={{ ml: 1 }} />
+                <Chip label={admin.id} size="small" sx={{ ml: 1 }} />
               </Box>
             </div>
           </Box>
 
           <Box mt={3}>
-            <AdminEditForm admin={student} />
+            <AdminEditForm admin={admin} />
           </Box>
         </Container>
       </Box>
@@ -137,10 +142,10 @@ const StudentEdit = () => {
   );
 };
 
-StudentEdit.getLayout = page => (
+AdminEdit.getLayout = page => (
   <AuthGuard>
     <DashboardLayout>{page}</DashboardLayout>
   </AuthGuard>
 );
 
-export default StudentEdit;
+export default AdminEdit;

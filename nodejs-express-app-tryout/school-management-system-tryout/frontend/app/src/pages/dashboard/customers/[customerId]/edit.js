@@ -10,6 +10,7 @@ import { CustomerEditForm } from '../../../../components/dashboard/customer/cust
 import { useMounted } from '../../../../hooks/use-mounted';
 import { gtm } from '../../../../lib/gtm';
 import { getInitials } from '../../../../utils/get-initials';
+import LoadingTable from 'src/components/LoadingTable';
 
 const CustomerEdit = () => {
   const isMounted = useMounted();
@@ -39,8 +40,12 @@ const CustomerEdit = () => {
     [],
   );
 
-  if (!customer) {
-    return null;
+  if (!student) {
+    return (
+      <>
+        <LoadingTable resource_name={'teacher'} />
+      </>
+    );
   }
 
   return (

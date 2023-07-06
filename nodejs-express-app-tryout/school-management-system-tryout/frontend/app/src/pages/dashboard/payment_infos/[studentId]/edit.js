@@ -13,6 +13,7 @@ import { gtm } from 'src/lib/gtm';
 import { getInitials } from 'src/utils/get-initials';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
+import LoadingTable from 'src/components/LoadingTable';
 
 const StudentEdit = () => {
   const router = useRouter();
@@ -53,7 +54,11 @@ const StudentEdit = () => {
   );
 
   if (!student) {
-    return <>loading payment_infos</>;
+    return (
+      <>
+        <LoadingTable resource_name={'teacher'} />
+      </>
+    );
   }
 
   return (

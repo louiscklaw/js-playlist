@@ -23,6 +23,7 @@ import { Plus as PlusIcon } from 'src/icons/plus';
 import { Search as SearchIcon } from 'src/icons/search';
 import { Upload as UploadIcon } from 'src/icons/upload';
 import { gtm } from '../../../lib/gtm';
+import LoadingTable from 'src/components/LoadingTable';
 
 const tabs = [
   { label: 'All', value: 'all' },
@@ -196,6 +197,14 @@ const CustomerList = () => {
     page,
     rowsPerPage,
   );
+
+  if (!students) {
+    return (
+      <>
+        <LoadingTable resource_name={'admin'} />
+      </>
+    );
+  }
 
   return (
     <>
