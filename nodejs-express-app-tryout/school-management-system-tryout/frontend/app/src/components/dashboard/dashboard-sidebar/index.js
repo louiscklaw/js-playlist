@@ -197,6 +197,17 @@ const getSections = t => [
         // ],
       },
       {
+        title: t('CMS'),
+        path: '/dashboard/cms',
+        icon: <UsersIcon fontSize="small" />,
+        matching: 'partial',
+        children: [
+          { title: t('List'), path: '/dashboard/CMS' },
+          { title: t('Details'), path: '/dashboard/CMS/1' },
+          { title: t('Edit'), path: '/dashboard/CMS/1/edit' },
+        ],
+      },
+      {
         title: t('Restaurants'),
         path: '/dashboard/restaurants',
         icon: <UsersIcon fontSize="small" />,
@@ -209,7 +220,7 @@ const getSections = t => [
       },
       {
         title: t('Products'),
-        path: '/dashboard/restaurants',
+        path: '/dashboard/foods',
         icon: <UsersIcon fontSize="small" />,
         matching: 'partial',
         children: [
