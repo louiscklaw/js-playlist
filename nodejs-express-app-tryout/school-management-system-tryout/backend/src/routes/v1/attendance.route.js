@@ -18,16 +18,16 @@ router.route('/helloworld').get(attendanceController.helloworld);
 
 router.route('/getAttendanceCount').get(attendanceController.getAttendanceCount);
 
-// router
-//   .route('/')
-//   .post(validate(attendanceValidation.createSchedule), attendanceController.createSchedule)
-//   .get(validate(attendanceValidation.getSchedules), attendanceController.getSchedules);
+router
+  .route('/')
+  .post(validate(attendanceValidation.createAttendance), attendanceController.createAttendance)
+  .get(validate(attendanceValidation.getAttendance), attendanceController.getAttendances);
 
-// router
-//   .route('/:attendanceId')
-//   .get(validate(attendanceValidation.getSchedule), attendanceController.getScheduleById)
-//   .patch(validate(attendanceValidation.updateSchedule), attendanceController.updateScheduleById)
-//   .delete(validate(attendanceValidation.deleteSchedule), attendanceController.deleteScheduleById);
+router
+  .route('/:attendanceId')
+  .get(validate(attendanceValidation.getAttendance), attendanceController.getAttendanceById)
+  .patch(validate(attendanceValidation.updateAttendance), attendanceController.updateAttendanceById)
+  .delete(validate(attendanceValidation.deleteAttendance), attendanceController.deleteAttendanceById);
 
 module.exports = router;
 

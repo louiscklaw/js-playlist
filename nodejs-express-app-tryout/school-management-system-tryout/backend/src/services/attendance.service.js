@@ -30,9 +30,9 @@ const countAttendance = async () => {
 /**
  * Get user by id
  * @param {ObjectId} id
- * @returns {Promise<Student>}
+ * @returns {Promise<Attendance>}
  */
-const getStudentById = async (id) => {
+const getAttendanceById = async (id) => {
   return Attendance.findById(id);
 };
 
@@ -50,9 +50,9 @@ const queryUsers = async (filter, options) => {
   return users;
 };
 
-const queryStudents = async (filter, options) => {
-  const students = await Attendance.paginate(filter, options);
-  return students;
+const queryAttendances = async (filter, options) => {
+  const attendances = await Attendance.paginate(filter, options);
+  return attendances;
 };
 
 /**
@@ -108,27 +108,31 @@ const updateUserById = async (userId, updateBody) => {
   return user;
 };
 
-const updateStudentById = async (studentId, updateBody) => {
-  const student = await getStudentById(studentId);
-  if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+const updateAttendanceById = async (attendanceId, updateBody) => {
+  const attendance = await getAttendanceById(attendanceId);
+  if (!attendance) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Attendance not found');
   }
-  if (updateBody.email && (await Attendance.isEmailTaken(updateBody.email, studentId))) {
+  if (updateBody.email && (await Attendance.isEmailTaken(updateBody.email, attendanceId))) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }
-  Object.assign(student, updateBody);
-  await student.save();
-  return student;
+  Object.assign(attendance, updateBody);
+  await attendance.save();
+  return attendance;
 };
 
-// deleteStudentById
-const deleteStudentById = async (studentId) => {
-  const student = await getStudentById(studentId);
-  if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+// deleteAttendanceById
+const deleteAttendanceById = async (attendanceId) => {
+  try {
+    const attendance = await getAttendanceById(attendanceId);
+    if (!attendance) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'Attendance not found');
+    }
+    await attendance.remove();
+    return attendance;
+  } catch (error) {
+    console.error(error);
   }
-  await student.remove();
-  return student;
 };
 
 /**
@@ -148,15 +152,15 @@ const deleteUserById = async (userId) => {
 module.exports = {
   createUser,
   queryUsers,
-  queryStudents,
+  queryAttendances,
   getUserById,
   getUserByEmail,
   updateUserById,
   updateUserByEmail,
-  getStudentById,
-  updateStudentById,
+  getAttendanceById,
+  updateAttendanceById,
   deleteUserById,
-  deleteStudentById,
+  deleteAttendanceById,
   createAttendance,
   countAttendance,
 };
