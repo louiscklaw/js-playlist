@@ -19,3 +19,4 @@ module.exports.examResultService = require('./exam_result.service');
 
 module.exports.paymentInfoService = require('./payment_info.service');
 module.exports.notificationService = require('./notification.service');
+module.exports.permissionService = require('./permission.service');

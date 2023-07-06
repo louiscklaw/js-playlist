@@ -6,28 +6,28 @@ const validate = require('../../middlewares/validate');
 const studentValidation = require('../../validations/student.validation');
 const studentController = require('../../controllers/student.controller');
 
-const notificationValidation = require('../../validations/notification.validation');
-const notificationController = require('../../controllers/notification.controller');
+const permissionValidation = require('../../validations/permission.validation');
+const permissionController = require('../../controllers/permission.controller');
 
 const router = express.Router();
 
-// NOTE: under /notifications directive
+// NOTE: under /permissions directive
 // NOTE: helloworld
-router.route('/helloworld').get(notificationController.helloworld);
-// .put(notificationController.helloworld);
+router.route('/helloworld').get(permissionController.helloworld);
+// .put(permissionController.helloworld);
 
-router.route('/getNotificationCount').get(notificationController.getNotificationCount);
+router.route('/getPermissionCount').get(permissionController.getPermissionCount);
 
 router
-  .route('/:notificationId')
-  //   .get(validate(notificationValidation.getNotification), notificationController.getNotificationById)
-  .patch(validate(notificationValidation.updateNotification), notificationController.updateNotificationById)
-  .delete(validate(notificationValidation.deleteNotification), notificationController.deleteNotificationById);
+  .route('/:permissionId')
+  //   .get(validate(permissionValidation.getPermission), permissionController.getPermissionById)
+  .patch(validate(permissionValidation.updatePermission), permissionController.updatePermissionById)
+  .delete(validate(permissionValidation.deletePermission), permissionController.deletePermissionById);
 
 router
   .route('/')
-  .post(validate(notificationValidation.createNotification), notificationController.createNotification)
-  .get(validate(notificationValidation.getNotifications), notificationController.getNotifications);
+  .post(validate(permissionValidation.createPermission), permissionController.createPermission)
+  .get(validate(permissionValidation.getPermissions), permissionController.getPermissions);
 
 module.exports = router;
 
