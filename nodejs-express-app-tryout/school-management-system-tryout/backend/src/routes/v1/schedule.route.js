@@ -22,10 +22,10 @@ router
   .route('/getScheduleCount')
   .get(scheduleController.getScheduleCount);
 
-// router
-//   .route('/')
-//   .post(validate(scheduleValidation.createSchedule), scheduleController.createSchedule)
-//   .get(validate(scheduleValidation.getSchedules), scheduleController.getSchedules);
+router
+  .route('/')
+  .post(validate(scheduleValidation.createSchedule), scheduleController.createSchedule)
+  .get(validate(scheduleValidation.getSchedules), scheduleController.getSchedules);
 
 // router
 //   .route('/:scheduleId')

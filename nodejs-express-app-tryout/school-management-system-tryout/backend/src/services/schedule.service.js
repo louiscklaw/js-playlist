@@ -16,10 +16,14 @@ const createUser = async (userBody) => {
 };
 
 const createSchedule = async (userBody) => {
-  if (await Schedule.isEmailTaken(userBody.email)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+  try {
+    if (await Schedule.isEmailTaken(userBody.email)) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+    }
+    return Schedule.create(userBody);
+  } catch (error) {
+    console.log(error);
   }
-  return Schedule.create(userBody);
 };
 
 const countSchedule = async () => {
@@ -50,7 +54,7 @@ const queryUsers = async (filter, options) => {
   return users;
 };
 
-const queryStudents = async (filter, options) => {
+const querySchedules = async (filter, options) => {
   const students = await Schedule.paginate(filter, options);
   return students;
 };
@@ -149,7 +153,7 @@ const deleteUserById = async (userId) => {
 module.exports = {
   createUser,
   queryUsers,
-  queryStudents,
+  querySchedules,
   getUserById,
   getUserByEmail,
   updateUserById, updateUserByEmail, getStudentById, updateStudentById,

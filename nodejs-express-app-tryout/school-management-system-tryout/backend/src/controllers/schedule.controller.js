@@ -8,10 +8,15 @@ const catchAsync = require('../utils/catchAsync');
 const { scheduleService } = require('../services');
 
 const getSchedules = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['name', 'role']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await scheduleService.querySchedules(filter, options);
-  res.send(result);
+  try {
+    const filter = pick(req.query, ['name', 'role']);
+    const options = pick(req.query, ['sortBy', 'limit', 'page']);
+    const result = await scheduleService.querySchedules(filter, options);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+  }
+
 });
 
 const getScheduleCount = catchAsync(async (req, res) => {

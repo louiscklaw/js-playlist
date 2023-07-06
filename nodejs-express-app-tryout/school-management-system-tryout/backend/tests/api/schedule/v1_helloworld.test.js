@@ -11,15 +11,13 @@ const auth = require('../../../src/middlewares/auth');
 const { tokenService, emailService } = require('../../../src/services');
 const ApiError = require('../../../src/utils/ApiError');
 const setupTestDB = require('../../utils/setupTestDB');
-const { Student, User, Token } = require('../../../src/models');
+const { Schedule, Student, User, Token } = require('../../../src/models');
 const { roleRights } = require('../../../src/config/roles');
 const { tokenTypes } = require('../../../src/config/tokens');
 
-const { scheduleOne, insertSchedules } = require('../../fixtures/schedule.fixture');
-
 const { userOne, insertUsers } = require('../../fixtures/user.fixture');
-const { studentOne, studentTwo, insertStudents } = require('../../fixtures/student.fixture');
-const { userOneAccessToken, adminAccessToken, studentOneAccessToken } = require('../../fixtures/token.fixture');
+const { scheduleOne, scheduleTwo, insertSchedules } = require('../../fixtures/schedule.fixture');
+const { userOneAccessToken, adminAccessToken, scheduleOneAccessToken } = require('../../fixtures/token.fixture');
 
 setupTestDB();
 
@@ -34,7 +32,7 @@ describe('Schedule CRUD test', () => {
     setTimeout(() => {
       expect(true).toBe(true);
       done();
-    }, 20);
+    }, 100);
 
   });
 
@@ -51,123 +49,74 @@ describe('Schedule CRUD test', () => {
 
   })
 
-  // test('add new student', async () => {
-  //   const res = await request(app)
-  //     .post('/v1/students')
-  //     .send(newStudent)
-  //     .expect(httpStatus.CREATED);
+  test('add new schedule', async () => {
+    const res = await request(app)
+      .post('/v1/schedules')
+      .send(newSchedule)
+      .expect(httpStatus.CREATED);
 
-  //   expect(res.body).not.toHaveProperty('password');
+    expect(res.body).not.toHaveProperty('password');
 
-  //   const dbUser = await Student.findById(res.body.id);
-  //   expect(dbUser).toBeDefined();
+    const dbUser = await Schedule.findById(res.body.id);
 
-  //   expect(dbUser.password).not.toBe(newStudent.password);
+    expect(dbUser).toBeDefined();
 
-  //   expect(dbUser).toMatchObject({
-  //     name: newStudent.name,
-  //     email: newStudent.email,
-  //     role: 'user',
-  //     isEmailVerified: false
-  //   });
+    expect(dbUser).toMatchObject({
+      name: newSchedule.name,
+    });
+  });
 
-  // });
+  test('list all schedules', async () => {
+    await insertSchedules([scheduleOne]);
+    const res = await request(app)
+      .get('/v1/schedules')
+      .expect(httpStatus.OK);
 
-  // test('get student count', async () => {
-  //   await insertStudents([studentOne]);
-  //   const res = await request(app)
-  //     .get('/v1/students/getStudentCount')
-  //     .expect(httpStatus.OK);
+    expect(res.body).toEqual({
+      results: expect.any(Array),
+      page: 1,
+      limit: 10,
+      totalPages: 1,
+      totalResults: 1,
+    });
 
-  //   expect(res.body).toEqual({
-  //     count: 1
-  //   });
+    expect(res.body.results).toHaveLength(1);
 
-  // })
-
-  // test('get student information', async () => {
-  //   await insertStudents([studentOne]);
-  //   const res = await request(app)
-  //     .get('/v1/students')
-  //     .expect(httpStatus.OK);
-
-  //   expect(res.body).toEqual({
-  //     results: expect.any(Array),
-  //     page: 1,
-  //     limit: 10,
-  //     totalPages: 1,
-  //     totalResults: 1,
-  //   });
-
-  //   expect(res.body.results).toHaveLength(1);
-
-  //   expect(res.body.results[0]).toEqual({
-  //     id: studentOne._id.toHexString(),
-  //     address1: "",
-  //     address2: "",
-  //     country: "",
-  //     hasDiscount: false,
-  //     isVerified: false,
-  //     phone: "",
-  //     state: "",
-  //     name: studentOne.name,
-  //     email: studentOne.email,
-  //     role: studentOne.role,
-  //     isEmailVerified: studentOne.isEmailVerified,
-  //   });
-  // })
+    expect(res.body.results[0]).toEqual({
+      id: scheduleOne._id.toHexString(),
+      name: scheduleOne.name,
+    });
+  })
 
   // // NOTE: createStudent
-  // test('create new student', async () => {
-  //   const res = await request(app)
-  //     .post('/v1/students')
-  //     .set('Authorization', `Bearer ${studentOneAccessToken}`)
-  //     .send(newStudent)
-  //     .expect(httpStatus.CREATED);
+  test('create new schedule', async () => {
+    const res = await request(app)
+      .post('/v1/schedules')
+      .set('Authorization', `Bearer ${scheduleOneAccessToken}`)
+      .send(newSchedule)
+      .expect(httpStatus.CREATED);
 
-  //   expect(res.body).not.toHaveProperty('password');
-  //   expect(res.body).toEqual({
-  //     id: expect.anything(),
-  //     name: newStudent.name,
-  //     email: newStudent.email,
-  //     role: newStudent.role,
-  //     isEmailVerified: false,
-  //     address1: "",
-  //     address2: "",
-  //     country: "",
-  //     hasDiscount: false,
-  //     isVerified: false,
-  //     phone: "",
-  //     state: "",
-  //   });
+    expect(res.body).not.toHaveProperty('password');
+    expect(res.body).toEqual({
+      id: expect.anything(),
+      name: newSchedule.name,
+    });
 
-  //   const dbUser = await Student.findById(res.body.id);
-  //   expect(dbUser).toBeDefined();
+    const dbUser = await Schedule.findById(res.body.id);
+    expect(dbUser).toBeDefined();
 
-  //   expect(dbUser.password).not.toBe(newStudent.password);
-
-  //   expect(dbUser).toMatchObject({
-  //     name: newStudent.name,
-  //     email: newStudent.email,
-  //     role: newStudent.role,
-  //     isEmailVerified: false,
-  //     address1: "",
-  //     address2: "",
-  //     country: "",
-  //     hasDiscount: false,
-  //     isVerified: false,
-  //     phone: "",
-  //     state: "",
-  //   });
-  // })
+    expect(dbUser).toMatchObject({
+      name: newSchedule.name,
+    });
+  })
 
   // // NOTE: getStudents
-  // test('get student information', async () => {
-  //   await insertStudents([studentOne, studentTwo]);
+  // test('get schedule information', async () => {
+  //   await insertStudents([scheduleOne, scheduleTwo]);
 
   //   const res = await request(app)
-  //     .get('/v1/students')
-  //     .set('Authorization', `Bearer ${studentOneAccessToken}`)
+  //     .get('/v1/schedules')
+  //     .set('Authorization', `Bearer ${scheduleOneAccessToken}`)
   //     .expect(httpStatus.OK);
 
   //   expect(res.body).toEqual({
@@ -180,11 +129,11 @@ describe('Schedule CRUD test', () => {
 
   //   expect(res.body.results).toHaveLength(2);
   //   expect(res.body.results[0]).toEqual({
-  //     id: studentOne._id.toHexString(),
-  //     name: studentOne.name,
-  //     email: studentOne.email,
-  //     role: studentOne.role,
-  //     isEmailVerified: studentOne.isEmailVerified,
+  //     id: scheduleOne._id.toHexString(),
+  //     name: scheduleOne.name,
+  //     email: scheduleOne.email,
+  //     role: scheduleOne.role,
+  //     isEmailVerified: scheduleOne.isEmailVerified,
   //     address1: "",
   //     address2: "",
   //     country: "",
@@ -196,31 +145,31 @@ describe('Schedule CRUD test', () => {
   // })
 
   // // NOTE: updateStudentById
-  // test('modify student by id', async () => {
-  //   await insertStudents([studentOne]);
+  // test('modify schedule by id', async () => {
+  //   await insertStudents([scheduleOne]);
 
   //   const res = await request(app)
-  //     .patch(`/v1/students/${studentOne._id}`)
-  //     .set('Authorization', `Bearer ${studentOneAccessToken}`)
+  //     .patch(`/v1/schedules/${scheduleOne._id}`)
+  //     .set('Authorization', `Bearer ${scheduleOneAccessToken}`)
   //     .send({ name: 'blablabla' })
   //     .expect(httpStatus.OK);
 
-  //   const dbUser = await Student.findById(studentOne._id);
+  //   const dbUser = await Student.findById(scheduleOne._id);
   //   expect(dbUser).toBeDefined();
 
   //   expect(dbUser.name).toMatch('blablabla');
   // })
 
   // // NOTE: deleteStudentById
-  // test('delete student by id', async () => {
-  //   await insertStudents([studentOne]);
+  // test('delete schedule by id', async () => {
+  //   await insertStudents([scheduleOne]);
 
   //   const res = await request(app)
-  //     .delete(`/v1/students/${studentOne._id}`)
-  //     .set('Authorization', `Bearer ${studentOneAccessToken}`)
+  //     .delete(`/v1/schedules/${scheduleOne._id}`)
+  //     .set('Authorization', `Bearer ${scheduleOneAccessToken}`)
   //     .expect(httpStatus.NO_CONTENT);
 
-  //   const dbStudentOne = await Student.findById(studentOne._id);
+  //   const dbStudentOne = await Student.findById(scheduleOne._id);
   //   expect(dbStudentOne).toBeNull();
   // })
 

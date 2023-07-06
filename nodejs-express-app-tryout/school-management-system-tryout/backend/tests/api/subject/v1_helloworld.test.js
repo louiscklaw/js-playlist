@@ -84,7 +84,7 @@ describe('Subject CRUD test', () => {
     expect(res.body).toEqual({ count: 1 });
   })
 
-  test('add new subject', async () => {
+  test('CREATE /v1/subjects, add new subject', async () => {
     const res = await request(app)
       .post('/v1/subjects')
       .send(newSubject)
