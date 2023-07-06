@@ -197,6 +197,17 @@ const getSections = t => [
         // ],
       },
       {
+        title: t('Restaurants'),
+        path: '/dashboard/restaurants',
+        icon: <UsersIcon fontSize="small" />,
+        matching: 'partial',
+        // children: [
+        //   { title: t('List'), path: '/dashboard/payment_infos' },
+        //   { title: t('Details'), path: '/dashboard/payment_infos/1' },
+        //   { title: t('Edit'), path: '/dashboard/payment_infos/1/edit' },
+        // ],
+      },
+      {
         title: t('Products'),
         path: '/dashboard/products',
         icon: <ShoppingBagIcon fontSize="small" />,

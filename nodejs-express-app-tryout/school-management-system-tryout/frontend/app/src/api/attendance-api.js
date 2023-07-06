@@ -39,7 +39,6 @@ class AttendanceApi {
     });
   }
 
-
   getStudentById(student_id) {
     return axios.get(`${API}/students/${student_id}`).then(({ data }) => {
       return data;

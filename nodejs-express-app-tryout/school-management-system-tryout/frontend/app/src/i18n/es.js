@@ -47,6 +47,6 @@ export default {
     'Need Help?': '需要帮助吗？',
     'Check our docs': '查看我们的文档',
     Documentation: '文档',
-    "Good Morning": "早安"
+    'Good Morning': '早安',
   },
-}
+};

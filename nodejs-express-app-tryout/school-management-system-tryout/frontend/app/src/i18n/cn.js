@@ -48,4 +48,4 @@ export default {
     'Check our docs': '查看我们的文档',
     Documentation: '文档',
   },
-}
+};

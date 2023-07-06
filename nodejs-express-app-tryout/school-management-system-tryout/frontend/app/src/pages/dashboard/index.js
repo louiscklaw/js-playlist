@@ -75,9 +75,7 @@ const Overview = () => {
           <Box sx={{ mb: 4 }}>
             <Grid container justifyContent="space-between" spacing={3}>
               <Grid item>
-                <Typography variant="h4">
-                  {t('Good Morning')}
-                </Typography>
+                <Typography variant="h4">{t('Good Morning')}</Typography>
               </Grid>
               <Grid
                 item

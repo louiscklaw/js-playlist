@@ -12,7 +12,7 @@ const resources = {
   de,
   es,
   cn,
-  jp
+  jp,
 };
 
 i18n.use(initReactI18next).init({

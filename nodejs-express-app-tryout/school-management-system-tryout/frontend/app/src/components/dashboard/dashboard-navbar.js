@@ -62,10 +62,7 @@ const LanguageButton = () => {
 
   return (
     <>
-      <IconButton
-        onClick={handleOpenPopover}
-        ref={anchorRef}
-        sx={{ ml: 1 }}>
+      <IconButton onClick={handleOpenPopover} ref={anchorRef} sx={{ ml: 1 }}>
         <Box
           sx={{
             display: 'flex',
