@@ -46,20 +46,14 @@ describe('PaymentInfo CRUD test', () => {
   });
 
   test('add new paymentInfo', async () => {
-    const res = await request(app)
-      .post('/v1/payment-infos')
-      .send(newPaymentInfo)
-      .expect(httpStatus.CREATED);
-
+    const res = await request(app).post('/v1/payment-infos').send(newPaymentInfo).expect(httpStatus.CREATED);
 
     const dbUser = await PaymentInfo.findById(res.body.id);
     expect(dbUser).toBeDefined();
 
-
     expect(dbUser).toMatchObject({
       name: newPaymentInfo.name,
     });
-
   });
 
   test('get paymentInfo count', async () => {

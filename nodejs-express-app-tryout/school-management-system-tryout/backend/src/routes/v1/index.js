@@ -26,6 +26,8 @@ const router = express.Router();
 const defaultRoutes = [
   { path: '/auth', route: authRoute },
   { path: '/users', route: userRoute },
+  { path: '/teachers', route: teacherRoute },
+  { path: '/admins', route: adminRoute },
   { path: '/students', route: studentRoute },
   { path: '/subjects', route: subjectRoute },
   { path: '/schedules', route: scheduleRoute },
@@ -34,8 +36,7 @@ const defaultRoutes = [
   { path: '/exams', route: examRoute },
   { path: '/exam-results', route: examResultRoute },
   { path: '/payment-infos', route: paymentInfoRoute },
-  { path: '/teachers', route: teacherRoute },
-  { path: '/admins', route: adminRoute },
+
   { path: '/helloworld', route: helloworldRoute },
 ];
 
