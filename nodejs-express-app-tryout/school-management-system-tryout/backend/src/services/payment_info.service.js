@@ -16,10 +16,14 @@ const createUser = async (userBody) => {
 };
 
 const createPaymentInfo = async (userBody) => {
-  if (await PaymentInfo.isEmailTaken(userBody.email)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+  try {
+    if (await PaymentInfo.isEmailTaken(userBody.email)) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+    }
+    return PaymentInfo.create(userBody);
+  } catch (error) {
+    console.error(error);
   }
-  return PaymentInfo.create(userBody);
 };
 
 const countPaymentInfo = async () => {
@@ -30,9 +34,9 @@ const countPaymentInfo = async () => {
 /**
  * Get user by id
  * @param {ObjectId} id
- * @returns {Promise<Student>}
+ * @returns {Promise<PaymentInfo>}
  */
-const getStudentById = async (id) => {
+const getPaymentInfoById = async (id) => {
   return PaymentInfo.findById(id);
 };
 
@@ -50,7 +54,7 @@ const queryUsers = async (filter, options) => {
   return users;
 };
 
-const queryStudents = async (filter, options) => {
+const queryPaymentInfos = async (filter, options) => {
   const students = await PaymentInfo.paginate(filter, options);
   return students;
 };
@@ -108,27 +112,31 @@ const updateUserById = async (userId, updateBody) => {
   return user;
 };
 
-const updateStudentById = async (studentId, updateBody) => {
-  const student = await getStudentById(studentId);
-  if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+const updatePaymentInfoById = async (studentId, updateBody) => {
+  const paymentInfo = await getPaymentInfoById(studentId);
+  if (!paymentInfo) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'PaymentInfo not found');
   }
   if (updateBody.email && (await PaymentInfo.isEmailTaken(updateBody.email, studentId))) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
   }
-  Object.assign(student, updateBody);
-  await student.save();
-  return student;
+  Object.assign(paymentInfo, updateBody);
+  await paymentInfo.save();
+  return paymentInfo;
 };
 
-// deleteStudentById
-const deleteStudentById = async (studentId) => {
-  const student = await getStudentById(studentId);
-  if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+// deletePaymentInfoById
+const deletePaymentInfoById = async (studentId) => {
+  try {
+    const paymentInfo = await getPaymentInfoById(studentId);
+    if (!paymentInfo) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'PaymentInfo not found');
+    }
+    await paymentInfo.remove();
+    return paymentInfo;
+  } catch (error) {
+    console.error(error);
   }
-  await student.remove();
-  return student;
 };
 
 /**
@@ -148,15 +156,15 @@ const deleteUserById = async (userId) => {
 module.exports = {
   createUser,
   queryUsers,
-  queryStudents,
+  queryPaymentInfos,
   getUserById,
   getUserByEmail,
   updateUserById,
   updateUserByEmail,
-  getStudentById,
-  updateStudentById,
+  getPaymentInfoById,
+  updatePaymentInfoById,
   deleteUserById,
-  deleteStudentById,
+  deletePaymentInfoById,
   createPaymentInfo,
   countPaymentInfo,
 };

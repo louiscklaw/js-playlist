@@ -46,10 +46,7 @@ describe('ExamResult CRUD test', () => {
   });
 
   test('add new examResult', async () => {
-    const res = await request(app)
-      .post('/v1/exam-results')
-      .send(newExamResult)
-      .expect(httpStatus.CREATED);
+    const res = await request(app).post('/v1/exam-results').send(newExamResult).expect(httpStatus.CREATED);
 
     const dbUser = await ExamResult.findById(res.body.id);
     expect(dbUser).toBeDefined();
@@ -57,7 +54,6 @@ describe('ExamResult CRUD test', () => {
     expect(dbUser).toMatchObject({
       name: newExamResult.name,
     });
-
   });
 
   test('get examResult count', async () => {

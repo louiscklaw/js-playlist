@@ -8,30 +8,46 @@ const catchAsync = require('../utils/catchAsync');
 const { paymentInfoService } = require('../services');
 
 const getPaymentInfos = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['name', 'role']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await paymentInfoService.queryPaymentInfos(filter, options);
-  res.send(result);
+  try {
+    const filter = pick(req.query, ['name', 'role']);
+    const options = pick(req.query, ['sortBy', 'limit', 'page']);
+    const result = await paymentInfoService.queryPaymentInfos(filter, options);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const getPaymentInfoCount = catchAsync(async (req, res) => {
-  const result = await paymentInfoService.countPaymentInfo();
-  res.send(result);
+  try {
+    const result = await paymentInfoService.countPaymentInfo();
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const createPaymentInfo = catchAsync(async (req, res) => {
-  const paymentInfo = await paymentInfoService.createPaymentInfo(req.body);
-  res.status(httpStatus.CREATED).send(paymentInfo);
+  try {
+    const paymentInfo = await paymentInfoService.createPaymentInfo(req.body);
+    res.status(httpStatus.CREATED).send(paymentInfo);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
-// const getPaymentInfoById = catchAsync(async (req, res) => {
-//   const paymentInfo = await paymentInfoService.getPaymentInfoById(req.params.paymentInfoId);
+const getPaymentInfoById = catchAsync(async (req, res) => {
+  try {
+    const paymentInfo = await paymentInfoService.getPaymentInfoById(req.params.paymentInfoId);
 
-//   if (!paymentInfo) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'PaymentInfo not found');
-//   }
-//   res.send(paymentInfo);
-// });
+    if (!paymentInfo) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'PaymentInfo not found');
+    }
+    res.send(paymentInfo);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 // // const updatePaymentInfoById = catchAsync(async (req, res) => {
 // //   const paymentInfo = await paymentInfoService.updatePaymentInfoById(
@@ -39,16 +55,23 @@ const createPaymentInfo = catchAsync(async (req, res) => {
 // //   res.send(paymentInfo);
 // // });
 
-// const updatePaymentInfoById = catchAsync(async (req, res) => {
-//   const paymentInfo = await paymentInfoService.updatePaymentInfoById(
-//     req.params.paymentInfoId, req.body);
-//   res.send(paymentInfo);
-// });
+const updatePaymentInfoById = catchAsync(async (req, res) => {
+  try {
+    const paymentInfo = await paymentInfoService.updatePaymentInfoById(req.params.paymentInfoId, req.body);
+    res.send(paymentInfo);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
-// const deletePaymentInfoById = catchAsync(async (req, res) => {
-//   await paymentInfoService.deletePaymentInfoById(req.params.paymentInfoId);
-//   res.status(httpStatus.NO_CONTENT).send();
-// });
+const deletePaymentInfoById = catchAsync(async (req, res) => {
+  try {
+    await paymentInfoService.deletePaymentInfoById(req.params.paymentInfoId);
+    res.status(httpStatus.NO_CONTENT).send();
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 const helloworld = catchAsync(async (req, res) => {
   res.send({ hello: 'paymentInfo.controller' });
@@ -57,9 +80,9 @@ const helloworld = catchAsync(async (req, res) => {
 module.exports = {
   getPaymentInfos,
   getPaymentInfoCount,
-  // getPaymentInfoById,
-  // updatePaymentInfoById,
-  // deletePaymentInfoById,
+  getPaymentInfoById,
+  updatePaymentInfoById,
+  deletePaymentInfoById,
   // createPaymentInfo,
   // getPaymentInfoCount,
   createPaymentInfo,

@@ -18,16 +18,16 @@ router.route('/helloworld').get(paymentInfoController.helloworld);
 
 router.route('/getPaymentInfoCount').get(paymentInfoController.getPaymentInfoCount);
 
-// router
-//   .route('/')
-//   .post(validate(paymentInfoValidation.createPaymentInfo), paymentInfoController.createPaymentInfo)
-//   .get(validate(paymentInfoValidation.getPaymentInfos), paymentInfoController.getPaymentInfos);
+router
+  .route('/:paymentInfoId')
+  .get(validate(paymentInfoValidation.getPaymentInfo), paymentInfoController.getPaymentInfoById)
+  .patch(validate(paymentInfoValidation.updatePaymentInfo), paymentInfoController.updatePaymentInfoById)
+  .delete(validate(paymentInfoValidation.deletePaymentInfo), paymentInfoController.deletePaymentInfoById);
 
-// router
-//   .route('/:paymentInfoId')
-//   .get(validate(paymentInfoValidation.getPaymentInfo), paymentInfoController.getPaymentInfoById)
-//   .patch(validate(paymentInfoValidation.updatePaymentInfo), paymentInfoController.updatePaymentInfoById)
-//   .delete(validate(paymentInfoValidation.deletePaymentInfo), paymentInfoController.deletePaymentInfoById);
+router
+  .route('/')
+  .post(validate(paymentInfoValidation.createPaymentInfo), paymentInfoController.createPaymentInfo)
+  .get(validate(paymentInfoValidation.getPaymentInfos), paymentInfoController.getPaymentInfos);
 
 module.exports = router;
 
