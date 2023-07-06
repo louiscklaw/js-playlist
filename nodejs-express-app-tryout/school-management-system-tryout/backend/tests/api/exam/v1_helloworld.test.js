@@ -46,11 +46,7 @@ describe('Exam CRUD test', () => {
   });
 
   test('add new exam', async () => {
-    const res = await request(app)
-      .post('/v1/exams')
-      .send(newExam)
-      .expect(httpStatus.CREATED);
-
+    const res = await request(app).post('/v1/exams').send(newExam).expect(httpStatus.CREATED);
 
     const dbUser = await Exam.findById(res.body.id);
     expect(dbUser).toBeDefined();
@@ -58,26 +54,20 @@ describe('Exam CRUD test', () => {
     expect(dbUser).toMatchObject({
       name: newExam.name,
     });
-
   });
 
   test('get exam count', async () => {
     await insertExams([examOne]);
-    const res = await request(app)
-      .get('/v1/exams/getExamCount')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/exams/getExamCount').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
-      count: 1
+      count: 1,
     });
-
-  })
+  });
 
   test('list exams', async () => {
     await insertExams([examOne]);
-    const res = await request(app)
-      .get('/v1/exams')
-      .expect(httpStatus.OK);
+    const res = await request(app).get('/v1/exams').expect(httpStatus.OK);
 
     expect(res.body).toEqual({
       results: expect.any(Array),
@@ -93,7 +83,7 @@ describe('Exam CRUD test', () => {
       id: examOne._id.toHexString(),
       name: examOne.name,
     });
-  })
+  });
 
   // NOTE: createExam
   test('create new exam', async () => {

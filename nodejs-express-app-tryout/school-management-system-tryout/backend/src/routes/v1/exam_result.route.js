@@ -18,16 +18,16 @@ router.route('/helloworld').get(examResultController.helloworld);
 
 router.route('/getExamResultCount').get(examResultController.getExamResultCount);
 
-// router
-//   .route('/')
-//   .post(validate(examResultValidation.createExamResult), examResultController.createExamResult)
-//   .get(validate(examResultValidation.getExamResults), examResultController.getExamResults);
+router
+  .route('/:examResultId')
+  .get(validate(examResultValidation.getExamResult), examResultController.getExamResultById)
+  .patch(validate(examResultValidation.updateExamResult), examResultController.updateExamResultById)
+  .delete(validate(examResultValidation.deleteExamResult), examResultController.deleteExamResultById);
 
-// router
-//   .route('/:examResultId')
-//   .get(validate(examResultValidation.getExamResult), examResultController.getExamResultById)
-//   .patch(validate(examResultValidation.updateExamResult), examResultController.updateExamResultById)
-//   .delete(validate(examResultValidation.deleteExamResult), examResultController.deleteExamResultById);
+router
+  .route('/')
+  .post(validate(examResultValidation.createExamResult), examResultController.createExamResult)
+  .get(validate(examResultValidation.getExamResults), examResultController.getExamResults);
 
 module.exports = router;
 

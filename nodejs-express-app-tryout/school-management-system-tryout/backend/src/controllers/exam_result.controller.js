@@ -8,10 +8,14 @@ const catchAsync = require('../utils/catchAsync');
 const { examResultService } = require('../services');
 
 const getExamResults = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['name', 'role']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await examResultService.queryExamResults(filter, options);
-  res.send(result);
+  try {
+    const filter = pick(req.query, ['name', 'role']);
+    const options = pick(req.query, ['sortBy', 'limit', 'page']);
+    const result = await examResultService.queryExamResults(filter, options);
+    res.send(result);
+  } catch (error) {
+    console.error(errors);
+  }
 });
 
 const getExamResultCount = catchAsync(async (req, res) => {
@@ -24,20 +28,18 @@ const createExamResult = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(examResult);
 });
 
-// const getExamResultById = catchAsync(async (req, res) => {
-//   const examResult = await examResultService.getExamResultById(req.params.examResultId);
+const getExamResultById = catchAsync(async (req, res) => {
+  try {
+    const examResult = await examResultService.getExamResultById(req.params.examResultId);
 
-//   if (!examResult) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'ExamResult not found');
-//   }
-//   res.send(examResult);
-// });
-
-// // const updateExamResultById = catchAsync(async (req, res) => {
-// //   const examResult = await examResultService.updateExamResultById(
-// //     req.params.examResultId, req.body);
-// //   res.send(examResult);
-// // });
+    if (!examResult) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'ExamResult not found');
+    }
+    res.send(examResult);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 // const updateExamResultById = catchAsync(async (req, res) => {
 //   const examResult = await examResultService.updateExamResultById(
@@ -45,10 +47,23 @@ const createExamResult = catchAsync(async (req, res) => {
 //   res.send(examResult);
 // });
 
-// const deleteExamResultById = catchAsync(async (req, res) => {
-//   await examResultService.deleteExamResultById(req.params.examResultId);
-//   res.status(httpStatus.NO_CONTENT).send();
-// });
+const updateExamResultById = catchAsync(async (req, res) => {
+  try {
+    const examResult = await examResultService.updateExamResultById(req.params.examResultId, req.body);
+    res.send(examResult);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+const deleteExamResultById = catchAsync(async (req, res) => {
+  try {
+    await examResultService.deleteExamResultById(req.params.examResultId);
+    res.status(httpStatus.NO_CONTENT).send();
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 const helloworld = catchAsync(async (req, res) => {
   res.send({ hello: 'examResult.controller' });
@@ -57,9 +72,9 @@ const helloworld = catchAsync(async (req, res) => {
 module.exports = {
   getExamResults,
   getExamResultCount,
-  // getExamResultById,
-  // updateExamResultById,
-  // deleteExamResultById,
+  getExamResultById,
+  updateExamResultById,
+  deleteExamResultById,
   // createExamResult,
   // getExamResultCount,
   createExamResult,
