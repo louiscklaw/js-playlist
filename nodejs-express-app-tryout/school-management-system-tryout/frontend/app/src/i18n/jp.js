@@ -48,5 +48,6 @@ export default {
     'Check our docs': 'ドキュメントを確認してください',
     Documentation: '文書',
     'Good Morning': 'おはようございます',
+    NEW: '新',
   },
 };

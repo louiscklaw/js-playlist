@@ -382,7 +382,7 @@ const getSections = t => [
             color="secondary"
             label={
               <Typography sx={{ fontSize: '10px', fontWeight: '600' }}>
-                NEW
+                {t('NEW')}
               </Typography>
             }
             size="small"
@@ -506,11 +506,13 @@ export const DashboardSidebar = props => {
               />
             ))}
           </Box>
+
           <Divider
             sx={{
               borderColor: '#2D3748', // dark divider
             }}
           />
+
           <Box sx={{ p: 2 }}>
             <Typography color="neutral.100" variant="subtitle2">
               {t('Need Help?')}
@@ -532,6 +534,7 @@ export const DashboardSidebar = props => {
               </Button>
             </NextLink>
           </Box>
+
         </Box>
       </Scrollbar>
       <OrganizationPopover

@@ -4,12 +4,12 @@ import { initReactI18next } from 'react-i18next';
 import jp from './jp';
 import cn from './cn';
 import en from './en';
-import de from './de';
+import hk from './hk';
 import es from './es';
 
 const resources = {
   en,
-  de,
+  hk,
   es,
   cn,
   jp,
