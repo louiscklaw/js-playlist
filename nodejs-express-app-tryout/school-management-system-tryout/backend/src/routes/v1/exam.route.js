@@ -18,16 +18,16 @@ router.route('/helloworld').get(examController.helloworld);
 
 router.route('/getExamCount').get(examController.getExamCount);
 
-// router
-//   .route('/')
-//   .post(validate(examValidation.createExam), examController.createExam)
-//   .get(validate(examValidation.getExams), examController.getExams);
+router
+  .route('/')
+  .post(validate(examValidation.createExam), examController.createExam)
+  .get(validate(examValidation.getExams), examController.getExams);
 
-// router
-//   .route('/:examId')
-//   .get(validate(examValidation.getExam), examController.getExamById)
-//   .patch(validate(examValidation.updateExam), examController.updateExamById)
-//   .delete(validate(examValidation.deleteExam), examController.deleteExamById);
+router
+  .route('/:examId')
+  .get(validate(examValidation.getExam), examController.getExamById)
+  .patch(validate(examValidation.updateExam), examController.updateExamById)
+  .delete(validate(examValidation.deleteExam), examController.deleteExamById);
 
 module.exports = router;
 

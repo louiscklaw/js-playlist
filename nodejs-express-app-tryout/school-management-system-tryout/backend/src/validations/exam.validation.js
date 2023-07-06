@@ -10,13 +10,13 @@ const createUser = {
   }),
 };
 
-const createSchedule = {
+const createExam = {
   body: Joi.object().keys({
     name: Joi.string().required(),
   }),
 };
 
-const getSchedules = {
+const getExams = {
   query: Joi.object().keys({
     name: Joi.string(),
     role: Joi.string(),
@@ -32,9 +32,9 @@ const getUser = {
   }),
 };
 
-const getStudent = {
+const getExam = {
   params: Joi.object().keys({
-    studentId: Joi.string().custom(objectId),
+    examId: Joi.string().custom(objectId),
   }),
 };
 
@@ -51,10 +51,10 @@ const updateUser = {
     .min(1),
 };
 
-// frontend/app/src/components/dashboard/student/student-edit-form.js
-const updateStudent = {
+// frontend/app/src/components/dashboard/exam/exam-edit-form.js
+const updateExam = {
   params: Joi.object().keys({
-    studentId: Joi.required().custom(objectId),
+    examId: Joi.required().custom(objectId),
   }),
   body: Joi.object()
     .keys({
@@ -87,27 +87,19 @@ const updateUserBasicDetail = {
 
 const deleteUser = {
   params: Joi.object().keys({
-    studentId: Joi.string().custom(objectId),
+    examId: Joi.string().custom(objectId),
   }),
 };
 
-const deleteStudent = {
+const deleteExam = {
   params: Joi.object().keys({
-    studentId: Joi.string().custom(objectId),
+    examId: Joi.string().custom(objectId),
   }),
 };
 module.exports = {
-  createSchedule,
-  createUser,
-
-  deleteStudent,
-  deleteUser,
-
-  getStudent,
-  getSchedules,
-  getUser,
-
-  updateStudent,
-  updateUser,
-  updateUserBasicDetail,
+  createExam,
+  deleteExam,
+  getExams,
+  getExam,
+  updateExam,
 };

@@ -11,15 +11,13 @@ const auth = require('../../../src/middlewares/auth');
 const { tokenService, emailService } = require('../../../src/services');
 const ApiError = require('../../../src/utils/ApiError');
 const setupTestDB = require('../../utils/setupTestDB');
-const { Student, User, Token } = require('../../../src/models');
+const { Exam, User, Token } = require('../../../src/models');
 const { roleRights } = require('../../../src/config/roles');
 const { tokenTypes } = require('../../../src/config/tokens');
 
-const { examOne, insertExams } = require('../../fixtures/exam.fixture');
-
 const { userOne, insertUsers } = require('../../fixtures/user.fixture');
-const { studentOne, studentTwo, insertStudents } = require('../../fixtures/student.fixture');
-const { userOneAccessToken, adminAccessToken, studentOneAccessToken } = require('../../fixtures/token.fixture');
+const { examOne, examTwo, insertExams } = require('../../fixtures/exam.fixture');
+const { userOneAccessToken, adminAccessToken, examOneAccessToken } = require('../../fixtures/token.fixture');
 
 setupTestDB();
 
@@ -47,178 +45,129 @@ describe('Exam CRUD test', () => {
     });
   });
 
-  // test('add new student', async () => {
-  //   const res = await request(app)
-  //     .post('/v1/students')
-  //     .send(newStudent)
-  //     .expect(httpStatus.CREATED);
+  test('add new exam', async () => {
+    const res = await request(app)
+      .post('/v1/exams')
+      .send(newExam)
+      .expect(httpStatus.CREATED);
 
-  //   expect(res.body).not.toHaveProperty('password');
 
-  //   const dbUser = await Student.findById(res.body.id);
-  //   expect(dbUser).toBeDefined();
+    const dbUser = await Exam.findById(res.body.id);
+    expect(dbUser).toBeDefined();
 
-  //   expect(dbUser.password).not.toBe(newStudent.password);
+    expect(dbUser).toMatchObject({
+      name: newExam.name,
+    });
 
-  //   expect(dbUser).toMatchObject({
-  //     name: newStudent.name,
-  //     email: newStudent.email,
-  //     role: 'user',
-  //     isEmailVerified: false
-  //   });
+  });
 
-  // });
+  test('get exam count', async () => {
+    await insertExams([examOne]);
+    const res = await request(app)
+      .get('/v1/exams/getExamCount')
+      .expect(httpStatus.OK);
 
-  // test('get student count', async () => {
-  //   await insertStudents([studentOne]);
-  //   const res = await request(app)
-  //     .get('/v1/students/getStudentCount')
-  //     .expect(httpStatus.OK);
+    expect(res.body).toEqual({
+      count: 1
+    });
 
-  //   expect(res.body).toEqual({
-  //     count: 1
-  //   });
+  })
 
-  // })
+  test('list exams', async () => {
+    await insertExams([examOne]);
+    const res = await request(app)
+      .get('/v1/exams')
+      .expect(httpStatus.OK);
 
-  // test('get student information', async () => {
-  //   await insertStudents([studentOne]);
-  //   const res = await request(app)
-  //     .get('/v1/students')
-  //     .expect(httpStatus.OK);
+    expect(res.body).toEqual({
+      results: expect.any(Array),
+      page: 1,
+      limit: 10,
+      totalPages: 1,
+      totalResults: 1,
+    });
 
-  //   expect(res.body).toEqual({
-  //     results: expect.any(Array),
-  //     page: 1,
-  //     limit: 10,
-  //     totalPages: 1,
-  //     totalResults: 1,
-  //   });
+    expect(res.body.results).toHaveLength(1);
 
-  //   expect(res.body.results).toHaveLength(1);
+    expect(res.body.results[0]).toEqual({
+      id: examOne._id.toHexString(),
+      name: examOne.name,
+    });
+  })
 
-  //   expect(res.body.results[0]).toEqual({
-  //     id: studentOne._id.toHexString(),
-  //     address1: "",
-  //     address2: "",
-  //     country: "",
-  //     hasDiscount: false,
-  //     isVerified: false,
-  //     phone: "",
-  //     state: "",
-  //     name: studentOne.name,
-  //     email: studentOne.email,
-  //     role: studentOne.role,
-  //     isEmailVerified: studentOne.isEmailVerified,
-  //   });
-  // })
+  // NOTE: createExam
+  test('create new exam', async () => {
+    const res = await request(app)
+      .post('/v1/exams')
+      .set('Authorization', `Bearer ${userOneAccessToken}`)
+      .send(newExam)
+      .expect(httpStatus.CREATED);
 
-  // // NOTE: createStudent
-  // test('create new student', async () => {
-  //   const res = await request(app)
-  //     .post('/v1/students')
-  //     .set('Authorization', `Bearer ${studentOneAccessToken}`)
-  //     .send(newStudent)
-  //     .expect(httpStatus.CREATED);
+    expect(res.body).toEqual({
+      id: expect.anything(),
+      name: newExam.name,
+    });
 
-  //   expect(res.body).not.toHaveProperty('password');
-  //   expect(res.body).toEqual({
-  //     id: expect.anything(),
-  //     name: newStudent.name,
-  //     email: newStudent.email,
-  //     role: newStudent.role,
-  //     isEmailVerified: false,
-  //     address1: "",
-  //     address2: "",
-  //     country: "",
-  //     hasDiscount: false,
-  //     isVerified: false,
-  //     phone: "",
-  //     state: "",
-  //   });
+    const dbUser = await Exam.findById(res.body.id);
+    expect(dbUser).toBeDefined();
 
-  //   const dbUser = await Student.findById(res.body.id);
-  //   expect(dbUser).toBeDefined();
+    expect(dbUser).toMatchObject({
+      name: newExam.name,
+    });
+  });
 
-  //   expect(dbUser.password).not.toBe(newStudent.password);
+  // NOTE: getExams
+  test('list all exam', async () => {
+    await insertExams([examOne, examTwo]);
 
-  //   expect(dbUser).toMatchObject({
-  //     name: newStudent.name,
-  //     email: newStudent.email,
-  //     role: newStudent.role,
-  //     isEmailVerified: false,
-  //     address1: "",
-  //     address2: "",
-  //     country: "",
-  //     hasDiscount: false,
-  //     isVerified: false,
-  //     phone: "",
-  //     state: "",
-  //   });
-  // })
+    const res = await request(app)
+      .get('/v1/exams')
+      .set('Authorization', `Bearer ${userOneAccessToken}`)
+      .expect(httpStatus.OK);
 
-  // // NOTE: getStudents
-  // test('get student information', async () => {
-  //   await insertStudents([studentOne, studentTwo]);
+    expect(res.body).toEqual({
+      results: expect.any(Array),
+      page: 1,
+      limit: 10,
+      totalPages: 1,
+      totalResults: 2,
+    });
 
-  //   const res = await request(app)
-  //     .get('/v1/students')
-  //     .set('Authorization', `Bearer ${studentOneAccessToken}`)
-  //     .expect(httpStatus.OK);
+    expect(res.body.results).toHaveLength(2);
+    expect(res.body.results[0]).toEqual({
+      id: examOne._id.toHexString(),
+      name: examOne.name,
+    });
+  });
 
-  //   expect(res.body).toEqual({
-  //     results: expect.any(Array),
-  //     page: 1,
-  //     limit: 10,
-  //     totalPages: 1,
-  //     totalResults: 2,
-  //   });
+  // NOTE: updateExamById
+  test('modify exam by id', async () => {
+    await insertExams([examOne]);
 
-  //   expect(res.body.results).toHaveLength(2);
-  //   expect(res.body.results[0]).toEqual({
-  //     id: studentOne._id.toHexString(),
-  //     name: studentOne.name,
-  //     email: studentOne.email,
-  //     role: studentOne.role,
-  //     isEmailVerified: studentOne.isEmailVerified,
-  //     address1: "",
-  //     address2: "",
-  //     country: "",
-  //     hasDiscount: false,
-  //     isVerified: false,
-  //     phone: "",
-  //     state: "",
-  //   });
-  // })
+    const res = await request(app)
+      .patch(`/v1/exams/${examOne._id}`)
+      .set('Authorization', `Bearer ${userOneAccessToken}`)
+      .send({ name: 'blablabla' })
+      .expect(httpStatus.OK);
 
-  // // NOTE: updateStudentById
-  // test('modify student by id', async () => {
-  //   await insertStudents([studentOne]);
+    const dbUser = await Exam.findById(examOne._id);
+    expect(dbUser).toBeDefined();
 
-  //   const res = await request(app)
-  //     .patch(`/v1/students/${studentOne._id}`)
-  //     .set('Authorization', `Bearer ${studentOneAccessToken}`)
-  //     .send({ name: 'blablabla' })
-  //     .expect(httpStatus.OK);
+    expect(dbUser.name).toMatch('blablabla');
+  });
 
-  //   const dbUser = await Student.findById(studentOne._id);
-  //   expect(dbUser).toBeDefined();
+  // NOTE: deleteExamById
+  test('delete exam by id', async () => {
+    await insertExams([examOne]);
 
-  //   expect(dbUser.name).toMatch('blablabla');
-  // })
+    const res = await request(app)
+      .delete(`/v1/exams/${examOne._id}`)
+      .set('Authorization', `Bearer ${userOneAccessToken}`)
+      .expect(httpStatus.NO_CONTENT);
 
-  // // NOTE: deleteStudentById
-  // test('delete student by id', async () => {
-  //   await insertStudents([studentOne]);
-
-  //   const res = await request(app)
-  //     .delete(`/v1/students/${studentOne._id}`)
-  //     .set('Authorization', `Bearer ${studentOneAccessToken}`)
-  //     .expect(httpStatus.NO_CONTENT);
-
-  //   const dbStudentOne = await Student.findById(studentOne._id);
-  //   expect(dbStudentOne).toBeNull();
-  // })
+    const dbExamOne = await Exam.findById(examOne._id);
+    expect(dbExamOne).toBeNull();
+  });
 
   test('GET /v1/exams/helloworld', async () => {
     const res = await request(app).get('/v1/exams/helloworld').expect(httpStatus.OK);

@@ -16,10 +16,14 @@ const createUser = async (userBody) => {
 };
 
 const createExam = async (userBody) => {
-  if (await Exam.isEmailTaken(userBody.email)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+  try {
+    if (await Exam.isEmailTaken(userBody.email)) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+    }
+    return Exam.create(userBody);
+  } catch (error) {
+    console.error(error);
   }
-  return Exam.create(userBody);
 };
 
 const countExam = async () => {
@@ -30,9 +34,9 @@ const countExam = async () => {
 /**
  * Get user by id
  * @param {ObjectId} id
- * @returns {Promise<Student>}
+ * @returns {Promise<Exam>}
  */
-const getStudentById = async (id) => {
+const getExamById = async (id) => {
   return Exam.findById(id);
 };
 
@@ -50,7 +54,7 @@ const queryUsers = async (filter, options) => {
   return users;
 };
 
-const queryStudents = async (filter, options) => {
+const queryExams = async (filter, options) => {
   const students = await Exam.paginate(filter, options);
   return students;
 };
@@ -108,10 +112,10 @@ const updateUserById = async (userId, updateBody) => {
   return user;
 };
 
-const updateStudentById = async (studentId, updateBody) => {
-  const student = await getStudentById(studentId);
+const updateExamById = async (studentId, updateBody) => {
+  const student = await getExamById(studentId);
   if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+    throw new ApiError(httpStatus.NOT_FOUND, 'Exam not found');
   }
   if (updateBody.email && (await Exam.isEmailTaken(updateBody.email, studentId))) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
@@ -121,11 +125,11 @@ const updateStudentById = async (studentId, updateBody) => {
   return student;
 };
 
-// deleteStudentById
-const deleteStudentById = async (studentId) => {
-  const student = await getStudentById(studentId);
+// deleteExamById
+const deleteExamById = async (studentId) => {
+  const student = await getExamById(studentId);
   if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+    throw new ApiError(httpStatus.NOT_FOUND, 'Exam not found');
   }
   await student.remove();
   return student;
@@ -137,26 +141,35 @@ const deleteStudentById = async (studentId) => {
  * @returns {Promise<User>}
  */
 const deleteUserById = async (userId) => {
-  const user = await getUserById(userId);
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  try {
+    const user = await getUserById(userId);
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    await user.remove();
+    return user;
+  } catch (error) {
+    console.error(error);
   }
-  await user.remove();
-  return user;
 };
 
 module.exports = {
-  createUser,
-  queryUsers,
-  queryStudents,
-  getUserById,
-  getUserByEmail,
-  updateUserById,
-  updateUserByEmail,
-  getStudentById,
-  updateStudentById,
-  deleteUserById,
-  deleteStudentById,
-  createExam,
   countExam,
+
+  createExam,
+  createUser,
+
+  deleteExamById,
+  deleteUserById,
+
+  getExamById,
+  getUserByEmail,
+  getUserById,
+
+  queryExams,
+  queryUsers,
+
+  updateExamById,
+  updateUserByEmail,
+  updateUserById,
 };
