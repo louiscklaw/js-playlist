@@ -125,6 +125,8 @@ export const AuthProvider = props => {
     const accessToken = await authApi.login({ email, password });
 
     const user = await authApi.me(accessToken);
+
+    console.dir(user);
     localStorage.setItem('accessToken', accessToken);
     dispatch({ type: ActionType.LOGIN, payload: { user } });
   };

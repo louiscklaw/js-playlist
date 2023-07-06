@@ -26,8 +26,9 @@ import { useAuth } from 'src/hooks/use-auth';
 
 const languages = {
   en: '/static/icons/uk_flag.svg',
-  de: '/static/icons/de_flag.svg',
-  es: '/static/icons/es_flag.svg',
+  cn: '/static/icons/cn_flag.svg',
+  hk: '/static/icons/hk_flag.svg',
+  jp: '/static/icons/jp_flag.svg',
 };
 
 const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
@@ -48,6 +49,7 @@ const DashboardNavbarRoot = styled(AppBar)(({ theme }) => ({
 const LanguageButton = () => {
   const anchorRef = useRef(null);
   const { i18n } = useTranslation();
+
   const [openPopover, setOpenPopover] = useState(false);
 
   const handleOpenPopover = () => {
@@ -60,7 +62,10 @@ const LanguageButton = () => {
 
   return (
     <>
-      <IconButton onClick={handleOpenPopover} ref={anchorRef} sx={{ ml: 1 }}>
+      <IconButton
+        onClick={handleOpenPopover}
+        ref={anchorRef}
+        sx={{ ml: 1 }}>
         <Box
           sx={{
             display: 'flex',
@@ -74,6 +79,7 @@ const LanguageButton = () => {
           <img alt="" src={languages[i18n.language]} />
         </Box>
       </IconButton>
+
       <LanguagePopover
         anchorEl={anchorRef.current}
         onClose={handleClosePopover}

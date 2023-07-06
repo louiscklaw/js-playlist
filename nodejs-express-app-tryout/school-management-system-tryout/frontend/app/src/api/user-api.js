@@ -18,7 +18,7 @@ class UserApi {
       })
       .catch(function (error) {
         console.error('[Auth Api]: ', error);
-        reject(new Error('Internal server error'));
+        reject(new Error('UserApi: Internal server error'));
       });
 
     // return axios.put(`${API_ENDPOINT}/helloworld`,
@@ -52,7 +52,7 @@ class UserApi {
       })
       .catch(function (error) {
         console.error('[Auth Api]: ', error);
-        reject(new Error('Internal server error'));
+        reject(new Error('helloworld: Internal server error'));
       });
   }
 }

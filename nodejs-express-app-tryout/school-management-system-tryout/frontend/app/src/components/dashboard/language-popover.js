@@ -15,13 +15,17 @@ const languageOptions = {
     icon: '/static/icons/uk_flag.svg',
     label: 'English',
   },
-  de: {
-    icon: '/static/icons/de_flag.svg',
-    label: 'German',
+  cn: {
+    icon: '/static/icons/cn_flag.svg',
+    label: 'Chinese (Simplified)',
   },
-  es: {
-    icon: '/static/icons/es_flag.svg',
-    label: 'Spanish',
+  hk: {
+    icon: '/static/icons/hk_flag.svg',
+    label: 'Chinese (Traditional)',
+  },
+  jp: {
+    icon: '/static/icons/jp_flag.svg',
+    label: 'Japanese',
   },
 };
 

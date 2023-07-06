@@ -31,12 +31,14 @@ export const JWTLogin = props => {
 
     onSubmit: async (values, helpers) => {
       try {
+
         await login(values.email, values.password);
 
         if (isMounted()) {
           const returnUrl = router.query.returnUrl || '/dashboard';
           router.push(returnUrl).catch(console.error);
         }
+
       } catch (err) {
         console.error(err);
 
