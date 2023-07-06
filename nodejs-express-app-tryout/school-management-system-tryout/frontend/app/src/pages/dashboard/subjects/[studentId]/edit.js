@@ -77,7 +77,7 @@ const StudentEdit = () => {
       >
         <Container maxWidth="md">
           <Box sx={{ mb: 4 }}>
-            <NextLink href="/dashboard/students" passHref>
+            <NextLink href="/dashboard/subjects" passHref>
               <Link
                 color="textPrimary"
                 component="a"
