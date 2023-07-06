@@ -171,8 +171,6 @@ describe('Subject CRUD test', () => {
     });
   })
 
-
-
   test('GET /v1/subjects/helloworld', async () => {
     const res = await request(app)
       .get('/v1/subjects/helloworld')
