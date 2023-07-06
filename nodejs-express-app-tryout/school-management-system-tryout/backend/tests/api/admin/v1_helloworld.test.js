@@ -23,7 +23,7 @@ setupTestDB();
 
 describe('Admin CRUD test', () => {
   let newAdmin;
-  beforeEach(() => {
+  beforeEach((done) => {
     newAdmin = {
       name: faker.name.findName(),
       email: faker.internet.email().toLowerCase(),
@@ -33,7 +33,8 @@ describe('Admin CRUD test', () => {
 
     setTimeout(() => {
       expect(true).toBe(true);
-    }, 200);
+      done();
+    }, 20);
 
   });
 

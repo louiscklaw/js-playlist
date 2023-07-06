@@ -32,7 +32,7 @@ const countSubject = async () => {
  * @param {ObjectId} id
  * @returns {Promise<Student>}
  */
-const getStudentById = async (id) => {
+const getSubjectById = async (id) => {
   return Subject.findById(id)
 };
 
@@ -108,22 +108,22 @@ const updateUserById = async (userId, updateBody) => {
   return user;
 };
 
-const updateStudentById = async (studentId, updateBody) => {
-  const student = await getStudentById(studentId);
-  if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+const updateSubjectById = async (subjectId, updateBody) => {
+  const subject = await getSubjectById(subjectId);
+
+  if (!subject) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Subject not found');
   }
-  if (updateBody.email && (await Subject.isEmailTaken(updateBody.email, studentId))) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
-  }
-  Object.assign(student, updateBody);
-  await student.save();
-  return student;
+
+  Object.assign(subject, updateBody);
+
+  await subject.save();
+  return subject;
 };
 
-// deleteStudentById
-const deleteStudentById = async (studentId) => {
-  const student = await getStudentById(studentId);
+// deleteSubjectById
+const deleteSubjectById = async (studentId) => {
+  const student = await getSubjectById(studentId);
   if (!student) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
   }
@@ -152,6 +152,6 @@ module.exports = {
   querySubjects,
   getUserById,
   getUserByEmail,
-  updateUserById, updateUserByEmail, getStudentById, updateStudentById,
-  deleteUserById, deleteStudentById, createSubject, countSubject
+  updateUserById, updateUserByEmail, getStudentById: getSubjectById, updateSubjectById,
+  deleteUserById, deleteSubjectById, createSubject, countSubject
 };

@@ -26,14 +26,15 @@ setupTestDB();
 describe('Classroom CRUD test', () => {
   let newClassroom;
 
-  beforeEach(() => {
+  beforeEach((done) => {
     newClassroom = {
       name: faker.name.findName(),
     };
 
     setTimeout(() => {
       expect(true).toBe(true);
-    }, 200);
+      done();
+    }, 20);
 
   });
 

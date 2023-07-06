@@ -51,22 +51,14 @@ const updateUser = {
 };
 
 // frontend/app/src/components/dashboard/student/student-edit-form.js
-const updateStudent = {
+const updateSubject = {
   params: Joi.object().keys({
-    studentId: Joi.required().custom(objectId),
+    subjectId: Joi.required().custom(objectId),
   }),
   body: Joi.object()
     .keys({
-      email: Joi.string().email(),
-      // password: Joi.string().custom(password),
       name: Joi.string(),
-      address1: Joi.string().allow(''),
-      address2: Joi.string().allow(''),
-      country: Joi.string().allow(''),
-      hasDiscount: Joi.boolean(),
-      isVerified: Joi.boolean(),
-      phone: Joi.string().allow(''),
-      state: Joi.string(),
+      description: Joi.string(),
     })
     .min(1),
 };
@@ -106,7 +98,7 @@ module.exports = {
   getSubjects,
   getUser,
 
-  updateStudent,
+  updateSubject,
   updateUser,
   updateUserBasicDetail,
 };

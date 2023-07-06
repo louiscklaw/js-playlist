@@ -26,13 +26,53 @@ setupTestDB();
 describe('Subject CRUD test', () => {
   let newSubject;
 
-  beforeEach(() => {
+  beforeEach((done) => {
     newSubject = {
       name: faker.name.findName(),
       description: 'helloworld'
     };
 
+    setTimeout(() => {
+      expect(true).toBe(true);
+      done();
+    }, 20);
+
   });
+
+
+  // NOTE: updateSubjectById
+  test('modify subject by id', async () => {
+    await insertSubjects([subjectOne]);
+
+    const res = await request(app)
+      .patch(`/v1/subjects/${subjectOne._id}`)
+      .set('Authorization', `Bearer ${subjectOneAccessToken}`)
+      .send({ name: 'blablabla' })
+      .expect(httpStatus.OK);
+
+    const dbUser = await Subject.findById(subjectOne._id);
+
+    expect(dbUser).toBeDefined();
+    expect(dbUser).toMatchObject(
+      {
+        ...subjectOne,
+        "name": "blablabla"
+      }
+    );
+  })
+
+  // NOTE: deleteSubjectById
+  test('delete subject by id', async () => {
+    await insertSubjects([subjectOne]);
+
+    const res = await request(app)
+      .delete(`/v1/subjects/${subjectOne._id}`)
+      .set('Authorization', `Bearer ${subjectOneAccessToken}`)
+      .expect(httpStatus.NO_CONTENT);
+
+    const dbSubjectOne = await Subject.findById(subjectOne._id);
+    expect(dbSubjectOne).toBeNull();
+  })
 
   test('get subject count', async () => {
     await insertSubjects([subjectOne]);
@@ -82,112 +122,56 @@ describe('Subject CRUD test', () => {
     });
   })
 
-  // // NOTE: createSubject
-  // test('create new subject', async () => {
-  //   const res = await request(app)
-  //     .post('/v1/subjects')
-  //     .set('Authorization', `Bearer ${subjectOneAccessToken}`)
-  //     .send(newSubject)
-  //     .expect(httpStatus.CREATED);
+  // NOTE: createSubject
+  test('create new subject', async () => {
+    const res = await request(app)
+      .post('/v1/subjects')
+      .set('Authorization', `Bearer ${subjectOneAccessToken}`)
+      .send(newSubject)
+      .expect(httpStatus.CREATED);
 
-  //   expect(res.body).not.toHaveProperty('password');
-  //   expect(res.body).toEqual({
-  //     id: expect.anything(),
-  //     name: newSubject.name,
-  //     email: newSubject.email,
-  //     role: newSubject.role,
-  //     isEmailVerified: false,
-  //     address1: "",
-  //     address2: "",
-  //     country: "",
-  //     hasDiscount: false,
-  //     isVerified: false,
-  //     phone: "",
-  //     state: "",
-  //   });
+    expect(res.body).not.toHaveProperty('password');
+    expect(res.body).toEqual({
+      id: expect.anything(),
+      name: newSubject.name,
+      description: newSubject.description,
+    });
 
-  //   const dbUser = await Subject.findById(res.body.id);
-  //   expect(dbUser).toBeDefined();
+    const dbSubject = await Subject.findById(res.body.id);
+    expect(dbSubject).toBeDefined();
 
-  //   expect(dbUser.password).not.toBe(newSubject.password);
+    expect(dbSubject).toMatchObject({
+      name: newSubject.name,
+      description: newSubject.description,
+    });
+  })
 
-  //   expect(dbUser).toMatchObject({
-  //     name: newSubject.name,
-  //     email: newSubject.email,
-  //     role: newSubject.role,
-  //     isEmailVerified: false,
-  //     address1: "",
-  //     address2: "",
-  //     country: "",
-  //     hasDiscount: false,
-  //     isVerified: false,
-  //     phone: "",
-  //     state: "",
-  //   });
-  // })
+  // NOTE: getSubjects
+  test('get subject information', async () => {
+    await insertSubjects([subjectOne, subjectTwo]);
 
-  // // NOTE: getSubjects
-  // test('get subject information', async () => {
-  //   await insertSubjects([subjectOne, subjectTwo]);
+    const res = await request(app)
+      .get('/v1/subjects')
+      .set('Authorization', `Bearer ${subjectOneAccessToken}`)
+      .expect(httpStatus.OK);
 
-  //   const res = await request(app)
-  //     .get('/v1/subjects')
-  //     .set('Authorization', `Bearer ${subjectOneAccessToken}`)
-  //     .expect(httpStatus.OK);
+    expect(res.body).toEqual({
+      results: expect.any(Array),
+      page: 1,
+      limit: 10,
+      totalPages: 1,
+      totalResults: 2,
+    });
 
-  //   expect(res.body).toEqual({
-  //     results: expect.any(Array),
-  //     page: 1,
-  //     limit: 10,
-  //     totalPages: 1,
-  //     totalResults: 2,
-  //   });
+    expect(res.body.results).toHaveLength(2);
+    expect(res.body.results[0]).toEqual({
+      id: subjectOne._id.toHexString(),
+      name: subjectOne.name,
+      description: subjectOne.description,
+    });
+  })
 
-  //   expect(res.body.results).toHaveLength(2);
-  //   expect(res.body.results[0]).toEqual({
-  //     id: subjectOne._id.toHexString(),
-  //     name: subjectOne.name,
-  //     email: subjectOne.email,
-  //     role: subjectOne.role,
-  //     isEmailVerified: subjectOne.isEmailVerified,
-  //     address1: "",
-  //     address2: "",
-  //     country: "",
-  //     hasDiscount: false,
-  //     isVerified: false,
-  //     phone: "",
-  //     state: "",
-  //   });
-  // })
 
-  // // NOTE: updateSubjectById
-  // test('modify subject by id', async () => {
-  //   await insertSubjects([subjectOne]);
-
-  //   const res = await request(app)
-  //     .patch(`/v1/subjects/${subjectOne._id}`)
-  //     .set('Authorization', `Bearer ${subjectOneAccessToken}`)
-  //     .send({ name: 'blablabla' })
-  //     .expect(httpStatus.OK);
-
-  //   const dbUser = await Subject.findById(subjectOne._id);
-  //   expect(dbUser).toBeDefined();
-
-  //   expect(dbUser.name).toMatch('blablabla');
-  // })
-
-  // // NOTE: deleteSubjectById
-  // test('delete subject by id', async () => {
-  //   await insertSubjects([subjectOne]);
-
-  //   const res = await request(app)
-  //     .delete(`/v1/subjects/${subjectOne._id}`)
-  //     .set('Authorization', `Bearer ${subjectOneAccessToken}`)
-  //     .expect(httpStatus.NO_CONTENT);
-
-  //   const dbSubjectOne = await Subject.findById(subjectOne._id);
-  //   expect(dbSubjectOne).toBeNull();
-  // })
 
   test('GET /v1/subjects/helloworld', async () => {
     const res = await request(app)

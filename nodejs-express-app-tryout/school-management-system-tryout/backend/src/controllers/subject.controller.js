@@ -42,16 +42,16 @@ const createSubject = catchAsync(async (req, res) => {
 // //   res.send(subject);
 // // });
 
-// const updateSubjectById = catchAsync(async (req, res) => {
-//   const subject = await subjectService.updateSubjectById(
-//     req.params.subjectId, req.body);
-//   res.send(subject);
-// });
+const updateSubjectById = catchAsync(async (req, res) => {
+  const subject = await subjectService.updateSubjectById(
+    req.params.subjectId, req.body);
+  res.send(subject);
+});
 
-// const deleteSubjectById = catchAsync(async (req, res) => {
-//   await subjectService.deleteSubjectById(req.params.subjectId);
-//   res.status(httpStatus.NO_CONTENT).send();
-// });
+const deleteSubjectById = catchAsync(async (req, res) => {
+  await subjectService.deleteSubjectById(req.params.subjectId);
+  res.status(httpStatus.NO_CONTENT).send();
+});
 
 const helloworld = catchAsync(async (req, res) => {
   res.send({ hello: 'subject.controller' });
@@ -61,8 +61,8 @@ module.exports = {
   getSubjects,
   getSubjectCount,
   // getSubjectById,
-  // updateSubjectById,
-  // deleteSubjectById,
+  updateSubjectById,
+  deleteSubjectById,
   // createSubject,
   // getSubjectCount,
   createSubject,

@@ -26,14 +26,15 @@ setupTestDB();
 describe('PaymentInfo CRUD test', () => {
   let newPaymentInfo;
 
-  beforeEach(() => {
+  beforeEach((done) => {
     newPaymentInfo = {
       name: faker.name.findName(),
     };
 
     setTimeout(() => {
       expect(true).toBe(true);
-    }, 200);
+      done();
+    }, 20);
 
   });
 

@@ -24,11 +24,11 @@ router
   .post(validate(subjectValidation.createSubject), subjectController.createSubject)
   .get(validate(subjectValidation.getSubjects), subjectController.getSubjects);
 
-// router
-//   .route('/:subjectId')
-//   .get(validate(subjectValidation.getSubject), subjectController.getSubjectById)
-//   .patch(validate(subjectValidation.updateSubject), subjectController.updateSubjectById)
-//   .delete(validate(subjectValidation.deleteSubject), subjectController.deleteSubjectById);
+router
+  .route('/:subjectId')
+  // .get(validate(subjectValidation.getSubject), subjectController.getSubjectById)
+  .patch(validate(subjectValidation.updateSubject), subjectController.updateSubjectById)
+  .delete(validate(subjectValidation.deleteSubject), subjectController.deleteSubjectById);
 
 
 module.exports = router;

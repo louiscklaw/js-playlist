@@ -26,14 +26,15 @@ setupTestDB();
 describe('Attendance CRUD test', () => {
   let newAttendance;
 
-  beforeEach(() => {
+  beforeEach((done) => {
     newAttendance = {
       name: faker.name.findName(),
     };
 
     setTimeout(() => {
       expect(true).toBe(true);
-    }, 200);
+      done();
+    }, 20);
 
   });
 

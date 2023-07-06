@@ -26,14 +26,15 @@ setupTestDB();
 describe('ExamResult CRUD test', () => {
   let newExamResult;
 
-  beforeEach(() => {
+  beforeEach((done) => {
     newExamResult = {
       name: faker.name.findName(),
     };
 
     setTimeout(() => {
       expect(true).toBe(true);
-    }, 200);
+      done();
+    }, 20);
 
   });
 

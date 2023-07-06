@@ -24,7 +24,7 @@ setupTestDB();
 describe('Teacher CRUD test', () => {
   let newTeacher;
 
-  beforeEach(() => {
+  beforeEach((done) => {
     newTeacher = {
       name: faker.name.findName(),
       email: faker.internet.email().toLowerCase(),
@@ -34,7 +34,8 @@ describe('Teacher CRUD test', () => {
 
     setTimeout(() => {
       expect(true).toBe(true);
-    }, 200);
+      done();
+    }, 20);
 
   });
 

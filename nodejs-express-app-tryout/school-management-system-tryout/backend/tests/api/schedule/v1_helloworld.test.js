@@ -26,14 +26,15 @@ setupTestDB();
 describe('Schedule CRUD test', () => {
   let newSchedule;
 
-  beforeEach(() => {
+  beforeEach((done) => {
     newSchedule = {
       name: faker.name.findName(),
     };
 
     setTimeout(() => {
       expect(true).toBe(true);
-    }, 200);
+      done();
+    }, 20);
 
   });
 

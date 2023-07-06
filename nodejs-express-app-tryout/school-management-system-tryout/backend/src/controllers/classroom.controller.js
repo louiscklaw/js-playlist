@@ -15,8 +15,6 @@ const getClassrooms = catchAsync(async (req, res) => {
 });
 
 const getClassroomCount = catchAsync(async (req, res) => {
-  console.log('get classroom count');
-
   const result = await classroomService.countClassroom()
   res.send(result);
 });
