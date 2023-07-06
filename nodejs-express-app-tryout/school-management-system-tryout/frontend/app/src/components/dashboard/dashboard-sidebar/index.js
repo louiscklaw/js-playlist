@@ -209,6 +209,17 @@ const getSections = t => [
       },
       {
         title: t('Products'),
+        path: '/dashboard/restaurants',
+        icon: <UsersIcon fontSize="small" />,
+        matching: 'partial',
+        children: [
+          { title: t('Food'), path: '/dashboard/foods' },
+          { title: t('Take away'), path: '/dashboard/take_away' },
+          { title: t('Food Set'), path: '/dashboard/food_set' },
+        ],
+      },
+      {
+        title: t('Products'),
         path: '/dashboard/products',
         icon: <ShoppingBagIcon fontSize="small" />,
         children: [
