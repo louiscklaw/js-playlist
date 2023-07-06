@@ -36,7 +36,7 @@ const countSchedule = async () => {
  * @param {ObjectId} id
  * @returns {Promise<Student>}
  */
-const getStudentById = async (id) => {
+const getScheduleById = async (id) => {
   return Schedule.findById(id)
 };
 
@@ -112,10 +112,10 @@ const updateUserById = async (userId, updateBody) => {
   return user;
 };
 
-const updateStudentById = async (studentId, updateBody) => {
-  const student = await getStudentById(studentId);
+const updateScheduleById = async (studentId, updateBody) => {
+  const student = await getScheduleById(studentId);
   if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+    throw new ApiError(httpStatus.NOT_FOUND, 'Schedule not found');
   }
   if (updateBody.email && (await Schedule.isEmailTaken(updateBody.email, studentId))) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
@@ -125,9 +125,9 @@ const updateStudentById = async (studentId, updateBody) => {
   return student;
 };
 
-// deleteStudentById
-const deleteStudentById = async (studentId) => {
-  const student = await getStudentById(studentId);
+// deleteScheduleById
+const deleteScheduleById = async (studentId) => {
+  const student = await getScheduleById(studentId);
   if (!student) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
   }
@@ -151,11 +151,22 @@ const deleteUserById = async (userId) => {
 };
 
 module.exports = {
+  createSchedule,
   createUser,
-  queryUsers,
-  querySchedules,
-  getUserById,
+
+  deleteScheduleById,
+  deleteUserById,
+
+  getScheduleById,
   getUserByEmail,
-  updateUserById, updateUserByEmail, getStudentById, updateStudentById,
-  deleteUserById, deleteStudentById, createSchedule, countSchedule
+  getUserById,
+
+  querySchedules,
+  queryUsers,
+
+  updateScheduleById,
+  updateUserByEmail,
+  updateUserById,
+
+  countSchedule
 };

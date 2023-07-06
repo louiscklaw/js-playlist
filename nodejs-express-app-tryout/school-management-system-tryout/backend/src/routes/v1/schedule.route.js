@@ -27,11 +27,11 @@ router
   .post(validate(scheduleValidation.createSchedule), scheduleController.createSchedule)
   .get(validate(scheduleValidation.getSchedules), scheduleController.getSchedules);
 
-// router
-//   .route('/:scheduleId')
-//   .get(validate(scheduleValidation.getSchedule), scheduleController.getScheduleById)
-//   .patch(validate(scheduleValidation.updateSchedule), scheduleController.updateScheduleById)
-//   .delete(validate(scheduleValidation.deleteSchedule), scheduleController.deleteScheduleById);
+router
+  .route('/:scheduleId')
+  .get(validate(scheduleValidation.getSchedule), scheduleController.getScheduleById)
+  .patch(validate(scheduleValidation.updateSchedule), scheduleController.updateScheduleById)
+  .delete(validate(scheduleValidation.deleteSchedule), scheduleController.deleteScheduleById);
 
 
 module.exports = router;

@@ -110,68 +110,73 @@ describe('Schedule CRUD test', () => {
     });
   })
 
-  // // NOTE: getStudents
-  // test('get schedule information', async () => {
-  //   await insertStudents([scheduleOne, scheduleTwo]);
+  // // NOTE: getSchedules
+  test('list all schedule', async () => {
+    await insertSchedules([scheduleOne, scheduleTwo]);
 
-  //   const res = await request(app)
-  //     .get('/v1/schedules')
-  //     .set('Authorization', `Bearer ${scheduleOneAccessToken}`)
-  //     .expect(httpStatus.OK);
+    const res = await request(app)
+      .get('/v1/schedules')
+      .set('Authorization', `Bearer ${scheduleOneAccessToken}`)
+      .expect(httpStatus.OK);
 
-  //   expect(res.body).toEqual({
-  //     results: expect.any(Array),
-  //     page: 1,
-  //     limit: 10,
-  //     totalPages: 1,
-  //     totalResults: 2,
-  //   });
+    expect(res.body).toEqual({
+      results: expect.any(Array),
+      page: 1,
+      limit: 10,
+      totalPages: 1,
+      totalResults: 2,
+    });
 
-  //   expect(res.body.results).toHaveLength(2);
-  //   expect(res.body.results[0]).toEqual({
-  //     id: scheduleOne._id.toHexString(),
-  //     name: scheduleOne.name,
-  //     email: scheduleOne.email,
-  //     role: scheduleOne.role,
-  //     isEmailVerified: scheduleOne.isEmailVerified,
-  //     address1: "",
-  //     address2: "",
-  //     country: "",
-  //     hasDiscount: false,
-  //     isVerified: false,
-  //     phone: "",
-  //     state: "",
-  //   });
-  // })
+    expect(res.body.results).toHaveLength(2);
+    expect(res.body.results[0]).toEqual({
+      id: scheduleOne._id.toHexString(),
+      name: scheduleOne.name,
+    });
+  })
 
-  // // NOTE: updateStudentById
-  // test('modify schedule by id', async () => {
-  //   await insertStudents([scheduleOne]);
+  // // NOTE: getSchedules
+  test('show schedule by id', async () => {
+    await insertSchedules([scheduleOne, scheduleTwo]);
 
-  //   const res = await request(app)
-  //     .patch(`/v1/schedules/${scheduleOne._id}`)
-  //     .set('Authorization', `Bearer ${scheduleOneAccessToken}`)
-  //     .send({ name: 'blablabla' })
-  //     .expect(httpStatus.OK);
+    const res = await request(app)
+      .get(`/v1/schedules/${scheduleOne._id}`)
+      .set('Authorization', `Bearer ${scheduleOneAccessToken}`)
+      .expect(httpStatus.OK);
 
-  //   const dbUser = await Student.findById(scheduleOne._id);
-  //   expect(dbUser).toBeDefined();
+    expect(res.body).toEqual({
+      id: scheduleOne._id.toHexString(),
+      name: scheduleOne.name,
+    });
+  })
 
-  //   expect(dbUser.name).toMatch('blablabla');
-  // })
+  // NOTE: updateScheduleById
+  test('modify schedule by id', async () => {
+    await insertSchedules([scheduleOne]);
 
-  // // NOTE: deleteStudentById
-  // test('delete schedule by id', async () => {
-  //   await insertStudents([scheduleOne]);
+    const res = await request(app)
+      .patch(`/v1/schedules/${scheduleOne._id}`)
+      .set('Authorization', `Bearer ${scheduleOneAccessToken}`)
+      .send({ name: 'blablabla' })
+      .expect(httpStatus.OK);
 
-  //   const res = await request(app)
-  //     .delete(`/v1/schedules/${scheduleOne._id}`)
-  //     .set('Authorization', `Bearer ${scheduleOneAccessToken}`)
-  //     .expect(httpStatus.NO_CONTENT);
+    const dbUser = await Schedule.findById(scheduleOne._id);
+    expect(dbUser).toBeDefined();
 
-  //   const dbStudentOne = await Student.findById(scheduleOne._id);
-  //   expect(dbStudentOne).toBeNull();
-  // })
+    expect(dbUser.name).toMatch('blablabla');
+  })
+
+  // NOTE: deleteScheduleById
+  test('delete schedule by id', async () => {
+    await insertSchedules([scheduleOne]);
+
+    const res = await request(app)
+      .delete(`/v1/schedules/${scheduleOne._id}`)
+      .set('Authorization', `Bearer ${scheduleOneAccessToken}`)
+      .expect(httpStatus.NO_CONTENT);
+
+    const dbScheduleOne = await Schedule.findById(scheduleOne._id);
+    expect(dbScheduleOne).toBeNull();
+  })
 
   test('GET /v1/schedules/helloworld',
     async () => {

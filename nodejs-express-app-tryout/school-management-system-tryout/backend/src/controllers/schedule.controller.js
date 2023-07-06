@@ -29,20 +29,19 @@ const createSchedule = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).send(schedule);
 });
 
-// const getScheduleById = catchAsync(async (req, res) => {
-//   const schedule = await scheduleService.getScheduleById(req.params.scheduleId);
+const getScheduleById = catchAsync(async (req, res) => {
+  try {
+    const schedule = await scheduleService.getScheduleById(req.params.scheduleId);
 
-//   if (!schedule) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Schedule not found');
-//   }
-//   res.send(schedule);
-// });
+    if (!schedule) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'Schedule not found');
+    }
 
-// // const updateScheduleById = catchAsync(async (req, res) => {
-// //   const schedule = await scheduleService.updateScheduleById(
-// //     req.params.scheduleId, req.body);
-// //   res.send(schedule);
-// // });
+    res.send(schedule);
+  } catch (error) {
+    console.error(error)
+  }
+});
 
 // const updateScheduleById = catchAsync(async (req, res) => {
 //   const schedule = await scheduleService.updateScheduleById(
@@ -50,10 +49,20 @@ const createSchedule = catchAsync(async (req, res) => {
 //   res.send(schedule);
 // });
 
-// const deleteScheduleById = catchAsync(async (req, res) => {
-//   await scheduleService.deleteScheduleById(req.params.scheduleId);
-//   res.status(httpStatus.NO_CONTENT).send();
-// });
+const updateScheduleById = catchAsync(async (req, res) => {
+  try {
+    const schedule = await scheduleService.updateScheduleById(
+      req.params.scheduleId, req.body);
+    res.send(schedule);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+const deleteScheduleById = catchAsync(async (req, res) => {
+  await scheduleService.deleteScheduleById(req.params.scheduleId);
+  res.status(httpStatus.NO_CONTENT).send();
+});
 
 const helloworld = catchAsync(async (req, res) => {
   res.send({ hello: 'schedule.controller' });
@@ -62,9 +71,9 @@ const helloworld = catchAsync(async (req, res) => {
 module.exports = {
   getSchedules,
   getScheduleCount,
-  // getScheduleById,
-  // updateScheduleById,
-  // deleteScheduleById,
+  getScheduleById,
+  updateScheduleById,
+  deleteScheduleById,
   // createSchedule,
   // getScheduleCount,
   createSchedule,
