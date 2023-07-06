@@ -7,6 +7,8 @@ import {
   Typography,
 } from '@mui/material';
 
+import NextLink from 'next/link';
+
 import { alpha, useTheme } from '@mui/material/styles';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -93,9 +95,11 @@ const TotalStudentCard = () => {
         </Box>
         <Divider />
         <CardActions>
-          <Button endIcon={<ArrowRightIcon fontSize="small" />}>
-            See all visits
-          </Button>
+          <NextLink href="/dashboard/social/profile" passHref>
+            <Button endIcon={<ArrowRightIcon fontSize="small" />}>
+              {t('See all visits')}
+            </Button>
+          </NextLink>
         </CardActions>
       </Card>
     </>

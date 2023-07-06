@@ -97,7 +97,7 @@ const TotalExamResultCard = () => {
 
         <CardActions>
           <Button endIcon={<ArrowRightIcon fontSize="small" />}>
-            See all visits
+            {t('See all visits')}
           </Button>
         </CardActions>
       </Card>
