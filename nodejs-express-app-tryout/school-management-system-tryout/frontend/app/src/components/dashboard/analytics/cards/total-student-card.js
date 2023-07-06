@@ -95,7 +95,7 @@ const TotalStudentCard = () => {
         </Box>
         <Divider />
         <CardActions>
-          <NextLink href="/dashboard/social/profile" passHref>
+          <NextLink href="/dashboard/students" passHref>
             <Button endIcon={<ArrowRightIcon fontSize="small" />}>
               {t('See all visits')}
             </Button>

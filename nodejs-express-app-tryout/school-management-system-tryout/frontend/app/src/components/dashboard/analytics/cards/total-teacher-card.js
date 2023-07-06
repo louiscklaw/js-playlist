@@ -7,6 +7,8 @@ import {
   Typography,
 } from '@mui/material';
 
+import NextLink from 'next/link';
+
 import { alpha, useTheme } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -94,9 +96,11 @@ const TotalTeacherCard = () => {
         <Divider />
 
         <CardActions>
-          <Button endIcon={<ArrowRightIcon fontSize="small" />}>
-            {t('See all visits')}
-          </Button>
+          <NextLink href="/dashboard/teachers" passHref>
+            <Button endIcon={<ArrowRightIcon fontSize="small" />}>
+              {t('See all visits')}
+            </Button>
+          </NextLink>
         </CardActions>
       </Card>
     </>

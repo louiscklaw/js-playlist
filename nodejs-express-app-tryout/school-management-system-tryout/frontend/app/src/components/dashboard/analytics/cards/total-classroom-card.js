@@ -6,6 +6,7 @@ import {
   Divider,
   Typography,
 } from '@mui/material';
+import NextLink from 'next/link';
 
 import { alpha, useTheme } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
@@ -96,9 +97,11 @@ const TotalClassroomCard = () => {
         <Divider />
 
         <CardActions>
-          <Button endIcon={<ArrowRightIcon fontSize="small" />}>
-            {t('See all visits')}
-          </Button>
+          <NextLink href="/dashboard/classrooms" passHref>
+            <Button endIcon={<ArrowRightIcon fontSize="small" />}>
+              {t('See all visits')}
+            </Button>
+          </NextLink>
         </CardActions>
       </Card>
     </>
