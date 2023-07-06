@@ -16,4 +16,6 @@ module.exports.classroomService = require('./classroom.service');
 
 module.exports.examService = require('./exam.service');
 module.exports.examResultService = require('./exam_result.service');
+
 module.exports.paymentInfoService = require('./payment_info.service');
+module.exports.notificationService = require('./notification.service');

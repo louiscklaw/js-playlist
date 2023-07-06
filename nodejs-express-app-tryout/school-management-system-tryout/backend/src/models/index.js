@@ -13,3 +13,4 @@ module.exports.Attendance = require('./attendance.model');
 module.exports.Exam = require('./exam.model');
 module.exports.ExamResult = require('./exam_result.model');
 module.exports.PaymentInfo = require('./payment_info.model');
+module.exports.Notification = require('./notification.model');
