@@ -67,10 +67,11 @@ describe('Student CRUD test', () => {
   // NOTE: test getStudents with filter
   test('filter student by name', async () => {
     await insertStudents([studentOne, studentTwo]);
-    const res = await request(app).get('/v1/students')
-      .query(
-        { studentName: '2' }
-      )
+    const res = await request(app)
+      .get('/v1/students')
+      .query({
+        studentName: '2',
+      })
       .expect(httpStatus.OK);
 
     expect(res.body).toEqual({

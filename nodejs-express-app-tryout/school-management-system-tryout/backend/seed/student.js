@@ -27,18 +27,21 @@ const seedStudent = () =>
           const newStudent = new Student({
             avatar:
               'https://images.unsplash.com/photo-1660798027105-5da8ad164e27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80',
-            city: 'Cleveland',
-            country: 'USA',
-            currency: '$',
+
+            city: faker.address.city(),
+            country: faker.address.country(),
+            state: faker.address.state(),
+            currency: faker.finance.currencyCode(),
+
             email: `student_${idx}@devias.io`,
-            hasAcceptedMarketing: true,
-            isProspect: false,
-            isReturning: true,
             name: idx + '_' + faker.name.findName(),
-            state: 'Ohio',
-            totalAmountSpent: 300.01,
-            totalOrders: 3.1,
-            isVerified: false,
+            totalAmountSpent: faker.commerce.price(10, 100.1),
+            totalOrders: faker.commerce.price(10, 100.1),
+
+            hasAcceptedMarketing: faker.random.boolean(),
+            isProspect: faker.random.boolean(),
+            isReturning: faker.random.boolean(),
+            isVerified: faker.random.boolean(),
           });
 
           return newStudent.save();

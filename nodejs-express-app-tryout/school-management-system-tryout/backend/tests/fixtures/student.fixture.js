@@ -18,7 +18,7 @@ const studentOne = {
 
 const studentTwo = {
   _id: mongoose.Types.ObjectId(),
-  name: '2' + "_" + faker.name.findName(),
+  name: '2' + '_' + faker.name.findName(),
   email: faker.internet.email().toLowerCase(),
   password,
   role: 'student',

@@ -42,7 +42,7 @@ class StudentApi {
         return data;
       })
       .catch(err => {
-        console.error(error);
+        console.error(err);
       });
   }
 

@@ -75,7 +75,7 @@ const queryStudents = async (filter, options) => {
     const students = await Student.paginate(filter, options);
     return students;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 };
 

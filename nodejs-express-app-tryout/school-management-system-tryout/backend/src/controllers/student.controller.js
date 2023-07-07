@@ -7,26 +7,43 @@ const catchAsync = require('../utils/catchAsync');
 
 const { studentService } = require('../services');
 
+// NOTE: test with list all student
+// NOTE: test with get student information
 const getStudents = catchAsync(async (req, res) => {
   try {
-
     const filter_value = pick(req.query, ['studentName']);
 
-    var filter = {
-      $or: [
-        { name: { $regex: filter_value.studentName || '', $options: 'i' } },
-        { country: { $regex: filter_value.studentName || '', $options: 'i' } },
-        { email: { $regex: filter_value.studentName || '', $options: 'i' } },
-      ]
-    };
+    if (Object.keys(filter_value).includes('studentName')) {
+      var filter = {
+        $or: [
+          { name: { $regex: filter_value.studentName, $options: 'i' } },
+          { country: { $regex: filter_value.studentName, $options: 'i' } },
+          { email: { $regex: filter_value.studentName, $options: 'i' } },
+        ],
+      };
 
-    const options = pick(req.query, ['sortBy', 'limit', 'page']);
+      const options = pick(req.query, ['sortBy', 'limit', 'page']);
 
-    const result = await studentService.queryStudents(filter, options);
+      const result = await studentService.queryStudents(filter, options);
 
-    res.send(result);
+      res.send(result);
+    } else {
+      var filter = {
+        $or: [
+          { name: { $regex: '', $options: 'i' } },
+          { country: { $regex: '', $options: 'i' } },
+          { email: { $regex: '', $options: 'i' } },
+        ],
+      };
+
+      const options = pick(req.query, ['sortBy', 'limit', 'page']);
+
+      const result = await studentService.queryStudents(filter, options);
+
+      res.send(result);
+    }
   } catch (error) {
-    console.error(error);
+    console.error('backend', req.query);
   }
 });
 

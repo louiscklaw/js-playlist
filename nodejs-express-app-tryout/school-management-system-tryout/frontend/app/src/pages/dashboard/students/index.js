@@ -148,34 +148,52 @@ const StudentList = () => {
 
   useEffect(async () => {
     try {
-      const data = await studentApi.getStudents({
-        // options
-        limit: rowsPerPage,
-        page: page + 1,
+      if (searchString.trim() == '') {
+        console.log('searchString is empty');
+        const data = await studentApi.getStudents({
+          // options
+          limit: rowsPerPage,
+          page: page + 1,
+        });
 
-        // filter ?
-        studentName: searchString
-      });
-      setStudents(data.results);
+        setStudents(data.results);
+      } else {
+        console.log('searchString is not empty');
+        const data = await studentApi.getStudents({
+          // options
+          limit: rowsPerPage,
+          page: page + 1,
+
+          // filter ?
+          studentName: searchString
+        });
+
+        setStudents(data.results);
+      }
+
     } catch (error) {
-      console.error(error)
+      console.error('findme', error);
     }
+
   }, [page, searchString])
 
 
   const getStudents = useCallback(async () => {
     try {
       const data = await studentApi.getStudents({
+        // options
         limit: rowsPerPage,
         page: page + 1,
 
+        // filter ?
+        studentName: ''
       });
 
       if (isMounted()) {
         setStudents(data.results);
       }
     } catch (err) {
-      console.error(err);
+      console.error('getStudents', err);
     }
   }, [isMounted, page]);
 
@@ -216,13 +234,11 @@ const StudentList = () => {
   };
 
   const handleSearchChange = event => {
-    console.log(event.target.value);
     setSearchString(event.target.value);
   }
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
-    console.log('page changed ?')
   };
 
   const handleRowsPerPageChange = event => {
