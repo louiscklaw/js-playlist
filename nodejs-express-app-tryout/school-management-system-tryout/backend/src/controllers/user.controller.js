@@ -26,17 +26,12 @@ const getUsers = catchAsync(async (req, res) => {
 
 const getUserById = catchAsync(async (req, res) => {
   // no need try catch as handle 'user not found' on nodejs restart
-  try {
-    const user = await userService.getUserById(req.params.userId);
+  const user = await userService.getUserById(req.params.userId);
 
     if (!user) {
       throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
     }
-    res.send(user);
-  } catch (error) {
-    console.error(`getUserById ${JSON.stringify(req.params)}`);
-    console.error(error);
-  }
+  res.send(user);
 });
 
 // abonded

@@ -24,6 +24,7 @@ import { store } from '../store';
 import { createTheme } from '../theme';
 import { createEmotionCache } from '../utils/create-emotion-cache';
 import '../i18n';
+import { useTranslation } from 'react-i18next';
 
 Router.events.on('routeChangeStart', nProgress.start);
 Router.events.on('routeChangeError', nProgress.done);
@@ -32,6 +33,7 @@ Router.events.on('routeChangeComplete', nProgress.done);
 const clientSideEmotionCache = createEmotionCache();
 
 const App = props => {
+  const { t } = useTranslation();
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   const getLayout = Component.getLayout ?? (page => page);
@@ -43,8 +45,12 @@ const App = props => {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>Material Kit Pro</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <title>
+          {t('louislabs dashboard demo')}
+        </title>
+        <meta
+          name="viewport"
+          content="initial-scale=1, width=device-width" />
       </Head>
 
       <ReduxProvider store={store}>

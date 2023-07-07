@@ -1,8 +1,9 @@
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { Logo } from './logo';
 import { keyframes } from '@emotion/react';
 import { useTransition } from 'react';
 import { useTranslation } from 'react-i18next';
+import PuffLoader from 'react-spinners/PuffLoader';
 
 const bounce1 = keyframes`
   0% { transform: translate3d(0, 0, 0); }
@@ -20,7 +21,15 @@ export const SplashScreen = () => {
   const { t } = useTranslation();
 
   return (
-    <Box
+    <>
+      <Stack
+        direction="column"
+        alignItems={'center'}
+        justifyContent={'space-between'}
+        sx={{ height: '95vh' }}>
+        <Box></Box>
+        <Box>
+          <Box
       sx={{
         alignItems: 'center',
         display: 'flex',
@@ -36,13 +45,16 @@ export const SplashScreen = () => {
       }}
     >
       <Box>
-        <img
-          width="100px"
-          height="100px"
-          src="https://cdns.iconmonstr.com/wp-content/releases/preview/2012/240/iconmonstr-github-1.png"
-        />
+              <PuffLoader color="#36d7b7" height={70} radius={10} width={8} />
+
       </Box>
       <Box sx={{ mt: 4 }}>{t('hello')}...</Box>
     </Box>
+        </Box>
+        <Box>
+          louislabs 2023
+        </Box>
+      </Stack>
+    </>
   );
 };

@@ -130,10 +130,10 @@ class AuthApi {
 
     return new Promise((resolve, reject) => {
       try {
-        const { sub } = decode(accessToken);
-
         // NOTE: sub = userId
+        const { sub } = decode(accessToken);
         const userId = sub;
+
         userApi.getUserById(userId).then(user => {
           console.log({ user });
 
