@@ -19,13 +19,21 @@ const getExamResults = catchAsync(async (req, res) => {
 });
 
 const getExamResultCount = catchAsync(async (req, res) => {
-  const result = await examResultService.countExamResult();
-  res.send(result);
+  try {
+    const result = await examResultService.countExamResult();
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const createExamResult = catchAsync(async (req, res) => {
-  const examResult = await examResultService.createExamResult(req.body);
-  res.status(httpStatus.CREATED).send(examResult);
+  try {
+    const examResult = await examResultService.createExamResult(req.body);
+    res.status(httpStatus.CREATED).send(examResult);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const getExamResultById = catchAsync(async (req, res) => {
@@ -66,7 +74,11 @@ const deleteExamResultById = catchAsync(async (req, res) => {
 });
 
 const helloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'examResult.controller' });
+  try {
+    res.send({ hello: 'examResult.controller' });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 module.exports = {

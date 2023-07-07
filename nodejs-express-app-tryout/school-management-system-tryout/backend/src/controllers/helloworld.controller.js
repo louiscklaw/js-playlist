@@ -10,23 +10,43 @@ const catchAsync = require('../utils/catchAsync');
 // });
 
 const getHelloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'get' });
+  try {
+    res.send({ hello: 'get' });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const getNameHelloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'getNameHelloworld' });
+  try {
+    res.send({ hello: 'getNameHelloworld' });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const postHelloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'post' });
+  try {
+    res.send({ hello: 'post' });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const putHelloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'put' });
+  try {
+    res.send({ hello: 'put' });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const deleteHelloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'delete' });
+  try {
+    res.send({ hello: 'delete' });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 module.exports = {

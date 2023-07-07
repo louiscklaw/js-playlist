@@ -11,6 +11,7 @@
 ```bash
 # for backend, goto backend container
 $ docker compose exec -it node-app bash
+
 $ npm run test:watch
 ```
 

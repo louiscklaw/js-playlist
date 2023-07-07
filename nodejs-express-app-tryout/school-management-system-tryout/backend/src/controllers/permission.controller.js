@@ -74,7 +74,11 @@ const deletePermissionById = catchAsync(async (req, res) => {
 });
 
 const helloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'permission.controller' });
+  try {
+    res.send({ hello: 'permission.controller' });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 module.exports = {

@@ -19,22 +19,34 @@ const getAttendances = catchAsync(async (req, res) => {
 });
 
 const getAttendanceCount = catchAsync(async (req, res) => {
-  const result = await attendanceService.countAttendance();
-  res.send(result);
+  try {
+    const result = await attendanceService.countAttendance();
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const createAttendance = catchAsync(async (req, res) => {
-  const attendance = await attendanceService.createAttendance(req.body);
-  res.status(httpStatus.CREATED).send(attendance);
+  try {
+    const attendance = await attendanceService.createAttendance(req.body);
+    res.status(httpStatus.CREATED).send(attendance);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const getAttendanceById = catchAsync(async (req, res) => {
-  const attendance = await attendanceService.getAttendanceById(req.params.attendanceId);
+  try {
+    const attendance = await attendanceService.getAttendanceById(req.params.attendanceId);
 
-  if (!attendance) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Attendance not found');
+    if (!attendance) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'Attendance not found');
+    }
+    res.send(attendance);
+  } catch (error) {
+    console.error(error);
   }
-  res.send(attendance);
 });
 
 // const updateAttendanceById = catchAsync(async (req, res) => {

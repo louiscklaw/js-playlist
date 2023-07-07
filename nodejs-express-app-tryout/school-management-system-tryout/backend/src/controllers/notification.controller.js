@@ -74,7 +74,11 @@ const deleteNotificationById = catchAsync(async (req, res) => {
 });
 
 const helloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'notification.controller' });
+  try {
+    res.send({ hello: 'notification.controller' });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 module.exports = {

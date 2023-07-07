@@ -8,15 +8,23 @@ const catchAsync = require('../utils/catchAsync');
 const { examService } = require('../services');
 
 const getExams = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['name', 'role']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await examService.queryExams(filter, options);
-  res.send(result);
+  try {
+    const filter = pick(req.query, ['name', 'role']);
+    const options = pick(req.query, ['sortBy', 'limit', 'page']);
+    const result = await examService.queryExams(filter, options);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const getExamCount = catchAsync(async (req, res) => {
-  const result = await examService.countExam();
-  res.send(result);
+  try {
+    const result = await examService.countExam();
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const createExam = catchAsync(async (req, res) => {
@@ -66,7 +74,11 @@ const deleteExamById = catchAsync(async (req, res) => {
 });
 
 const helloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'exam.controller' });
+  try {
+    res.send({ hello: 'exam.controller' });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 module.exports = {

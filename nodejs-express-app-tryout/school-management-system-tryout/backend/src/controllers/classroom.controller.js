@@ -70,7 +70,11 @@ const deleteClassroomById = catchAsync(async (req, res) => {
 });
 
 const helloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'classroom.controller' });
+  try {
+    res.send({ hello: 'classroom.controller' });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 module.exports = {

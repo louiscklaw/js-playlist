@@ -312,8 +312,7 @@ const StudentList = () => {
               </TextField>
             </Box>
 
-            <Box>Permission place holder</Box>
-
+            <Box>Notification place holder</Box>
           </Card>
         </Container>
       </Box>

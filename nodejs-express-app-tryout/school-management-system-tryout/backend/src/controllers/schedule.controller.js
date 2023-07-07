@@ -19,13 +19,21 @@ const getSchedules = catchAsync(async (req, res) => {
 });
 
 const getScheduleCount = catchAsync(async (req, res) => {
-  const result = await scheduleService.countSchedule();
-  res.send(result);
+  try {
+    const result = await scheduleService.countSchedule();
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const createSchedule = catchAsync(async (req, res) => {
-  const schedule = await scheduleService.createSchedule(req.body);
-  res.status(httpStatus.CREATED).send(schedule);
+  try {
+    const schedule = await scheduleService.createSchedule(req.body);
+    res.status(httpStatus.CREATED).send(schedule);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const getScheduleById = catchAsync(async (req, res) => {
@@ -58,12 +66,20 @@ const updateScheduleById = catchAsync(async (req, res) => {
 });
 
 const deleteScheduleById = catchAsync(async (req, res) => {
-  await scheduleService.deleteScheduleById(req.params.scheduleId);
-  res.status(httpStatus.NO_CONTENT).send();
+  try {
+    await scheduleService.deleteScheduleById(req.params.scheduleId);
+    res.status(httpStatus.NO_CONTENT).send();
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 const helloworld = catchAsync(async (req, res) => {
-  res.send({ hello: 'schedule.controller' });
+  try {
+    res.send({ hello: 'schedule.controller' });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 module.exports = {
