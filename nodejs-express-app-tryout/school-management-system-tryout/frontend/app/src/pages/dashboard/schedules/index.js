@@ -292,7 +292,7 @@ const ScheduleList = () => {
                       </InputAdornment>
                     ),
                   }}
-                  placeholder="Search students"
+                  placeholder="Search schedules"
                 />
               </Box>
               <TextField

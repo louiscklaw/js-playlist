@@ -28,11 +28,13 @@ const createStudent = {
 
 const getStudents = {
   query: Joi.object().keys({
-    name: Joi.string(),
-    role: Joi.string(),
+    // options
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
     page: Joi.number().integer(),
+
+    // filters
+    studentName: Joi.string(),
   }),
 };
 

@@ -34,7 +34,7 @@ describe('Student CRUD test', () => {
     setTimeout(() => {
       expect(true).toBe(true);
       done();
-    }, 20);
+    }, 200);
   });
 
   test('add new student', async () => {
@@ -62,6 +62,28 @@ describe('Student CRUD test', () => {
     expect(res.body).toEqual({
       count: 1,
     });
+  });
+
+  // NOTE: test getStudents with filter
+  test('filter student by name', async () => {
+    await insertStudents([studentOne, studentTwo]);
+    const res = await request(app).get('/v1/students')
+      .query(
+        { studentName: '2' }
+      )
+      .expect(httpStatus.OK);
+
+    expect(res.body).toEqual({
+      results: expect.any(Array),
+      page: 1,
+      limit: 10,
+      totalPages: 1,
+      totalResults: 1,
+    });
+
+    expect(res.body.results).toHaveLength(1);
+
+    expect(res.body.results[0].name[0]).toEqual('2');
   });
 
   test('list all students', async () => {

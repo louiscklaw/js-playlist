@@ -127,11 +127,11 @@ const StudentList = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [sort, setSort] = useState(sortOptions[0].value);
+
+  const [searchString, setSearchString] = useState('')
+
   const [filters, setFilters] = useState({
-    query: '',
-    hasAcceptedMarketing: undefined,
-    isProspect: undefined,
-    isReturning: undefined,
+    query: 'name:Nolan',
   });
 
   const [student_count, setStudentCount] = useState(0)
@@ -149,21 +149,26 @@ const StudentList = () => {
   useEffect(async () => {
     try {
       const data = await studentApi.getStudents({
+        // options
         limit: rowsPerPage,
-        page: page + 1
+        page: page + 1,
+
+        // filter ?
+        studentName: searchString
       });
       setStudents(data.results);
     } catch (error) {
       console.error(error)
     }
-  }, [page])
+  }, [page, searchString])
 
 
   const getStudents = useCallback(async () => {
     try {
       const data = await studentApi.getStudents({
         limit: rowsPerPage,
-        page: page
+        page: page + 1,
+
       });
 
       if (isMounted()) {
@@ -209,6 +214,11 @@ const StudentList = () => {
   const handleSortChange = event => {
     setSort(event.target.value);
   };
+
+  const handleSearchChange = event => {
+    console.log(event.target.value);
+    setSearchString(event.target.value);
+  }
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
@@ -275,6 +285,7 @@ const StudentList = () => {
               </Grid>
             </Grid>
           </Box>
+
           <Card>
             <Tabs
               indicatorColor="primary"
@@ -289,7 +300,9 @@ const StudentList = () => {
                 <Tab key={tab.value} label={tab.label} value={tab.value} />
               ))}
             </Tabs>
+
             <Divider />
+
             <Box
               sx={{
                 alignItems: 'center',
@@ -315,11 +328,12 @@ const StudentList = () => {
                       </InputAdornment>
                     ),
                   }}
-                  placeholder="Search students"
+                  placeholder={t("Search students")}
+                  onChange={(e) => handleSearchChange(e)}
                 />
               </Box>
               <TextField
-                label="Sort By"
+                label={t("Sort By")}
                 name="sort"
                 onChange={handleSortChange}
                 select
@@ -328,7 +342,9 @@ const StudentList = () => {
                 value={sort}
               >
                 {sortOptions.map(option => (
-                  <option key={option.value} value={option.value}>
+                  <option
+                    key={option.value}
+                    value={option.value}>
                     {option.label}
                   </option>
                 ))}

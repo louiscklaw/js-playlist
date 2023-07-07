@@ -292,7 +292,7 @@ const SubjectList = () => {
                       </InputAdornment>
                     ),
                   }}
-                  placeholder="Search students"
+                  placeholder="Search subjects"
                 />
               </Box>
               <TextField

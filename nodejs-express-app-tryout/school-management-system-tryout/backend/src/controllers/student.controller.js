@@ -9,7 +9,13 @@ const { studentService } = require('../services');
 
 const getStudents = catchAsync(async (req, res) => {
   try {
-    const filter = pick(req.query, ['name', 'role']);
+
+    const filter_value = pick(req.query, ['studentName']);
+
+    var filter = {
+      name: { $regex: filter_value.studentName || '', $options: 'i' }
+    };
+
     const options = pick(req.query, ['sortBy', 'limit', 'page']);
 
     const result = await studentService.queryStudents(filter, options);

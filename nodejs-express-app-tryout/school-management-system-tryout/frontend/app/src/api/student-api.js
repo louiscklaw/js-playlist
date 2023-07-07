@@ -35,7 +35,9 @@ class StudentApi {
 
   getStudents(queryParams) {
     return axios
-      .get(`${API_ENDPOINT}`, { params: queryParams })
+      .get(`${API_ENDPOINT}`,
+        { params: queryParams }
+      )
       .then(({ data }) => {
         return data;
       })

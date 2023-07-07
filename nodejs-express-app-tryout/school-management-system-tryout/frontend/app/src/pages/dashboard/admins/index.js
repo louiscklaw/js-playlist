@@ -294,7 +294,7 @@ const AdminList = () => {
                       </InputAdornment>
                     ),
                   }}
-                  placeholder="Search students"
+                  placeholder="Search admins"
                 />
               </Box>
               <TextField

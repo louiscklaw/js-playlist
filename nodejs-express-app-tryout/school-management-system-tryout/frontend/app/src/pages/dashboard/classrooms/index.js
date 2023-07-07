@@ -293,7 +293,7 @@ const StudentList = () => {
                       </InputAdornment>
                     ),
                   }}
-                  placeholder="Search students"
+                  placeholder="Search classrooms"
                 />
               </Box>
               <TextField
