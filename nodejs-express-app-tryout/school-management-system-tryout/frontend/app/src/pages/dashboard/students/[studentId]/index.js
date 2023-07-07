@@ -30,6 +30,9 @@ import { PencilAlt as PencilAltIcon } from 'src/icons/pencil-alt';
 import { gtm } from 'src/lib/gtm';
 import { getInitials } from 'src/utils/get-initials';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
+import { route } from 'next/dist/server/router';
+import { studentApi } from 'src/api/student-api';
 // import { getInitials } from '../../../../utils/get-initials';
 
 const tabs = [
@@ -38,20 +41,22 @@ const tabs = [
   { label: 'Logs', value: 'logs' },
 ];
 
-const CustomerDetails = () => {
+const StudentDetails = () => {
+  const { t } = useTranslation();
   const isMounted = useMounted();
+  const router = useRouter();
+
   const [customer, setCustomer] = useState(null);
   const [currentTab, setCurrentTab] = useState('details');
-
-  const { t } = useTranslation();
 
   useEffect(() => {
     gtm.push({ event: 'page_view' });
   }, []);
 
-  const getCustomer = useCallback(async () => {
+  const getStudent = useCallback(async () => {
     try {
-      const data = await customerApi.getCustomer();
+      const { studentId } = router.query;
+      const data = await studentApi.getStudentById(studentId);
 
       if (isMounted()) {
         setCustomer(data);
@@ -63,7 +68,7 @@ const CustomerDetails = () => {
 
   useEffect(
     () => {
-      getCustomer();
+      getStudent();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -207,10 +212,10 @@ const CustomerDetails = () => {
   );
 };
 
-CustomerDetails.getLayout = page => (
+StudentDetails.getLayout = page => (
   <AuthGuard>
     <DashboardLayout>{page}</DashboardLayout>
   </AuthGuard>
 );
 
-export default CustomerDetails;
+export default StudentDetails;

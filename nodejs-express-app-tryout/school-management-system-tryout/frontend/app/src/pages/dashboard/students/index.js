@@ -172,7 +172,7 @@ const StudentList = () => {
       }
 
     } catch (error) {
-      console.error('findme', error);
+      console.error(error);
     }
 
   }, [page, searchString])

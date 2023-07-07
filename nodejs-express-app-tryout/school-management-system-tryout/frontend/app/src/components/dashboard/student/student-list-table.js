@@ -137,7 +137,7 @@ export const StudentListTable = props => {
                         {getInitials(student.name)}
                       </Avatar>
                       <Box sx={{ ml: 1 }}>
-                        <NextLink href="/dashboard/students/1" passHref>
+                        <NextLink href={`/dashboard/students/${student.id}`} passHref>
                           <Link color="inherit" variant="subtitle2">
                             {student.name}
                           </Link>
