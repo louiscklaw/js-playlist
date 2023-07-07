@@ -108,6 +108,7 @@ describe('Student CRUD test', () => {
       country: '',
       hasDiscount: false,
       isVerified: false,
+      isAcSuspended: false,
       phone: '',
       state: '',
       name: studentOne.name,
@@ -137,6 +138,7 @@ describe('Student CRUD test', () => {
       country: '',
       hasDiscount: false,
       isVerified: false,
+      isAcSuspended: false,
       phone: '',
       state: '',
     });
@@ -190,6 +192,7 @@ describe('Student CRUD test', () => {
       country: '',
       hasDiscount: false,
       isVerified: false,
+      isAcSuspended: false,
       phone: '',
       state: '',
     });

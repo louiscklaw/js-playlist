@@ -15,7 +15,7 @@ import {
   Typography,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { customerApi } from 'src/__fake-api__/customer-api';
+
 import { AuthGuard } from 'src/components/authentication/auth-guard';
 import { DashboardLayout } from 'src/components/dashboard/dashboard-layout';
 import { CustomerBasicDetails } from 'src/components/dashboard/customer/customer-basic-details';
@@ -31,9 +31,7 @@ import { gtm } from 'src/lib/gtm';
 import { getInitials } from 'src/utils/get-initials';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
-import { route } from 'next/dist/server/router';
 import { studentApi } from 'src/api/student-api';
-// import { getInitials } from '../../../../utils/get-initials';
 
 const tabs = [
   { label: 'Details', value: 'details' },
@@ -144,7 +142,10 @@ const StudentDetails = () => {
                 </div>
               </Grid>
               <Grid item sx={{ m: -1 }}>
-                <NextLink href="/dashboard/students/1/edit" passHref>
+                <NextLink
+                  href={`/dashboard/students/${customer.id}/edit`}
+                  passHref
+                >
                   <Button
                     component="a"
                     endIcon={<PencilAltIcon fontSize="small" />}

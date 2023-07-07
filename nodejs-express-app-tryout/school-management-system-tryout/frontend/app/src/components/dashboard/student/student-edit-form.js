@@ -9,6 +9,7 @@ import { X as XIcon } from 'src/icons/x';
 import CancelIcon from '@mui/icons-material/Cancel';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
+import ClearIcon from '@mui/icons-material/Clear';
 
 import * as Yup from 'yup';
 
@@ -102,9 +103,14 @@ export const StudentEditForm = props => {
     },
   });
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
+  const [openDeactivateModal, setOpenDeactivateModal] = React.useState(false);
+
+  const handleDeleteModalOpen = () => setOpenDeleteModal(true);
+  const handleDeleteModalClose = () => setOpenDeleteModal(false);
+
+  const handleDeactivateModalOpen = () => setOpenDeactivateModal(true);
+  const handleDeactivateModalClose = () => setOpenDeactivateModal(false);
 
   const style = {
     position: 'absolute',
@@ -115,12 +121,25 @@ export const StudentEditForm = props => {
     p: 4,
   };
 
+  const handleDeactivateStudent = async () => {
+    await studentApi
+      .deactivateStudentById(student.id)
+      .then(() => {
+        toast.success(t('Student deactivated!'));
+        handleDeactivateModalClose();
+        route.replace(`/dashboard/students`);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
   const handleDeleteStudent = async () => {
     await studentApi
       .deleteStudentById(student.id)
       .then(() => {
         toast.success(t('Student deleted!'));
-        handleClose();
+        handleDeleteModalClose();
         route.replace(`/dashboard/students`);
       })
       .catch(err => {
@@ -130,9 +149,10 @@ export const StudentEditForm = props => {
 
   return (
     <>
+      {/* deactivate modal */}
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={openDeleteModal}
+        onClose={handleDeleteModalClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -149,9 +169,7 @@ export const StudentEditForm = props => {
                   <WarningIcon fontSize="small" />
                 </Avatar>
                 <div>
-                  <Typography variant="h5">
-                    {t('Deactivate account')}
-                  </Typography>
+                  <Typography variant="h5">{t('Delete student')}</Typography>
                   <Typography
                     color="textSecondary"
                     sx={{ mt: 1 }}
@@ -172,7 +190,7 @@ export const StudentEditForm = props => {
                 }}
               >
                 <Button
-                  onClick={handleClose}
+                  onClick={handleDeleteModalClose}
                   sx={{ mr: 2 }}
                   variant="outlined"
                   startIcon={<CancelIcon />}
@@ -195,6 +213,74 @@ export const StudentEditForm = props => {
           </Container>
         </Box>
       </Modal>
+      {/* deactivate modal */}
+
+      {/* deactivate modal */}
+
+      <Modal
+        open={openDeactivateModal}
+        onClose={handleDeactivateModalClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Container maxWidth="sm">
+            <Paper elevation={12} sx={{ position: 'relative' }}>
+              <IconButton sx={{ position: 'absolute', top: 8, right: 8 }}>
+                <XIcon fontSize="small" />
+              </IconButton>
+              <Box sx={{ display: 'flex', pb: 2, pt: 3, px: 3 }}>
+                <Avatar
+                  sx={{ backgroundColor: 'white', color: 'error.main', mr: 2 }}
+                >
+                  <WarningIcon fontSize="small" />
+                </Avatar>
+                <div>
+                  <Typography variant="h5">{t('Deactivate')}</Typography>
+                  <Typography
+                    color="textSecondary"
+                    sx={{ mt: 1 }}
+                    variant="body2"
+                  >
+                    Are you sure you want to delete your account? All of your
+                    data will be permanently removed. This action cannot be
+                    undone.
+                  </Typography>
+                </div>
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  px: 3,
+                  py: 1.5,
+                }}
+              >
+                <Button
+                  onClick={handleDeactivateModalClose}
+                  sx={{ mr: 2 }}
+                  variant="outlined"
+                  startIcon={<CancelIcon />}
+                >
+                  {t('Cancel')}
+                </Button>
+                <Button
+                  sx={{
+                    backgroundColor: 'error.main',
+                    '&:hover': { backgroundColor: 'error.dark' },
+                  }}
+                  variant="contained"
+                  onClick={handleDeactivateStudent}
+                  startIcon={<DeleteIcon />}
+                >
+                  {t('Delete')}
+                </Button>
+              </Box>
+            </Paper>
+          </Container>
+        </Box>
+      </Modal>
+      {/* deactivate modal */}
 
       <form onSubmit={formik.handleSubmit} {...other}>
         <Card>
@@ -207,7 +293,7 @@ export const StudentEditForm = props => {
                   error={Boolean(formik.touched.name && formik.errors.name)}
                   fullWidth
                   helperText={formik.touched.name && formik.errors.name}
-                  label="Full name"
+                  label={t('Full name')}
                   name="name"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
@@ -221,7 +307,7 @@ export const StudentEditForm = props => {
                   error={Boolean(formik.touched.email && formik.errors.email)}
                   fullWidth
                   helperText={formik.touched.email && formik.errors.email}
-                  label="Email address"
+                  label={t('Email address')}
                   name="email"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
@@ -237,7 +323,7 @@ export const StudentEditForm = props => {
                   )}
                   fullWidth
                   helperText={formik.touched.country && formik.errors.country}
-                  label="Country"
+                  label={t('Country')}
                   name="country"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
@@ -250,7 +336,7 @@ export const StudentEditForm = props => {
                   error={Boolean(formik.touched.state && formik.errors.state)}
                   fullWidth
                   helperText={formik.touched.state && formik.errors.state}
-                  label="State/Region"
+                  label={t('State/Region')}
                   name="state"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
@@ -265,7 +351,7 @@ export const StudentEditForm = props => {
                   )}
                   fullWidth
                   helperText={formik.touched.address1 && formik.errors.address1}
-                  label="Address 1"
+                  label={t('Address 1')}
                   name="address1"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
@@ -280,7 +366,7 @@ export const StudentEditForm = props => {
                   )}
                   fullWidth
                   helperText={formik.touched.address2 && formik.errors.address2}
-                  label="Address 2"
+                  label={t('Address 2')}
                   name="address2"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
@@ -293,7 +379,7 @@ export const StudentEditForm = props => {
                   error={Boolean(formik.touched.phone && formik.errors.phone)}
                   fullWidth
                   helperText={formik.touched.phone && formik.errors.phone}
-                  label="Phone number"
+                  label={t('Phone number')}
                   name="phone"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
@@ -391,11 +477,22 @@ export const StudentEditForm = props => {
               // loading={formik.isSubmitting}
               // disabled={formik.isSubmitting}
               color="error"
-              onClick={handleOpen}
-              disabled={open}
+              onClick={handleDeactivateModalOpen}
+              disabled={openDeactivateModal}
+              startIcon={<ClearIcon />}
+            >
+              {t('Deactivate')}
+            </Button>
+
+            <Button
+              // loading={formik.isSubmitting}
+              // disabled={formik.isSubmitting}
+              color="error"
+              onClick={handleDeleteModalOpen}
+              disabled={openDeleteModal}
               startIcon={<DeleteIcon />}
             >
-              {t('Delete user')}
+              {t('Delete')}
             </Button>
           </CardActions>
         </Card>

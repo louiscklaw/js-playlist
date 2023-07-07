@@ -124,6 +124,22 @@ const StudentEdit = () => {
               >
                 <Typography variant="subtitle2">student_id:</Typography>
                 <Chip label={student.id} size="small" sx={{ ml: 1 }} />
+
+                {student.isAcSuspended ? (
+                  <Chip
+                    label={'deactivated'}
+                    color={'warning'}
+                    size="small"
+                    sx={{ ml: 1 }}
+                  />
+                ) : (
+                  <Chip
+                    label={'activated'}
+                    color={'success'}
+                    size="small"
+                    sx={{ ml: 1 }}
+                  />
+                )}
               </Box>
             </div>
           </Box>

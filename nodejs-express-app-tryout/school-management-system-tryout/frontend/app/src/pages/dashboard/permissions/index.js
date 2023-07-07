@@ -313,7 +313,6 @@ const StudentList = () => {
             </Box>
 
             <Box>Permission place holder</Box>
-
           </Card>
         </Container>
       </Box>

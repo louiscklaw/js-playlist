@@ -42,6 +42,7 @@ const seedStudent = () =>
             isProspect: faker.datatype.boolean(),
             isReturning: faker.datatype.boolean(),
             isVerified: faker.datatype.boolean(),
+            isAcSuspended: faker.datatype.boolean(),
           });
 
           return newStudent.save();

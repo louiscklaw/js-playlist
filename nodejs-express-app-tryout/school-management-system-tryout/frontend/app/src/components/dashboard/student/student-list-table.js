@@ -137,7 +137,10 @@ export const StudentListTable = props => {
                         {getInitials(student.name)}
                       </Avatar>
                       <Box sx={{ ml: 1 }}>
-                        <NextLink href={`/dashboard/students/${student.id}`} passHref>
+                        <NextLink
+                          href={`/dashboard/students/${student.id}`}
+                          passHref
+                        >
                           <Link color="inherit" variant="subtitle2">
                             {student.name}
                           </Link>
@@ -191,7 +194,6 @@ export const StudentListTable = props => {
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[5, 10, 25]}
       />
-
     </div>
   );
 };

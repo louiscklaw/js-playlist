@@ -31,9 +31,10 @@ import { useTranslation } from 'react-i18next';
 
 const tabs = [
   { label: 'All', value: 'all' },
-  { label: 'Accepts Marketing', value: 'hasAcceptedMarketing' },
-  { label: 'Prospect', value: 'isProspect' },
-  { label: 'Returning', value: 'isReturning' },
+  { label: 'Suspended', value: 'isSuspended' },
+  // { label: 'Accepts Marketing', value: 'hasAcceptedMarketing' },
+  // { label: 'Prospect', value: 'isProspect' },
+  // { label: 'Returning', value: 'isReturning' },
 ];
 
 const sortOptions = [
@@ -128,23 +129,24 @@ const StudentList = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [sort, setSort] = useState(sortOptions[0].value);
 
-  const [searchString, setSearchString] = useState('')
+  const [searchString, setSearchString] = useState('');
 
   const [filters, setFilters] = useState({
     query: 'name:Nolan',
   });
 
-  const [student_count, setStudentCount] = useState(0)
+  const [student_count, setStudentCount] = useState(0);
 
   useEffect(() => {
     gtm.push({ event: 'student_page_view' });
   }, []);
 
   useEffect(() => {
-    studentApi.getStudentCount()
+    studentApi
+      .getStudentCount()
       .then(({ data }) => setStudentCount(data.count))
-      .catch(err => console.error(err))
-  }, [])
+      .catch(err => console.error(err));
+  }, []);
 
   useEffect(async () => {
     try {
@@ -165,18 +167,15 @@ const StudentList = () => {
           page: page + 1,
 
           // filter ?
-          studentName: searchString
+          studentName: searchString,
         });
 
         setStudents(data.results);
       }
-
     } catch (error) {
       console.error(error);
     }
-
-  }, [page, searchString])
-
+  }, [page, searchString]);
 
   const getStudents = useCallback(async () => {
     try {
@@ -186,7 +185,7 @@ const StudentList = () => {
         page: page + 1,
 
         // filter ?
-        studentName: ''
+        studentName: '',
       });
 
       if (isMounted()) {
@@ -235,7 +234,7 @@ const StudentList = () => {
 
   const handleSearchChange = event => {
     setSearchString(event.target.value);
-  }
+  };
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
@@ -344,12 +343,12 @@ const StudentList = () => {
                       </InputAdornment>
                     ),
                   }}
-                  placeholder={t("Search students")}
-                  onChange={(e) => handleSearchChange(e)}
+                  placeholder={t('Search students')}
+                  onChange={e => handleSearchChange(e)}
                 />
               </Box>
               <TextField
-                label={t("Sort By")}
+                label={t('Sort By')}
                 name="sort"
                 onChange={handleSortChange}
                 select
@@ -358,9 +357,7 @@ const StudentList = () => {
                 value={sort}
               >
                 {sortOptions.map(option => (
-                  <option
-                    key={option.value}
-                    value={option.value}>
+                  <option key={option.value} value={option.value}>
                     {option.label}
                   </option>
                 ))}

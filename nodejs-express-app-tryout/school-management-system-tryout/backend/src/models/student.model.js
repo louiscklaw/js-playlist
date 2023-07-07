@@ -35,6 +35,7 @@ const studentSchema = mongoose.Schema(
     },
     isEmailVerified: { type: Boolean, default: false },
     isVerified: { type: Boolean, default: false },
+    isAcSuspended: { type: Boolean, default: false },
     hasDiscount: { type: Boolean, default: false },
   },
   {
