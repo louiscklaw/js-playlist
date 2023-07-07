@@ -13,7 +13,11 @@ const getStudents = catchAsync(async (req, res) => {
     const filter_value = pick(req.query, ['studentName']);
 
     var filter = {
-      name: { $regex: filter_value.studentName || '', $options: 'i' }
+      $or: [
+        { name: { $regex: filter_value.studentName || '', $options: 'i' } },
+        { country: { $regex: filter_value.studentName || '', $options: 'i' } },
+        { email: { $regex: filter_value.studentName || '', $options: 'i' } },
+      ]
     };
 
     const options = pick(req.query, ['sortBy', 'limit', 'page']);
