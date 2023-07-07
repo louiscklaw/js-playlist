@@ -32,6 +32,7 @@ import { Reports as ReportsIcon } from 'src/icons/reports';
 import { Users as UsersIcon } from 'src/icons/users';
 import { gtm } from 'src/lib/gtm';
 import { useTranslation } from 'react-i18next';
+import WelcomeModal from 'src/components/widgets/WelcomeModal';
 
 const Overview = () => {
   const { t } = useTranslation();
@@ -61,6 +62,7 @@ const Overview = () => {
 
   return (
     <>
+      <WelcomeModal />
       <Head>
         <title>Dashboard: Overview | Material Kit Pro</title>
       </Head>

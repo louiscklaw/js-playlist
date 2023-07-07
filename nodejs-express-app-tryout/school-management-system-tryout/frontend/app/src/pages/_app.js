@@ -1,30 +1,31 @@
-import { useEffect } from 'react';
-import Head from 'next/head';
-import Router from 'next/router';
-import { Toaster } from 'react-hot-toast';
-import { Provider as ReduxProvider } from 'react-redux';
-import nProgress from 'nprogress';
 import { CacheProvider } from '@emotion/react';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import { LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import Head from 'next/head';
+import Router from 'next/router';
+import nProgress from 'nprogress';
+import { useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
+import { Provider as ReduxProvider } from 'react-redux';
 import { RTL } from '../components/rtl';
-import { SettingsButton } from '../components/settings-button';
+// import { SettingsButton } from '../components/settings-button';
 import { SplashScreen } from '../components/splash-screen';
+import { gtmConfig } from '../config';
+import { AuthConsumer, AuthProvider } from '../contexts/jwt-context';
 import {
   SettingsConsumer,
   SettingsProvider,
 } from '../contexts/settings-context';
-import { AuthConsumer, AuthProvider } from '../contexts/jwt-context';
 import { UserProvider } from '../contexts/user-context';
-import { gtmConfig } from '../config';
+import '../i18n';
 import { gtm } from '../lib/gtm';
 import { store } from '../store';
 import { createTheme } from '../theme';
 import { createEmotionCache } from '../utils/create-emotion-cache';
-import '../i18n';
-import { useTranslation } from 'react-i18next';
+import WelcomeModal from 'src/components/widgets/WelcomeModal';
 
 Router.events.on('routeChangeStart', nProgress.start);
 Router.events.on('routeChangeError', nProgress.done);
@@ -71,6 +72,8 @@ const App = props => {
                         <CssBaseline />
                         <Toaster position="top-center" />
                         {/* <SettingsButton /> */}
+                        {/* <QuestionFab /> */}
+
                         <AuthConsumer>
                           {auth =>
                             !auth.isInitialized ? (
