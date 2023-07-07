@@ -134,14 +134,37 @@ const StudentList = () => {
     isReturning: undefined,
   });
 
+  const [student_count, setStudentCount] = useState(0)
+
   useEffect(() => {
-    gtm.push({ event: 'page_view' });
+    gtm.push({ event: 'student_page_view' });
   }, []);
+
+  useEffect(() => {
+    studentApi.getStudentCount()
+      .then(({ data }) => setStudentCount(data.count))
+      .catch(err => console.error(err))
+  }, [])
+
+  useEffect(async () => {
+    try {
+      const data = await studentApi.getStudents({
+        limit: rowsPerPage,
+        page: page + 1
+      });
+      setStudents(data.results);
+    } catch (error) {
+      console.error(error)
+    }
+  }, [page])
+
 
   const getStudents = useCallback(async () => {
     try {
-      // const data = await customerApi.getStudents();
-      const data = await studentApi.getStudents();
+      const data = await studentApi.getStudents({
+        limit: rowsPerPage,
+        page: page
+      });
 
       if (isMounted()) {
         setStudents(data.results);
@@ -149,7 +172,7 @@ const StudentList = () => {
     } catch (err) {
       console.error(err);
     }
-  }, [isMounted]);
+  }, [isMounted, page]);
 
   useEffect(
     () => {
@@ -189,6 +212,7 @@ const StudentList = () => {
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
+    console.log('page changed ?')
   };
 
   const handleRowsPerPageChange = event => {
@@ -311,14 +335,16 @@ const StudentList = () => {
               </TextField>
             </Box>
 
+            {/* BOOKMARK: student table */}
             <StudentListTable
-              students={paginatedStudents}
-              studentsCount={filteredStudents.length}
+              students={students}
+              studentsCount={student_count}
               onPageChange={handlePageChange}
               onRowsPerPageChange={handleRowsPerPageChange}
               rowsPerPage={rowsPerPage}
               page={page}
             />
+            {JSON.stringify({ page })}
           </Card>
         </Container>
       </Box>

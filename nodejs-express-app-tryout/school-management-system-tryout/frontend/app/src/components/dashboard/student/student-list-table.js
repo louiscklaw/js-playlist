@@ -1,7 +1,3 @@
-import { useEffect, useState } from 'react';
-import NextLink from 'next/link';
-import numeral from 'numeral';
-import PropTypes from 'prop-types';
 import {
   Avatar,
   Box,
@@ -17,17 +13,19 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import { ArrowRight as ArrowRightIcon } from 'src/icons/arrow-right';
-import { PencilAlt as PencilAltIcon } from 'src/icons/pencil-alt';
-
-// import { getInitials } from '../../../utils/get-initials';
-import { getInitials } from 'src/utils/get-initials';
-
-// import { Scrollbar } from '../../scrollbar';
-import { Scrollbar } from 'src/components/scrollbar';
+import NextLink from 'next/link';
+import numeral from 'numeral';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Scrollbar } from 'src/components/scrollbar';
+import { ArrowRight as ArrowRightIcon } from 'src/icons/arrow-right';
+import { PencilAlt as PencilAltIcon } from 'src/icons/pencil-alt';
+import { getInitials } from 'src/utils/get-initials';
+
 export const StudentListTable = props => {
+  const { t } = useTranslation();
   const {
     students,
     studentsCount,
@@ -37,8 +35,8 @@ export const StudentListTable = props => {
     rowsPerPage,
     ...other
   } = props;
+
   const [selectedCustomers, setSelectedCustomers] = useState([]);
-  const { t } = useTranslation();
 
   // Reset selected customers when customers change
   useEffect(
@@ -72,8 +70,6 @@ export const StudentListTable = props => {
     selectedCustomers.length > 0 && selectedCustomers.length < students.length;
   const selectedAllCustomers = selectedCustomers.length === students.length;
 
-  const studentId = '64a12f7d92da2661085fa445';
-
   return (
     <div {...other}>
       <Box
@@ -91,10 +87,10 @@ export const StudentListTable = props => {
           onChange={handleSelectAllCustomers}
         />
         <Button size="small" sx={{ ml: 2 }}>
-          Delete
+          {t('Delete')}
         </Button>
         <Button size="small" sx={{ ml: 2 }}>
-          Edit
+          {t('Edit')}
         </Button>
       </Box>
       <Scrollbar>
@@ -185,6 +181,7 @@ export const StudentListTable = props => {
           </TableBody>
         </Table>
       </Scrollbar>
+
       <TablePagination
         component="div"
         count={studentsCount}
@@ -194,6 +191,7 @@ export const StudentListTable = props => {
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[5, 10, 25]}
       />
+
     </div>
   );
 };
