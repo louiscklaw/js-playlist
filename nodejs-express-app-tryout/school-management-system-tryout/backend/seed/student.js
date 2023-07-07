@@ -20,7 +20,7 @@ const seedStudent = () =>
       // console.log('connected')
     })
     .then(() => {
-      const saving = Array(35)
+      const saving = Array(3)
         .fill(0)
         .map((_, idx) => {
           const newStudent = new Student({

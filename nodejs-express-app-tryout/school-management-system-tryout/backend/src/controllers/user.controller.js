@@ -25,6 +25,7 @@ const getUsers = catchAsync(async (req, res) => {
 });
 
 const getUserById = catchAsync(async (req, res) => {
+  // no need try catch as handle 'user not found' on nodejs restart
   try {
     const user = await userService.getUserById(req.params.userId);
 
