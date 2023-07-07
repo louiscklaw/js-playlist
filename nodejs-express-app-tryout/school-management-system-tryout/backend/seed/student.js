@@ -38,10 +38,10 @@ const seedStudent = () =>
             totalAmountSpent: faker.commerce.price(10, 100.1),
             totalOrders: faker.commerce.price(10, 100.1),
 
-            hasAcceptedMarketing: faker.random.boolean(),
-            isProspect: faker.random.boolean(),
-            isReturning: faker.random.boolean(),
-            isVerified: faker.random.boolean(),
+            hasAcceptedMarketing: faker.datatype.boolean(),
+            isProspect: faker.datatype.boolean(),
+            isReturning: faker.datatype.boolean(),
+            isVerified: faker.datatype.boolean(),
           });
 
           return newStudent.save();
