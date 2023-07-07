@@ -11,8 +11,9 @@ const getStudents = catchAsync(async (req, res) => {
   try {
     const filter = pick(req.query, ['name', 'role']);
     const options = pick(req.query, ['sortBy', 'limit', 'page']);
+
     const result = await studentService.queryStudents(filter, options);
-    // res.send({ hello: 'student.controller.getStudents' });
+
     res.send(result);
   } catch (error) {
     console.error(error);
@@ -22,7 +23,7 @@ const getStudents = catchAsync(async (req, res) => {
 const getStudentCount = catchAsync(async (req, res) => {
   try {
     const result = await studentService.countStudent();
-    // res.send({ hello: 'student.controller.getStudents' });
+
     res.send(result);
   } catch (error) {
     console.error(error);

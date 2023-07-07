@@ -9,22 +9,34 @@ const ApiError = require('../utils/ApiError');
  * @returns {Promise<User>}
  */
 const createUser = async (userBody) => {
-  if (await User.isEmailTaken(userBody.email)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+  try {
+    if (await User.isEmailTaken(userBody.email)) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+    }
+    return User.create(userBody);
+  } catch (error) {
+    console.error(error);
   }
-  return User.create(userBody);
 };
 
 const createStudent = async (userBody) => {
-  if (await Student.isEmailTaken(userBody.email)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+  try {
+    if (await Student.isEmailTaken(userBody.email)) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+    }
+    return Student.create(userBody);
+  } catch (error) {
+    console.error(error);
   }
-  return Student.create(userBody);
 };
 
 const countStudent = async () => {
-  const count = await Student.find().countDocuments();
-  return { count };
+  try {
+    const count = await Student.find().countDocuments();
+    return { count };
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -33,7 +45,11 @@ const countStudent = async () => {
  * @returns {Promise<Student>}
  */
 const getStudentById = async (id) => {
-  return Student.findById(id);
+  try {
+    return Student.findById(id);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -46,13 +62,21 @@ const getStudentById = async (id) => {
  * @returns {Promise<QueryResult>}
  */
 const queryUsers = async (filter, options) => {
-  const users = await User.paginate(filter, options);
-  return users;
+  try {
+    const users = await User.paginate(filter, options);
+    return users;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const queryStudents = async (filter, options) => {
-  const students = await Student.paginate(filter, options);
-  return students;
+  try {
+    const students = await Student.paginate(filter, options);
+    return students;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -61,7 +85,11 @@ const queryStudents = async (filter, options) => {
  * @returns {Promise<User>}
  */
 const getUserById = async (id) => {
-  return User.findById(id);
+  try {
+    return User.findById(id);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -70,23 +98,31 @@ const getUserById = async (id) => {
  * @returns {Promise<User>}
  */
 const getUserByEmail = async (email) => {
-  return User.findOne({ email });
+  try {
+    return User.findOne({ email });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
  * Update user by email
  */
 const updateUserByEmail = async (userEmail, updateBody) => {
-  const user = await getUserByEmail(userEmail);
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  try {
+    const user = await getUserByEmail(userEmail);
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+    }
+    Object.assign(user, updateBody);
+    await user.save();
+    return user;
+  } catch (error) {
+    console.error(error);
   }
-  if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
-  }
-  Object.assign(user, updateBody);
-  await user.save();
-  return user;
 };
 
 /**
@@ -96,16 +132,20 @@ const updateUserByEmail = async (userEmail, updateBody) => {
  * @returns {Promise<User>}
  */
 const updateUserById = async (userId, updateBody) => {
-  const user = await getUserById(userId);
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  try {
+    const user = await getUserById(userId);
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+    }
+    Object.assign(user, updateBody);
+    await user.save();
+    return user;
+  } catch (error) {
+    console.error(error);
   }
-  if (updateBody.email && (await User.isEmailTaken(updateBody.email, userId))) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
-  }
-  Object.assign(user, updateBody);
-  await user.save();
-  return user;
 };
 
 const updateStudentById = async (studentId, updateBody) => {
@@ -129,12 +169,16 @@ const updateStudentById = async (studentId, updateBody) => {
 
 // deleteStudentById
 const deleteStudentById = async (studentId) => {
-  const student = await getStudentById(studentId);
-  if (!student) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+  try {
+    const student = await getStudentById(studentId);
+    if (!student) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'Student not found');
+    }
+    await student.remove();
+    return student;
+  } catch (error) {
+    console.error(error);
   }
-  await student.remove();
-  return student;
 };
 
 /**
@@ -143,12 +187,16 @@ const deleteStudentById = async (studentId) => {
  * @returns {Promise<User>}
  */
 const deleteUserById = async (userId) => {
-  const user = await getUserById(userId);
-  if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  try {
+    const user = await getUserById(userId);
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    await user.remove();
+    return user;
+  } catch (error) {
+    console.error(error);
   }
-  await user.remove();
-  return user;
 };
 
 module.exports = {

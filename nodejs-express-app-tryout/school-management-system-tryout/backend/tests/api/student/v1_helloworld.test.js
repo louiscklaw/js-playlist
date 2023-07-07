@@ -64,9 +64,9 @@ describe('Student CRUD test', () => {
     });
   });
 
-  test('get student information', async () => {
+  test('list all students', async () => {
     await insertStudents([studentOne]);
-    const res = await request(app).get('/v1/students').expect(httpStatus.OK);
+    const res = await request(app).get('/v1/students').query({ sortBy: 'id:asc' }).expect(httpStatus.OK);
 
     expect(res.body).toEqual({
       results: expect.any(Array),

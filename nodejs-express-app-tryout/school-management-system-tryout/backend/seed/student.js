@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const faker = require('faker');
 
 const config = require('../src/config/config');
 const studentSchema = require('../src/schemas/student');
@@ -20,7 +21,7 @@ const seedStudent = () =>
       // console.log('connected')
     })
     .then(() => {
-      const saving = Array(3)
+      const saving = Array(30)
         .fill(0)
         .map((_, idx) => {
           const newStudent = new Student({
@@ -33,7 +34,7 @@ const seedStudent = () =>
             hasAcceptedMarketing: true,
             isProspect: false,
             isReturning: true,
-            name: 'Carson Darrin',
+            name: idx + '_' + faker.name.findName(),
             state: 'Ohio',
             totalAmountSpent: 300.01,
             totalOrders: 3.1,

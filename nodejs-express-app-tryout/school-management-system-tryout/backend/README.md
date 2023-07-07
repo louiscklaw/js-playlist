@@ -358,7 +358,7 @@ const userSchema = mongoose.Schema(
   {
     /* schema definition here */
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 userSchema.plugin(toJSON);

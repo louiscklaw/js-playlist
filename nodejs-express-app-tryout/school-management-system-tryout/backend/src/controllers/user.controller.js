@@ -34,6 +34,7 @@ const getUserById = catchAsync(async (req, res) => {
     }
     res.send(user);
   } catch (error) {
+    console.error(`getUserById ${JSON.stringify(req.params)}`);
     console.error(error);
   }
 });
