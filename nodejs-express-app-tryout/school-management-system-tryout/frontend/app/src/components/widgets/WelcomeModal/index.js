@@ -11,6 +11,7 @@ import { alpha } from '@mui/material/styles';
 import { Check as CheckIcon } from 'src/icons/check';
 import { t } from 'i18next';
 import { useEffect } from 'react';
+import LaunchIcon from '@mui/icons-material/Launch';
 
 const style = {
   position: 'absolute',
@@ -95,6 +96,21 @@ function WelcomeModal() {
                 onClick={handleClose}
               >
                 {t('Go to dashboard')}
+              </Button>
+
+              <Button
+                fullWidth size="large" sx={{ mt: 4 }} variant="contained"
+                onClick={handleClose}
+              >
+                {t('Go to project management page')} <LaunchIcon />
+              </Button>
+
+
+              <Button
+                fullWidth size="large" sx={{ mt: 4 }} variant="contained"
+                onClick={handleClose}
+              >
+                {t('Go to documentation')} <LaunchIcon />
               </Button>
             </Paper>
           </Container>
