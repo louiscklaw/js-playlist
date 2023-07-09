@@ -1,5 +1,8 @@
 ## WITH-FRONTEND-BACKEND-TRYOUT
 
+### COLOR PALETTE
+https://flatuicolors.com/palette/defo
+
 ### LINKS
   - [http://localhost:3001/authentication/login](http://localhost:3001/authentication/login)
 
