@@ -11,7 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bull": "^3.13.0",
     "express": "latest",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "debug": "^4.1.1"
   }
 }

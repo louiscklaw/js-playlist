@@ -23,7 +23,7 @@ const init = () => {
     done(null, "Job done ");
   });
 
-  queue.add({ xNumbers: 10, ySeconds: 10 }, { retry: 10, delay: 3000 }); // Here you add the job
+  queue.add({ xNumbers: 10, ySeconds: 10 }, { retry: 10, delay: 5000 }); // Here you add the job
   queue.add({ xNumbers: 20, ySeconds: 5 }, { retry: 2, delay: 1000 }); // And other
 
   /* Compare the approach
@@ -31,6 +31,8 @@ const init = () => {
   count(20, 5);
   */
 };
+
+
 
 const count = (xNumbers, ySeconds) => {
   return new Promise((accept) => {
