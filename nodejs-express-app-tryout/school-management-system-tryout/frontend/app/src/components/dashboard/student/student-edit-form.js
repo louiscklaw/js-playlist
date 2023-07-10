@@ -10,6 +10,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import ClearIcon from '@mui/icons-material/Clear';
+import DoneIcon from '@mui/icons-material/Done';
 
 import * as Yup from 'yup';
 
@@ -236,7 +237,7 @@ export const StudentEditForm = props => {
                   <WarningIcon fontSize="small" />
                 </Avatar>
                 <div>
-                  <Typography variant="h5">{t('Deactivate')}</Typography>
+                  <Typography variant="h5">{t('Change account state')}</Typography>
                   <Typography
                     color="textSecondary"
                     sx={{ mt: 1 }}
@@ -256,25 +257,42 @@ export const StudentEditForm = props => {
                   py: 1.5,
                 }}
               >
+
+                {student.isAcSuspended ? (
+                  <Button
+                    sx={{
+                      backgroundColor: 'success.main',
+                      '&:hover': { backgroundColor: 'success.dark' },
+                    }}
+                    variant="contained"
+                    onClick={handleDeactivateStudent}
+                    startIcon={<ClearIcon />}
+                  >
+                    {t('Activate')}
+                  </Button>
+                ) : (
+                    <Button
+                      sx={{
+                        backgroundColor: 'error.main',
+                        '&:hover': { backgroundColor: 'error.dark' },
+                      }}
+                      variant="contained"
+                      onClick={handleDeactivateStudent}
+                      startIcon={<ClearIcon />}
+                    >
+                      {t('Deactivate')}
+                    </Button>
+                )}
+
                 <Button
                   onClick={handleDeactivateModalClose}
-                  sx={{ mr: 2 }}
+                  sx={{ ml: 2 }}
                   variant="outlined"
                   startIcon={<CancelIcon />}
                 >
                   {t('Cancel')}
                 </Button>
-                <Button
-                  sx={{
-                    backgroundColor: 'error.main',
-                    '&:hover': { backgroundColor: 'error.dark' },
-                  }}
-                  variant="contained"
-                  onClick={handleDeactivateStudent}
-                  startIcon={<DeleteIcon />}
-                >
-                  {t('Delete')}
-                </Button>
+
               </Box>
             </Paper>
           </Container>
@@ -473,16 +491,30 @@ export const StudentEditForm = props => {
               </Button>
             </NextLink>
 
-            <Button
-              // loading={formik.isSubmitting}
-              // disabled={formik.isSubmitting}
-              color="error"
-              onClick={handleDeactivateModalOpen}
-              disabled={openDeactivateModal}
-              startIcon={<ClearIcon />}
-            >
-              {t('Deactivate')}
-            </Button>
+            {student.isAcSuspended ? (
+
+              <Button
+                // loading={formik.isSubmitting}
+                color="warning"
+                onClick={handleDeactivateModalOpen}
+                disabled={openDeactivateModal}
+                startIcon={<DoneIcon />}
+              >
+                {t('Activate')}
+              </Button>
+            ) : (
+
+                <Button
+                  // loading={formik.isSubmitting}
+                  // disabled={formik.isSubmitting}
+                  color="error"
+                  onClick={handleDeactivateModalOpen}
+                  disabled={openDeactivateModal}
+                  startIcon={<ClearIcon />}
+                >
+                  {t('Deactivate')}
+                </Button>
+            )}
 
             <Button
               // loading={formik.isSubmitting}

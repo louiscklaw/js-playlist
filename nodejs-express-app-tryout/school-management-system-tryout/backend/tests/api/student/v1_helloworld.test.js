@@ -198,6 +198,38 @@ describe('Student CRUD test', () => {
     });
   });
 
+  test('deactivate student by id', async () => {
+    await insertStudents([studentOne]);
+
+    const res = await request(app)
+      .patch(`/v1/students/${studentOne._id}`)
+      .set('Authorization', `Bearer ${studentOneAccessToken}`)
+      .send({ isAcSuspended: true })
+      .expect(httpStatus.OK);
+
+    const dbUser = await Student.findById(studentOne._id);
+    expect(dbUser).toBeDefined();
+
+    expect(dbUser.isAcSuspended).toEqual(true);
+  });
+
+  test('activate student by id', async () => {
+    await insertStudents([studentOne]);
+    var dbUser = await Student.findById(studentOne._id);
+    dbUser.isAcSuspended = true
+    dbUser.save()
+
+    const res = await request(app)
+      .patch(`/v1/students/${studentOne._id}`)
+      .set('Authorization', `Bearer ${studentOneAccessToken}`)
+      .send({ isAcSuspended: false })
+      .expect(httpStatus.OK);
+
+    dbUser = await Student.findById(studentOne._id);
+    expect(dbUser).toBeDefined();
+    expect(dbUser.isAcSuspended).toEqual(false);
+  });
+
   // NOTE: updateStudentById
   test('modify student by id', async () => {
     await insertStudents([studentOne]);

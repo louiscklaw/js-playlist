@@ -78,6 +78,7 @@ const updateStudent = {
       country: Joi.string().allow(''),
       hasDiscount: Joi.boolean(),
       isVerified: Joi.boolean(),
+      isAcSuspended: Joi.boolean(),
       phone: Joi.string().allow(''),
       state: Joi.string(),
     })

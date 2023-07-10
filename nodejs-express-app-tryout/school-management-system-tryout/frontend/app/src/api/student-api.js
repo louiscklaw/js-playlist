@@ -20,6 +20,26 @@ class StudentApi {
     return axios.delete(`${API_ENDPOINT}/${studentId}`);
   }
 
+  deactivateStudentById(studentId) {
+    const accessToken = globalThis.localStorage.getItem('accessToken');
+    return axios.patch(`${API_ENDPOINT}/${studentId}`,
+      { isAcSuspended: true },
+      {
+        headers: { 'Authorization': `Bearer ${accessToken}` }
+      })
+      .then(res => console.log(res))
+  }
+
+  activateStudentById(studentId) {
+    const accessToken = globalThis.localStorage.getItem('accessToken');
+    return axios.patch(`${API_ENDPOINT}/${studentId}`,
+      { isAcSuspended: false },
+      {
+        headers: { 'Authorization': `Bearer ${accessToken}` }
+      })
+      .then(res => console.log(res))
+  }
+
   updateStudentById(studentId, values) {
     return axios
       .patch(`${API_ENDPOINT}/${studentId}`, values)

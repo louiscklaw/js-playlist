@@ -26,6 +26,7 @@ import { store } from '../store';
 import { createTheme } from '../theme';
 import { createEmotionCache } from '../utils/create-emotion-cache';
 import WelcomeModal from 'src/components/widgets/WelcomeModal';
+import { SettingsButton } from 'src/components/settings-button';
 
 Router.events.on('routeChangeStart', nProgress.start);
 Router.events.on('routeChangeError', nProgress.done);
@@ -71,7 +72,7 @@ const App = props => {
                       <RTL direction={settings.direction}>
                         <CssBaseline />
                         <Toaster position="top-center" />
-                        {/* <SettingsButton /> */}
+                        <SettingsButton />
                         {/* <QuestionFab /> */}
 
                         <AuthConsumer>

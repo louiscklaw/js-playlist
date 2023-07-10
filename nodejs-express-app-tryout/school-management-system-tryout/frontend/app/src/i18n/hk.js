@@ -47,5 +47,6 @@ export default {
     'Need Help?': '需要帮助吗？',
     'Check our docs': '查看我们的文档',
     Documentation: '文档',
+    "See all students": "查看所有学生"
   },
 };

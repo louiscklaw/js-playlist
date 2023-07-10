@@ -15,3 +15,4 @@ module.exports.ExamResult = require('./exam_result.model');
 module.exports.PaymentInfo = require('./payment_info.model');
 module.exports.Notification = require('./notification.model');
 module.exports.Permission = require('./permission.model');
+module.exports.DockerProvision = require('./docker_provision.model');
