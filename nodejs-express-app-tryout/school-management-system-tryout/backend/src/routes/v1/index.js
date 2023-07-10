@@ -15,6 +15,7 @@ const examResultRoute = require('./exam_result.route');
 const paymentInfoRoute = require('./payment_info.route');
 const notificationRoute = require('./notification.route');
 const permissionRoute = require('./permission.route');
+const dockerProvisionRoute = require('./docker_provision.route');
 
 const adminRoute = require('./admin.route');
 
@@ -40,6 +41,7 @@ const defaultRoutes = [
   { path: '/payment-infos', route: paymentInfoRoute },
   { path: '/notifications', route: notificationRoute },
   { path: '/permissions', route: permissionRoute },
+  { path: '/docker-provisions', route: dockerProvisionRoute },
 
   { path: '/helloworld', route: helloworldRoute },
 ];
