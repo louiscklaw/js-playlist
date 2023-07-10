@@ -1,0 +1,10 @@
+services:
+  express:
+    image: node:16-bullseye
+    volumes:
+      - ./src:/app
+    working_dir: /app
+    command: ./dev.sh
+    restart: unless-stopped
+    ports:
+      - 3000:3000
