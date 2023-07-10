@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./index.js"
+    "create": "node ./create_docker.js",
+    "stop": "node ./stop_docker.js",
+    "test": "npm run create && npm run stop"
   },
   "keywords": [],
   "author": "",
