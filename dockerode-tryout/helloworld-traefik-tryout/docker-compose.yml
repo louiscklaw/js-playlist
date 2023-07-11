@@ -1,0 +1,63 @@
+services:
+  express:
+    # image: node:16-bullseye
+    build: src
+    volumes:
+      - ./src:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /app
+    restart: unless-stopped
+    ports:
+      - 3001:3001
+      - 4002:4002
+    command: sleep infinity
+
+  whoami-helloworld:
+    image: 'traefik/whoami'
+    restart: unless-stopped
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.whoami-helloworld-http.rule=Host("whoami.localhost")'
+      - 'traefik.http.routers.whoami-helloworld-http.entrypoints=web'
+      - 'traefik.http.routers.whoami-helloworld-http.middlewares=whoami-helloworld-https'
+      - 'traefik.http.middlewares.whoami-helloworld-https.redirectscheme.scheme=https'
+      - 'traefik.http.routers.whoami-helloworld-https.rule=Host("whoami.localhost")'
+      - 'traefik.http.routers.whoami-helloworld-https.entrypoints=websecure'
+      - 'traefik.http.routers.whoami-helloworld-https.tls.certresolver=myresolver'
+
+    networks:
+      traefik-network:
+
+  traefik:
+    image: 'traefik:v2.10'
+    container_name: 'traefik'
+    restart: unless-stopped
+    command:
+      - "--log.level=INFO"
+      - "--global.checkNewVersion=true"
+      - "--global.sendAnonymousUsage=false"
+      - "--api=true"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=${EMAIL}"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8080:8080'
+
+    volumes:
+      - './volumes/letsencrypt:/letsencrypt'
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+    networks:
+      traefik-network:
+
+networks:
+  traefik-network:

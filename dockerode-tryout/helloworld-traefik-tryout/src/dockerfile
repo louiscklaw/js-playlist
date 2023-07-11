@@ -1,0 +1,4 @@
+FROM node:16-bullseye
+
+RUN mkdir /app
+RUN mkdir /store

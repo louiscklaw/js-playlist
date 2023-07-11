@@ -1,0 +1,16 @@
+# FROM traefik/whoami
+FROM node:20-bullseye-slim
+
+
+
+EXPOSE 80
+EXPOSE 443
+
+RUN mkdir /app
+COPY ./package.json /app/package.json
+COPY ./entry.sh /app/entry.sh
+COPY ./public /app/public
+
+WORKDIR /app
+
+CMD './entry.sh'
