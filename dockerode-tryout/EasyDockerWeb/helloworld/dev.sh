@@ -11,5 +11,4 @@ cd src
     -u 1000:1000 \
     -p 3000:3000 \
     node:lts bash
-
 cd -

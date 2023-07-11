@@ -1,3 +1,6 @@
+// NOTE: createContainerByJson
+// same as createContainer by json format in content
+
 const { default: fetch, Headers } = require("node-fetch-cjs");
 
 (async () => {
@@ -18,7 +21,6 @@ const { default: fetch, Headers } = require("node-fetch-cjs");
       "Cache-Control": "no-cache"
     },
     "referrer": "http://localhost:3000/containers",
-    // "body": "containerImage=ubuntu%3Alatest&containerName=test-ubuntu--1&containerVolumeSource=&containerVolumeDistination=&containerPortSource=&containerPortDistination=&containerCmd=sleep+infinity",
     "body": JSON.stringify({
       "containerImage": "ubuntu:latest",
       "containerName": "test-ubuntu--2",
@@ -26,7 +28,8 @@ const { default: fetch, Headers } = require("node-fetch-cjs");
       "containerVolumeDistination": "",
       "containerPortSource": "",
       "containerPortDistination": "",
-      "containerCmd": "sleep infinity"
+      "containerCmd": "sleep infinity",
+      "containerLabel": { "hello": "world" }
     }),
     "method": "POST",
     "mode": "cors"

@@ -46,6 +46,66 @@ const returnContainersRouter = (io) => {
     });
   });
 
+  router.post('/createNewClient', async (req, res, next) => {
+    console.log('create new client');
+    try {
+
+      // validate input
+      var CONTAINER_NAME = req.body.containerName;
+
+      // gen names
+      var VOLUME_NAME = `${CONTAINER_NAME}`
+      var VOLUME_NAME_APP = `${VOLUME_NAME}-app`
+      var VOLUME_NAME_STORE = `${VOLUME_NAME}-store`
+
+      let options = {
+        name: CONTAINER_NAME,
+        Image: "traefik/whoami",
+        WorkingDir: "/app",
+        AttachStdin: false,
+        AttachStdout: true,
+        AttachStderr: true,
+        Tty: false,
+        HostConfig: {
+          AutoRemove: true,
+          Binds: [
+            `${VOLUME_NAME_APP}:/app`,
+            `${VOLUME_NAME_STORE}:/store`
+          ],
+        },
+        ExposedPorts: {
+          "80": {}
+        },
+        Labels: {
+          'hello': 'world',
+          [`traefik.http.routers.${CONTAINER_NAME}-http.rule`]: `Host("${CONTAINER_NAME}.localhost")`,
+          [`traefik.http.routers.${CONTAINER_NAME}-http.entrypoints`]: `web`,
+
+          [`traefik.http.routers.${CONTAINER_NAME}-http.middlewares`]: `${CONTAINER_NAME}-https`,
+
+          [`traefik.http.middlewares.${CONTAINER_NAME}-https.redirectscheme.scheme`]: `https`,
+          [`traefik.http.routers.${CONTAINER_NAME}-https.rule`]: `Host("${CONTAINER_NAME}.localhost")`,
+          [`traefik.http.routers.${CONTAINER_NAME}-https.entrypoints`]: `websecure`,
+          [`traefik.http.routers.${CONTAINER_NAME}-https.tls.certresolver`]: `myresolver`,
+        }
+      };
+
+      await docker.pull('traefik/whoami');
+      var container = await docker.createContainer(options);
+      await container.start();
+
+      res.send({ status: 'success' });
+
+    } catch (error) {
+      console.log('error found');
+      console.log(error);
+
+      res.send({
+        state: 'error createNewClient',
+      })
+    }
+  })
+
   router.post('/createByJson', (req, res, next) => {
     console.log(req.body);
 
@@ -55,9 +115,7 @@ const returnContainersRouter = (io) => {
       AttachStdout: true,
       AttachStderr: true,
       Tty: false,
-      HostConfig: {
-        PortBindings: {},
-      },
+      HostConfig: { PortBindings: {}, },
     };
 
     // name
@@ -110,9 +168,9 @@ const returnContainersRouter = (io) => {
         AttachStdout: true,
         AttachStderr: true,
         Tty: true,
-        //Cmd: ['/bin/sh'],
         OpenStdin: false,
         StdinOnce: false,
+        //Cmd: ['/bin/sh'],
         ...options,
       };
 

@@ -15,6 +15,7 @@ const api = require('./routes/api');
 const overview = require('./routes/overview')(io);
 const containers = require('./routes/containers')(io);
 const images = require('./routes/images')(io);
+const customContainers = require('./routes/customContainers')(io);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -63,6 +64,7 @@ app.use('/api', api);
 app.use('/overview', overview);
 app.use('/containers', containers);
 app.use('/images', images);
+app.use('/customContainers', customContainers);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
