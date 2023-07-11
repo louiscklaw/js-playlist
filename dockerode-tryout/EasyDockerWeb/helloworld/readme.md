@@ -1,12 +1,11 @@
 # README
 
-### prepare custom docker image
+### prepare custom docker image, to be used in `customContainers.js`
 ```bash
 $ cd test_docker_image
 
 $ docker build . -t custom_image
 ```
-
 
 ### develop
 ```bash

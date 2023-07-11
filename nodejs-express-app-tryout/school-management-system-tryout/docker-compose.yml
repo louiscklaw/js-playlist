@@ -27,6 +27,11 @@ services:
     networks:
       - node-network
 
+  docker-api:
+    build: ./backend/docker-api
+    networks:
+      - node-network
+
   mongodb:
     image: mongo:4.2.1-bionic
     ports:

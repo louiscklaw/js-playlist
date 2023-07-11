@@ -9,7 +9,7 @@ services:
     command: yarn dev -L
     # command: sleep infinity
     volumes:
-      - ./backend:/usr/src/node-app:ro
+      - ./backend/node-app:/usr/src/node-app:ro
     depends_on:
       - mongodb
       - email-server
