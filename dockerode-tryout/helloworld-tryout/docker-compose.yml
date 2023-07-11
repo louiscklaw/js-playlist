@@ -1,0 +1,13 @@
+services:
+  express:
+    # image: node:16-bullseye
+    build: src
+    volumes:
+      - ./src:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /app
+    restart: unless-stopped
+    ports:
+      - 3001:3001
+      - 4002:4002
+    command: sleep infinity
