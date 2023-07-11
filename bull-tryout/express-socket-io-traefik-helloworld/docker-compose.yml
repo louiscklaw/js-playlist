@@ -1,0 +1,87 @@
+services:
+  redis:
+    image: redis:6.0.7
+    # container_name: redis
+    # hostname: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - ./volumes/redis/data:/data
+    command: redis-server
+    restart: unless-stopped
+
+  # redisinsight:
+  #   image: redislabs/redisinsight:latest
+  #   # container_name: redisinsight
+  #   # hostname: redisinsight
+  #   ports:
+  #     - 8001:8001
+  #   volumes:
+  #     - ./volumes/redisinsight:/db
+  #   restart: unless-stopped
+
+  # app:
+  #   image: node:16-bullseye
+  #   volumes:
+  #     - ./src:/app
+  #   working_dir: /app
+  #   command: sleep infinity
+  #   restart: unless-stopped
+
+  express:
+    image: node:16-bullseye
+    volumes:
+      - ./express:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /app
+    restart: unless-stopped
+    ports:
+      - 3001:3001
+      - 4002:4002
+    command: sleep infinity
+
+  traefik:
+    image: 'traefik:v2.10'
+    container_name: 'traefik'
+    restart: unless-stopped
+    command:
+      - '--log.level=INFO'
+      - '--global.checkNewVersion=true'
+      - '--global.sendAnonymousUsage=false'
+
+      - '--api=true'
+      - '--api.insecure=true'
+      - '--providers.docker=true'
+      - '--providers.docker.exposedbydefault=false'
+
+      - '--entrypoints.web.address=:80'
+      - '--entrypoints.web.http.redirections.entryPoint.to=websecure'
+      - '--entrypoints.web.http.redirections.entrypoint.scheme=https'
+
+      - '--entrypoints.websecure.address=:443'
+
+      - '--certificatesresolvers.myresolver.acme.tlschallenge=true'
+      - '--certificatesresolvers.myresolver.acme.email=${EMAIL}'
+      - '--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json'
+
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8080:8080'
+
+    volumes:
+      - './volumes/letsencrypt:/letsencrypt'
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+
+  whoami-helloworld:
+    image: 'traefik/whoami'
+    restart: unless-stopped
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.whoami-helloworld-http.rule=Host(`whoami.helloworld.com`)'
+      - 'traefik.http.routers.whoami-helloworld-http.entrypoints=web'
+      - 'traefik.http.routers.whoami-helloworld-http.middlewares=whoami-helloworld-https'
+      - 'traefik.http.middlewares.whoami-helloworld-https.redirectscheme.scheme=https'
+      - 'traefik.http.routers.whoami-helloworld-https.rule=Host(`whoami.helloworld.com`)'
+      - 'traefik.http.routers.whoami-helloworld-https.entrypoints=websecure'
+      - 'traefik.http.routers.whoami-helloworld-https.tls.certresolver=myresolver'
