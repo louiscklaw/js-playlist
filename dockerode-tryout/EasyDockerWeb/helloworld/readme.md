@@ -1,9 +1,5 @@
 # README
 
-
-
-
-
 ### prepare custom docker image
 ```bash
 $ cd test_docker_image
