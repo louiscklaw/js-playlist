@@ -1,0 +1,23 @@
+FROM node:16-buster-slim
+
+# Set DEBIAN_FRONTEND to noninteractive
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt update &&\
+  apt install -yy git curl wget
+
+# environment
+RUN mkdir /app
+WORKDIR /app
+COPY ./package.json /app
+COPY ./public /app
+RUN chown -R node:node /app
+
+USER node
+
+RUN npm install
+
+EXPOSE 8080
+
+# CMD ["/bin/bash"]
+CMD ["npm", "run", "start"]

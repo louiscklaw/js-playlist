@@ -35,6 +35,13 @@ services:
     networks:
       - node-network
 
+  helloworld:
+    build: backend/helloworld
+    ports:
+      - 8080:8080
+    networks:
+      - node-network
+
   mongodb:
     image: mongo:4.2.1-bionic
     ports:
@@ -59,6 +66,21 @@ services:
     working_dir: /app
     # command: sleep infinity
     command: ./dev.sh
+
+  whoami-iamon99:
+    image: 'traefik/whoami'
+    restart: unless-stopped
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.whoami-iamon99-http.rule=Host(`whoami.iamon99.com`)'
+      - 'traefik.http.routers.whoami-iamon99-http.entrypoints=web'
+      - 'traefik.http.routers.whoami-iamon99-http.middlewares=whoami-iamon99-https'
+      - 'traefik.http.middlewares.whoami-iamon99-https.redirectscheme.scheme=https'
+      - 'traefik.http.routers.whoami-iamon99-https.rule=Host(`whoami.iamon99.com`)'
+      - 'traefik.http.routers.whoami-iamon99-https.entrypoints=websecure'
+      - 'traefik.http.routers.whoami-iamon99-https.tls.certresolver=myresolver'
+    # depends_on:
+    #   - traefik
 
 volumes:
   dbdata:

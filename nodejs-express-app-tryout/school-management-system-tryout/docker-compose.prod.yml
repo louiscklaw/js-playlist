@@ -1,4 +1,18 @@
 services:
-  node-app:
-    container_name: node-app-prod
-    command: yarn start
+  whoami-iamon99:
+    image: 'traefik/whoami'
+    restart: unless-stopped
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.dashboard-demo-iamon99-http.rule=Host(`dashboard-demo.iamon99.com`)'
+      - 'traefik.http.routers.dashboard-demo-iamon99-http.entrypoints=web'
+      - 'traefik.http.routers.dashboard-demo-iamon99-http.middlewares=dashboard-demo-iamon99-https'
+      - 'traefik.http.middlewares.dashboard-demo-iamon99-https.redirectscheme.scheme=https'
+      - 'traefik.http.routers.dashboard-demo-iamon99-https.rule=Host(`dashboard-demo.iamon99.com`)'
+      - 'traefik.http.routers.dashboard-demo-iamon99-https.entrypoints=websecure'
+      - 'traefik.http.routers.dashboard-demo-iamon99-https.tls.certresolver=myresolver'
+
+networks:
+  default:
+    external:
+      name: traefik-proxy-network
