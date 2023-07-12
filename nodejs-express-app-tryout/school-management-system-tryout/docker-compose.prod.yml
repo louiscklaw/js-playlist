@@ -1,5 +1,5 @@
 services:
-  whoami-iamon99:
+  whoami-dashboard-demo:
     image: 'traefik/whoami'
     restart: unless-stopped
     labels:

@@ -54,7 +54,7 @@ $ npm run seed
 
 ### to start production
 ```bash
-$ npm run docker:dev
+$ npm run docker:prod
 ```
 
 ### frontend

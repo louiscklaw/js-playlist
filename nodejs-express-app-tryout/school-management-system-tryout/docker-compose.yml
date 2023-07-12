@@ -1,84 +1,16 @@
 services:
-  frontend:
-    # NOTE: ./frontend contains source for frontend
-    build: ./frontend/app
-    volumes:
-      - frontend_node_modules:/app/node_modules
-      - ./frontend/app:/app
-    working_dir: /app
-    user: 1000:1000
-    ports:
-      - 3001:3000
-    command: ./entry.sh
-
-  # bakend
-  node-app:
-    build: ./backend/node-app
-    image: node-app
-    environment:
-      - MONGODB_URL=mongodb://mongodb:27017/node-boilerplate
-      # https://stackoverflow.com/questions/67903114/javascript-heap-out-of-memory-in-docker-image-run
-      - NODE_OPTIONS=--max_old_space_size=2048
-    ports:
-      - 3000:3000
-    depends_on:
-      - mongodb
-    volumes:
-      - ./backend/node-app:/usr/src/node-app
-    networks:
-      - node-network
-
-  docker-api:
-    build: backend/docker-api
-    ports:
-      - 8080:8080
-    networks:
-      - node-network
-
-  helloworld:
-    build: backend/helloworld
-    ports:
-      - 8080:8080
-    networks:
-      - node-network
-
-  mongodb:
-    image: mongo:4.2.1-bionic
-    ports:
-      - 27017:27017
-    volumes:
-      - dbdata:/data/db
-    networks:
-      - node-network
-    # environment:
-    #   - MONGO_INITDB_ROOT_USERNAME=user
-    #   - MONGO_INITDB_ROOT_PASSWORD=password
-
-  documentation:
-    build: documentation
-    user: 1000:1000
-    ports:
-      - 8089:8089
-      - 8084:8084
-    volumes:
-      - ./documentation:/app
-      - documentation_node_modules:/app/node_modules
-    working_dir: /app
-    # command: sleep infinity
-    command: ./dev.sh
-
-  whoami-iamon99:
+  whoami-dashbord-demo:
     image: 'traefik/whoami'
     restart: unless-stopped
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.whoami-iamon99-http.rule=Host(`whoami.iamon99.com`)'
-      - 'traefik.http.routers.whoami-iamon99-http.entrypoints=web'
-      - 'traefik.http.routers.whoami-iamon99-http.middlewares=whoami-iamon99-https'
-      - 'traefik.http.middlewares.whoami-iamon99-https.redirectscheme.scheme=https'
-      - 'traefik.http.routers.whoami-iamon99-https.rule=Host(`whoami.iamon99.com`)'
-      - 'traefik.http.routers.whoami-iamon99-https.entrypoints=websecure'
-      - 'traefik.http.routers.whoami-iamon99-https.tls.certresolver=myresolver'
+      - 'traefik.http.routers.whoami-dashbord-demo-iamon99-http.rule=Host(`whoami-dashbord-demo.iamon99.com`)'
+      - 'traefik.http.routers.whoami-dashbord-demo-iamon99-http.entrypoints=web'
+      - 'traefik.http.routers.whoami-dashbord-demo-iamon99-http.middlewares=whoami-dashbord-demo-iamon99-https'
+      - 'traefik.http.middlewares.whoami-dashbord-demo-iamon99-https.redirectscheme.scheme=https'
+      - 'traefik.http.routers.whoami-dashbord-demo-iamon99-https.rule=Host(`whoami-dashbord-demo.iamon99.com`)'
+      - 'traefik.http.routers.whoami-dashbord-demo-iamon99-https.entrypoints=websecure'
+      - 'traefik.http.routers.whoami-dashbord-demo-iamon99-https.tls.certresolver=myresolver'
     # depends_on:
     #   - traefik
 
