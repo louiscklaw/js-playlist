@@ -1,0 +1,23 @@
+services:
+  browserless:
+    image: browserless/chrome:1-chrome-stable
+    ports:
+      - 3000:3000
+    environment:
+      - DEBUG=browserless/chrome
+      - MAX_CONCURRENT_SESSIONS=100
+      - CONNECTION_TIMEOUT=300000
+      - MAX_QUEUE_LENGTH=100
+      - ENABLE_CORS=true
+      - ENABLE_DEBUG_VIEWER=true
+      - EXIT_ON_HEALTH_FAILURE=true
+    restart: unless-stopped
+
+  app:
+    image: node:16-buster-slim
+    restart: unless-stopped
+    user: 1000:1000
+    working_dir: /app
+    volumes:
+      - ./src:/app
+    command: sleep infinity
