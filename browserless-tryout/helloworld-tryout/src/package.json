@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "screenshot_js": "node ./screenshot.js",
-    "scrape_js": "node ./scrape.js"
+    "scrape_js": "node ./scrape.js",
+    "portfolio_js": "node ./portfolio.js"
   },
   "keywords": [],
   "author": "",
