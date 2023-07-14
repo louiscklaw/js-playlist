@@ -1,6 +1,10 @@
 'use strict';
 
+const fs = require('fs'), path = require('path');
+
 const puppeteer = require('puppeteer-core');
+
+const PROJ_ROOT = __dirname;
 
 (async () => {
   const browser = await puppeteer.connect({ browserWSEndpoint: 'ws://browserless:3000' });
@@ -15,8 +19,14 @@ const puppeteer = require('puppeteer-core');
       title: el.textContent,
       href: el.href,
     }));
-    return JSON.stringify(results);
+    return JSON.stringify(results, null, 2);
   });
+
+  await fs.writeFileSync(
+    path.join(__dirname, '/output/test.json'),
+    items,
+    { encoding: 'utf-8' }
+  )
 
   // Finally, we return an object, which triggers a JSON file download
   return JSON.parse(items);
