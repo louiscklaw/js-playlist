@@ -5,9 +5,9 @@ services:
       - 3000:3000
     environment:
       - DEBUG=browserless/chrome
-      - MAX_CONCURRENT_SESSIONS=100
+      - MAX_CONCURRENT_SESSIONS=10
       - CONNECTION_TIMEOUT=300000
-      - MAX_QUEUE_LENGTH=100
+      - MAX_QUEUE_LENGTH=9999
       - ENABLE_CORS=true
       - ENABLE_DEBUG_VIEWER=true
       - EXIT_ON_HEALTH_FAILURE=true
@@ -19,5 +19,16 @@ services:
     user: 1000:1000
     working_dir: /app
     volumes:
-      - ./src:/app
+      - ./src/app:/app
     command: sleep infinity
+
+  bait:
+    image: node:16-buster-slim
+    restart: unless-stopped
+    user: 1000:1000
+    working_dir: /app
+    volumes:
+      - ./src/bait:/app
+    command: npm run start
+    ports:
+      - 8080

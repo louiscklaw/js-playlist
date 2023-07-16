@@ -10,11 +10,14 @@ const PROJ_ROOT = __dirname;
   const browser = await puppeteer.connect({ browserWSEndpoint: 'ws://browserless:3000' });
   const page = await browser.newPage();
 
-  await page.goto('https://news.ycombinator.com');
+  await page.goto('https://www.carousell.com.hk/search/coding');
 
   // Here, we inject some JavaScript into the page to build a list of results
   const items = await page.evaluate(() => {
-    const elements = [...document.querySelectorAll('.athing a')];
+    // NOTE: remove head advertisment 
+    document.querySelectorAll('#main > div:nth-child(1) > div')[0].remove()
+
+    const elements = [...document.querySelectorAll('#main > div:nth-child(1) > div')];
     const results = elements.map((el) => ({
       title: el.textContent,
       href: el.href,
@@ -23,7 +26,7 @@ const PROJ_ROOT = __dirname;
   });
 
   await fs.writeFileSync(
-    path.join(PROJ_ROOT, '/output/test.json'),
+    path.join(__dirname, '/output/test.json'),
     items,
     { encoding: 'utf-8' }
   )
