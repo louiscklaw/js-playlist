@@ -29,6 +29,6 @@ services:
     working_dir: /app
     volumes:
       - ./src/bait:/app
-    command: npm run start
+    command: npm i && npm run start
     ports:
       - 8080

@@ -10,7 +10,7 @@ const PROJ_ROOT = __dirname;
   const browser = await puppeteer.connect({ browserWSEndpoint: 'ws://browserless:3000' });
   const page = await browser.newPage();
 
-  await page.goto('https://www.hko.gov.hk');
+  await page.goto('http://bait:8080');
 
   console.log(JSON.stringify({ hello: 'world' }));
 

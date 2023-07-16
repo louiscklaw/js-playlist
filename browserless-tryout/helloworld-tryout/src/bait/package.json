@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server ./public"
+    "start": "live-server --host=0.0.0.0 ./public"
   },
   "keywords": [],
   "author": "",
