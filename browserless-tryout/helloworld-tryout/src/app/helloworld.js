@@ -1,6 +1,7 @@
 'use strict';
 
-const fs = require('fs'), path = require('path');
+const fs = require('fs'),
+  path = require('path');
 
 const puppeteer = require('puppeteer-core');
 
