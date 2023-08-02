@@ -1,12 +1,12 @@
 {
-  "name": "docker-poe-tryout",
+  "name": "logdb-helloworld",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docker_rebuild": "docker compose up -d",
-    "gitUpdate": "git add . && git commit -m\"update docker-poe-tryout,\"",
+    "gitUpdate": "git add . && git commit -m\"update logdb-helloworld,\"",
     "update_readme": "github-markdown README.md > docs/index.html"
   },
   "keywords": [],
