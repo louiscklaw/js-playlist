@@ -19,6 +19,9 @@ services:
       # ME_CONFIG_MONGODB_ADMINPASSWORD: admin
       ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_PORT: '27017'
+    volumes:
+      - ./src/mongo-express/src:/src
+    command: mongo-express
     ports:
       - 8081:8081
     depends_on:
