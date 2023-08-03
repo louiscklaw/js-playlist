@@ -27,7 +27,7 @@ services:
   redis:
     image: redis:6.0.7
     # container_name: redis
-    hostname: redis
+    # hostname: redis
     ports:
       - 6379:6379
     volumes:
@@ -39,7 +39,7 @@ services:
   redisinsight:
     image: redislabs/redisinsight:latest
     # container_name: redisinsight
-    hostname: redisinsight
+    # hostname: redisinsight
     ports:
       - 8001:8001
     volumes:
@@ -64,7 +64,7 @@ services:
     depends_on:
       - mongo
       - redis
-    command: sleep infinity
+    # command: sleep infinity
 
 volumes:
   redisinsight_store:

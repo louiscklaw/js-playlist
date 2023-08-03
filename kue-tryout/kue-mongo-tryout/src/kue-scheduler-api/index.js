@@ -10,6 +10,7 @@ var kue = require('kue-scheduler')
 
 const port = 3002
 
+
 var Queue = kue.createQueue({
   redis: { host: 'redis', port: 6379, },
 })
