@@ -73,9 +73,8 @@ services:
     build: ./src/static-share
     volumes:
       - ./src/static-share:/app
+      - ./volumes/static-share:/share
     working_dir: /app
-    # volumes:
-    #   - ./volumes/static-share:/share
     ports:
       - 8080:8080
     command: sleep infinity

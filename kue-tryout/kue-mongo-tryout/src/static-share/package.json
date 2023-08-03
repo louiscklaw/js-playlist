@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server --cors ./public",
+    "start": "http-server --cors /share",
     "gitUpdate": "git add . && git commit -m\"update static-share,\""
   },
   "keywords": [],
