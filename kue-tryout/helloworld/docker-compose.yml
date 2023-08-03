@@ -4,7 +4,7 @@ services:
     container_name: redis
     hostname: redis
     ports:
-      - '6379:6379'
+      - 6379:6379
     volumes:
       - ./volumes/redis/etc_redis:/etc/redis
       - ./volumes/redis/data:/data
@@ -16,7 +16,10 @@ services:
     container_name: redisinsight
     hostname: redisinsight
     ports:
-      - '8001:8001'
+      - 8001:8001
     volumes:
-      - ./volumes/redisinsight:/db
+      - redisinsight_store:/db
     restart: always
+
+volumes:
+  redisinsight_store:

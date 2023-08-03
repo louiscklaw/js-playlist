@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gitUpdate": "git add . && git commit -m\"update kue-tryout,\""
+    "gitUpdate": "git add . && git commit -m\"update kue-tryout,\"",
+    "docker_rebuild": "docker compose up -d --build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "kue": "^0.11.6"
+    "kue": "^0.11.6",
+    "kue-scheduler": "^0.10.15"
   }
 }
