@@ -69,5 +69,16 @@ services:
       - redis
     # command: sleep infinity
 
+  static-share:
+    build: ./src/static-share
+    volumes:
+      - ./src/static-share:/app
+    working_dir: /app
+    # volumes:
+    #   - ./volumes/static-share:/share
+    ports:
+      - 8080:8080
+    command: sleep infinity
+
 volumes:
   redisinsight_store:
