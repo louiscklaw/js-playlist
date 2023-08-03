@@ -77,7 +77,8 @@ services:
     working_dir: /app
     ports:
       - 8080:8080
-    command: sleep infinity
+    command: ./entry.sh
+    # command: sleep infinity
 
 volumes:
   redisinsight_store:
