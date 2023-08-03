@@ -18,7 +18,6 @@ Queue.process('now', 1, function (job, done) {
 
 });
 
-
 //listen on scheduler errors
 Queue.on('schedule error', function (error) {
   //handle all scheduling errors here
@@ -59,8 +58,9 @@ var job = Queue
   })
   .priority('normal');
 
-
-//schedule a job then
-for (var i = 0; i < 3; i++) {
+// schedule a job then
+for (var i = 0; i < 10; i++) {
   Queue.now(job);
 }
+
+console.log('done');

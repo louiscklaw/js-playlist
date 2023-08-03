@@ -26,7 +26,7 @@ services:
 
   redis:
     image: redis:6.0.7
-    container_name: redis
+    # container_name: redis
     hostname: redis
     ports:
       - 6379:6379
@@ -38,13 +38,33 @@ services:
 
   redisinsight:
     image: redislabs/redisinsight:latest
-    container_name: redisinsight
+    # container_name: redisinsight
     hostname: redisinsight
     ports:
       - 8001:8001
     volumes:
       - redisinsight_store:/db
     restart: always
+
+  dbapi:
+    build: ./src/dbapi
+    ports:
+      - 3001:3001
+    volumes:
+      - ./src/dbapi:/app
+    depends_on:
+      - mongo
+
+  kue-scheduler-api:
+    build: ./src/kue-scheduler-api
+    ports:
+      - 3002:3002
+    volumes:
+      - ./src/kue-scheduler-api:/app
+    depends_on:
+      - mongo
+      - redis
+    command: sleep infinity
 
 volumes:
   redisinsight_store:
