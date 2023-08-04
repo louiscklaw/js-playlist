@@ -20,29 +20,25 @@ var Queue = kue.createQueue({
 })
 
 //processing jobs
-Queue.process('now', 1, function (job, done) {
+Queue.process('now', 1, async function (job, done) {
   console.log('\nProcessing job with id %s at %s', job.id, new Date())
   const { data } = job
-  const { new_job_id, job_link } = data
+  const { new_job_post_id } = data
 
-  // http://dbapi:3001/api/v1/JobPost/${new_job_id}
-  fetch(`${JOBPOST_ENDPOINT}/${new_job_id}`, {
+  // NOTE: do long running task by this request ?
+   // http://dbapi:3001/api/v1/JobPost/${new_job_id}
+  var res = await fetch(`${JOBPOST_ENDPOINT}/${new_job_post_id}`, {
     method: 'patch',
     body: JSON.stringify({ state: 'job_process_done' }),
     headers: { 'Content-Type': 'application/json' },
   })
-    .then(res => res.json())
-    .then(res_json => {
-      // console.log(res_json)
-      console.log({ new_job_id })
+  var res_json = await res.json();
+  var json_input_filename = `/share/${new_job_post_id}/input.json`;
+  await fs.mkdirSync(path.dirname(json_input_filename));
+  await fs.writeFileSync(json_input_filename, JSON.stringify(res_json), { encoding: 'utf8' });
 
+  done(null, { deliveredAt: new Date(), res_json, data })
 
-      done(null, {
-        deliveredAt: new Date(),
-        res_json
-      })
-    })
-    .catch(err => console.log(err))
 })
 
 //listen on scheduler errors
@@ -73,23 +69,19 @@ Queue.on('schedule success', function (job) {
 
 app.post('/process_new_job_post', async (req, res) => {
   const req_body = req.body
-  const { new_job_id, job_post } = req_body
-  const { job_link } = job_post
-  console.log({ job_link })
+  const { new_job_post_id, job_post } = req_body
+  // console.log({ job_link })
 
   //prepare a job to perform
   //dont save it
-  var job = Queue.createJob('now', {
-    new_job_id,
-    job_link,
-  })
-    .attempts(3)
+  var job = Queue.createJob('now', { new_job_post_id, job_post })
+    .attempts(5)
     .backoff({ delay: 60000, type: 'fixed' })
     .priority('normal')
 
   Queue.now(job)
 
-  res.send({ hello: 'done' })
+  res.send({ state: 'received' })
 })
 
 try {

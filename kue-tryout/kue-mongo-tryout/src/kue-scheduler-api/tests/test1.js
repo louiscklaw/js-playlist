@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-Array(2)
+Array(1)
   .fill(0)
   .forEach(async (v, i) => {
     console.log(`writing log ${i}...`);
@@ -11,21 +11,22 @@ Array(2)
       state: 'job_found',
     };
 
-    const new_job_response = await fetch('http://localhost:3001/api/v1/JobPost', {
+    const add_db_response = await fetch('http://localhost:3001/api/v1/JobPost', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(job_post),
       state: 'JOB_POST_FOUND',
     });
-    const res_new_job_response = await new_job_response.json();
-    const new_job_id = res_new_job_response._id;
+    const db_json = await add_db_response.json();
+    const new_job_post_id = db_json._id;
 
-    const response = await fetch('http://localhost:3002/process_new_job_post', {
+    var payload = { new_job_post_id, job_post }
+    const process_response = await fetch('http://localhost:3002/process_new_job_post', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ new_job_id, job_post }),
+      body: JSON.stringify(payload),
     });
 
-    const res_json = await response.json();
-    console.log({ res_new_job_response, res_json });
+    const process_res_json = await process_response.json();
+    console.log({ db_json, payload, process_res_json });
   });
