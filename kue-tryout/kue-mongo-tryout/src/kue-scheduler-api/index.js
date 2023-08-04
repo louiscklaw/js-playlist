@@ -34,6 +34,9 @@ Queue.process('now', 1, function (job, done) {
     .then(res => res.json())
     .then(res_json => {
       // console.log(res_json)
+      console.log({ new_job_id })
+
+
       done(null, {
         deliveredAt: new Date(),
         res_json
