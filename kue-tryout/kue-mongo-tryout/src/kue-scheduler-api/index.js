@@ -1,13 +1,14 @@
 'use strict'
 
 const fs = require('fs')
+var path = require('path')
+
 const fetch = require('node-fetch')
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 app.use(bodyParser.json())
 
-var path = require('path')
 var kue = require('kue-scheduler')
 
 const PORT = 3002
