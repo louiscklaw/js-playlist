@@ -11,6 +11,8 @@ var path = require('path')
 var kue = require('kue-scheduler')
 
 const PORT = 3002
+const DBAPI_HOST = 'http://dbapi:3001/api/v1'
+const JOBPOST_ENDPOINT = `${DBAPI_HOST}/JobPost`
 
 var Queue = kue.createQueue({
   redis: { host: 'redis', port: 6379 },
@@ -22,7 +24,8 @@ Queue.process('now', 1, function (job, done) {
   const { data } = job
   const { new_job_id, job_link } = data
 
-  fetch(`http://dbapi:3001/api/v1/JobPost/${new_job_id}`, {
+  // http://dbapi:3001/api/v1/JobPost/${new_job_id}
+  fetch(`${JOBPOST_ENDPOINT}/${new_job_id}`, {
     method: 'patch',
     body: JSON.stringify({ state: 'job_process_done' }),
     headers: { 'Content-Type': 'application/json' },
