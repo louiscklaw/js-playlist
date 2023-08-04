@@ -1,5 +1,6 @@
 'use strict'
 
+const fs = require('fs')
 const fetch = require('node-fetch')
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -9,7 +10,7 @@ app.use(bodyParser.json())
 var path = require('path')
 var kue = require('kue-scheduler')
 
-const port = 3002
+const PORT = 3002
 
 var Queue = kue.createQueue({
   redis: { host: 'redis', port: 6379 },
@@ -28,11 +29,10 @@ Queue.process('now', 1, function (job, done) {
   })
     .then(res => res.json())
     .then(res_json => {
-      console.log(res_json)
-    })
-    .then(() => {
+      // console.log(res_json)
       done(null, {
         deliveredAt: new Date(),
+        res_json
       })
     })
     .catch(err => console.log(err))
@@ -86,8 +86,8 @@ app.post('/process_new_job_post', async (req, res) => {
 })
 
 try {
-  var server = app.listen(port)
-  console.log('express init done.')
+  app.listen(PORT)
+  console.log(`express init done on oprt ${PORT}.`)
 } catch (error) {
   console.log(error)
 } finally {
