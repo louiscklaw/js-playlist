@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 
-Array(999)
+Array(2)
   .fill(0)
   .forEach(async (v, i) => {
     console.log(`writing log ${i}...`)

@@ -64,6 +64,7 @@ services:
       - 3002:3002
     volumes:
       - ./src/kue-scheduler-api:/app
+      - ./volumes/static-share:/share
     depends_on:
       - mongo
       - redis
