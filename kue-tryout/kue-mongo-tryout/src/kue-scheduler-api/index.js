@@ -11,34 +11,31 @@ var kue = require('kue-scheduler')
 
 const port = 3002
 
-
 var Queue = kue.createQueue({
-  redis: { host: 'redis', port: 6379, },
+  redis: { host: 'redis', port: 6379 },
 })
 
 //processing jobs
 Queue.process('now', 1, function (job, done) {
   console.log('\nProcessing job with id %s at %s', job.id, new Date())
-  const { data } = job;
-  const { new_job_id, job_link } = data;
+  const { data } = job
+  const { new_job_id, job_link } = data
 
-  var myTimeout = setTimeout(() => {
-
-    fetch(`http://dbapi:3001/api/v1/JobPost/${new_job_id}`, {
-      method: 'patch',
-      body: JSON.stringify({ state: 'job_process_done' }),
-      headers: { 'Content-Type': 'application/json' }
+  fetch(`http://dbapi:3001/api/v1/JobPost/${new_job_id}`, {
+    method: 'patch',
+    body: JSON.stringify({ state: 'job_process_done' }),
+    headers: { 'Content-Type': 'application/json' },
+  })
+    .then(res => res.json())
+    .then(res_json => {
+      console.log(res_json)
     })
-      .then(res => res.json())
-      .then(res_json => {
-        console.log(res_json);
+    .then(() => {
+      done(null, {
+        deliveredAt: new Date(),
       })
-
-    clearTimeout(myTimeout)
-    done(null, {
-      deliveredAt: new Date(),
     })
-  }, 1000)
+    .catch(err => console.log(err))
 })
 
 //listen on scheduler errors
@@ -67,20 +64,20 @@ Queue.on('schedule success', function (job) {
     })
 })
 
-
 app.post('/process_new_job_post', async (req, res) => {
-  const req_body = req.body;
-  const { new_job_id, job_post } = req_body;
-  const { job_link } = job_post;
-  console.log({ job_link });
+  const req_body = req.body
+  const { new_job_id, job_post } = req_body
+  const { job_link } = job_post
+  console.log({ job_link })
 
   //prepare a job to perform
   //dont save it
   var job = Queue.createJob('now', {
-    new_job_id, job_link,
+    new_job_id,
+    job_link,
   })
     .attempts(3)
-    .backoff({ delay: 60000, type: 'fixed', })
+    .backoff({ delay: 60000, type: 'fixed' })
     .priority('normal')
 
   Queue.now(job)
