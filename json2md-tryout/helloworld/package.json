@@ -1,0 +1,17 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js",
+    "gitUpdate":"git add . && git commit -m\"update json2md,\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json2md": "^2.0.0"
+  }
+}
