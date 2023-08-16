@@ -1,0 +1,17 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gitUpdate": "git add . && git commit -m\"update html2markdown,\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@inkdropapp/html2markdown": "^3.2.0",
+    "node-html-parser": "^6.1.5"
+  }
+}
