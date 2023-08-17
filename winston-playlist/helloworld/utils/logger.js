@@ -4,12 +4,12 @@ const { combine, timestamp, label, prettyPrint } = format;
 
 const logger = winston.createLogger({
   level: 'info',
-  format: combine(
-    winston.format.json(),
-    timestamp(),
-    // prettyPrint()
+  format:  format.combine(
+    format.splat(),
+    format.simple()
   ),
-  defaultMeta: { service: 'user-service' },
+
+  // defaultMeta: { service: 'user-service' },
   transports: [
     new winston.transports.File({ filename: 'error.log', level: 'error' }),
     new winston.transports.File({ filename: 'combined.log' }),
