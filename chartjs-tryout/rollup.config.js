@@ -21,14 +21,20 @@ glob('src/helpers/helpers.*.js', (_er, files) => {
     inputESM[file.replace(/src\/|helpers\.|\.js/g, '')] = file
   })
   Object.keys(inputESM).forEach(key => {
-    inputESMTypings[key.replace('src', 'types')] = inputESM[key].replace('src', 'types').replace(/\.js$/, '.d.ts')
+    inputESMTypings[key.replace('src', 'types')] = inputESM[key]
+      .replace('src', 'types')
+      .replace(/\.js$/, '.d.ts')
   })
 })
 
 const banner = `/*!
  * Chart.js v${pkg.version}
  * ${pkg.homepage}
- * (c) ${new Date(process.env.SOURCE_DATE_EPOCH ? process.env.SOURCE_DATE_EPOCH * 1000 : new Date().getTime()).getFullYear()} Chart.js Contributors
+ * (c) ${new Date(
+   process.env.SOURCE_DATE_EPOCH
+     ? process.env.SOURCE_DATE_EPOCH * 1000
+     : new Date().getTime(),
+ ).getFullYear()} Chart.js Contributors
  * Released under the MIT License
  */`
 

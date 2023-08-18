@@ -10,7 +10,10 @@ const conversationId = '_debug'
 
 ;(async () => {
   // See: https://api.slack.com/methods/chat.postMessage
-  const res = await web.chat.postMessage({ channel: conversationId, text: 'Hello there' })
+  const res = await web.chat.postMessage({
+    channel: conversationId,
+    text: 'Hello there',
+  })
 
   // `res` contains information about the posted message
   console.log('Message sent: ', res.ts)

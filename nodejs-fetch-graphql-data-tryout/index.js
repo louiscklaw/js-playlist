@@ -3,10 +3,12 @@
 const fetch = require('node-fetch')
 
 const test_header = {
-  'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0',
+  'User-Agent':
+    'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0',
   Accept: '*/*',
   'Accept-Language': 'en-US,en;q=0.5',
-  Referer: 'https://hk.jobsdb.com/hk/jobs/information-technology/1?Key=quality%20assurance',
+  Referer:
+    'https://hk.jobsdb.com/hk/jobs/information-technology/1?Key=quality%20assurance',
   'content-type': 'application/json',
   Origin: 'https://hk.jobsdb.com',
   DNT: '1',

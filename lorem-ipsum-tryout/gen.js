@@ -11,9 +11,12 @@ const output = loremIpsum({
   format: 'plain', // Plain text or html
 })
 
-const input_fs = fs.readFileSync('/home/logic/_workspace/react-playlist/admin-template/material-kit-react/public/locales/en/translation.json', {
-  encoding: 'utf-8',
-})
+const input_fs = fs.readFileSync(
+  '/home/logic/_workspace/react-playlist/admin-template/material-kit-react/public/locales/en/translation.json',
+  {
+    encoding: 'utf-8',
+  },
+)
 const input_json = JSON.parse(input_fs)
 
 function iter(o) {
@@ -40,11 +43,14 @@ var data = {
   ffs: false,
   customer: { customer_id: 1544248, z_cx_id: '123456' },
   selected_items: {
-    3600196: [{ id: 4122652, name: "Essential Large (up to 8'x10')", selected: true }],
+    3600196: [
+      { id: 4122652, name: "Essential Large (up to 8'x10')", selected: true },
+    ],
   },
   service_partner: { id: 3486, name: 'Some String', street: '1234 King St.' },
   subject: 'Project-2810191 - Orange Juice Stain (Rug)',
-  description: 'Product Type: \n\nIssue: (copy/paste service request details here)\n\nAction Required:',
+  description:
+    'Product Type: \n\nIssue: (copy/paste service request details here)\n\nAction Required:',
 }
 
 iter(input_json)

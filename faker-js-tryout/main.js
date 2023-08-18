@@ -37,4 +37,7 @@ for (var i = 0; i < 30; i++) {
 }
 
 console.log(JSON.stringify(helloworld))
-fs.writeFileSync('/home/logic/_workspace/lynked-demo-tryout/manage/src/views/queue_manage/QueueManageListView/temp_name_list.json', JSON.stringify(helloworld))
+fs.writeFileSync(
+  '/home/logic/_workspace/lynked-demo-tryout/manage/src/views/queue_manage/QueueManageListView/temp_name_list.json',
+  JSON.stringify(helloworld),
+)

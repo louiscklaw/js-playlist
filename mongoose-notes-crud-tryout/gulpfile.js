@@ -13,13 +13,24 @@ function html() {
 }
 
 function css() {
-  return src('app/src/css/*.less').pipe(less()).pipe(minifyCSS()).pipe(dest('app/public/css'))
+  return src('app/src/css/*.less')
+    .pipe(less())
+    .pipe(minifyCSS())
+    .pipe(dest('app/public/css'))
 }
 
 function js() {
-  return src(['app/src/js/const.js', 'app/src/js/common.js', 'app/src/js/user.js', 'app/src/js/app.js'], {
-    sourcemaps: true,
-  })
+  return src(
+    [
+      'app/src/js/const.js',
+      'app/src/js/common.js',
+      'app/src/js/user.js',
+      'app/src/js/app.js',
+    ],
+    {
+      sourcemaps: true,
+    },
+  )
     .pipe(concat('app.js'))
     .pipe(
       dest('app/public/js', {

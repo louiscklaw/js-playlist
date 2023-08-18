@@ -25,7 +25,11 @@ db.get('4c30d8a1b5dcde897cc51aca2a8abfab.json', (err, contents) => {
   console.log('get,', contents)
 })
 
-db.update('4c30d8a1b5dcde897cc51aca2a8abfab.json', { hello: 'world' }, (err, result, id) => {
-  console.log('result,', result)
-  console.log('id,', id)
-})
+db.update(
+  '4c30d8a1b5dcde897cc51aca2a8abfab.json',
+  { hello: 'world' },
+  (err, result, id) => {
+    console.log('result,', result)
+    console.log('id,', id)
+  },
+)
