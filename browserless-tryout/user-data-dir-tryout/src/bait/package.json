@@ -1,16 +1,16 @@
 {
-  "name": "helloworld",
+  "name": "bait",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docker_rebuild": "docker compose up -d",
-    "gitUpdate": "git add . && git commit -m\"update helloworld-tryout\""
+    "start": "live-server --host=0.0.0.0 ./public"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "live-server": "^1.2.2"
   }
 }

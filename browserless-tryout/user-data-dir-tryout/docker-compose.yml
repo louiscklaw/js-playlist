@@ -1,0 +1,44 @@
+services:
+  browserless:
+    # image: browserless/chrome:1-chrome-stable
+    image: browserless/chrome:latest
+    ports:
+      - 3000:3000
+    environment:
+      - DEBUG=browserless/chrome
+      - MAX_CONCURRENT_SESSIONS=10
+      - CONNECTION_TIMEOUT=300000
+      - MAX_QUEUE_LENGTH=9999
+      - ENABLE_CORS=true
+      - ENABLE_DEBUG_VIEWER=true
+      - EXIT_ON_HEALTH_FAILURE=true
+
+      - PREBOOT_CHROME=true
+      - KEEP_ALIVE=true
+      - CHROME_REFRESH_TIME=3600000
+
+      - METRICS_JSON_PATH=/root/metrics.json
+
+      - ENABLE_DEBUGGER=false
+    restart: unless-stopped
+
+  app:
+    image: node:16-buster-slim
+    restart: unless-stopped
+    user: 1000:1000
+    working_dir: /app
+    volumes:
+      - ./src/app:/app
+    command: sleep infinity
+
+  bait:
+    image: node:16-buster-slim
+    restart: unless-stopped
+    user: 1000:1000
+    working_dir: /app
+    volumes:
+      - ./src/bait:/app
+    command: ./entry.sh
+    # command: sleep infinity
+    ports:
+      - 8080
