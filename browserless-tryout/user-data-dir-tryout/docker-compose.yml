@@ -11,19 +11,14 @@ services:
       - MAX_CONCURRENT_SESSIONS=1
       - MAX_QUEUE_LENGTH=99999
       - CONNECTION_TIMEOUT=300000
-
       - ENABLE_CORS=true
       - ENABLE_DEBUG_VIEWER=true
       - ENABLE_DEBUGGER=true
       - EXIT_ON_HEALTH_FAILURE=false
-
       - PREBOOT_CHROME=true
       - KEEP_ALIVE=true
       - CHROME_REFRESH_TIME=3600000
-
       - METRICS_JSON_PATH=/root/metrics.json
-
-      
       - DEFAULT_USER_DATA_DIR=/home/blessuser/user5
     restart: unless-stopped
     volumes:

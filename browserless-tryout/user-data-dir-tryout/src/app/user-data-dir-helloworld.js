@@ -6,7 +6,7 @@ const browserWSEndpoint = 'ws://browserless:3000';
 (async () => {
   // `${browserWSEndpoint}/?--user-data-dir=${userDataDir}&--disable-web-security`
   const browser = await puppeteer.connect({
-    browserWSEndpoint: `ws://browserless:3000/`,
+    browserWSEndpoint,
   });
 
   const page = await browser.newPage();
