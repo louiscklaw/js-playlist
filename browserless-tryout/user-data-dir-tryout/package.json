@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docker_rebuild": "docker compose up -d",
+    "dc_up": "docker compose up -d",
     "gitUpdate": "git add . && git commit -m\"update helloworld-tryout\""
   },
   "keywords": [],

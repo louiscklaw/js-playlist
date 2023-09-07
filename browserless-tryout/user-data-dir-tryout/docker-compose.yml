@@ -1,3 +1,4 @@
+name: user-data-dir-tryout
 services:
   browserless:
     # image: browserless/chrome:1-chrome-stable
@@ -6,26 +7,29 @@ services:
       - 3000:3000
     environment:
       - DEBUG=browserless/chrome
-      - MAX_CONCURRENT_SESSIONS=10
-      - CONNECTION_TIMEOUT=300000
-      - MAX_QUEUE_LENGTH=9999
-      - ENABLE_CORS=true
-      - ENABLE_DEBUG_VIEWER=true
-      - EXIT_ON_HEALTH_FAILURE=true
+      # - MAX_CONCURRENT_SESSIONS=10
+      # - CONNECTION_TIMEOUT=300000
+      # - MAX_QUEUE_LENGTH=9999
+      # - ENABLE_CORS=true
+      # - ENABLE_DEBUG_VIEWER=true
+      # - EXIT_ON_HEALTH_FAILURE=true
 
-      - PREBOOT_CHROME=true
-      - KEEP_ALIVE=true
-      - CHROME_REFRESH_TIME=3600000
+      # - PREBOOT_CHROME=true
+      # - KEEP_ALIVE=true
+      # - CHROME_REFRESH_TIME=3600000
 
-      - METRICS_JSON_PATH=/root/metrics.json
+      # - METRICS_JSON_PATH=/root/metrics.json
 
-      - ENABLE_DEBUGGER=false
+      # - ENABLE_DEBUGGER=true
+      - DEFAULT_USER_DATA_DIR=/home/blessuser/user5
     restart: unless-stopped
+    volumes:
+      - ./volumes/my-profile/user5:/home/blessuser/user5
 
   app:
     image: node:16-buster-slim
     restart: unless-stopped
-    user: 1000:1000
+    # user: 1000:1000
     working_dir: /app
     volumes:
       - ./src/app:/app
@@ -42,3 +46,6 @@ services:
     # command: sleep infinity
     ports:
       - 8080
+
+volumes:
+  user5:
