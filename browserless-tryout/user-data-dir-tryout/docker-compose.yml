@@ -4,7 +4,7 @@ services:
     # image: browserless/chrome:1-chrome-stable
     image: browserless/chrome:latest
     ports:
-      - 3000:3000
+      - 3000
     environment:
       - DEBUG=browserless/chrome
       # restricted by user-data-dir, user-data-dir cannot accept more than 1 concurrent instance
@@ -20,7 +20,7 @@ services:
       - CHROME_REFRESH_TIME=3600000
       - METRICS_JSON_PATH=/root/metrics.json
       - DEFAULT_USER_DATA_DIR=/home/blessuser/user5
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./volumes/my-profile/user5:/home/blessuser/user5
 
