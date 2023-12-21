@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-uuencode@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/uuencode/-/uuencode-0.0.4.tgz#c8d50370885663879385ab37e333c7e8e3b0218c"
-  integrity sha1-yNUDcIhWY4eThas34zPH6OOwIYw=
+"uuencode@^0.0.4":
+  "integrity" "sha512-yEEhCuCi5wRV7Z5ZVf9iV2gWMvUZqKJhAs1ecFdKJ0qzbyaVelmsE3QjYAamehfp9FKLiZbKldd+jklG3O0LfA=="
+  "resolved" "https://registry.npmjs.org/uuencode/-/uuencode-0.0.4.tgz"
+  "version" "0.0.4"
