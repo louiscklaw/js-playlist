@@ -5,8 +5,7 @@
   "scripts": {
     "gitUpdate": "git add . && git commit -m'update js-playlist,' && git pull && git push",
     "format": "npx prettier --loglevel warn --write \"**/*.{js,jsx,tsx,ts,json}\"",
-    "tidy":"npx prettier --write ./**/*.js"
+    "tidy": "npx prettier --write ./**/*.js"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
