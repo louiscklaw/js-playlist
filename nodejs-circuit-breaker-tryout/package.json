@@ -1,0 +1,18 @@
+{
+  "name": "nodejs-circuit-breaker-tryout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./index.js",
+    "stub_server": "node ./_stub/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.3",
+    "express": "^4.18.2",
+    "opossum": "^8.1.3"
+  }
+}
