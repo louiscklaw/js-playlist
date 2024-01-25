@@ -2,18 +2,19 @@ version: '3'
 
 services:
   node-app:
-    build: .
-    image: node-app
+    build: ./node-app
+    # image: node-app
     environment:
       - MONGODB_URL=mongodb://mongodb:27017/node-boilerplate
     ports:
-      - '3000:3000'
+      - 3000:3000
     depends_on:
       - mongodb
     volumes:
-      - .:/usr/src/node-app
+      - ./node-app:/usr/src/node-app
     networks:
       - node-network
+    command: sleep infinity
 
   mongodb:
     image: mongo:4.2.1-bionic
