@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  node-app:
-    build: ./node-app
-    # image: node-app
+  api_server:
+    build: ./api_server
+    # image: api_server
     environment:
       - MONGODB_URL=mongodb://mongodb:27017/node-boilerplate
     ports:
@@ -11,7 +11,7 @@ services:
     depends_on:
       - mongodb
     volumes:
-      - ./node-app:/usr/src/node-app
+      - ./api_server:/usr/src/node-app
     networks:
       - node-network
     command: sleep infinity
